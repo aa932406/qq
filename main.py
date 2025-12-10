@@ -2,7 +2,6 @@ import json
 import os
 import aiohttp
 import asyncio
-import re
 from datetime import datetime
 from typing import Optional
 from astrbot.api.event import filter, AstrMessageEvent
@@ -237,6 +236,197 @@ class GameBindPlugin(Star):
         else:
             yield event.plain_result("❌ 您尚未绑定游戏角色\n请使用：/绑定 游戏角色ID")
     
+    @filter.command("解绑")
+    async def unbind_cmd(self, event: AstrMessageEvent):
+        """解绑游戏账号"""
+        logger.info(f"【解绑】被触发")
+        
+        qq_id = self._get_user_id(event)
+        logger.info(f"【调试】解绑请求 - QQ: {qq_id}")
+        
+        # 特殊处理：如果是您自己
+        if qq_id == "unknown":
+            try:
+                user_name = event.get_sender_name()
+                if user_name == "UI":
+                    qq_id = "965959320"
+            except:
+                pass
+        
+        if qq_id in self.bindings:
+            game_cid = self.bindings[qq_id]["game_cid"]
+            player_name = self.bindings[qq_id].get("player_name", game_cid)
+            del self.bindings[qq_id]
+            self._save_json(self.bind_file, self.bindings)
+            
+            logger.info(f"解绑成功：QQ:{qq_id} -> 角色:{player_name}")
+            yield event.plain_result(f"✅ 解绑成功！\n已移除角色 {player_name} 的绑定")
+        else:
+            yield event.plain_result("❌ 您未绑定任何游戏角色")
+    
+    # ========== 充值功能 ==========
+    @filter.command("充值")
+    async def recharge_cmd(self, event: AstrMessageEvent):
+        """游戏充值：/充值 金额 [备注]"""
+        logger.info(f"【充值指令】被触发")
+        
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            yield event.plain_result("❌ 格式：/充值 金额 [备注]\n例如：/充值 100 元宝充值")
+            return
+        
+        try:
+            amount = float(parts[1])
+            if amount <= 0:
+                raise ValueError("金额必须大于0")
+            remark = " ".join(parts[2:]) if len(parts) > 2 else "QQ机器人充值"
+        except ValueError:
+            yield event.plain_result("❌ 充值金额必须是数字且大于0")
+            return
+        
+        qq_id = self._get_user_id(event)
+        logger.info(f"【调试】充值请求 - QQ: {qq_id}, 金额: {amount}")
+        
+        # 特殊处理：如果是您自己
+        if qq_id == "unknown":
+            try:
+                user_name = event.get_sender_name()
+                if user_name == "UI":
+                    qq_id = "965959320"
+                else:
+                    yield event.plain_result("❌ 无法获取您的QQ信息，请稍后重试")
+                    return
+            except:
+                yield event.plain_result("❌ 无法获取您的QQ信息，请稍后重试")
+                return
+        
+        # 检查绑定
+        if qq_id not in self.bindings:
+            yield event.plain_result("❌ 您尚未绑定游戏角色，请先使用 /绑定 游戏角色ID")
+            return
+        
+        game_cid = self.bindings[qq_id]["game_cid"]
+        player_name = self.bindings[qq_id].get("player_name", game_cid)
+        
+        # 执行充值
+        try:
+            result = await self._execute_recharge(game_cid, amount, remark)
+            
+            if result.get("success"):
+                # 记录充值日志
+                recharge_id = f"R{datetime.now().strftime('%Y%m%d%H%M%S')}_{qq_id}"
+                self.recharge_logs[recharge_id] = {
+                    "qq_id": qq_id,
+                    "game_cid": game_cid,
+                    "player_name": player_name,
+                    "amount": amount,
+                    "remark": remark,
+                    "recharge_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "api_response": result
+                }
+                self._save_json(self.recharge_file, self.recharge_logs)
+                
+                logger.info(f"充值成功：QQ:{qq_id} -> 角色:{player_name} 金额:{amount}")
+                
+                response_data = result.get("data", {})
+                yield event.plain_result(
+                    f"✅ 充值成功！\n"
+                    f"🎮 游戏角色：{player_name}\n"
+                    f"🆔 角色ID：{game_cid}\n"
+                    f"💰 充值金额：{amount} 元宝\n"
+                    f"📝 备注：{remark}\n"
+                    f"🧾 新余额：{response_data.get('new_gold_pay', '未知')}\n"
+                    f"💰 累计充值：{response_data.get('new_gold_pay_total', '未知')}\n"
+                    f"⏰ 时间：{response_data.get('recharge_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
+                )
+            else:
+                error_msg = result.get("error", "未知错误")
+                logger.error(f"充值失败：QQ:{qq_id} 错误：{error_msg}")
+                yield event.plain_result(f"❌ 充值失败：{error_msg}")
+                
+        except Exception as e:
+            logger.error(f"充值异常：QQ:{qq_id} 异常：{str(e)}")
+            yield event.plain_result(f"❌ 充值过程出现异常，请稍后重试或联系管理员\n错误：{str(e)}")
+    
+    @filter.command("查询角色")
+    async def query_player_cmd(self, event: AstrMessageEvent):
+        """查询游戏角色信息：/查询角色 [角色ID]"""
+        logger.info(f"【查询角色】被触发")
+        
+        parts = event.message_str.strip().split()
+        
+        if len(parts) >= 2:
+            # 查询指定角色
+            game_cid = parts[1]
+        else:
+            # 查询自己绑定的角色
+            qq_id = self._get_user_id(event)
+            
+            # 特殊处理：如果是您自己
+            if qq_id == "unknown":
+                try:
+                    user_name = event.get_sender_name()
+                    if user_name == "UI":
+                        qq_id = "965959320"
+                    else:
+                        yield event.plain_result("❌ 您尚未绑定游戏角色，请先绑定或指定角色ID")
+                        return
+                except:
+                    yield event.plain_result("❌ 您尚未绑定游戏角色，请先绑定或指定角色ID")
+                    return
+            
+            if qq_id not in self.bindings:
+                yield event.plain_result("❌ 您尚未绑定游戏角色，请先绑定或指定角色ID")
+                return
+            game_cid = self.bindings[qq_id]["game_cid"]
+        
+        try:
+            player_info = await self._get_player_info(game_cid)
+            if not player_info:
+                yield event.plain_result(f"❌ 角色ID {game_cid} 不存在")
+                return
+            
+            # 格式化角色信息
+            info_lines = [
+                f"🎮 角色信息：{player_info.get('name', '未知')}",
+                f"🆔 角色ID：{game_cid}",
+                f"🎯 职业：{player_info.get('job_name', '未知')}",
+                f"📊 等级：{player_info.get('level', '未知')}",
+                f"⚔️ 战力：{player_info.get('battle', '未知')}",
+                f"💰 元宝：{player_info.get('cash_gold', '未知')}",
+                f"💎 VIP等级：{player_info.get('vip_level', '未知')}",
+                f"📅 创建时间：{player_info.get('create_time_str', '未知')}",
+                f"🕒 最后登录：{player_info.get('last_login_time_str', '未知')}",
+                f"📈 累计充值：{player_info.get('total_recharge', '未知')}",
+                f"🔒 状态：{player_info.get('status', '正常')}"
+            ]
+            
+            yield event.plain_result("\n".join(info_lines))
+            
+        except Exception as e:
+            logger.error(f"查询角色失败：{e}")
+            yield event.plain_result(f"❌ 查询角色失败：{str(e)}")
+    
+    @filter.command("测试充值")
+    async def test_recharge_cmd(self, event: AstrMessageEvent):
+        """测试充值API连接"""
+        logger.info(f"【测试充值】被触发")
+        
+        yield event.plain_result("🔄 正在测试API连接...")
+        
+        try:
+            # 测试获取一个已知角色（假设有测试角色）
+            test_cid = "100001"  # 可以修改为您的测试角色ID
+            player_info = await self._get_player_info(test_cid)
+            
+            if player_info:
+                yield event.plain_result(f"✅ API连接正常！\n测试角色：{player_info.get('name', '未知')}")
+            else:
+                yield event.plain_result("⚠️ API连接正常，但测试角色不存在\n请确认测试角色ID是否正确")
+                
+        except Exception as e:
+            yield event.plain_result(f"❌ API连接失败：{str(e)}\n请检查API地址和网络配置")
+    
     # ========== 调试和管理功能 ==========
     @filter.command("我的信息")
     async def my_info_cmd(self, event: AstrMessageEvent):
@@ -421,35 +611,63 @@ class GameBindPlugin(Star):
         
         yield event.plain_result("\n".join(lines))
     
-    # ========== 其他功能（保持不变） ==========
-    @filter.command("解绑")
-    async def unbind_cmd(self, event: AstrMessageEvent):
-        # ... 原有代码 ...
-        pass
-    
-    @filter.command("充值")
-    async def recharge_cmd(self, event: AstrMessageEvent):
-        # ... 原有代码 ...
-        pass
-    
-    @filter.command("查询角色")
-    async def query_player_cmd(self, event: AstrMessageEvent):
-        # ... 原有代码 ...
-        pass
-    
-    @filter.command("测试充值")
-    async def test_recharge_cmd(self, event: AstrMessageEvent):
-        # ... 原有代码 ...
-        pass
-    
     # ========== API调用方法 ==========
     async def _get_player_info(self, cid: str) -> Optional[dict]:
-        # ... 原有代码 ...
-        pass
+        """调用API查询玩家信息"""
+        try:
+            async with aiohttp.ClientSession() as session:
+                params = {
+                    "action": "detail",
+                    "cid": cid
+                }
+                
+                async with session.get(
+                    self.api_config["base_url"],
+                    params=params,
+                    timeout=aiohttp.ClientTimeout(total=self.api_config["timeout"])
+                ) as response:
+                    if response.status == 200:
+                        result = await response.json()
+                        if result.get("success"):
+                            return result.get("data")
+                        else:
+                            logger.warning(f"查询角色失败：{result.get('error')}")
+                    else:
+                        logger.error(f"API请求失败，状态码：{response.status}")
+        except Exception as e:
+            logger.error(f"查询角色异常：{e}")
+        
+        return None
     
     async def _execute_recharge(self, cid: str, amount: float, remark: str) -> dict:
-        # ... 原有代码 ...
-        pass
+        """调用API执行充值"""
+        try:
+            async with aiohttp.ClientSession() as session:
+                # 使用POST方法发送充值请求
+                form_data = aiohttp.FormData()
+                form_data.add_field("action", "recharge")
+                form_data.add_field("cid", cid)
+                form_data.add_field("amount", str(amount))
+                form_data.add_field("remark", remark)
+                
+                async with session.post(
+                    self.api_config["base_url"],
+                    data=form_data,
+                    timeout=aiohttp.ClientTimeout(total=self.api_config["timeout"])
+                ) as response:
+                    if response.status == 200:
+                        result = await response.json()
+                        return result
+                    else:
+                        logger.error(f"充值API请求失败，状态码：{response.status}")
+                        return {"success": False, "error": f"API请求失败：{response.status}"}
+                        
+        except asyncio.TimeoutError:
+            logger.error("充值请求超时")
+            return {"success": False, "error": "请求超时，请稍后重试"}
+        except Exception as e:
+            logger.error(f"充值请求异常：{e}")
+            return {"success": False, "error": f"请求异常：{str(e)}"}
     
     async def terminate(self):
         logger.info("游戏充值插件已禁用")
