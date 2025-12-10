@@ -31,93 +31,126 @@ class GameBindPlugin(Star):
         except Exception as e:
             logger.error(f"保存失败: {e}")
 
-    # ========== 核心修复：使用正确的字段名 ==========
-    @filter.command("绑定")
-    async def bind_cmd(self, event: AstrMessageEvent):
-        """绑定游戏账号"""
-        logger.info(f"【绑定指令】被触发")
+    async def initialize(self):
+        """插件启用时注册事件监听器"""
+        # 根据官方指南注册消息事件监听
+        self.register_listener(
+            event_type="message",
+            listener=self.handle_message
+        )
+        logger.info("【游戏绑定插件】已启用并注册监听器")
+
+    # ========== 主消息处理函数 ==========
+    async def handle_message(self, event: AstrMessageEvent):
+        """处理所有消息事件"""
+        # 获取消息文本
+        message_str = event.message_str.strip()
         
+        # 处理 /绑定 指令
+        if message_str.startswith("/绑定"):
+            await self.process_bind(event)
+        
+        # 处理 /我的绑定 指令
+        elif message_str.startswith("/我的绑定"):
+            await self.process_my_bind(event)
+        
+        # 处理 /解绑 指令
+        elif message_str.startswith("/解绑"):
+            await self.process_unbind(event)
+        
+        # 处理 /充值验证 指令
+        elif message_str.startswith("/充值验证"):
+            await self.process_recharge(event)
+        
+        # 处理 /测试 指令
+        elif message_str.startswith("/测试"):
+            await self.process_test(event)
+
+    # ========== 具体指令处理函数 ==========
+    async def process_bind(self, event: AstrMessageEvent):
+        """处理绑定指令"""
+        logger.info(f"处理绑定指令")
+        
+        # 解析消息：/绑定 游戏账号
         parts = event.message_str.strip().split()
         if len(parts) < 2:
             yield event.plain_result("❌ 格式：/绑定 游戏账号")
             return
         
-        # 关键修复：使用 user_id
-        qq_id = str(event.user_id)  # ← 这里使用 user_id！
+        # 获取用户ID（根据官方指南的方式）
+        user_id = str(event.user_id)  # 官方文档显示使用 user_id
         game_account = parts[1]
         
-        if qq_id in self.bindings:
-            old = self.bindings[qq_id]["game_account"]
-            yield event.plain_result(f"⚠️ 您已绑定：{old}")
+        if user_id in self.bindings:
+            old_account = self.bindings[user_id]["game_account"]
+            yield event.plain_result(f"⚠️ 您已绑定账号：{old_account}")
             return
         
-        # 保存绑定
-        self.bindings[qq_id] = {
+        # 创建绑定记录
+        self.bindings[user_id] = {
             "game_account": game_account,
-            "bind_time": datetime.now().strftime("%Y-%m-%d %H:%M"),
-            "qq_id": qq_id
+            "bind_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "qq_id": user_id
         }
         self._save_bindings()
         
-        logger.info(f"绑定成功：QQ:{qq_id} 账号:{game_account}")
-        yield event.plain_result(f"✅ 绑定成功！游戏账号：{game_account}")
+        logger.info(f"绑定成功：QQ:{user_id} 账号:{game_account}")
+        yield event.plain_result(f"✅ 绑定成功！\n游戏账号：{game_account}")
 
-    @filter.command("我的绑定")
-    async def mybind_cmd(self, event: AstrMessageEvent):
-        """查询绑定"""
-        logger.info(f"【我的绑定】被触发")
+    async def process_my_bind(self, event: AstrMessageEvent):
+        """处理查询绑定指令"""
+        logger.info(f"处理查询绑定指令")
         
-        # 关键修复：使用 user_id
-        qq_id = str(event.user_id)  # ← 这里使用 user_id！
+        user_id = str(event.user_id)
         
-        if qq_id in self.bindings:
-            data = self.bindings[qq_id]
-            yield event.plain_result(f"📋 您的绑定：\n账号：{data['game_account']}\n时间：{data['bind_time']}")
+        if user_id in self.bindings:
+            data = self.bindings[user_id]
+            result = f"📋 您的绑定信息：\n游戏账号：{data['game_account']}\n绑定时间：{data['bind_time']}"
+            yield event.plain_result(result)
         else:
-            yield event.plain_result("❌ 您未绑定账号")
+            yield event.plain_result("❌ 您尚未绑定游戏账号")
 
-    @filter.command("解绑")
-    async def unbind_cmd(self, event: AstrMessageEvent):
-        """解绑"""
-        logger.info(f"【解绑】被触发")
+    async def process_unbind(self, event: AstrMessageEvent):
+        """处理解绑指令"""
+        logger.info(f"处理解绑指令")
         
-        # 关键修复：使用 user_id
-        qq_id = str(event.user_id)  # ← 这里使用 user_id！
+        user_id = str(event.user_id)
         
-        if qq_id in self.bindings:
-            del self.bindings[qq_id]
+        if user_id in self.bindings:
+            del self.bindings[user_id]
             self._save_bindings()
             yield event.plain_result("✅ 解绑成功")
         else:
-            yield event.plain_result("❌ 您未绑定账号")
+            yield event.plain_result("❌ 您未绑定任何账号")
 
-    @filter.command("充值验证")
-    async def recharge_cmd(self, event: AstrMessageEvent):
-        """充值验证"""
-        logger.info(f"【充值验证】被触发")
+    async def process_recharge(self, event: AstrMessageEvent):
+        """处理充值验证指令"""
+        logger.info(f"处理充值验证指令")
         
-        # 关键修复：使用 user_id
-        qq_id = str(event.user_id)  # ← 这里使用 user_id！
+        user_id = str(event.user_id)
         
-        if qq_id not in self.bindings:
-            yield event.plain_result("❌ 未绑定账号")
+        if user_id not in self.bindings:
+            yield event.plain_result("❌ 您尚未绑定游戏账号，无法充值")
             return
         
-        account = self.bindings[qq_id]["game_account"]
-        yield event.plain_result(f"✅ 验证通过！账号：{account}")
+        game_account = self.bindings[user_id]["game_account"]
+        yield event.plain_result(f"✅ 验证通过！\n游戏账号：{game_account}\n可以进行充值操作")
 
-    @filter.command("测试")
-    async def test_cmd(self, event: AstrMessageEvent):
-        """测试插件"""
-        logger.info("【测试指令】被触发")
+    async def process_test(self, event: AstrMessageEvent):
+        """处理测试指令"""
+        logger.info(f"处理测试指令")
         
-        # 关键修复：使用 user_id
-        qq_id = str(event.user_id)  # ← 这里使用 user_id！
+        # 返回用户信息用于调试
+        user_id = str(event.user_id)
         
-        yield event.plain_result(f"✅ 插件工作正常！\n您的QQ：{qq_id}")
+        # 获取用户名称（如果可用）
+        try:
+            user_name = event.get_sender_name()
+        except:
+            user_name = "用户"
+        
+        yield event.plain_result(f"✅ 插件工作正常！\n用户：{user_name}\nQQ：{user_id}")
 
-    async def initialize(self):
-        logger.info("【游戏绑定插件】已启用")
-        
     async def terminate(self):
+        """插件禁用"""
         logger.info("游戏绑定插件已禁用")
