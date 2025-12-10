@@ -8,7 +8,7 @@ from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
-@register("game_bind", "aa932406", "游戏账号绑定与充值插件", "1.1.0")
+@register("game_bind", "aa932406", "游戏账号绑定与充值插件", "1.2.0")
 class GameBindPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
@@ -24,16 +24,15 @@ class GameBindPlugin(Star):
         
         # ⚠️ 请修改这里的配置为您自己的服务器地址
         self.api_config = {
-            "base_url": "http://115.190.64.181:881/api/players.php",  # 修改为您的API地址
+            "base_url": "http://115.190.64.181:881/api/players.php",  # 您的API地址
             "timeout": 30
         }
         
-        # 管理员QQ列表（可以在这里添加管理员QQ号）
-        self.admin_qq_list = ["965959320"]  # 修改为您的管理员QQ
+        # 管理员QQ列表 - 您的QQ号
+        self.admin_qq_list = ["965959320"]
         
-        logger.info("【游戏充值插件】初始化完成！")
+        logger.info(f"【游戏充值插件】初始化完成！管理员列表：{self.admin_qq_list}")
         logger.info(f"API地址配置: {self.api_config['base_url']}")
-        logger.info(f"管理员列表: {self.admin_qq_list}")
     
     def _load_json(self, file_path: str) -> dict:
         """加载JSON文件"""
@@ -54,36 +53,64 @@ class GameBindPlugin(Star):
             logger.error(f"保存文件失败 {file_path}: {e}")
     
     def _get_user_id(self, event: AstrMessageEvent) -> str:
-        """获取用户ID - 增强版"""
-        qq_id = ""
-        
-        # 尝试常见属性
-        attrs_to_try = ['sender_id', 'user_id', 'from_id']
-        
-        for attr in attrs_to_try:
-            if hasattr(event, attr):
-                value = getattr(event, attr)
-                logger.info(f"【调试】尝试属性 {attr}: {value} (类型: {type(value)})")
+        """获取用户ID - 增强版，使用 event.get_sender_name()"""
+        try:
+            # 方法1：使用 event.get_sender_name() 获取用户名，然后从绑定数据中反查QQ号
+            user_name = event.get_sender_name()
+            logger.info(f"【调试】获取到用户名: {user_name}")
+            
+            # 如果用户名是数字格式，可能就是QQ号
+            if user_name and user_name.isdigit():
+                logger.info(f"【调试】用户名是数字格式，可能是QQ号: {user_name}")
+                return user_name
+            
+            # 方法2：尝试从消息链中获取 @ 信息
+            try:
+                from astrbot.api.message_components import At
+                messages = event.get_messages()
+                for msg in messages:
+                    if isinstance(msg, At):
+                        logger.info(f"【调试】找到@消息: {msg}")
+                        # 这里可能需要根据实际情况处理
+            except:
+                pass
+            
+            # 方法3：尝试其他可能的属性
+            attrs_to_check = ['sender_id', 'user_id', 'from_id', 'sender', 'user']
+            for attr in attrs_to_check:
+                if hasattr(event, attr):
+                    value = getattr(event, attr)
+                    logger.info(f"【调试】尝试属性 {attr}: {value}")
+                    if value:
+                        # 如果是对象，尝试获取id
+                        if hasattr(value, 'id'):
+                            qq_id = str(value.id)
+                            logger.info(f"【调试】从对象获取id: {qq_id}")
+                            return qq_id
+                        # 如果是数字或字符串
+                        elif isinstance(value, (int, str)) and str(value).strip():
+                            qq_id = str(value).strip()
+                            logger.info(f"【调试】直接获取值: {qq_id}")
+                            return qq_id
+            
+            # 方法4：临时方案 - 如果是您自己，直接返回您的QQ号
+            # 在群聊中发送消息测试，如果是您发的消息，直接认为是管理员
+            if user_name and ("Shenx" in user_name or "您的昵称" in user_name):
+                logger.info(f"【调试】根据用户名识别为管理员: {user_name}")
+                return "965959320"
                 
-                if value:
-                    qq_id = str(value)
-                    break
+        except Exception as e:
+            logger.error(f"获取用户ID异常: {e}")
         
-        # 如果是数字，转换为字符串
-        if qq_id and qq_id.isdigit():
-            qq_id = str(int(qq_id))  # 去除可能的空格
-        
-        logger.info(f"【调试】最终获取的QQ_ID: '{qq_id}'")
-        return qq_id if qq_id else "unknown"
+        return "unknown"
     
     def _is_admin(self, qq_id: str) -> bool:
-        """检查是否为管理员 - 增强版"""
+        """检查是否为管理员"""
         if not qq_id or qq_id == "unknown":
             logger.info(f"【调试】管理员检查失败: QQ_ID无效 '{qq_id}'")
             return False
         
-        logger.info(f"【调试】检查管理员权限 - 输入QQ: '{qq_id}', 类型: {type(qq_id)}")
-        logger.info(f"【调试】管理员列表: {self.admin_qq_list}")
+        logger.info(f"【调试】检查管理员权限 - QQ: '{qq_id}'")
         
         # 转换为字符串进行比较
         qq_id_str = str(qq_id).strip()
@@ -91,9 +118,8 @@ class GameBindPlugin(Star):
         # 检查是否在管理员列表中
         for admin_qq in self.admin_qq_list:
             admin_qq_str = str(admin_qq).strip()
-            logger.info(f"【调试】比较: '{qq_id_str}' == '{admin_qq_str}' ? {qq_id_str == admin_qq_str}")
             if qq_id_str == admin_qq_str:
-                logger.info(f"【调试】匹配成功!")
+                logger.info(f"【调试】匹配成功: '{qq_id_str}'")
                 return True
         
         logger.info(f"【调试】匹配失败: '{qq_id_str}' 不在管理员列表中")
@@ -115,6 +141,8 @@ class GameBindPlugin(Star):
         
         game_cid = parts[1]
         qq_id = self._get_user_id(event)
+        
+        logger.info(f"【调试】绑定请求 - QQ: {qq_id}, 游戏ID: {game_cid}")
         
         if qq_id == "unknown":
             yield event.plain_result("❌ 无法获取您的QQ信息，请稍后重试")
@@ -157,6 +185,7 @@ class GameBindPlugin(Star):
         logger.info(f"【我的绑定】被触发")
         
         qq_id = self._get_user_id(event)
+        logger.info(f"【调试】查询绑定 - QQ: {qq_id}")
         
         if qq_id in self.bindings:
             data = self.bindings[qq_id]
@@ -176,6 +205,7 @@ class GameBindPlugin(Star):
         logger.info(f"【解绑】被触发")
         
         qq_id = self._get_user_id(event)
+        logger.info(f"【调试】解绑请求 - QQ: {qq_id}")
         
         if qq_id in self.bindings:
             game_cid = self.bindings[qq_id]["game_cid"]
@@ -209,6 +239,7 @@ class GameBindPlugin(Star):
             return
         
         qq_id = self._get_user_id(event)
+        logger.info(f"【调试】充值请求 - QQ: {qq_id}, 金额: {amount}")
         
         # 检查绑定
         if qq_id not in self.bindings:
@@ -247,7 +278,7 @@ class GameBindPlugin(Star):
                     f"📝 备注：{remark}\n"
                     f"🧾 新余额：{response_data.get('new_gold_pay', '未知')}\n"
                     f"💰 累计充值：{response_data.get('new_gold_pay_total', '未知')}\n"
-                    f"⏰ 时间：{response_data.get('recharge_time', datetime.now().strftime('%Y-%m-d %H:%M:%S'))}"
+                    f"⏰ 时间：{response_data.get('recharge_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
                 )
             else:
                 error_msg = result.get("error", "未知错误")
@@ -323,7 +354,7 @@ class GameBindPlugin(Star):
         except Exception as e:
             yield event.plain_result(f"❌ API连接失败：{str(e)}\n请检查API地址和网络配置")
     
-    # ========== 调试功能 ==========
+    # ========== 调试和管理功能 ==========
     @filter.command("我的信息")
     async def my_info_cmd(self, event: AstrMessageEvent):
         """显示我的QQ信息和权限状态"""
@@ -331,6 +362,12 @@ class GameBindPlugin(Star):
         
         # 获取用户ID
         qq_id = self._get_user_id(event)
+        
+        # 获取用户名
+        try:
+            user_name = event.get_sender_name()
+        except:
+            user_name = "未知"
         
         # 检查管理员状态
         is_admin = self._is_admin(qq_id)
@@ -346,68 +383,61 @@ class GameBindPlugin(Star):
         # 构建回复信息
         info_lines = [
             "📱 您的账户信息：",
+            f"👤 用户名：{user_name}",
             f"🆔 QQ号：{qq_id if qq_id != 'unknown' else '无法获取'}",
             f"👑 管理员：{'✅ 是' if is_admin else '❌ 否'}",
             f"🎮 {bind_info}",
-            f"📋 管理员列表：{', '.join(self.admin_qq_list)}"
+            f"📋 管理员列表：{', '.join(self.admin_qq_list)}",
+            f"💡 提示：如果QQ号无法获取，请尝试使用 /强制管理员 命令"
         ]
         
         yield event.plain_result("\n".join(info_lines))
     
-    @filter.command("调试QQ")
-    async def debug_qq_cmd(self, event: AstrMessageEvent):
-        """调试QQ号获取"""
-        logger.info(f"【调试QQ】被触发")
+    @filter.command("强制管理员")
+    async def force_admin_cmd(self, event: AstrMessageEvent):
+        """强制设置为管理员（临时解决方案）"""
+        logger.info(f"【强制管理员】被触发")
         
-        # 详细的事件信息
-        event_info = []
+        # 获取用户名
+        try:
+            user_name = event.get_sender_name()
+            logger.info(f"【调试】用户名: {user_name}")
+        except:
+            user_name = "未知"
         
-        # 1. 检查事件对象属性
-        event_info.append("🔍 事件对象属性：")
-        for attr in ['user_id', 'sender_id', 'from_id', 'user', 'sender']:
-            if hasattr(event, attr):
-                value = getattr(event, attr)
-                event_info.append(f"  {attr}: {value} (类型: {type(value).__name__})")
-        
-        # 2. 获取用户ID
-        qq_id = self._get_user_id(event)
-        event_info.append(f"\n🎯 获取到的QQ_ID: {qq_id}")
-        
-        # 3. 检查管理员状态
-        is_admin = self._is_admin(qq_id)
-        event_info.append(f"👑 管理员检查: qq_id='{qq_id}', admin_list={self.admin_qq_list}, 结果={is_admin}")
-        
-        yield event.plain_result("\n".join(event_info))
-    
-    @filter.command("临时设置管理员")
-    async def temp_set_admin_cmd(self, event: AstrMessageEvent):
-        """临时设置管理员（调试用）"""
-        logger.info(f"【临时设置管理员】被触发")
-        
-        qq_id = self._get_user_id(event)
-        
-        # 临时：允许任何人设置自己为管理员（调试用）
-        parts = event.message_str.strip().split()
-        
-        if len(parts) >= 2:
-            target_qq = parts[1]
-        else:
-            target_qq = qq_id  # 如果不指定，就设置自己
-        
-        if target_qq and target_qq != "unknown":
-            # 确保是字符串格式
-            target_qq_str = str(target_qq).strip()
-            
-            if target_qq_str not in self.admin_qq_list:
-                self.admin_qq_list.append(target_qq_str)
-                logger.info(f"添加管理员: {target_qq_str}")
-                yield event.plain_result(f"✅ 已添加 {target_qq_str} 为管理员\n当前管理员列表：{', '.join(self.admin_qq_list)}")
+        # 如果是您自己，直接设置为管理员
+        if "Shenx" in user_name or user_name == "您的昵称":
+            qq_id = "965959320"
+            if qq_id not in self.admin_qq_list:
+                self.admin_qq_list.append(qq_id)
+                logger.info(f"强制添加管理员: {qq_id}")
+                yield event.plain_result(f"✅ 已强制设置 {qq_id} 为管理员\n当前管理员列表：{', '.join(self.admin_qq_list)}")
             else:
-                yield event.plain_result(f"ℹ️ {target_qq_str} 已经是管理员")
+                yield event.plain_result(f"ℹ️ {qq_id} 已经是管理员")
         else:
-            yield event.plain_result("❌ 无法获取有效的QQ号")
+            yield event.plain_result("❌ 权限不足，仅特定用户可以执行此命令")
     
-    # ========== 管理员功能（手动检查权限） ==========
+    @filter.command("测试事件")
+    async def test_event_cmd(self, event: AstrMessageEvent):
+        """测试事件对象信息"""
+        logger.info(f"【测试事件】被触发")
+        
+        info_lines = ["🔍 事件对象信息："]
+        
+        # 获取所有属性
+        for attr in dir(event):
+            if not attr.startswith('_'):
+                try:
+                    value = getattr(event, attr)
+                    if not callable(value):
+                        info_lines.append(f"{attr}: {repr(value)}")
+                except:
+                    pass
+        
+        # 限制输出长度
+        yield event.plain_result("\n".join(info_lines[:20]))
+    
+    # ========== 管理员功能 ==========
     @filter.command("充值记录")
     async def recharge_history_cmd(self, event: AstrMessageEvent):
         """查看充值记录（管理员）"""
@@ -417,8 +447,17 @@ class GameBindPlugin(Star):
         
         # 手动检查管理员权限
         if not self._is_admin(qq_id):
-            yield event.plain_result(f"❌ 权限不足，仅管理员可查看充值记录\n您的QQ: '{qq_id}'\n管理员列表: {self.admin_qq_list}")
-            return
+            # 临时：如果是您自己，允许查看
+            try:
+                user_name = event.get_sender_name()
+                if "Shenx" in user_name:
+                    logger.info(f"【调试】根据用户名放行: {user_name}")
+                else:
+                    yield event.plain_result(f"❌ 权限不足，仅管理员可查看充值记录\n您的QQ: '{qq_id}'")
+                    return
+            except:
+                yield event.plain_result(f"❌ 权限不足，仅管理员可查看充值记录\n您的QQ: '{qq_id}'")
+                return
         
         if not self.recharge_logs:
             yield event.plain_result("暂无充值记录")
@@ -437,32 +476,6 @@ class GameBindPlugin(Star):
             lines.append(f"⏰ 时间：{log.get('recharge_time', '未知')}")
         
         yield event.plain_result("\n".join(lines))
-    
-    @filter.command("设置管理员")
-    async def set_admin_cmd(self, event: AstrMessageEvent):
-        """设置管理员（需要超级管理员权限）"""
-        logger.info(f"【设置管理员】被触发")
-        
-        qq_id = self._get_user_id(event)
-        
-        # 超级管理员检查（可以设置第一个用户为超级管理员）
-        super_admin = "965959320"  # 修改为您的超级管理员QQ
-        if qq_id != super_admin:
-            yield event.plain_result(f"❌ 权限不足，仅超级管理员可设置管理员\n超级管理员: {super_admin}\n您的QQ: {qq_id}")
-            return
-        
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式：/设置管理员 QQ号")
-            return
-        
-        target_qq = parts[1]
-        
-        if target_qq not in self.admin_qq_list:
-            self.admin_qq_list.append(target_qq)
-            yield event.plain_result(f"✅ 已添加 {target_qq} 为管理员\n当前管理员列表：{', '.join(self.admin_qq_list)}")
-        else:
-            yield event.plain_result(f"ℹ️ {target_qq} 已经是管理员")
     
     @filter.command("查看绑定")
     async def view_bindings_cmd(self, event: AstrMessageEvent):
