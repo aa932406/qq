@@ -8,8 +8,6 @@ from typing import Optional, Dict, List
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
-from astrbot.api.event import MessageEvent
-
 @register("game_bind", "aa932406", "游戏账号绑定与充值插件", "3.0.0")
 class GameBindPlugin(Star):
     def __init__(self, context: Context):
