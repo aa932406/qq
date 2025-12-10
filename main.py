@@ -125,56 +125,30 @@ class GameBindPlugin(Star):
     async def initialize(self):
         logger.info("🚀 游戏账号插件已启动！")
     
-    def _create_box(self, title: str, content: str, width: int = 40) -> str:
-        """创建美观的文本框"""
-        lines = content.strip().split('\n')
-        max_len = max(len(line) for line in lines)
-        box_width = max(max_len + 4, width)
-        
-        # 构建边框
-        top = f"╔{'═' * (box_width - 2)}╗\n"
-        bottom = f"╚{'═' * (box_width - 2)}╝"
-        
-        # 标题行
-        title_line = f"║ {title.center(box_width - 4)} ║\n"
-        separator = f"╠{'═' * (box_width - 2)}╣\n"
-        
-        # 内容行
-        content_lines = []
-        for line in lines:
-            if line.strip():
-                content_lines.append(f"║ {line.ljust(box_width - 4)} ║")
-            else:
-                content_lines.append(f"║{' ' * (box_width - 2)}║")
-        
-        return top + title_line + separator + "\n".join(content_lines) + "\n" + bottom
-    
     # ========== 帮助功能 ==========
     @filter.command("帮助")
     async def help_cmd(self, event: AstrMessageEvent):
         """显示帮助信息"""
-        help_text = f"""
-🎮 游戏账号插件
+        help_text = """游戏账号插件 - 命令列表
 
-📋 核心命令：
-1. 绑定账号 - 绑定游戏账号
-2. 积分充值 - 使用积分充值元宝
-3. 我的积分 - 查看积分余额
-4. 每日签到 - 签到获得积分
-5. 查询账号 - 查看游戏账号信息
+📌 常用命令：
+• /绑定账号 <游戏账号>     # 绑定游戏账号
+• /我的积分               # 查看积分余额
+• /签到                  # 每日签到获得积分
+• /积分充值 <积分数量>    # 用积分充值游戏
+• /查询账号 [账号]        # 查看账号信息
 
-🔧 其他功能：
-• 修改绑定 - 修改绑定账号
-• 解绑账号 - 解绑当前账号
-• 测试连接 - 测试API连接
+🔧 其他命令：
+• /修改绑定 <新账号>      # 修改绑定账号
+• /解绑账号              # 解绑当前账号
+• /测试连接              # 测试API连接
 
-💎 积分规则：
-• 1 积分 = 10,000 元宝
+💎 规则：
+• 1积分 = 10000元宝
 • 签到获得积分
 • 积分用于充值游戏账号
-• 没有积分无法充值
-"""
-        yield event.plain_result(self._create_box("🎮 游戏插件帮助", help_text))
+• 没有积分无法充值"""
+        yield event.plain_result(help_text)
     
     # ========== 绑定功能 ==========
     @filter.command("绑定账号")
@@ -182,48 +156,38 @@ class GameBindPlugin(Star):
         """绑定PHP游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result(self._create_box("❌ 格式错误", "📝 正确格式：/绑定账号 游戏账号\n💡 例如：/绑定账号 xhl2511686"))
+            yield event.plain_result("❌ 格式错误\n正确格式：/绑定账号 游戏账号\n例如：/绑定账号 xhl2511686")
             return
         
         game_account = parts[1]
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
-            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取您的QQ信息"))
+            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
             return
         
         # 检查此QQ是否已绑定
         if qq_id in self.bindings:
             old_account = self.bindings[qq_id]["game_account"]
             bind_time = self.bindings[qq_id]["bind_time"]
-            yield event.plain_result(self._create_box("⚠️ 已绑定账号", 
-                f"📋 当前绑定：{old_account}\n"
-                f"⏰ 绑定时间：{bind_time}\n\n"
-                f"💡 如需更换账号：\n"
-                f"1. 先使用 /解绑账号\n"
-                f"2. 再重新绑定新账号"))
+            yield event.plain_result(f"⚠️ 已绑定账号\n当前绑定：{old_account}\n绑定时间：{bind_time}\n\n如需更换账号：\n1. 先使用 /解绑账号\n2. 再重新绑定新账号")
             return
         
         # 检查账号是否已被绑定
         is_bound, bound_qq, bind_info = self._is_account_already_bound(game_account)
         if is_bound:
-            yield event.plain_result(self._create_box("❌ 账号已被绑定",
-                f"🎮 游戏账号：{game_account}\n"
-                f"📱 已被QQ：{bound_qq} 绑定\n"
-                f"⏰ 绑定时间：{bind_info.get('bind_time', '未知')}"))
+            yield event.plain_result(f"❌ 账号已被绑定\n游戏账号：{game_account}\n已被QQ：{bound_qq} 绑定\n绑定时间：{bind_info.get('bind_time', '未知')}")
             return
         
         # 验证账号是否存在
         try:
             account_info = await self._get_account_info(game_account)
             if not account_info:
-                yield event.plain_result(self._create_box("❌ 账号不存在", 
-                    f"🎮 游戏账号：{game_account}\n"
-                    f"❌ 在系统中未找到此账号"))
+                yield event.plain_result(f"❌ 账号不存在\n游戏账号：{game_account}\n在系统中未找到此账号")
                 return
         except Exception as e:
             logger.error(f"验证游戏账号失败: {e}")
-            yield event.plain_result(self._create_box("❌ 验证失败", "网络连接异常，请稍后重试"))
+            yield event.plain_result("❌ 验证失败，网络连接异常，请稍后重试")
             return
         
         # 保存绑定
@@ -236,13 +200,14 @@ class GameBindPlugin(Star):
         self._save_json(self.bind_file, self.bindings)
         
         account_name = account_info.get("passport", game_account)
-        content = (f"✨ 绑定成功！\n\n"
-                  f"🎮 游戏账号：{account_name}\n"
-                  f"💰 当前余额：{account_info.get('gold_pay', 0):,} 元宝\n"
-                  f"📈 累计充值：{account_info.get('gold_pay_total', 0):,} 元宝\n"
-                  f"⏰ 绑定时间：{self.bindings[qq_id]['bind_time']}")
+        content = f"""✅ 绑定成功！
+
+游戏账号：{account_name}
+当前余额：{account_info.get('gold_pay', 0):,} 元宝
+累计充值：{account_info.get('gold_pay_total', 0):,} 元宝
+绑定时间：{self.bindings[qq_id]['bind_time']}"""
         
-        yield event.plain_result(self._create_box("✅ 绑定成功", content))
+        yield event.plain_result(content)
     
     # ========== 我的积分功能 ==========
     @filter.command("我的积分")
@@ -251,33 +216,30 @@ class GameBindPlugin(Star):
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
-            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
+            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
             return
         
         user_points = self._get_user_points(qq_id)
         recharge_ratio = self.system_config["points"]["recharge_ratio"]
         
-        content_lines = [
-            f"💰 我的积分",
-            f"{'─' * 30}",
-            f"💎 当前积分：{user_points['points']} 积分",
-            f"📊 累计获得：{user_points['total_earned']} 积分",
-            f"💸 累计消耗：{user_points['total_spent']} 积分",
-            f"📅 连续签到：{user_points['continuous_days']} 天",
-            f"{'─' * 30}",
-            f"💡 积分用途：",
-            f"• 1 积分 = {recharge_ratio:,} 元宝",
-            f"• 可兑换：{user_points['points'] * recharge_ratio:,} 元宝",
-            f"• 使用 /积分充值 命令兑换"
-        ]
+        content = f"""💰 我的积分
+
+当前积分：{user_points['points']} 积分
+累计获得：{user_points['total_earned']} 积分
+累计消耗：{user_points['total_spent']} 积分
+连续签到：{user_points['continuous_days']} 天
+
+💎 积分用途：
+• 1积分 = {recharge_ratio:,}元宝
+• 可兑换：{user_points['points'] * recharge_ratio:,}元宝
+• 使用 /积分充值 命令兑换"""
         
         if user_points["last_sign_date"]:
-            content_lines.append(f"📅 上次签到：{user_points['last_sign_date']}")
+            content += f"\n\n📅 上次签到：{user_points['last_sign_date']}"
         
-        content_lines.append(f"{'─' * 30}")
-        content_lines.append("💡 每日签到可获得积分！")
+        content += "\n\n💡 每日签到可获得积分！"
         
-        yield event.plain_result(self._create_box("📊 积分信息", "\n".join(content_lines)))
+        yield event.plain_result(content)
     
     # ========== 签到功能 ==========
     @filter.command("签到")
@@ -286,7 +248,7 @@ class GameBindPlugin(Star):
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
-            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
+            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
             return
         
         today = date.today().isoformat()
@@ -294,10 +256,7 @@ class GameBindPlugin(Star):
         # 检查是否已签到
         if qq_id in self.sign_records and self.sign_records[qq_id].get("last_sign") == today:
             user_points = self._get_user_points(qq_id)
-            yield event.plain_result(self._create_box("⏳ 今日已签到", 
-                f"📅 签到时间：今天\n"
-                f"⏰ 下次签到：明天\n"
-                f"💎 当前积分：{user_points['points']} 积分"))
+            yield event.plain_result(f"⏳ 今日已签到\n签到时间：今天\n下次签到：明天\n当前积分：{user_points['points']} 积分")
             return
         
         user_points = self._get_user_points(qq_id)
@@ -346,22 +305,20 @@ class GameBindPlugin(Star):
         
         # 构建响应
         recharge_ratio = self.system_config["points"]["recharge_ratio"]
-        content_lines = [
-            f"✨ 签到成功！",
-            f"{'─' * 30}",
-            f"💰 获得积分：{total_reward} 积分",
-            f"🔥 连续签到：{continuous_days} 天",
-            f"💎 当前积分：{user_points['points']} 积分",
-            f"📊 累计获得：{user_points['total_earned']} 积分",
-            f"{'─' * 30}",
-            f"💡 积分价值：",
-            f"• 可兑换：{total_reward * recharge_ratio:,} 元宝",
-            f"• 总可兑换：{user_points['points'] * recharge_ratio:,} 元宝",
-            f"{'─' * 30}",
-            f"⏰ 签到时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}"
-        ]
+        content = f"""✨ 签到成功！
+
+获得积分：{total_reward} 积分
+连续签到：{continuous_days} 天
+当前积分：{user_points['points']} 积分
+累计获得：{user_points['total_earned']} 积分
+
+💎 积分价值：
+• 可兑换：{total_reward * recharge_ratio:,} 元宝
+• 总可兑换：{user_points['points'] * recharge_ratio:,} 元宝
+
+⏰ 签到时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}"""
         
-        yield event.plain_result(self._create_box("🎉 签到成功", "\n".join(content_lines)))
+        yield event.plain_result(content)
     
     # ========== 积分充值功能 ==========
     @filter.command("积分充值")
@@ -369,9 +326,7 @@ class GameBindPlugin(Star):
         """使用积分充值游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result(self._create_box("❌ 格式错误", 
-                "📝 正确格式：/积分充值 <积分数量> [备注]\n"
-                "💡 例如：/积分充值 10 兑换元宝"))
+            yield event.plain_result("❌ 格式错误\n正确格式：/积分充值 <积分数量> [备注]\n例如：/积分充值 10 兑换元宝")
             return
         
         try:
@@ -380,32 +335,24 @@ class GameBindPlugin(Star):
                 raise ValueError("必须是正数")
             remark = " ".join(parts[2:]) if len(parts) > 2 else "积分兑换"
         except ValueError:
-            yield event.plain_result(self._create_box("❌ 参数错误", "积分数量必须是正整数"))
+            yield event.plain_result("❌ 参数错误，积分数量必须是正整数")
             return
         
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
-            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
+            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
             return
         
         # 检查绑定
         if qq_id not in self.bindings:
-            yield event.plain_result(self._create_box("❌ 未绑定账号", 
-                "请先绑定游戏账号\n\n"
-                "💡 使用命令：\n"
-                "/绑定账号 <游戏账号>"))
+            yield event.plain_result("❌ 未绑定账号\n请先绑定游戏账号\n使用命令：/绑定账号 <游戏账号>")
             return
         
         user_points = self._get_user_points(qq_id)
         
         if user_points["points"] < points_to_use:
-            yield event.plain_result(self._create_box("❌ 积分不足",
-                f"💎 需要积分：{points_to_use}\n"
-                f"💰 当前积分：{user_points['points']}\n\n"
-                f"💡 获取积分：\n"
-                f"• 每日签到\n"
-                f"• 多签多得"))
+            yield event.plain_result(f"❌ 积分不足\n需要积分：{points_to_use}\n当前积分：{user_points['points']}\n\n💡 获取积分：每日签到，多签多得")
             return
         
         # 计算充值金额（1积分=10000元宝）
@@ -441,30 +388,28 @@ class GameBindPlugin(Star):
                 
                 response_data = result.get("data", {})
                 
-                content_lines = [
-                    f"✅ 充值成功！",
-                    f"{'─' * 30}",
-                    f"🎮 游戏账号：{account_name}",
-                    f"💎 消耗积分：{points_to_use} 积分",
-                    f"💰 充值金额：{recharge_amount:,} 元宝",
-                    f"📝 充值备注：{remark}",
-                    f"{'─' * 30}",
-                    f"📊 账户信息：",
-                    f"🧾 新余额：{response_data.get('new_gold_pay', '未知'):,}",
-                    f"💰 累计充值：{response_data.get('new_gold_pay_total', '未知'):,}",
-                    f"💎 剩余积分：{user_points['points']} 积分",
-                    f"{'─' * 30}",
-                    f"⏰ 充值时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-                ]
+                content = f"""✅ 充值成功！
+
+游戏账号：{account_name}
+消耗积分：{points_to_use} 积分
+充值金额：{recharge_amount:,} 元宝
+充值备注：{remark}
+
+📊 账户信息：
+新余额：{response_data.get('new_gold_pay', '未知'):,}
+累计充值：{response_data.get('new_gold_pay_total', '未知'):,}
+剩余积分：{user_points['points']} 积分
+
+⏰ 充值时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
                 
-                yield event.plain_result(self._create_box("✨ 积分充值", "\n".join(content_lines)))
+                yield event.plain_result(content)
             else:
                 error_msg = result.get("error", "未知错误")
-                yield event.plain_result(self._create_box("❌ 充值失败", f"错误信息：{error_msg}"))
+                yield event.plain_result(f"❌ 充值失败\n错误信息：{error_msg}")
                 
         except Exception as e:
             logger.error(f"充值异常：{e}")
-            yield event.plain_result(self._create_box("❌ 充值异常", "请稍后重试或联系管理员"))
+            yield event.plain_result("❌ 充值异常，请稍后重试或联系管理员")
     
     # ========== 查询账号功能 ==========
     @filter.command("查询账号")
@@ -480,11 +425,7 @@ class GameBindPlugin(Star):
             # 查询自己绑定的账号
             qq_id = self._get_user_id(event)
             if qq_id not in self.bindings:
-                yield event.plain_result(self._create_box("❌ 未绑定账号", 
-                    "请先绑定游戏账号或指定要查询的账号\n\n"
-                    "💡 使用方法：\n"
-                    "1. /查询账号 xhl2511686\n"
-                    "2. 或先绑定账号再查询"))
+                yield event.plain_result("❌ 未绑定账号\n请先绑定游戏账号或指定要查询的账号\n\n💡 使用方法：\n1. /查询账号 xhl2511686\n2. 或先绑定账号再查询")
                 return
             game_account = self.bindings[qq_id]["game_account"]
             show_extra_info = False
@@ -492,40 +433,36 @@ class GameBindPlugin(Star):
         try:
             account_info = await self._get_account_info(game_account)
             if not account_info:
-                yield event.plain_result(self._create_box("❌ 账号不存在", f"游戏账号 {game_account} 不存在"))
+                yield event.plain_result(f"❌ 账号不存在\n游戏账号 {game_account} 不存在")
                 return
         except Exception as e:
             logger.error(f"查询账号失败：{e}")
-            yield event.plain_result(self._create_box("❌ 查询失败", "网络连接异常，请稍后重试"))
+            yield event.plain_result("❌ 查询失败，网络连接异常，请稍后重试")
             return
         
         # 构建基本信息
-        content_lines = [
-            f"🎮 账号信息",
-            f"{'─' * 30}",
-            f"📝 游戏账号：{account_info.get('passport', '未知')}",
-            f"💰 当前余额：{account_info.get('gold_pay', 0):,} 元宝",
-            f"📈 累计充值：{account_info.get('gold_pay_total', 0):,} 元宝"
-        ]
+        content = f"""🎮 账号信息
+
+游戏账号：{account_info.get('passport', '未知')}
+当前余额：{account_info.get('gold_pay', 0):,} 元宝
+累计充值：{account_info.get('gold_pay_total', 0):,} 元宝"""
         
         # 添加额外信息
         if show_extra_info and account_info.get('name'):
-            content_lines.append(f"👤 角色名称：{account_info['name']}")
+            content += f"\n角色名称：{account_info['name']}"
         if show_extra_info and account_info.get('cid'):
-            content_lines.append(f"🆔 角色ID：{account_info['cid']}")
+            content += f"\n角色ID：{account_info['cid']}"
         
         # 检查此账号是否被绑定
         is_bound, bound_qq, bind_info = self._is_account_already_bound(game_account)
-        content_lines.append(f"{'─' * 30}")
-        content_lines.append(f"🔗 绑定状态：{'已绑定' if is_bound else '未绑定'}")
+        content += f"\n\n绑定状态：{'已绑定' if is_bound else '未绑定'}"
         
         if is_bound:
-            content_lines.append(f"📱 绑定QQ：{bound_qq}")
-            content_lines.append(f"⏰ 绑定时间：{bind_info.get('bind_time', '未知')}")
+            content += f"\n绑定QQ：{bound_qq}\n绑定时间：{bind_info.get('bind_time', '未知')}"
         else:
-            content_lines.append(f"💡 使用 /绑定账号 可绑定此账号")
+            content += f"\n💡 使用 /绑定账号 可绑定此账号"
         
-        yield event.plain_result(self._create_box("📋 账号查询", "\n".join(content_lines)))
+        yield event.plain_result(content)
     
     # ========== 修改绑定功能 ==========
     @filter.command("修改绑定")
@@ -533,19 +470,19 @@ class GameBindPlugin(Star):
         """修改绑定账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result(self._create_box("❌ 格式错误", "📝 正确格式：/修改绑定 新游戏账号\n💡 例如：/修改绑定 new_account"))
+            yield event.plain_result("❌ 格式错误\n正确格式：/修改绑定 新游戏账号\n例如：/修改绑定 new_account")
             return
         
         new_account = parts[1]
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
-            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取您的QQ信息"))
+            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
             return
         
         # 检查是否已绑定
         if qq_id not in self.bindings:
-            yield event.plain_result(self._create_box("❌ 未绑定账号", "您尚未绑定任何游戏账号\n请先使用 /绑定账号 命令"))
+            yield event.plain_result("❌ 未绑定账号\n您尚未绑定任何游戏账号\n请先使用 /绑定账号 命令")
             return
         
         # 获取旧账号信息
@@ -555,21 +492,18 @@ class GameBindPlugin(Star):
         # 检查新账号是否已被绑定（排除自己）
         is_bound, bound_qq, bind_info = self._is_account_already_bound(new_account, exclude_qq=qq_id)
         if is_bound:
-            yield event.plain_result(self._create_box("❌ 账号已被绑定",
-                f"🎮 游戏账号：{new_account}\n"
-                f"📱 已被QQ：{bound_qq} 绑定\n"
-                f"⏰ 绑定时间：{bind_info.get('bind_time', '未知')}"))
+            yield event.plain_result(f"❌ 账号已被绑定\n游戏账号：{new_account}\n已被QQ：{bound_qq} 绑定\n绑定时间：{bind_info.get('bind_time', '未知')}")
             return
         
         # 验证新账号是否存在
         try:
             account_info = await self._get_account_info(new_account)
             if not account_info:
-                yield event.plain_result(self._create_box("❌ 账号不存在", f"游戏账号 {new_account} 不存在"))
+                yield event.plain_result(f"❌ 账号不存在\n游戏账号 {new_account} 不存在")
                 return
         except Exception as e:
             logger.error(f"验证游戏账号失败: {e}")
-            yield event.plain_result(self._create_box("❌ 验证失败", "网络连接异常，请稍后重试"))
+            yield event.plain_result("❌ 验证失败，网络连接异常，请稍后重试")
             return
         
         # 更新绑定信息
@@ -584,14 +518,15 @@ class GameBindPlugin(Star):
         self._save_json(self.bind_file, self.bindings)
         
         account_name = account_info.get("passport", new_account)
-        content = (f"✅ 修改成功！\n\n"
-                  f"🔁 原账号：{old_account}\n"
-                  f"🎯 新账号：{account_name}\n"
-                  f"💰 当前余额：{account_info.get('gold_pay', 0):,} 元宝\n"
-                  f"⏰ 原绑定：{old_bind_time}\n"
-                  f"⏰ 新绑定：{self.bindings[qq_id]['bind_time']}")
+        content = f"""✅ 修改成功！
+
+原账号：{old_account}
+新账号：{account_name}
+当前余额：{account_info.get('gold_pay', 0):,} 元宝
+原绑定：{old_bind_time}
+新绑定：{self.bindings[qq_id]['bind_time']}"""
         
-        yield event.plain_result(self._create_box("✨ 修改成功", content))
+        yield event.plain_result(content)
     
     # ========== 解绑功能 ==========
     @filter.command("解绑账号")
@@ -608,22 +543,22 @@ class GameBindPlugin(Star):
             del self.bindings[qq_id]
             self._save_json(self.bind_file, self.bindings)
             
-            content = (f"✅ 解绑成功！\n\n"
-                      f"🎮 已解绑账号：{account_name}\n"
-                      f"⏰ 原绑定时间：{bind_time}\n"
-                      f"🗑️ 解绑时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-                      f"💡 如需重新绑定，请使用 /绑定账号 命令")
+            content = f"""✅ 解绑成功！
+
+已解绑账号：{account_name}
+原绑定时间：{bind_time}
+解绑时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+💡 如需重新绑定，请使用 /绑定账号 命令"""
             
-            yield event.plain_result(self._create_box("🔓 解绑成功", content))
+            yield event.plain_result(content)
         else:
-            yield event.plain_result(self._create_box("⚠️ 未绑定账号", "您未绑定任何游戏账号"))
+            yield event.plain_result("⚠️ 未绑定账号\n您未绑定任何游戏账号")
     
     # ========== 测试连接功能 ==========
     @filter.command("测试连接")
     async def test_connection_cmd(self, event: AstrMessageEvent):
         """测试API连接"""
-        yield event.plain_result(self._create_box("🔄 连接测试", "正在测试API连接..."))
-        
         try:
             async with aiohttp.ClientSession() as session:
                 params = {
@@ -640,20 +575,21 @@ class GameBindPlugin(Star):
                     if response.status == 200:
                         result = await response.json()
                         if result.get("success"):
-                            content = (f"✅ API连接正常！\n\n"
-                                      f"🌐 连接状态：正常\n"
-                                      f"📊 账号数量：{result['data']['total']:,} 个\n"
-                                      f"⏱️ 响应时间：正常\n"
-                                      f"🔗 服务状态：在线")
-                            yield event.plain_result(self._create_box("✅ 连接成功", content))
+                            content = f"""✅ API连接正常！
+
+连接状态：正常
+账号数量：{result['data']['total']:,} 个
+响应时间：正常
+服务状态：在线"""
+                            yield event.plain_result(content)
                         else:
                             error_msg = result.get('error', '未知错误')
-                            yield event.plain_result(self._create_box("⚠️ API异常", f"API响应异常：{error_msg}"))
+                            yield event.plain_result(f"⚠️ API异常\nAPI响应异常：{error_msg}")
                     else:
-                        yield event.plain_result(self._create_box("❌ 连接失败", f"API连接失败，状态码：{response.status}"))
+                        yield event.plain_result(f"❌ 连接失败\nAPI连接失败，状态码：{response.status}")
                         
         except Exception as e:
-            yield event.plain_result(self._create_box("❌ 连接失败", f"API连接失败：{str(e)}\n请检查API地址和网络配置"))
+            yield event.plain_result(f"❌ 连接失败\nAPI连接失败：{str(e)}\n请检查API地址和网络配置")
     
     # ========== API调用方法 ==========
     async def _get_account_info(self, passport: str) -> Optional[dict]:
