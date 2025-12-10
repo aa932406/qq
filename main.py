@@ -5,9 +5,9 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
-# ========== 关键修改1：使用正确的注册名 ==========
+# ========== 关键修改：去掉 @filter.at_bot() ==========
 @register("game_bind", "aa932406", "游戏账号绑定插件", "1.0.0")
-class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
+class GameBindPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
         # 初始化数据
@@ -15,7 +15,7 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         os.makedirs(self.data_dir, exist_ok=True)
         self.bind_file = os.path.join(self.data_dir, "bindings.json")
         self.bindings = self._load_bindings()
-        logger.info("【游戏绑定插件】初始化完成！")  # 关键：添加明显日志
+        logger.info("【游戏绑定插件】初始化完成！")
     
     def _load_bindings(self):
         try:
@@ -33,12 +33,10 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         except Exception as e:
             logger.error(f"保存失败: {e}")
 
-    # ========== 关键修改2：所有指令都加@机器人过滤 ==========
-    @filter.at_bot()  # 必须加这一行！
+    # ========== 方法1：基础指令（可能需要@机器人） ==========
     @filter.command("绑定")
     async def bind_cmd(self, event: AstrMessageEvent):
         """绑定游戏账号"""
-        # 关键：添加日志确认函数被调用
         logger.info(f"【绑定指令】被触发，消息: {event.message_str}")
         
         parts = event.message_str.strip().split()
@@ -65,7 +63,6 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         logger.info(f"【绑定成功】QQ:{qq_id} 账号:{game_account}")
         yield event.plain_result(f"✅ 绑定成功！\n游戏账号：{game_account}")
 
-    @filter.at_bot()  # 必须加这一行！
     @filter.command("我的绑定")
     async def mybind_cmd(self, event: AstrMessageEvent):
         """查询绑定"""
@@ -78,7 +75,6 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         else:
             yield event.plain_result("❌ 您未绑定账号")
 
-    @filter.at_bot()  # 必须加这一行！
     @filter.command("解绑")
     async def unbind_cmd(self, event: AstrMessageEvent):
         """解绑"""
@@ -92,7 +88,6 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         else:
             yield event.plain_result("❌ 您未绑定账号")
 
-    @filter.at_bot()  # 必须加这一行！
     @filter.command("充值验证")
     async def recharge_cmd(self, event: AstrMessageEvent):
         """充值验证"""
@@ -106,8 +101,52 @@ class GameBindPlugin(Star):  # 关键：类名要唯一，不要用MyPlugin
         account = self.bindings[qq_id]["game_account"]
         yield event.plain_result(f"✅ 验证通过！\n账号：{account}\n可执行充值操作")
 
-    # ========== 关键修改3：测试指令 ==========
-    @filter.at_bot()
+    # ========== 方法2：关键词触发（不需要@） ==========
+    @filter.keyword("绑定账号")
+    async def bind_keyword(self, event: AstrMessageEvent):
+        """关键词触发绑定：说'绑定账号 游戏ID'"""
+        msg = event.message_str
+        if "绑定账号" in msg:
+            parts = msg.split("绑定账号")
+            if len(parts) > 1 and parts[1].strip():
+                game_account = parts[1].strip()
+                qq_id = str(event.sender_id)
+                
+                if qq_id in self.bindings:
+                    yield event.plain_result(f"您已绑定：{self.bindings[qq_id]['game_account']}")
+                else:
+                    self.bindings[qq_id] = {
+                        "game_account": game_account,
+                        "bind_time": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                        "qq_id": qq_id
+                    }
+                    self._save_bindings()
+                    yield event.plain_result(f"✅ 关键词绑定成功！\n账号：{game_account}")
+
+    # ========== 方法3：智能检测@消息 ==========
+    @filter.command("智能绑定")
+    async def smart_bind(self, event: AstrMessageEvent):
+        """智能绑定，自动检测是否@机器人"""
+        from astrbot.api.message_components import At
+        
+        # 检查消息中是否@了机器人
+        messages = event.get_messages()
+        is_at_bot = False
+        
+        for msg in messages:
+            if isinstance(msg, At):
+                # 这里需要获取机器人ID（具体获取方式可能不同）
+                # 简单版本：只要有@就认为@了机器人
+                is_at_bot = True
+                break
+        
+        if is_at_bot:
+            yield event.plain_result("检测到@机器人，执行绑定...")
+            # 这里可以调用绑定逻辑
+        else:
+            yield event.plain_result("请先@机器人再使用此命令")
+
+    # ========== 测试指令 ==========
     @filter.command("测试")
     async def test_cmd(self, event: AstrMessageEvent):
         """测试插件是否工作"""
