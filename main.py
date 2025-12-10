@@ -8,6 +8,7 @@ from typing import Optional, Dict, List
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
+
 @register("game_bind", "aa932406", "游戏账号绑定与充值插件", "3.0.0")
 class GameBindPlugin(Star):
     def __init__(self, context: Context):
@@ -37,16 +38,22 @@ class GameBindPlugin(Star):
         
         # 系统配置
         self.system_config = {
-            # 签到系统
-            "sign_rewards": {
-                1: 100,      # 第1天：100元宝
-                3: 300,      # 第3天：300元宝
-                7: 700,      # 第7天：700元宝
-                14: 1500,    # 第14天：1500元宝
-                30: 3000     # 第30天：3000元宝
-            },
-            # 充值赠送比例（每充值1000元宝，额外赠送多少元宝）
-            "recharge_bonus": 0.10,  # 10%的额外赠送
+            # 积分系统
+            "points": {
+                "recharge_ratio": 10000,  # 1积分=10000元宝
+                # 签到奖励（积分）
+                "sign_rewards": {
+                    1: 1,      # 第1天：1积分
+                    2: 2,      # 第2天：2积分
+                    3: 3,      # 第3天：3积分
+                    4: 4,      # 第4天：4积分
+                    5: 5,      # 第5天：5积分
+                    6: 6,      # 第6天：6积分
+                    7: 10,     # 第7天：10积分（周末奖励）
+                    14: 15,    # 第14天：15积分
+                    30: 30     # 第30天：30积分
+                }
+            }
         }
         
         logger.info("✨ 游戏账号插件初始化完成！")
@@ -97,34 +104,32 @@ class GameBindPlugin(Star):
                 return True, qq_id, bind_info
         return False, None, None
     
-    def _get_user_info(self, qq_id: str) -> Dict:
-        """获取用户信息"""
+    def _get_user_points(self, qq_id: str) -> Dict:
+        """获取用户积分信息"""
         if qq_id not in self.user_points:
             self.user_points[qq_id] = {
-                "total_sign_days": 0,      # 累计签到天数
-                "continuous_days": 0,      # 连续签到天数
-                "total_earned": 0,         # 累计获得元宝（签到）
-                "total_recharged": 0,      # 累计充值元宝
-                "first_sign_date": None,   # 首次签到日期
-                "last_sign_date": None,    # 最后签到日期
-                "last_recharge_date": None # 最后充值日期
+                "points": 0,          # 当前积分（元宝余额）
+                "total_earned": 0,    # 累计获得积分
+                "total_spent": 0,     # 累计消耗积分
+                "first_sign_date": None,
+                "last_sign_date": None,
+                "continuous_days": 0
             }
         return self.user_points[qq_id]
     
-    def _update_user_info(self, qq_id: str, user_info: Dict):
-        """更新用户信息"""
-        self.user_points[qq_id] = user_info
+    def _update_user_points(self, qq_id: str, points_data: Dict):
+        """更新用户积分信息"""
+        self.user_points[qq_id] = points_data
         self._save_json(self.points_file, self.user_points)
     
     async def initialize(self):
         logger.info("🚀 游戏账号插件已启动！")
     
-    # ========== 简洁的UI装饰器 ==========
-    def _create_box(self, title: str, content: str) -> str:
-        """创建简洁的文本框"""
+    def _create_box(self, title: str, content: str, width: int = 40) -> str:
+        """创建美观的文本框"""
         lines = content.strip().split('\n')
         max_len = max(len(line) for line in lines)
-        box_width = max(max_len + 4, 40)
+        box_width = max(max_len + 4, width)
         
         # 构建边框
         top = f"╔{'═' * (box_width - 2)}╗\n"
@@ -145,40 +150,39 @@ class GameBindPlugin(Star):
         return top + title_line + separator + "\n".join(content_lines) + "\n" + bottom
     
     # ========== 帮助功能 ==========
-    @filter.prefix("帮助")
-    @filter.prefix("/帮助")
+    @filter.command("帮助")
     async def help_cmd(self, event: AstrMessageEvent):
         """显示帮助信息"""
-        help_text = """
-🎮 游戏账号插件 - 简洁版
+        help_text = f"""
+🎮 游戏账号插件
 
-📋 基础命令：
-1. 绑定账号 - /绑定账号 游戏账号
-2. 账号充值 - /账号充值 金额 [备注]
-3. 查看信息 - /我的信息
-4. 每日签到 - /签到
-5. 查询账号 - /查询账号 [账号]
+📋 核心命令：
+1. 绑定账号 - 绑定游戏账号
+2. 积分充值 - 使用积分充值元宝
+3. 我的积分 - 查看积分余额
+4. 每日签到 - 签到获得积分
+5. 查询账号 - 查看游戏账号信息
 
 🔧 其他功能：
-• 修改绑定 - /修改绑定 新账号
-• 解绑账号 - /解绑账号
-• 测试连接 - /测试连接
+• 修改绑定 - 修改绑定账号
+• 解绑账号 - 解绑当前账号
+• 测试连接 - 测试API连接
 
-📌 说明：
-• 签到直接获得元宝奖励
-• 充值金额即实际充值金额
-• 连续签到奖励更多元宝
+💎 积分规则：
+• 1 积分 = 10,000 元宝
+• 签到获得积分
+• 积分用于充值游戏账号
+• 没有积分无法充值
 """
         yield event.plain_result(self._create_box("🎮 游戏插件帮助", help_text))
     
     # ========== 绑定功能 ==========
-    @filter.prefix("绑定账号")
-    @filter.prefix("/绑定账号")
+    @filter.command("绑定账号")
     async def bind_account_cmd(self, event: AstrMessageEvent):
-        """绑定游戏账号"""
+        """绑定PHP游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result(self._create_box("❌ 格式错误", "正确格式：/绑定账号 游戏账号\n例如：/绑定账号 xhl2511686"))
+            yield event.plain_result(self._create_box("❌ 格式错误", "📝 正确格式：/绑定账号 游戏账号\n💡 例如：/绑定账号 xhl2511686"))
             return
         
         game_account = parts[1]
@@ -193,14 +197,20 @@ class GameBindPlugin(Star):
             old_account = self.bindings[qq_id]["game_account"]
             bind_time = self.bindings[qq_id]["bind_time"]
             yield event.plain_result(self._create_box("⚠️ 已绑定账号", 
-                f"当前绑定：{old_account}\n绑定时间：{bind_time}\n\n如需更换账号：\n1. 先使用 /解绑账号\n2. 再重新绑定新账号"))
+                f"📋 当前绑定：{old_account}\n"
+                f"⏰ 绑定时间：{bind_time}\n\n"
+                f"💡 如需更换账号：\n"
+                f"1. 先使用 /解绑账号\n"
+                f"2. 再重新绑定新账号"))
             return
         
         # 检查账号是否已被绑定
         is_bound, bound_qq, bind_info = self._is_account_already_bound(game_account)
         if is_bound:
             yield event.plain_result(self._create_box("❌ 账号已被绑定",
-                f"游戏账号：{game_account}\n已被QQ：{bound_qq} 绑定\n绑定时间：{bind_info.get('bind_time', '未知')}"))
+                f"🎮 游戏账号：{game_account}\n"
+                f"📱 已被QQ：{bound_qq} 绑定\n"
+                f"⏰ 绑定时间：{bind_info.get('bind_time', '未知')}"))
             return
         
         # 验证账号是否存在
@@ -208,7 +218,8 @@ class GameBindPlugin(Star):
             account_info = await self._get_account_info(game_account)
             if not account_info:
                 yield event.plain_result(self._create_box("❌ 账号不存在", 
-                    f"游戏账号：{game_account}\n在系统中未找到此账号\n请检查账号是否正确"))
+                    f"🎮 游戏账号：{game_account}\n"
+                    f"❌ 在系统中未找到此账号"))
                 return
         except Exception as e:
             logger.error(f"验证游戏账号失败: {e}")
@@ -233,195 +244,150 @@ class GameBindPlugin(Star):
         
         yield event.plain_result(self._create_box("✅ 绑定成功", content))
     
-    # ========== 我的信息功能 ==========
-    @filter.prefix("我的信息")
-    @filter.prefix("/我的信息")
-    async def my_info_cmd(self, event: AstrMessageEvent):
-        """显示我的账户信息"""
+    # ========== 我的积分功能 ==========
+    @filter.command("我的积分")
+    async def my_points_cmd(self, event: AstrMessageEvent):
+        """查看我的积分"""
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
             yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
             return
         
-        user_info = self._get_user_info(qq_id)
+        user_points = self._get_user_points(qq_id)
+        recharge_ratio = self.system_config["points"]["recharge_ratio"]
         
-        # 构建信息
-        lines = [
-            f"📱 用户信息",
-            f"────────────",
-            f"🆔 QQ号码：{qq_id}",
+        content_lines = [
+            f"💰 我的积分",
+            f"{'─' * 30}",
+            f"💎 当前积分：{user_points['points']} 积分",
+            f"📊 累计获得：{user_points['total_earned']} 积分",
+            f"💸 累计消耗：{user_points['total_spent']} 积分",
+            f"📅 连续签到：{user_points['continuous_days']} 天",
+            f"{'─' * 30}",
+            f"💡 积分用途：",
+            f"• 1 积分 = {recharge_ratio:,} 元宝",
+            f"• 可兑换：{user_points['points'] * recharge_ratio:,} 元宝",
+            f"• 使用 /积分充值 命令兑换"
         ]
         
-        # 签到信息
-        if user_info["first_sign_date"]:
-            lines.append(f"📅 累计签到：{user_info['total_sign_days']} 天")
-            lines.append(f"🔥 连续签到：{user_info['continuous_days']} 天")
-            lines.append(f"💰 签到获得：{user_info['total_earned']:,} 元宝")
+        if user_points["last_sign_date"]:
+            content_lines.append(f"📅 上次签到：{user_points['last_sign_date']}")
         
-        # 充值信息
-        if user_info["total_recharged"] > 0:
-            lines.append(f"💳 累计充值：{user_info['total_recharged']:,} 元宝")
+        content_lines.append(f"{'─' * 30}")
+        content_lines.append("💡 每日签到可获得积分！")
         
-        # 绑定状态
-        if qq_id in self.bindings:
-            account_name = self.bindings[qq_id].get("account_name", "未知")
-            bind_time = self.bindings[qq_id]["bind_time"]
-            lines.append(f"🎮 绑定账号：{account_name}")
-            lines.append(f"⏰ 绑定时间：{bind_time}")
-        else:
-            lines.append("🎮 绑定账号：未绑定")
-        
-        lines.append(f"────────────")
-        lines.append("💡 使用 /签到 领取每日元宝奖励")
-        
-        yield event.plain_result(self._create_box("📊 我的信息", "\n".join(lines)))
+        yield event.plain_result(self._create_box("📊 积分信息", "\n".join(content_lines)))
     
     # ========== 签到功能 ==========
-    @filter.prefix("签到")
-    @filter.prefix("/签到")
+    @filter.command("签到")
     async def sign_cmd(self, event: AstrMessageEvent):
-        """每日签到获取元宝"""
+        """每日签到获得积分"""
         qq_id = self._get_user_id(event)
         
         if qq_id == "unknown":
             yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
-            return
-        
-        # 检查是否已绑定账号
-        if qq_id not in self.bindings:
-            yield event.plain_result(self._create_box("❌ 未绑定账号", 
-                "请先绑定游戏账号才能签到\n\n"
-                "💡 使用命令：\n"
-                "/绑定账号 <游戏账号>"))
             return
         
         today = date.today().isoformat()
         
         # 检查是否已签到
         if qq_id in self.sign_records and self.sign_records[qq_id].get("last_sign") == today:
-            # 获取游戏账号信息
-            game_account = self.bindings[qq_id]["game_account"]
-            try:
-                account_info = await self._get_account_info(game_account)
-                if account_info:
-                    content = (f"⏳ 今日已签到\n\n"
-                              f"🎮 游戏账号：{account_info.get('passport', game_account)}\n"
-                              f"💰 当前余额：{account_info.get('gold_pay', 0):,} 元宝\n"
-                              f"⏰ 下次签到：明天")
-                else:
-                    content = "⏳ 今日已签到，明天再来吧！"
-            except:
-                content = "⏳ 今日已签到，明天再来吧！"
-            
-            yield event.plain_result(self._create_box("📅 签到状态", content))
+            user_points = self._get_user_points(qq_id)
+            yield event.plain_result(self._create_box("⏳ 今日已签到", 
+                f"📅 签到时间：今天\n"
+                f"⏰ 下次签到：明天\n"
+                f"💎 当前积分：{user_points['points']} 积分"))
             return
         
-        user_info = self._get_user_info(qq_id)
-        game_account = self.bindings[qq_id]["game_account"]
+        user_points = self._get_user_points(qq_id)
         
         # 计算连续天数
         yesterday = (date.today() - timedelta(days=1)).isoformat()
-        if user_info["last_sign_date"] == yesterday:
-            user_info["continuous_days"] += 1
-        elif user_info["last_sign_date"] != today:
-            user_info["continuous_days"] = 1
+        if user_points["last_sign_date"] == yesterday:
+            user_points["continuous_days"] += 1
+        elif user_points["last_sign_date"] != today:
+            user_points["continuous_days"] = 1
         
-        # 计算签到奖励
-        continuous_days = user_info["continuous_days"]
+        # 计算签到奖励（积分）
+        continuous_days = user_points["continuous_days"]
         
-        # 基础奖励：根据连续天数增加
-        if continuous_days <= 7:
-            base_reward = continuous_days * 100  # 1-7天：每天100元宝递增
-        elif continuous_days <= 14:
-            base_reward = 700 + (continuous_days - 7) * 150  # 8-14天：每天150元宝递增
-        else:
-            base_reward = 1750 + (continuous_days - 14) * 200  # 15天以上：每天200元宝递增
+        # 基础奖励
+        base_reward = 1  # 默认1积分
         
         # 特殊天数奖励
-        extra_reward = 0
-        for day, reward in self.system_config["sign_rewards"].items():
+        for day, reward in self.system_config["points"]["sign_rewards"].items():
             if continuous_days == day:
-                extra_reward = reward - base_reward
+                base_reward = reward
                 break
+        else:
+            # 如果不在特殊天数列表中，使用连续天数作为奖励（最高10积分）
+            base_reward = min(continuous_days, 10)
         
-        total_reward = base_reward + extra_reward
+        total_reward = base_reward
         
-        # 更新用户信息
-        user_info["total_sign_days"] += 1
-        user_info["total_earned"] += total_reward
-        user_info["last_sign_date"] = today
+        # 更新积分
+        user_points["points"] += total_reward
+        user_points["total_earned"] += total_reward
+        user_points["last_sign_date"] = today
         
-        if not user_info["first_sign_date"]:
-            user_info["first_sign_date"] = today
+        if not user_points["first_sign_date"]:
+            user_points["first_sign_date"] = today
         
-        # 执行充值（将签到奖励充入游戏账号）
-        try:
-            remark = f"每日签到奖励（连续{continuous_days}天）"
-            recharge_result = await self._execute_account_recharge(game_account, total_reward, remark)
-            
-            if recharge_result.get("success"):
-                # 保存用户信息
-                self._update_user_info(qq_id, user_info)
-                
-                # 保存签到记录
-                self.sign_records[qq_id] = {
-                    "last_sign": today,
-                    "last_reward": total_reward,
-                    "continuous_days": continuous_days
-                }
-                self._save_json(self.sign_file, self.sign_records)
-                
-                # 获取账户最新信息
-                account_info = await self._get_account_info(game_account)
-                
-                # 构建响应
-                content_lines = [
-                    f"✨ 签到成功！",
-                    f"────────────",
-                    f"💰 获得奖励：{total_reward:,} 元宝",
-                    f"🔥 连续签到：{continuous_days} 天",
-                    f"🎮 游戏账号：{account_info.get('passport', game_account)}",
-                    f"💎 当前余额：{account_info.get('gold_pay', 0):,} 元宝",
-                    f"📊 累计签到：{user_info['total_sign_days']} 天",
-                    f"────────────"
-                ]
-                
-                if extra_reward > 0:
-                    content_lines.append(f"🎁 特殊奖励：+{extra_reward:,} 元宝")
-                
-                content_lines.append(f"⏰ 签到时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}")
-                
-                yield event.plain_result(self._create_box("🎉 签到成功", "\n".join(content_lines)))
-            else:
-                error_msg = recharge_result.get("error", "未知错误")
-                yield event.plain_result(self._create_box("❌ 签到失败", f"充值失败：{error_msg}"))
-                
-        except Exception as e:
-            logger.error(f"签到充值异常：{e}")
-            yield event.plain_result(self._create_box("❌ 签到异常", "请稍后重试或联系管理员"))
+        self._update_user_points(qq_id, user_points)
+        
+        # 保存签到记录
+        self.sign_records[qq_id] = {
+            "last_sign": today,
+            "reward": total_reward,
+            "continuous_days": continuous_days
+        }
+        self._save_json(self.sign_file, self.sign_records)
+        
+        # 构建响应
+        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        content_lines = [
+            f"✨ 签到成功！",
+            f"{'─' * 30}",
+            f"💰 获得积分：{total_reward} 积分",
+            f"🔥 连续签到：{continuous_days} 天",
+            f"💎 当前积分：{user_points['points']} 积分",
+            f"📊 累计获得：{user_points['total_earned']} 积分",
+            f"{'─' * 30}",
+            f"💡 积分价值：",
+            f"• 可兑换：{total_reward * recharge_ratio:,} 元宝",
+            f"• 总可兑换：{user_points['points'] * recharge_ratio:,} 元宝",
+            f"{'─' * 30}",
+            f"⏰ 签到时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        ]
+        
+        yield event.plain_result(self._create_box("🎉 签到成功", "\n".join(content_lines)))
     
-    # ========== 充值功能 ==========
-    @filter.prefix("账号充值")
-    @filter.prefix("/账号充值")
-    async def account_recharge_cmd(self, event: AstrMessageEvent):
-        """为绑定账号充值"""
+    # ========== 积分充值功能 ==========
+    @filter.command("积分充值")
+    async def points_recharge_cmd(self, event: AstrMessageEvent):
+        """使用积分充值游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
             yield event.plain_result(self._create_box("❌ 格式错误", 
-                "正确格式：/账号充值 <金额> [备注]\n例如：/账号充值 1000 元宝充值"))
+                "📝 正确格式：/积分充值 <积分数量> [备注]\n"
+                "💡 例如：/积分充值 10 兑换元宝"))
             return
         
         try:
-            amount = float(parts[1])
-            if amount <= 0:
-                raise ValueError("金额必须大于0")
-            remark = " ".join(parts[2:]) if len(parts) > 2 else "QQ机器人充值"
+            points_to_use = int(parts[1])
+            if points_to_use <= 0:
+                raise ValueError("必须是正数")
+            remark = " ".join(parts[2:]) if len(parts) > 2 else "积分兑换"
         except ValueError:
-            yield event.plain_result(self._create_box("❌ 参数错误", "充值金额必须是数字且大于0"))
+            yield event.plain_result(self._create_box("❌ 参数错误", "积分数量必须是正整数"))
             return
         
         qq_id = self._get_user_id(event)
+        
+        if qq_id == "unknown":
+            yield event.plain_result(self._create_box("❌ 身份验证失败", "无法获取QQ信息"))
+            return
         
         # 检查绑定
         if qq_id not in self.bindings:
@@ -431,34 +397,42 @@ class GameBindPlugin(Star):
                 "/绑定账号 <游戏账号>"))
             return
         
+        user_points = self._get_user_points(qq_id)
+        
+        if user_points["points"] < points_to_use:
+            yield event.plain_result(self._create_box("❌ 积分不足",
+                f"💎 需要积分：{points_to_use}\n"
+                f"💰 当前积分：{user_points['points']}\n\n"
+                f"💡 获取积分：\n"
+                f"• 每日签到\n"
+                f"• 多签多得"))
+            return
+        
+        # 计算充值金额（1积分=10000元宝）
+        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        recharge_amount = points_to_use * recharge_ratio
+        
         game_account = self.bindings[qq_id]["game_account"]
         account_name = self.bindings[qq_id].get("account_name", game_account)
         
-        # 计算实际充值金额（含赠送）
-        bonus_rate = self.system_config["recharge_bonus"]
-        bonus_amount = int(amount * bonus_rate)
-        total_amount = amount + bonus_amount
-        
         # 执行充值
         try:
-            result = await self._execute_account_recharge(game_account, total_amount, remark)
+            result = await self._execute_account_recharge(game_account, recharge_amount, remark)
             
             if result.get("success"):
-                # 更新用户信息
-                user_info = self._get_user_info(qq_id)
-                user_info["total_recharged"] += amount
-                user_info["last_recharge_date"] = datetime.now().isoformat()
-                self._update_user_info(qq_id, user_info)
+                # 扣减积分
+                user_points["points"] -= points_to_use
+                user_points["total_spent"] += points_to_use
+                self._update_user_points(qq_id, user_points)
                 
                 # 记录充值日志
-                recharge_id = f"R{datetime.now().strftime('%Y%m%d%H%M%S')}_{qq_id}"
+                recharge_id = f"P{datetime.now().strftime('%Y%m%d%H%M%S')}_{qq_id}"
                 self.recharge_logs[recharge_id] = {
                     "qq_id": qq_id,
                     "game_account": game_account,
                     "account_name": account_name,
-                    "base_amount": amount,
-                    "bonus_amount": bonus_amount,
-                    "total_amount": total_amount,
+                    "points_used": points_to_use,
+                    "recharge_amount": recharge_amount,
                     "remark": remark,
                     "recharge_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     "api_response": result
@@ -469,21 +443,21 @@ class GameBindPlugin(Star):
                 
                 content_lines = [
                     f"✅ 充值成功！",
-                    f"────────────",
+                    f"{'─' * 30}",
                     f"🎮 游戏账号：{account_name}",
-                    f"💰 充值金额：{amount:,.0f} 元宝",
-                    f"🎁 赠送金额：{bonus_amount:,.0f} 元宝",
-                    f"💎 实际到账：{total_amount:,.0f} 元宝",
+                    f"💎 消耗积分：{points_to_use} 积分",
+                    f"💰 充值金额：{recharge_amount:,} 元宝",
                     f"📝 充值备注：{remark}",
-                    f"────────────",
+                    f"{'─' * 30}",
                     f"📊 账户信息：",
                     f"🧾 新余额：{response_data.get('new_gold_pay', '未知'):,}",
                     f"💰 累计充值：{response_data.get('new_gold_pay_total', '未知'):,}",
-                    f"────────────",
+                    f"💎 剩余积分：{user_points['points']} 积分",
+                    f"{'─' * 30}",
                     f"⏰ 充值时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
                 ]
                 
-                yield event.plain_result(self._create_box("✨ 充值成功", "\n".join(content_lines)))
+                yield event.plain_result(self._create_box("✨ 积分充值", "\n".join(content_lines)))
             else:
                 error_msg = result.get("error", "未知错误")
                 yield event.plain_result(self._create_box("❌ 充值失败", f"错误信息：{error_msg}"))
@@ -493,8 +467,7 @@ class GameBindPlugin(Star):
             yield event.plain_result(self._create_box("❌ 充值异常", "请稍后重试或联系管理员"))
     
     # ========== 查询账号功能 ==========
-    @filter.prefix("查询账号")
-    @filter.prefix("/查询账号")
+    @filter.command("查询账号")
     async def query_account_cmd(self, event: AstrMessageEvent):
         """查询游戏账号信息"""
         parts = event.message_str.strip().split()
@@ -502,6 +475,7 @@ class GameBindPlugin(Star):
         if len(parts) >= 2:
             # 查询指定账号
             game_account = parts[1]
+            show_extra_info = True
         else:
             # 查询自己绑定的账号
             qq_id = self._get_user_id(event)
@@ -513,6 +487,7 @@ class GameBindPlugin(Star):
                     "2. 或先绑定账号再查询"))
                 return
             game_account = self.bindings[qq_id]["game_account"]
+            show_extra_info = False
         
         try:
             account_info = await self._get_account_info(game_account)
@@ -524,25 +499,24 @@ class GameBindPlugin(Star):
             yield event.plain_result(self._create_box("❌ 查询失败", "网络连接异常，请稍后重试"))
             return
         
-        # 检查此账号是否被绑定
-        is_bound, bound_qq, bind_info = self._is_account_already_bound(game_account)
-        
-        # 构建信息
+        # 构建基本信息
         content_lines = [
             f"🎮 账号信息",
-            f"────────────",
+            f"{'─' * 30}",
             f"📝 游戏账号：{account_info.get('passport', '未知')}",
             f"💰 当前余额：{account_info.get('gold_pay', 0):,} 元宝",
             f"📈 累计充值：{account_info.get('gold_pay_total', 0):,} 元宝"
         ]
         
         # 添加额外信息
-        if account_info.get('name'):
+        if show_extra_info and account_info.get('name'):
             content_lines.append(f"👤 角色名称：{account_info['name']}")
-        if account_info.get('cid'):
+        if show_extra_info and account_info.get('cid'):
             content_lines.append(f"🆔 角色ID：{account_info['cid']}")
         
-        content_lines.append(f"────────────")
+        # 检查此账号是否被绑定
+        is_bound, bound_qq, bind_info = self._is_account_already_bound(game_account)
+        content_lines.append(f"{'─' * 30}")
         content_lines.append(f"🔗 绑定状态：{'已绑定' if is_bound else '未绑定'}")
         
         if is_bound:
@@ -554,13 +528,12 @@ class GameBindPlugin(Star):
         yield event.plain_result(self._create_box("📋 账号查询", "\n".join(content_lines)))
     
     # ========== 修改绑定功能 ==========
-    @filter.prefix("修改绑定")
-    @filter.prefix("/修改绑定")
+    @filter.command("修改绑定")
     async def modify_bind_cmd(self, event: AstrMessageEvent):
         """修改绑定账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result(self._create_box("❌ 格式错误", "正确格式：/修改绑定 新游戏账号\n例如：/修改绑定 new_account"))
+            yield event.plain_result(self._create_box("❌ 格式错误", "📝 正确格式：/修改绑定 新游戏账号\n💡 例如：/修改绑定 new_account"))
             return
         
         new_account = parts[1]
@@ -583,7 +556,9 @@ class GameBindPlugin(Star):
         is_bound, bound_qq, bind_info = self._is_account_already_bound(new_account, exclude_qq=qq_id)
         if is_bound:
             yield event.plain_result(self._create_box("❌ 账号已被绑定",
-                f"游戏账号：{new_account}\n已被QQ：{bound_qq} 绑定\n绑定时间：{bind_info.get('bind_time', '未知')}"))
+                f"🎮 游戏账号：{new_account}\n"
+                f"📱 已被QQ：{bound_qq} 绑定\n"
+                f"⏰ 绑定时间：{bind_info.get('bind_time', '未知')}"))
             return
         
         # 验证新账号是否存在
@@ -619,8 +594,7 @@ class GameBindPlugin(Star):
         yield event.plain_result(self._create_box("✨ 修改成功", content))
     
     # ========== 解绑功能 ==========
-    @filter.prefix("解绑账号")
-    @filter.prefix("/解绑账号")
+    @filter.command("解绑账号")
     async def unbind_account_cmd(self, event: AstrMessageEvent):
         """解绑游戏账号"""
         qq_id = self._get_user_id(event)
@@ -645,8 +619,7 @@ class GameBindPlugin(Star):
             yield event.plain_result(self._create_box("⚠️ 未绑定账号", "您未绑定任何游戏账号"))
     
     # ========== 测试连接功能 ==========
-    @filter.prefix("测试连接")
-    @filter.prefix("/测试连接")
+    @filter.command("测试连接")
     async def test_connection_cmd(self, event: AstrMessageEvent):
         """测试API连接"""
         yield event.plain_result(self._create_box("🔄 连接测试", "正在测试API连接..."))
