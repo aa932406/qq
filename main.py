@@ -49,76 +49,95 @@ class GameBindPlugin(Star):
             logger.error(f"保存文件失败 {file_path}: {e}")
     
     def _get_user_id(self, event: AstrMessageEvent) -> str:
-        """获取用户ID - 从事件对象中正确提取"""
+        """获取用户ID - 修复版，从事件对象中正确提取QQ号"""
         qq_id = ""
         
         try:
-            # 方法1：直接打印事件对象的所有属性，查看可用属性
+            # 首先尝试从事件属性中获取
             logger.info(f"【调试】事件对象类型: {type(event)}")
-            logger.info(f"【调试】事件对象属性: {[attr for attr in dir(event) if not attr.startswith('_')]}")
             
-            # 方法2：尝试从常见属性获取
-            # 根据AstrBot的常见结构，QQ号可能在以下属性中
-            attrs_to_check = [
-                ('sender_id', '直接属性'),
-                ('user_id', '直接属性'),
-                ('from_id', '直接属性'),
-            ]
+            # 根据日志，QQ号可能在get_sender_name()返回的字符串中
+            try:
+                sender_name = event.get_sender_name()
+                logger.info(f"【调试】get_sender_name(): {sender_name}")
+                
+                # 检查是否是"用户名/QQ号"格式
+                if sender_name and '/' in sender_name:
+                    parts = sender_name.split('/')
+                    if len(parts) >= 2 and parts[1].isdigit():
+                        qq_id = parts[1]
+                        logger.info(f"【调试】从get_sender_name()解析出QQ: {qq_id}")
+                        return qq_id
+            except Exception as e:
+                logger.info(f"【调试】get_sender_name()失败: {e}")
             
-            for attr_name, attr_type in attrs_to_check:
+            # 尝试从常见属性获取
+            attrs_to_check = ['sender_id', 'user_id', 'qq_id', 'user_qq', 'user', 'from_user']
+            
+            for attr_name in attrs_to_check:
                 if hasattr(event, attr_name):
                     value = getattr(event, attr_name)
-                    logger.info(f"【调试】属性 {attr_name}({attr_type}): {value} (类型: {type(value)})")
+                    logger.info(f"【调试】事件.{attr_name}: {value} (类型: {type(value)})")
                     if value:
                         qq_id = str(value)
-                        break
+                        logger.info(f"【调试】从事件.{attr_name}获取QQ: {qq_id}")
+                        return qq_id
             
-            # 方法3：尝试从sender对象获取
-            if not qq_id and hasattr(event, 'sender'):
+            # 尝试从sender对象获取
+            if hasattr(event, 'sender'):
                 sender = event.sender
-                logger.info(f"【调试】sender对象: {sender}")
-                logger.info(f"【调试】sender对象属性: {[attr for attr in dir(sender) if not attr.startswith('_')]}")
+                logger.info(f"【调试】sender对象类型: {type(sender)}")
                 
-                sender_attrs = ['id', 'user_id', 'qq_id', 'user_qq']
+                # 检查sender对象的属性
+                sender_attrs = ['id', 'user_id', 'qq_id', 'qq', 'user_qq']
                 for attr_name in sender_attrs:
                     if hasattr(sender, attr_name):
                         value = getattr(sender, attr_name)
                         logger.info(f"【调试】sender.{attr_name}: {value}")
                         if value:
                             qq_id = str(value)
-                            break
+                            logger.info(f"【调试】从sender.{attr_name}获取QQ: {qq_id}")
+                            return qq_id
             
-            # 方法4：尝试从get_sender_name()获取（如果返回的是"用户名/QQ号"格式）
-            if not qq_id:
-                try:
-                    sender_name = event.get_sender_name()
-                    logger.info(f"【调试】get_sender_name(): {sender_name}")
-                    
-                    # 如果是"用户名/QQ号"格式，如"UI/965959320"
-                    if sender_name and '/' in sender_name:
-                        parts = sender_name.split('/')
-                        if len(parts) >= 2 and parts[1].isdigit():
-                            qq_id = parts[1]
-                            logger.info(f"【调试】从get_sender_name()解析出QQ: {qq_id}")
-                except Exception as e:
-                    logger.info(f"【调试】get_sender_name()失败: {e}")
+            # 尝试从原始消息中解析
+            if hasattr(event, 'raw_message') and event.raw_message:
+                raw_msg = str(event.raw_message)
+                logger.info(f"【调试】原始消息: {raw_msg}")
+                
+                # 尝试解析At消息中的QQ号
+                import re
+                at_pattern = r'\[CQ:at,qq=(\d+)\]'
+                matches = re.findall(at_pattern, raw_msg)
+                if matches:
+                    qq_id = matches[0]
+                    logger.info(f"【调试】从原始消息解析AtQQ: {qq_id}")
+                    return qq_id
             
-            # 方法5：临时方案 - 如果是特定用户名，使用对应的QQ号
-            # 这个只是为了测试，实际应该从事件对象获取
-            if not qq_id:
-                try:
-                    sender_name = event.get_sender_name()
-                    # 如果是UI用户，使用965959320
-                    if sender_name == "UI":
-                        qq_id = "965959320"
-                        logger.info(f"【调试】识别为UI用户，使用固定QQ: {qq_id}")
-                except:
-                    pass
+            # 如果以上方法都失败，使用备选方案
+            logger.info(f"【调试】无法获取QQ号，使用备选方案")
+            
+            # 尝试从session_id获取
+            try:
+                session_id = event.get_session_id()
+                logger.info(f"【调试】session_id: {session_id}")
+                
+                # 尝试从session_id中解析QQ号
+                if session_id and '/' in session_id:
+                    parts = session_id.split('/')
+                    for part in parts:
+                        if part.isdigit() and len(part) >= 5:  # QQ号通常至少5位
+                            qq_id = part
+                            logger.info(f"【调试】从session_id解析出QQ: {qq_id}")
+                            return qq_id
+            except Exception as e:
+                logger.info(f"【调试】获取session_id失败: {e}")
                     
         except Exception as e:
             logger.error(f"获取用户ID异常: {e}")
+            import traceback
+            logger.error(f"异常详情: {traceback.format_exc()}")
         
-        logger.info(f"【调试】最终获取的QQ_ID: {qq_id}")
+        logger.info(f"【调试】最终获取的QQ_ID: {qq_id if qq_id else 'unknown'}")
         return qq_id if qq_id else "unknown"
     
     async def initialize(self):
@@ -146,7 +165,7 @@ class GameBindPlugin(Star):
         
         # 显示事件对象的关键属性
         info_lines.append("\n📋 事件对象属性：")
-        key_attrs = ['sender_id', 'user_id', 'from_id', 'sender', 'raw_message']
+        key_attrs = ['sender_id', 'user_id', 'from_id', 'sender', 'raw_message', 'group_id', 'message_id']
         
         for attr in key_attrs:
             if hasattr(event, attr):
@@ -158,26 +177,84 @@ class GameBindPlugin(Star):
                 except:
                     info_lines.append(f"  {attr}: 无法访问")
         
+        # 尝试获取session_id
+        try:
+            session_id = event.get_session_id()
+            info_lines.append(f"  session_id: {session_id}")
+        except:
+            info_lines.append("  session_id: 无法获取")
+        
         yield event.plain_result("\n".join(info_lines))
     
-    @filter.command("强制设置QQ")
-    async def force_set_qq_cmd(self, event: AstrMessageEvent):
-        """强制设置当前用户的QQ号（测试用）"""
-        logger.info(f"【强制设置QQ】被触发")
+    @filter.command("测试获取所有属性")
+    async def test_all_attrs_cmd(self, event: AstrMessageEvent):
+        """测试获取所有属性"""
+        logger.info(f"【测试获取所有属性】被触发")
+        
+        info_lines = ["🔍 事件对象所有属性："]
+        
+        try:
+            # 获取所有属性
+            all_attrs = [attr for attr in dir(event) if not attr.startswith('_')]
+            info_lines.append(f"属性数量: {len(all_attrs)}")
+            
+            # 只显示前20个属性
+            for attr in all_attrs[:20]:
+                try:
+                    value = getattr(event, attr)
+                    value_type = type(value).__name__
+                    value_repr = repr(value)[:50] + "..." if len(repr(value)) > 50 else repr(value)
+                    info_lines.append(f"  {attr}: {value_repr} (类型: {value_type})")
+                except Exception as e:
+                    info_lines.append(f"  {attr}: 访问失败 - {e}")
+        
+        except Exception as e:
+            info_lines.append(f"错误: {e}")
+        
+        yield event.plain_result("\n".join(info_lines))
+    
+    @filter.command("强制绑定")
+    async def force_bind_cmd(self, event: AstrMessageEvent):
+        """强制绑定：/强制绑定 QQ号 游戏账号"""
+        logger.info(f"【强制绑定】被触发")
         
         parts = event.message_str.strip().split()
-        if len(parts) >= 2:
-            # 指定QQ号
-            qq_id = parts[1]
-            if qq_id.isdigit():
-                # 这里可以添加绑定逻辑
-                yield event.plain_result(f"✅ 已设置测试QQ号: {qq_id}\n现在可以使用 /绑定账号 命令")
-            else:
-                yield event.plain_result("❌ QQ号必须是数字")
-        else:
-            # 使用默认测试QQ
-            test_qq = "100000001"
-            yield event.plain_result(f"📝 使用测试QQ号: {test_qq}\n格式: /强制设置QQ 123456789")
+        if len(parts) < 3:
+            yield event.plain_result("❌ 格式：/强制绑定 QQ号 游戏账号\n例如：/强制绑定 123456 test123")
+            return
+        
+        qq_id = parts[1]
+        game_account = parts[2]
+        
+        if not qq_id.isdigit():
+            yield event.plain_result("❌ QQ号必须是数字")
+            return
+        
+        # 验证游戏账号是否存在
+        try:
+            account_info = await self._get_account_info(game_account)
+            if not account_info:
+                yield event.plain_result(f"❌ 游戏账号 {game_account} 不存在，请确认后重试")
+                return
+        except Exception as e:
+            logger.error(f"验证游戏账号失败: {e}")
+            yield event.plain_result("❌ 验证游戏账号失败，请检查网络或联系管理员")
+            return
+        
+        # 保存绑定
+        self.bindings[qq_id] = {
+            "game_account": game_account,
+            "uid": account_info.get("uid", "未知"),
+            "account_name": account_info.get("passport", game_account),
+            "bind_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "qq_id": qq_id
+        }
+        self._save_json(self.bind_file, self.bindings)
+        
+        account_name = account_info.get("passport", game_account)
+        uid = account_info.get("uid", "未知")
+        logger.info(f"强制绑定成功：QQ:{qq_id} -> 游戏账号:{account_name}(UID:{uid})")
+        yield event.plain_result(f"✅ 强制绑定成功！\n🆔 QQ号：{qq_id}\n🎮 游戏账号：{account_name}\n📊 账号ID(UID)：{uid}\n⏰ 时间：{self.bindings[qq_id]['bind_time']}")
     
     # ========== 基础功能 ==========
     @filter.command("绑定账号")
@@ -195,9 +272,17 @@ class GameBindPlugin(Star):
         
         logger.info(f"绑定请求 - QQ:{qq_id}, 游戏账号:{game_account}")
         
-        # 如果QQ号获取失败，提示用户
+        # 如果QQ号获取失败，提示用户并提供解决方案
         if qq_id == "unknown":
-            yield event.plain_result("❌ 无法获取您的QQ信息\n请先发送 /测试QQ 查看信息，然后联系管理员")
+            response_msg = (
+                "❌ 无法获取您的QQ信息\n\n"
+                "请尝试以下方法：\n"
+                "1. 在群里发送 /测试QQ 查看您的QQ信息\n"
+                "2. 如果还是无法获取，请联系管理员使用以下命令：\n"
+                f"   /强制绑定 [您的QQ号] {game_account}\n\n"
+                "例如：/强制绑定 123456789 test123"
+            )
+            yield event.plain_result(response_msg)
             return
         
         # 检查是否已绑定
@@ -248,7 +333,11 @@ class GameBindPlugin(Star):
                 f"⏰ 绑定时间：{data['bind_time']}"
             )
         else:
-            yield event.plain_result("❌ 您尚未绑定游戏账号\n请使用：/绑定账号 游戏账号")
+            # 如果无法获取QQ号，提供帮助信息
+            if qq_id == "unknown":
+                yield event.plain_result("❌ 无法识别您的身份\n请发送 /测试QQ 查看您的QQ信息，然后联系管理员")
+            else:
+                yield event.plain_result("❌ 您尚未绑定游戏账号\n请使用：/绑定账号 游戏账号")
     
     @filter.command("解绑账号")
     async def unbind_account_cmd(self, event: AstrMessageEvent):
