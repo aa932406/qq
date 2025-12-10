@@ -332,7 +332,7 @@ class GameBindPlugin(Star):
         qq_id = self._get_user_id(event)
         
         # 超级管理员检查（可以设置第一个用户为超级管理员）
-        super_admin = "123456789"  # 修改为您的超级管理员QQ
+        super_admin = "965959320"  # 修改为您的超级管理员QQ
         if qq_id != super_admin:
             yield event.plain_result("❌ 权限不足，仅超级管理员可设置管理员")
             return
