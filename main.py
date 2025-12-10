@@ -32,43 +32,49 @@ class GameBindPlugin(Star):
             logger.error(f"保存失败: {e}")
 
     async def initialize(self):
-        """插件启用"""
         logger.info("【游戏绑定插件】已启用")
         
-    # ========== 修复：旧版API的正确参数格式 ==========
-    # 旧版AstrBot的命令处理器接收3个参数：bot, event, args
+    # ========== 修复：使用 event.reply() 或 event.plain_result() ==========
     
     @filter.command("绑定")
-    async def bind_cmd(self, bot, event, args):
+    async def bind_cmd(self, event: AstrMessageEvent):
         """绑定游戏账号"""
-        logger.info(f"【绑定指令】被触发，args: {args}")
+        logger.info(f"【绑定指令】被触发")
         
-        if not args or len(args) < 1:
-            yield MessageEventResult.reply("❌ 格式：/绑定 游戏账号")
+        # 解析消息
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            # 方法1：使用 event.reply（如果可用）
+            try:
+                await event.reply("❌ 格式：/绑定 游戏账号")
+            except:
+                # 方法2：使用 event.plain_result
+                yield event.plain_result("❌ 格式：/绑定 游戏账号")
             return
         
-        game_account = args[0]
+        game_account = parts[1]
         
-        # 获取用户ID - 旧版可能是event对象或字典
+        # 获取用户ID - 尝试多种方式
+        qq_id = ""
         try:
-            # 尝试不同方式获取用户ID
+            # 尝试不同属性
             if hasattr(event, 'user_id'):
                 qq_id = str(event.user_id)
-            elif hasattr(event, 'from_id'):
-                qq_id = str(event.from_id)
             elif hasattr(event, 'sender_id'):
                 qq_id = str(event.sender_id)
-            elif isinstance(event, dict) and 'user_id' in event:
-                qq_id = str(event['user_id'])
-            else:
-                # 最后尝试从bot获取
-                qq_id = str(getattr(bot, 'user_id', 'unknown'))
+            elif hasattr(event, 'from_id'):
+                qq_id = str(event.from_id)
+            elif hasattr(event, 'sender') and hasattr(event.sender, 'user_id'):
+                qq_id = str(event.sender.user_id)
         except:
             qq_id = "unknown"
         
         if qq_id in self.bindings:
             old = self.bindings[qq_id]["game_account"]
-            yield MessageEventResult.reply(f"⚠️ 您已绑定：{old}")
+            try:
+                await event.reply(f"⚠️ 您已绑定：{old}")
+            except:
+                yield event.plain_result(f"⚠️ 您已绑定：{old}")
             return
         
         # 保存绑定
@@ -80,93 +86,112 @@ class GameBindPlugin(Star):
         self._save_bindings()
         
         logger.info(f"绑定成功：QQ:{qq_id} 账号:{game_account}")
-        yield MessageEventResult.reply(f"✅ 绑定成功！游戏账号：{game_account}")
+        
+        try:
+            await event.reply(f"✅ 绑定成功！游戏账号：{game_account}")
+        except:
+            yield event.plain_result(f"✅ 绑定成功！游戏账号：{game_account}")
 
     @filter.command("我的绑定")
-    async def mybind_cmd(self, bot, event, args):
+    async def mybind_cmd(self, event: AstrMessageEvent):
         """查询绑定"""
         logger.info(f"【我的绑定】被触发")
         
         # 获取用户ID
+        qq_id = ""
         try:
             if hasattr(event, 'user_id'):
                 qq_id = str(event.user_id)
-            elif hasattr(event, 'from_id'):
-                qq_id = str(event.from_id)
-            else:
-                qq_id = "unknown"
+            elif hasattr(event, 'sender_id'):
+                qq_id = str(event.sender_id)
         except:
             qq_id = "unknown"
         
         if qq_id in self.bindings:
             data = self.bindings[qq_id]
-            yield MessageEventResult.reply(f"📋 您的绑定：\n账号：{data['game_account']}\n时间：{data['bind_time']}")
+            try:
+                await event.reply(f"📋 您的绑定：\n账号：{data['game_account']}\n时间：{data['bind_time']}")
+            except:
+                yield event.plain_result(f"📋 您的绑定：\n账号：{data['game_account']}\n时间：{data['bind_time']}")
         else:
-            yield MessageEventResult.reply("❌ 您未绑定账号")
+            try:
+                await event.reply("❌ 您未绑定账号")
+            except:
+                yield event.plain_result("❌ 您未绑定账号")
 
     @filter.command("解绑")
-    async def unbind_cmd(self, bot, event, args):
+    async def unbind_cmd(self, event: AstrMessageEvent):
         """解绑"""
         logger.info(f"【解绑】被触发")
         
-        # 获取用户ID
+        qq_id = ""
         try:
             if hasattr(event, 'user_id'):
                 qq_id = str(event.user_id)
-            elif hasattr(event, 'from_id'):
-                qq_id = str(event.from_id)
-            else:
-                qq_id = "unknown"
+            elif hasattr(event, 'sender_id'):
+                qq_id = str(event.sender_id)
         except:
             qq_id = "unknown"
         
         if qq_id in self.bindings:
             del self.bindings[qq_id]
             self._save_bindings()
-            yield MessageEventResult.reply("✅ 解绑成功")
+            try:
+                await event.reply("✅ 解绑成功")
+            except:
+                yield event.plain_result("✅ 解绑成功")
         else:
-            yield MessageEventResult.reply("❌ 您未绑定账号")
+            try:
+                await event.reply("❌ 您未绑定账号")
+            except:
+                yield event.plain_result("❌ 您未绑定账号")
 
     @filter.command("充值验证")
-    async def recharge_cmd(self, bot, event, args):
+    async def recharge_cmd(self, event: AstrMessageEvent):
         """充值验证"""
         logger.info(f"【充值验证】被触发")
         
-        # 获取用户ID
+        qq_id = ""
         try:
             if hasattr(event, 'user_id'):
                 qq_id = str(event.user_id)
-            elif hasattr(event, 'from_id'):
-                qq_id = str(event.from_id)
-            else:
-                qq_id = "unknown"
+            elif hasattr(event, 'sender_id'):
+                qq_id = str(event.sender_id)
         except:
             qq_id = "unknown"
         
         if qq_id not in self.bindings:
-            yield MessageEventResult.reply("❌ 未绑定账号")
+            try:
+                await event.reply("❌ 未绑定账号")
+            except:
+                yield event.plain_result("❌ 未绑定账号")
             return
         
         account = self.bindings[qq_id]["game_account"]
-        yield MessageEventResult.reply(f"✅ 验证通过！账号：{account}")
+        try:
+            await event.reply(f"✅ 验证通过！账号：{account}")
+        except:
+            yield event.plain_result(f"✅ 验证通过！账号：{account}")
 
     @filter.command("测试")
-    async def test_cmd(self, bot, event, args):
+    async def test_cmd(self, event: AstrMessageEvent):
         """测试插件"""
         logger.info("【测试指令】被触发")
         
         # 尝试获取用户信息
-        user_info = ""
+        qq_id = ""
         try:
             if hasattr(event, 'user_id'):
-                user_info = f"\n用户ID：{event.user_id}"
-            if hasattr(event, 'sender') and hasattr(event.sender, 'nickname'):
-                user_info += f"\n昵称：{event.sender.nickname}"
+                qq_id = str(event.user_id)
+            elif hasattr(event, 'sender_id'):
+                qq_id = str(event.sender_id)
         except:
-            pass
+            qq_id = "unknown"
         
-        yield MessageEventResult.reply(f"✅ 插件工作正常！{user_info}")
+        try:
+            await event.reply(f"✅ 插件工作正常！\n您的QQ：{qq_id}")
+        except:
+            yield event.plain_result(f"✅ 插件工作正常！\n您的QQ：{qq_id}")
 
     async def terminate(self):
-        """插件禁用"""
         logger.info("游戏绑定插件已禁用")
