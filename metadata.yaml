@@ -1,6 +1,6 @@
 name: astrbot_plugin_game_bind
 display_name: 游戏账号绑定管理
 desc: 用于绑定QQ与游戏账号，为后续充值提供身份验证。
-version: v1.0.0
+version: v1.2.0
 author: aa932406
 repo: https://github.com/aa932406/qq
