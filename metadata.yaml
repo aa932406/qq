@@ -1,6 +1,6 @@
-name: astrbot_plugin_game_account  # 插件唯一ID，必须以astrbot_plugin_开头
-display_name: 游戏账号绑定管理     # 显示名称
-desc: 用于绑定QQ与游戏账号，为后续充值提供身份验证。 # 插件描述
-version: v1.0.0                   # 版本号
-author: 你的名字                   # 作者
-repo: https://github.com/aa932406/qq  # 仓库地址
+name: astrbot_plugin_game_bind
+display_name: 游戏账号绑定管理
+desc: QQ绑定游戏账号，用于充值验证和管理。
+version: v1.0.0
+author: aa932406
+repo: https://github.com/aa932406/qq
