@@ -24,10 +24,12 @@ class GameBindPlugin(Star):
         
         # ⚠️ 请修改这里的配置为您自己的服务器地址
         self.api_config = {
-            "base_url": "http://115.190.64.181:881/api/players.php",  # 修改为您的API地址
-            "timeout": 30,
-            "admin_session": "123"  # 如果需要管理员权限
+            "base_url": "http://您的服务器地址/api/players.php",  # 修改为您的API地址
+            "timeout": 30
         }
+        
+        # 管理员QQ列表（可以在这里添加管理员QQ号）
+        self.admin_qq_list = ["123456789", "987654321"]  # 修改为您的管理员QQ
         
         logger.info("【游戏充值插件】初始化完成！")
         logger.info(f"API地址配置: {self.api_config['base_url']}")
@@ -62,6 +64,10 @@ class GameBindPlugin(Star):
         except:
             pass
         return "unknown"
+    
+    def _is_admin(self, qq_id: str) -> bool:
+        """检查是否为管理员"""
+        return qq_id in self.admin_qq_list
     
     async def initialize(self):
         logger.info("【游戏充值插件】已启用")
@@ -287,12 +293,18 @@ class GameBindPlugin(Star):
         except Exception as e:
             yield event.plain_result(f"❌ API连接失败：{str(e)}\n请检查API地址和网络配置")
     
-    # ========== 管理员功能 ==========
+    # ========== 管理员功能（手动检查权限） ==========
     @filter.command("充值记录")
-    @filter.require("admin")
     async def recharge_history_cmd(self, event: AstrMessageEvent):
         """查看充值记录（管理员）"""
         logger.info(f"【充值记录】被触发")
+        
+        qq_id = self._get_user_id(event)
+        
+        # 手动检查管理员权限
+        if not self._is_admin(qq_id):
+            yield event.plain_result("❌ 权限不足，仅管理员可查看充值记录")
+            return
         
         if not self.recharge_logs:
             yield event.plain_result("暂无充值记录")
@@ -309,6 +321,62 @@ class GameBindPlugin(Star):
             lines.append(f"🎮 角色：{log.get('player_name', '未知')}")
             lines.append(f"💰 金额：{log.get('amount', 0)} 元宝")
             lines.append(f"⏰ 时间：{log.get('recharge_time', '未知')}")
+        
+        yield event.plain_result("\n".join(lines))
+    
+    @filter.command("设置管理员")
+    async def set_admin_cmd(self, event: AstrMessageEvent):
+        """设置管理员（需要超级管理员权限）"""
+        logger.info(f"【设置管理员】被触发")
+        
+        qq_id = self._get_user_id(event)
+        
+        # 超级管理员检查（可以设置第一个用户为超级管理员）
+        super_admin = "123456789"  # 修改为您的超级管理员QQ
+        if qq_id != super_admin:
+            yield event.plain_result("❌ 权限不足，仅超级管理员可设置管理员")
+            return
+        
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            yield event.plain_result("❌ 格式：/设置管理员 QQ号")
+            return
+        
+        target_qq = parts[1]
+        
+        if target_qq not in self.admin_qq_list:
+            self.admin_qq_list.append(target_qq)
+            yield event.plain_result(f"✅ 已添加 {target_qq} 为管理员")
+        else:
+            yield event.plain_result(f"ℹ️ {target_qq} 已经是管理员")
+    
+    @filter.command("查看绑定")
+    async def view_bindings_cmd(self, event: AstrMessageEvent):
+        """查看所有绑定记录（管理员）"""
+        logger.info(f"【查看绑定】被触发")
+        
+        qq_id = self._get_user_id(event)
+        
+        # 手动检查管理员权限
+        if not self._is_admin(qq_id):
+            yield event.plain_result("❌ 权限不足，仅管理员可查看所有绑定")
+            return
+        
+        if not self.bindings:
+            yield event.plain_result("暂无绑定记录")
+            return
+        
+        lines = ["📋 所有绑定记录："]
+        count = 0
+        for bind_qq, data in self.bindings.items():
+            count += 1
+            lines.append(f"━━━━━━━━━━━━━━━━━━━━")
+            lines.append(f"#{count} QQ：{bind_qq}")
+            lines.append(f"🎮 角色：{data.get('player_name', '未知')}")
+            lines.append(f"🆔 角色ID：{data.get('game_cid', '未知')}")
+            lines.append(f"⏰ 绑定时间：{data.get('bind_time', '未知')}")
+        
+        lines.append(f"\n📊 总计：{count} 条绑定记录")
         
         yield event.plain_result("\n".join(lines))
     
@@ -350,9 +418,6 @@ class GameBindPlugin(Star):
                 form_data.add_field("cid", cid)
                 form_data.add_field("amount", str(amount))
                 form_data.add_field("remark", remark)
-                
-                # ⚠️ 如果需要管理员session，添加这里
-                # form_data.add_field("session_id", self.api_config["admin_session"])
                 
                 async with session.post(
                     self.api_config["base_url"],
