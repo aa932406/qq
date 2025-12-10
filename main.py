@@ -34,7 +34,7 @@ class GameBindPlugin(Star):
         # 默认管理员（可以在这里添加初始管理员QQ）
         if not self.admins:
             self.admins = {
-                "admin_qq_ids": [],  # 管理员QQ列表
+                "admin_qq_ids": [965959320],  # 管理员QQ列表
                 "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
             self._save_json(self.admins_file, self.admins)
