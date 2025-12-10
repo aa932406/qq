@@ -24,12 +24,12 @@ class GameBindPlugin(Star):
         
         # ⚠️ 请修改这里的配置为您自己的服务器地址
         self.api_config = {
-            "base_url": "http://您的服务器地址/api/players.php",  # 修改为您的API地址
+            "base_url": "http://115.190.64.181:881/api/players.php",  # 修改为您的API地址
             "timeout": 30
         }
         
         # 管理员QQ列表（可以在这里添加管理员QQ号）
-        self.admin_qq_list = ["123456789", "987654321"]  # 修改为您的管理员QQ
+        self.admin_qq_list = ["965959320"]  # 修改为您的管理员QQ
         
         logger.info("【游戏充值插件】初始化完成！")
         logger.info(f"API地址配置: {self.api_config['base_url']}")
