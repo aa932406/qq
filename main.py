@@ -12,9 +12,9 @@ from astrbot.api import logger, AstrBotConfig
 
 @register("game_bind", "aa932406", "游戏账号绑定与充值插件", "3.0.0")
 class GameBindPlugin(Star):
-    def __init__(self, context: Context, config: AstrBotConfig):
+    def __init__(self, context: Context, config: Optional[AstrBotConfig] = None):
         super().__init__(context)
-        self.config = config
+        self.config = config or AstrBotConfig()
         
         # 初始化数据存储
         self.data_dir = os.path.join(os.path.dirname(__file__), "data")
@@ -25,24 +25,33 @@ class GameBindPlugin(Star):
         self.recharge_file = os.path.join(self.data_dir, "recharge_logs.json")
         self.points_file = os.path.join(self.data_dir, "user_points.json")
         self.sign_file = os.path.join(self.data_dir, "sign_records.json")
+        self.admins_file = os.path.join(self.data_dir, "admins.json")
         
         # 加载数据
         self.bindings = self._load_json(self.bind_file)
         self.recharge_logs = self._load_json(self.recharge_file)
         self.user_points = self._load_json(self.points_file)
         self.sign_records = self._load_json(self.sign_file)
+        self.admins_data = self._load_json(self.admins_file)
         
-        # 从配置获取管理员列表
-        self.admins = self.config.get("admins", [])
+        # 从配置获取管理员列表（优先从配置文件获取，否则使用默认）
+        config_admins = self.config.get("admins", [])
+        if config_admins:
+            self.admins = config_admins
+        elif self.admins_data:
+            self.admins = self.admins_data.get("admin_qq_ids", [])
+        else:
+            # 默认管理员
+            self.admins = [965959320]
         
-        # API配置 - 从config中获取
+        # API配置 - 从config中获取或使用默认值
         self.api_config = {
             "base_url": self.config.get("api_url", "http://115.190.64.181:881/api/players.php"),
             "timeout": self.config.get("timeout", 30),
             "qq_bot_secret": self.config.get("api_secret", "ws7ecejjsznhtxurchknmdemax2fnp5d")
         }
         
-        # 系统配置 - 从config中获取
+        # 系统配置 - 从config中获取或使用默认值
         self.system_config = {
             "recharge_ratio": self.config.get("recharge_ratio", 100000),
             "sign_rewards": self.config.get("sign_rewards", {
@@ -52,7 +61,7 @@ class GameBindPlugin(Star):
             "min_recharge_points": self.config.get("min_recharge_points", 1)
         }
         
-        # 功能开关 - 从config中获取
+        # 功能开关 - 从config中获取或使用默认值
         self.features = self.config.get("features", {
             "allow_modify_bind": True,
             "allow_gift_points": True,
@@ -103,6 +112,37 @@ class GameBindPlugin(Star):
     def _is_admin(self, qq_id: str) -> bool:
         """检查是否为管理员"""
         return str(qq_id) in [str(admin) for admin in self.admins]
+    
+    def _add_admin(self, qq_id: str) -> bool:
+        """添加管理员"""
+        qq_id_str = str(qq_id)
+        if qq_id_str not in [str(admin) for admin in self.admins]:
+            self.admins.append(qq_id_str)
+            
+            # 保存到文件
+            self.admins_data = {
+                "admin_qq_ids": self.admins,
+                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            }
+            self._save_json(self.admins_file, self.admins_data)
+            return True
+        return False
+    
+    def _remove_admin(self, qq_id: str) -> bool:
+        """移除管理员"""
+        qq_id_str = str(qq_id)
+        original_len = len(self.admins)
+        self.admins = [admin for admin in self.admins if str(admin) != qq_id_str]
+        
+        if len(self.admins) < original_len:
+            # 保存到文件
+            self.admins_data = {
+                "admin_qq_ids": self.admins,
+                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            }
+            self._save_json(self.admins_file, self.admins_data)
+            return True
+        return False
     
     def _is_account_already_bound(self, game_account: str, exclude_qq: str = None) -> tuple:
         """检查游戏账号是否已被绑定"""
@@ -214,6 +254,8 @@ class GameBindPlugin(Star):
 
 👑 管理员命令：
 • /添加积分 <QQ> <积分> [备注]  # 给用户添加积分
+• /添加管理员 <QQ>         # 添加管理员
+• /移除管理员 <QQ>         # 移除管理员
 • /管理员列表             # 查看管理员列表
 • /用户列表 [页码]        # 查看所有用户
 • /充值记录 [数量]        # 查看充值记录
@@ -829,6 +871,66 @@ class GameBindPlugin(Star):
         yield event.plain_result(content)
     
     # ========== 管理员管理功能 ==========
+    @filter.command("添加管理员")
+    async def add_admin_cmd(self, event: AstrMessageEvent):
+        """添加管理员"""
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            yield event.plain_result("❌ 格式错误\n正确格式：/添加管理员 <QQ>\n例如：/添加管理员 123456")
+            return
+        
+        target_qq = parts[1]
+        admin_qq = self._get_user_id(event)
+        
+        if not self._is_admin(admin_qq):
+            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
+            return
+        
+        success = self._add_admin(target_qq)
+        
+        if success:
+            content = f"""✅ 管理员添加成功！
+
+新管理员：QQ {target_qq}
+操作管理员：{admin_qq}
+操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+当前管理员数量：{len(self.admins)} 人"""
+            
+            yield event.plain_result(content)
+        else:
+            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 已经是管理员")
+    
+    @filter.command("移除管理员")
+    async def remove_admin_cmd(self, event: AstrMessageEvent):
+        """移除管理员"""
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            yield event.plain_result("❌ 格式错误\n正确格式：/移除管理员 <QQ>\n例如：/移除管理员 123456")
+            return
+        
+        target_qq = parts[1]
+        admin_qq = self._get_user_id(event)
+        
+        if not self._is_admin(admin_qq):
+            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
+            return
+        
+        success = self._remove_admin(target_qq)
+        
+        if success:
+            content = f"""✅ 管理员移除成功！
+
+移除的管理员：QQ {target_qq}
+操作管理员：{admin_qq}
+操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+当前管理员数量：{len(self.admins)} 人"""
+            
+            yield event.plain_result(content)
+        else:
+            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 不是管理员")
+    
     @filter.command("管理员列表")
     async def admin_list_cmd(self, event: AstrMessageEvent):
         """查看管理员列表"""
