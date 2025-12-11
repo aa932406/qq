@@ -7,14 +7,13 @@ from datetime import datetime, date, timedelta
 from typing import Optional, Dict, List, Any
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
-from astrbot.api import logger, AstrBotConfig
+from astrbot.api import logger
 
 
 @register("game_bind", "aa932406", "游戏账号绑定与充值插件", "3.0.0")
 class GameBindPlugin(Star):
-    def __init__(self, context: Context, config: Optional[AstrBotConfig] = None):
+    def __init__(self, context: Context):
         super().__init__(context)
-        self.config = config or AstrBotConfig()
         
         # 初始化数据存储
         self.data_dir = os.path.join(os.path.dirname(__file__), "data")
@@ -34,8 +33,8 @@ class GameBindPlugin(Star):
         self.sign_records = self._load_json(self.sign_file)
         self.admins_data = self._load_json(self.admins_file)
         
-        # 从配置获取管理员列表（优先从配置文件获取，否则使用默认）
-        config_admins = self.config.get("admins", [])
+        # 从配置获取管理员列表（优先从配置文件获取，否则使用本地文件，最后使用默认）
+        config_admins = self.context.get("admins", [])
         if config_admins:
             self.admins = config_admins
         elif self.admins_data:
@@ -46,23 +45,23 @@ class GameBindPlugin(Star):
         
         # API配置 - 从config中获取或使用默认值
         self.api_config = {
-            "base_url": self.config.get("api_url", "http://115.190.64.181:881/api/players.php"),
-            "timeout": self.config.get("timeout", 30),
-            "qq_bot_secret": self.config.get("api_secret", "ws7ecejjsznhtxurchknmdemax2fnp5d")
+            "base_url": self.context.get("api_url", "http://115.190.64.181:881/api/players.php"),
+            "timeout": self.context.get("timeout", 30),
+            "qq_bot_secret": self.context.get("api_secret", "ws7ecejjsznhtxurchknmdemax2fnp5d")
         }
         
         # 系统配置 - 从config中获取或使用默认值
         self.system_config = {
-            "recharge_ratio": self.config.get("recharge_ratio", 100000),
-            "sign_rewards": self.config.get("sign_rewards", {
+            "recharge_ratio": self.context.get("recharge_ratio", 100000),
+            "sign_rewards": self.context.get("sign_rewards", {
                 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 10, 14: 15, 30: 30
             }),
-            "max_points_per_day": self.config.get("max_points_per_day", 1000),
-            "min_recharge_points": self.config.get("min_recharge_points", 1)
+            "max_points_per_day": self.context.get("max_points_per_day", 1000),
+            "min_recharge_points": self.context.get("min_recharge_points", 1)
         }
         
         # 功能开关 - 从config中获取或使用默认值
-        self.features = self.config.get("features", {
+        self.features = self.context.get("features", {
             "allow_modify_bind": True,
             "allow_gift_points": True,
             "allow_recharge_others": True,
