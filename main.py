@@ -22,22 +22,12 @@ class GameBindPlugin(Star):
         self.recharge_file = os.path.join(self.data_dir, "recharge_logs.json")
         self.points_file = os.path.join(self.data_dir, "user_points.json")
         self.sign_file = os.path.join(self.data_dir, "sign_records.json")
-        self.admins_file = os.path.join(self.data_dir, "admins.json")
         
         # 加载数据
         self.bindings = self._load_json(self.bind_file)
         self.recharge_logs = self._load_json(self.recharge_file)
         self.user_points = self._load_json(self.points_file)
         self.sign_records = self._load_json(self.sign_file)
-        self.admins = self._load_json(self.admins_file)
-        
-        # 默认管理员（可以在这里添加初始管理员QQ）
-        if not self.admins:
-            self.admins = {
-                "admin_qq_ids": [965959320],  # 管理员QQ列表
-                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-            self._save_json(self.admins_file, self.admins)
         
         # API配置
         self.api_config = {
@@ -50,7 +40,7 @@ class GameBindPlugin(Star):
         self.system_config = {
             # 积分系统
             "points": {
-                "recharge_ratio": 100000,  # 1积分=100000元宝
+                "recharge_ratio": 10000,  # 1积分=10000元宝
                 # 签到奖励（积分）
                 "sign_rewards": {
                     1: 1,      # 第1天：1积分
@@ -105,29 +95,6 @@ class GameBindPlugin(Star):
             logger.error(f"❓ 获取用户ID异常: {e}")
         return qq_id if qq_id else "unknown"
     
-    def _is_admin(self, qq_id: str) -> bool:
-        """检查是否为管理员"""
-        admin_list = self.admins.get("admin_qq_ids", [])
-        return str(qq_id) in [str(admin) for admin in admin_list]
-    
-    def _add_admin(self, qq_id: str) -> bool:
-        """添加管理员"""
-        if str(qq_id) not in self.admins.get("admin_qq_ids", []):
-            self.admins.setdefault("admin_qq_ids", []).append(str(qq_id))
-            self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self._save_json(self.admins_file, self.admins)
-            return True
-        return False
-    
-    def _remove_admin(self, qq_id: str) -> bool:
-        """移除管理员"""
-        if str(qq_id) in self.admins.get("admin_qq_ids", []):
-            self.admins["admin_qq_ids"] = [admin for admin in self.admins["admin_qq_ids"] if str(admin) != str(qq_id)]
-            self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self._save_json(self.admins_file, self.admins)
-            return True
-        return False
-    
     def _is_account_already_bound(self, game_account: str, exclude_qq: str = None) -> tuple:
         """检查游戏账号是否已被绑定"""
         for qq_id, bind_info in self.bindings.items():
@@ -155,63 +122,6 @@ class GameBindPlugin(Star):
         self.user_points[qq_id] = points_data
         self._save_json(self.points_file, self.user_points)
     
-    def _transfer_points(self, from_qq: str, to_qq: str, points: int, reason: str = "") -> tuple:
-        """转移积分"""
-        if from_qq not in self.user_points:
-            return False, "源用户不存在"
-        if to_qq not in self.user_points:
-            return False, "目标用户不存在"
-        
-        if self.user_points[from_qq]["points"] < points:
-            return False, "积分不足"
-        
-        # 执行转移
-        self.user_points[from_qq]["points"] -= points
-        self.user_points[from_qq]["total_spent"] += points
-        
-        self.user_points[to_qq]["points"] += points
-        self.user_points[to_qq]["total_earned"] += points
-        
-        self._save_json(self.points_file, self.user_points)
-        
-        # 记录转移日志
-        transfer_id = f"T{datetime.now().strftime('%Y%m%d%H%M%S')}_{from_qq}"
-        self.recharge_logs[transfer_id] = {
-            "type": "points_transfer",
-            "from_qq": from_qq,
-            "to_qq": to_qq,
-            "points": points,
-            "reason": reason,
-            "transfer_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        }
-        self._save_json(self.recharge_file, self.recharge_logs)
-        
-        return True, "转移成功"
-    
-    def _add_points_to_user(self, qq_id: str, points: int, reason: str = "") -> tuple:
-        """给用户添加积分（管理员功能）"""
-        if qq_id not in self.user_points:
-            return False, "用户不存在"
-        
-        # 添加积分
-        self.user_points[qq_id]["points"] += points
-        self.user_points[qq_id]["total_earned"] += points
-        
-        self._save_json(self.points_file, self.user_points)
-        
-        # 记录管理员操作
-        admin_action_id = f"A{datetime.now().strftime('%Y%m%d%H%M%S')}_{qq_id}"
-        self.recharge_logs[admin_action_id] = {
-            "type": "admin_add_points",
-            "target_qq": qq_id,
-            "points": points,
-            "reason": reason,
-            "action_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        }
-        self._save_json(self.recharge_file, self.recharge_logs)
-        
-        return True, "添加成功"
-    
     async def initialize(self):
         logger.info("🚀 游戏账号插件已启动！")
     
@@ -219,9 +129,6 @@ class GameBindPlugin(Star):
     @filter.command("帮助")
     async def help_cmd(self, event: AstrMessageEvent):
         """显示帮助信息"""
-        qq_id = self._get_user_id(event)
-        is_admin = self._is_admin(qq_id)
-        
         help_text = """游戏账号插件 - 命令列表
 
 📌 常用命令：
@@ -231,34 +138,16 @@ class GameBindPlugin(Star):
 • /积分充值 <积分数量>    # 用积分充值游戏
 • /查询账号 [账号]        # 查看账号信息
 
-💰 积分相关：
-• /赠送积分 <QQ> <积分> [备注]  # 赠送积分给他人
-• /查询积分 <QQ>          # 查询他人积分
-
 🔧 其他命令：
 • /修改绑定 <新账号>      # 修改绑定账号
 • /解绑账号              # 解绑当前账号
-• /测试连接              # 测试API连接"""
-        
-        if is_admin:
-            help_text += """
-
-👑 管理员命令：
-• /添加积分 <QQ> <积分> [备注]  # 给用户添加积分
-• /添加管理员 <QQ>         # 添加管理员
-• /移除管理员 <QQ>         # 移除管理员
-• /管理员列表             # 查看管理员列表
-• /用户列表 [页码]        # 查看所有用户
-• /充值记录 [数量]        # 查看充值记录"""
-
-        help_text += """
+• /测试连接              # 测试API连接
 
 💎 规则：
-• 1积分 = 100000元宝
+• 1积分 = 10000元宝
 • 签到获得积分
 • 积分用于充值游戏账号
 • 没有积分无法充值"""
-        
         yield event.plain_result(help_text)
     
     # ========== 绑定功能 ==========
@@ -267,7 +156,7 @@ class GameBindPlugin(Star):
         """绑定PHP游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/绑定账号 游戏账号")
+            yield event.plain_result("❌ 格式错误\n正确格式：/绑定账号 游戏账号\n例如：/绑定账号 xhl2511686")
             return
         
         game_account = parts[1]
@@ -522,102 +411,6 @@ class GameBindPlugin(Star):
             logger.error(f"充值异常：{e}")
             yield event.plain_result("❌ 充值异常，请稍后重试或联系管理员")
     
-    # ========== 给别人账号充值功能 ==========
-    @filter.command("给别人充值")
-    async def recharge_for_others_cmd(self, event: AstrMessageEvent):
-        """给他人游戏账号充值（消耗自己的积分）"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 3:
-            yield event.plain_result("❌ 格式错误\n正确格式：/给别人充值 <QQ> <积分数量> [备注]\n例如：/给别人充值 123456 10 赠送")
-            return
-        
-        try:
-            target_qq = parts[1]
-            points_to_use = int(parts[2])
-            if points_to_use <= 0:
-                raise ValueError("必须是正数")
-            remark = " ".join(parts[3:]) if len(parts) > 3 else "好友赠送"
-        except ValueError:
-            yield event.plain_result("❌ 参数错误，积分数量必须是正整数")
-            return
-        
-        from_qq = self._get_user_id(event)
-        
-        if from_qq == "unknown":
-            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
-            return
-        
-        # 检查目标QQ是否绑定
-        if target_qq not in self.bindings:
-            yield event.plain_result(f"❌ 目标用户未绑定账号\nQQ {target_qq} 未绑定游戏账号")
-            return
-        
-        # 检查自己是否有足够积分
-        from_points = self._get_user_points(from_qq)
-        if from_points["points"] < points_to_use:
-            yield event.plain_result(f"❌ 积分不足\n需要积分：{points_to_use}\n当前积分：{from_points['points']}")
-            return
-        
-        # 获取目标用户的游戏账号
-        game_account = self.bindings[target_qq]["game_account"]
-        account_name = self.bindings[target_qq].get("account_name", game_account)
-        
-        # 计算充值金额
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
-        recharge_amount = points_to_use * recharge_ratio
-        
-        # 执行充值
-        try:
-            result = await self._execute_account_recharge(game_account, recharge_amount, remark)
-            
-            if result.get("success"):
-                # 扣减自己的积分
-                from_points["points"] -= points_to_use
-                from_points["total_spent"] += points_to_use
-                self._update_user_points(from_qq, from_points)
-                
-                # 记录充值日志
-                recharge_id = f"G{datetime.now().strftime('%Y%m%d%H%M%S')}_{from_qq}"
-                self.recharge_logs[recharge_id] = {
-                    "type": "gift_recharge",
-                    "from_qq": from_qq,
-                    "to_qq": target_qq,
-                    "game_account": game_account,
-                    "account_name": account_name,
-                    "points_used": points_to_use,
-                    "recharge_amount": recharge_amount,
-                    "remark": remark,
-                    "recharge_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    "api_response": result
-                }
-                self._save_json(self.recharge_file, self.recharge_logs)
-                
-                response_data = result.get("data", {})
-                
-                content = f"""🎁 赠送充值成功！
-
-赠送对象：QQ {target_qq}
-游戏账号：{account_name}
-消耗积分：{points_to_use} 积分（您的积分）
-充值金额：{recharge_amount:,} 元宝
-充值备注：{remark}
-
-📊 对方账户：
-新余额：{response_data.get('new_gold_pay', '未知'):,}
-累计充值：{response_data.get('new_gold_pay_total', '未知'):,}
-您剩余积分：{from_points['points']} 积分
-
-⏰ 赠送时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
-                
-                yield event.plain_result(content)
-            else:
-                error_msg = result.get("error", "未知错误")
-                yield event.plain_result(f"❌ 充值失败\n错误信息：{error_msg}")
-                
-        except Exception as e:
-            logger.error(f"给他人充值异常：{e}")
-            yield event.plain_result("❌ 充值异常，请稍后重试或联系管理员")
-    
     # ========== 查询账号功能 ==========
     @filter.command("查询账号")
     async def query_account_cmd(self, event: AstrMessageEvent):
@@ -668,382 +461,6 @@ class GameBindPlugin(Star):
             content += f"\n绑定QQ：{bound_qq}\n绑定时间：{bind_info.get('bind_time', '未知')}"
         else:
             content += f"\n💡 使用 /绑定账号 可绑定此账号"
-        
-        yield event.plain_result(content)
-    
-    # ========== 赠送积分功能 ==========
-    @filter.command("赠送积分")
-    async def gift_points_cmd(self, event: AstrMessageEvent):
-        """赠送积分给其他用户"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 3:
-            yield event.plain_result("❌ 格式错误\n正确格式：/赠送积分 <QQ> <积分数量> [备注]\n例如：/赠送积分 123456 50 节日礼物")
-            return
-        
-        try:
-            target_qq = parts[1]
-            points_to_gift = int(parts[2])
-            if points_to_gift <= 0:
-                raise ValueError("必须是正数")
-            remark = " ".join(parts[3:]) if len(parts) > 3 else "好友赠送"
-        except ValueError:
-            yield event.plain_result("❌ 参数错误，积分数量必须是正整数")
-            return
-        
-        from_qq = self._get_user_id(event)
-        
-        if from_qq == "unknown":
-            yield event.plain_result("❌ 身份验证失败，无法获取QQ信息")
-            return
-        
-        if from_qq == target_qq:
-            yield event.plain_result("❌ 不能给自己赠送积分")
-            return
-        
-        # 检查是否有足够积分
-        from_points = self._get_user_points(from_qq)
-        if from_points["points"] < points_to_gift:
-            yield event.plain_result(f"❌ 积分不足\n需要积分：{points_to_gift}\n当前积分：{from_points['points']}")
-            return
-        
-        # 转移积分
-        success, message = self._transfer_points(from_qq, target_qq, points_to_gift, remark)
-        
-        if success:
-            # 获取转移后的积分
-            from_points = self._get_user_points(from_qq)
-            to_points = self._get_user_points(target_qq)
-            
-            content = f"""🎁 积分赠送成功！
-
-赠送对象：QQ {target_qq}
-赠送积分：{points_to_gift} 积分
-赠送备注：{remark}
-
-📊 积分变化：
-您的积分：{from_points['points']}（已扣减 {points_to_gift}）
-对方积分：{to_points['points']}（已增加 {points_to_gift}）
-
-⏰ 赠送时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"❌ 赠送失败\n{message}")
-    
-    # ========== 查询他人积分功能 ==========
-    @filter.command("查询积分")
-    async def query_points_cmd(self, event: AstrMessageEvent):
-        """查询其他用户的积分"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/查询积分 <QQ>\n例如：/查询积分 123456")
-            return
-        
-        target_qq = parts[1]
-        current_qq = self._get_user_id(event)
-        is_admin = self._is_admin(current_qq)
-        
-        # 管理员可以查询任何人，普通用户只能查询自己
-        if not is_admin and current_qq != target_qq:
-            yield event.plain_result("❌ 权限不足\n只有管理员可以查询其他用户的积分")
-            return
-        
-        if target_qq not in self.user_points:
-            yield event.plain_result(f"❌ 用户不存在\nQQ {target_qq} 暂无积分记录")
-            return
-        
-        user_points = self._get_user_points(target_qq)
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
-        
-        content = f"""💰 用户积分查询
-
-用户QQ：{target_qq}
-当前积分：{user_points['points']} 积分
-累计获得：{user_points['total_earned']} 积分
-累计消耗：{user_points['total_spent']} 积分
-连续签到：{user_points['continuous_days']} 天
-
-💎 积分价值：
-• 可兑换：{user_points['points'] * recharge_ratio:,} 元宝"""
-        
-        if user_points["first_sign_date"]:
-            content += f"\n首次签到：{user_points['first_sign_date']}"
-        if user_points["last_sign_date"]:
-            content += f"\n最后签到：{user_points['last_sign_date']}"
-        
-        # 显示绑定状态
-        if target_qq in self.bindings:
-            account = self.bindings[target_qq]["game_account"]
-            content += f"\n\n🎮 绑定账号：{account}"
-        
-        yield event.plain_result(content)
-    
-    # ========== 管理员添加积分功能 ==========
-    @filter.command("添加积分")
-    async def add_points_cmd(self, event: AstrMessageEvent):
-        """管理员给用户添加积分"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 3:
-            yield event.plain_result("❌ 格式错误\n正确格式：/添加积分 <QQ> <积分数量> [备注]\n例如：/添加积分 123456 100 活动奖励")
-            return
-        
-        try:
-            target_qq = parts[1]
-            points_to_add = int(parts[2])
-            if points_to_add <= 0:
-                raise ValueError("必须是正数")
-            remark = " ".join(parts[3:]) if len(parts) > 3 else "管理员添加"
-        except ValueError:
-            yield event.plain_result("❌ 参数错误，积分数量必须是正整数")
-            return
-        
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
-            return
-        
-        # 添加积分
-        success, message = self._add_points_to_user(target_qq, points_to_add, remark)
-        
-        if success:
-            user_points = self._get_user_points(target_qq)
-            recharge_ratio = self.system_config["points"]["recharge_ratio"]
-            
-            content = f"""👑 管理员操作成功！
-
-目标用户：QQ {target_qq}
-添加积分：{points_to_add} 积分
-操作备注：{remark}
-
-📊 用户当前状态：
-总积分：{user_points['points']} 积分
-累计获得：{user_points['total_earned']} 积分
-可兑换：{user_points['points'] * recharge_ratio:,} 元宝
-
-操作管理员：{admin_qq}
-操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"❌ 操作失败\n{message}")
-    
-    # ========== 管理员管理功能 ==========
-    @filter.command("添加管理员")
-    async def add_admin_cmd(self, event: AstrMessageEvent):
-        """添加管理员"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/添加管理员 <QQ>\n例如：/添加管理员 123456")
-            return
-        
-        target_qq = parts[1]
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
-            return
-        
-        success = self._add_admin(target_qq)
-        
-        if success:
-            content = f"""✅ 管理员添加成功！
-
-新管理员：QQ {target_qq}
-操作管理员：{admin_qq}
-操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-当前管理员数量：{len(self.admins.get('admin_qq_ids', []))} 人"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 已经是管理员")
-    
-    @filter.command("移除管理员")
-    async def remove_admin_cmd(self, event: AstrMessageEvent):
-        """移除管理员"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/移除管理员 <QQ>\n例如：/移除管理员 123456")
-            return
-        
-        target_qq = parts[1]
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
-            return
-        
-        success = self._remove_admin(target_qq)
-        
-        if success:
-            content = f"""✅ 管理员移除成功！
-
-移除的管理员：QQ {target_qq}
-操作管理员：{admin_qq}
-操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-当前管理员数量：{len(self.admins.get('admin_qq_ids', []))} 人"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 不是管理员")
-    
-    @filter.command("管理员列表")
-    async def admin_list_cmd(self, event: AstrMessageEvent):
-        """查看管理员列表"""
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以查看此列表")
-            return
-        
-        admin_list = self.admins.get("admin_qq_ids", [])
-        last_updated = self.admins.get("last_updated", "未知")
-        
-        if not admin_list:
-            content = "当前没有管理员"
-        else:
-            content = f"""👑 管理员列表
-
-管理员数量：{len(admin_list)} 人
-最后更新：{last_updated}
-
-管理员QQ列表："""
-            for i, qq in enumerate(admin_list, 1):
-                content += f"\n{i}. {qq}"
-        
-        content += f"\n\n当前操作用户：{admin_qq}"
-        
-        yield event.plain_result(content)
-    
-    @filter.command("用户列表")
-    async def user_list_cmd(self, event: AstrMessageEvent):
-        """查看所有用户列表"""
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以查看用户列表")
-            return
-        
-        parts = event.message_str.strip().split()
-        page = 1
-        if len(parts) >= 2:
-            try:
-                page = int(parts[1])
-                if page < 1:
-                    page = 1
-            except ValueError:
-                page = 1
-        
-        page_size = 10
-        start_index = (page - 1) * page_size
-        end_index = start_index + page_size
-        
-        # 获取用户列表
-        all_users = list(self.user_points.keys())
-        total_users = len(all_users)
-        total_pages = (total_users + page_size - 1) // page_size
-        
-        if page > total_pages and total_pages > 0:
-            page = total_pages
-            start_index = (page - 1) * page_size
-            end_index = start_index + page_size
-        
-        current_users = all_users[start_index:end_index]
-        
-        content = f"""👥 用户列表
-
-总用户数：{total_users} 人
-当前页数：{page}/{total_pages}
-每页显示：{page_size} 人"""
-
-        if not current_users:
-            content += "\n\n当前页无用户数据"
-        else:
-            content += f"\n\n用户列表（{start_index + 1}-{min(end_index, total_users)}）："
-            
-            for i, qq in enumerate(current_users, start_index + 1):
-                user_data = self.user_points[qq]
-                is_bound = qq in self.bindings
-                account_info = f"已绑定" if is_bound else "未绑定"
-                
-                content += f"\n\n{i}. QQ: {qq}"
-                content += f"\n   积分: {user_data['points']}"
-                content += f"\n   累计获得: {user_data['total_earned']}"
-                content += f"\n   连续签到: {user_data['continuous_days']}天"
-                content += f"\n   账号状态: {account_info}"
-                
-                if is_bound:
-                    game_account = self.bindings[qq]["game_account"]
-                    content += f" ({game_account})"
-        
-        if total_pages > 1:
-            content += f"\n\n📄 翻页：/用户列表 <页码>"
-        
-        yield event.plain_result(content)
-    
-    @filter.command("充值记录")
-    async def recharge_logs_cmd(self, event: AstrMessageEvent):
-        """查看充值记录"""
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以查看充值记录")
-            return
-        
-        parts = event.message_str.strip().split()
-        limit = 10
-        if len(parts) >= 2:
-            try:
-                limit = int(parts[1])
-                if limit < 1:
-                    limit = 10
-                elif limit > 50:
-                    limit = 50
-            except ValueError:
-                limit = 10
-        
-        # 获取最近的充值记录
-        recharge_ids = list(self.recharge_logs.keys())
-        recharge_ids.sort(reverse=True)  # 按时间倒序
-        recent_logs = recharge_ids[:limit]
-        
-        content = f"""📋 充值记录
-
-显示最近 {limit} 条记录：
---------------------------"""
-        
-        if not recent_logs:
-            content += "\n暂无充值记录"
-        else:
-            for i, log_id in enumerate(recent_logs, 1):
-                log = self.recharge_logs[log_id]
-                log_type = log.get("type", "normal")
-                
-                if log_type == "normal":
-                    content += f"\n\n{i}. 普通充值"
-                    content += f"\n   用户: {log.get('qq_id', '未知')}"
-                    content += f"\n   账号: {log.get('account_name', '未知')}"
-                    content += f"\n   积分: {log.get('points_used', 0)}"
-                elif log_type == "gift_recharge":
-                    content += f"\n\n{i}. 赠送充值"
-                    content += f"\n   赠送者: {log.get('from_qq', '未知')}"
-                    content += f"\n   接收者: {log.get('to_qq', '未知')}"
-                    content += f"\n   积分: {log.get('points_used', 0)}"
-                elif log_type == "points_transfer":
-                    content += f"\n\n{i}. 积分转移"
-                    content += f"\n   转出: {log.get('from_qq', '未知')}"
-                    content += f"\n   转入: {log.get('to_qq', '未知')}"
-                    content += f"\n   积分: {log.get('points', 0)}"
-                elif log_type == "admin_add_points":
-                    content += f"\n\n{i}. 管理员添加"
-                    content += f"\n   目标用户: {log.get('target_qq', '未知')}"
-                    content += f"\n   积分: {log.get('points', 0)}"
-                
-                content += f"\n   时间: {log.get('recharge_time', log.get('transfer_time', log.get('action_time', '未知')))}"
-                if log.get("remark"):
-                    content += f"\n   备注: {log['remark']}"
         
         yield event.plain_result(content)
     
