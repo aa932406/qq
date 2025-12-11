@@ -31,13 +31,8 @@ class GameBindPlugin(Star):
         self.sign_records = self._load_json(self.sign_file)
         self.admins = self._load_json(self.admins_file)
         
-        # 默认管理员（可以在这里添加初始管理员QQ）
-        if not self.admins:
-            self.admins = {
-                "admin_qq_ids": [],  # 管理员QQ列表
-                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-            self._save_json(self.admins_file, self.admins)
+        # 初始化默认管理员（如果文件为空）
+        self._initialize_admins()
         
         # API配置
         self.api_config = {
@@ -105,6 +100,18 @@ class GameBindPlugin(Star):
             logger.error(f"❓ 获取用户ID异常: {e}")
         return qq_id if qq_id else "unknown"
     
+    def _initialize_admins(self):
+        """初始化管理员系统"""
+        # 检查是否已有管理员数据
+        if not self.admins:
+            self.admins = {
+                "admin_qq_ids": [],  # 管理员QQ列表
+                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "initialized": True
+            }
+            self._save_json(self.admins_file, self.admins)
+            logger.info("📝 初始化管理员系统完成")
+    
     def _is_admin(self, qq_id: str) -> bool:
         """检查是否为管理员"""
         admin_list = self.admins.get("admin_qq_ids", [])
@@ -116,6 +123,7 @@ class GameBindPlugin(Star):
             self.admins.setdefault("admin_qq_ids", []).append(str(qq_id))
             self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self._save_json(self.admins_file, self.admins)
+            logger.info(f"👑 添加管理员：{qq_id}")
             return True
         return False
     
@@ -125,6 +133,7 @@ class GameBindPlugin(Star):
             self.admins["admin_qq_ids"] = [admin for admin in self.admins["admin_qq_ids"] if str(admin) != str(qq_id)]
             self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self._save_json(self.admins_file, self.admins)
+            logger.info(f"🗑️ 移除管理员：{qq_id}")
             return True
         return False
     
@@ -233,7 +242,7 @@ class GameBindPlugin(Star):
 
 💰 积分相关：
 • /赠送积分 <QQ> <积分> [备注]  # 赠送积分给他人
-• /查询积分 <QQ>          # 查询他人积分
+• /给别人充值 <QQ> <积分> [备注] # 为他人账号充值（消耗自己积分）
 
 🔧 其他命令：
 • /修改绑定 <新账号>      # 修改绑定账号
@@ -249,7 +258,12 @@ class GameBindPlugin(Star):
 • /移除管理员 <QQ>         # 移除管理员
 • /管理员列表             # 查看管理员列表
 • /用户列表 [页码]        # 查看所有用户
-• /充值记录 [数量]        # 查看充值记录"""
+• /充值记录 [数量]        # 查看充值记录
+• /设置初始管理员 <QQ>    # 设置初始管理员（仅第一次使用）"""
+        else:
+            help_text += """
+
+💡 管理员命令需要权限，请联系现有管理员"""
 
         help_text += """
 
@@ -260,6 +274,50 @@ class GameBindPlugin(Star):
 • 没有积分无法充值"""
         
         yield event.plain_result(help_text)
+    
+    # ========== 设置初始管理员功能 ==========
+    @filter.command("设置初始管理员")
+    async def set_initial_admin_cmd(self, event: AstrMessageEvent):
+        """设置初始管理员（第一次使用时设置）"""
+        parts = event.message_str.strip().split()
+        if len(parts) < 2:
+            yield event.plain_result("❌ 格式错误\n正确格式：/设置初始管理员 <QQ号>\n例如：/设置初始管理员 123456")
+            return
+        
+        admin_qq = parts[1]
+        
+        # 检查当前是否有管理员
+        admin_list = self.admins.get("admin_qq_ids", [])
+        if admin_list:
+            yield event.plain_result("❌ 已有管理员\n管理员已存在，无法设置初始管理员\n请使用 /添加管理员 命令添加新管理员")
+            return
+        
+        # 设置初始管理员
+        success = self._add_admin(admin_qq)
+        
+        if success:
+            content = f"""✅ 初始管理员设置成功！
+
+初始管理员：QQ {admin_qq}
+设置时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+💡 重要提醒：
+1. 请记住此QQ号，它是第一个管理员
+2. 管理员可以使用 /添加管理员 添加其他管理员
+3. 管理员可以给用户添加积分
+4. 管理员可以查看所有用户信息和充值记录
+
+📋 管理员命令：
+• /添加积分 <QQ> <积分> [备注]
+• /添加管理员 <QQ>
+• /移除管理员 <QQ>
+• /管理员列表
+• /用户列表
+• /充值记录"""
+            
+            yield event.plain_result(content)
+        else:
+            yield event.plain_result("❌ 设置失败，请重试")
     
     # ========== 绑定功能 ==========
     @filter.command("绑定账号")
