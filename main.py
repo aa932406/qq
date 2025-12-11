@@ -34,7 +34,7 @@ class GameBindPlugin(Star):
         # 默认管理员（可以在这里添加初始管理员QQ）
         if not self.admins:
             self.admins = {
-                "admin_qq_ids": [965959320],  # 管理员QQ列表
+                "admin_qq_ids": [],  # 管理员QQ列表
                 "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
             self._save_json(self.admins_file, self.admins)
@@ -50,7 +50,7 @@ class GameBindPlugin(Star):
         self.system_config = {
             # 积分系统
             "points": {
-                "recharge_ratio": 100000,  # 1积分=100000元宝
+                "recharge_ratio": 10000,  # 1积分=10000元宝
                 # 签到奖励（积分）
                 "sign_rewards": {
                     1: 1,      # 第1天：1积分
@@ -254,7 +254,7 @@ class GameBindPlugin(Star):
         help_text += """
 
 💎 规则：
-• 1积分 = 100000元宝
+• 1积分 = 10000元宝
 • 签到获得积分
 • 积分用于充值游戏账号
 • 没有积分无法充值"""
@@ -267,7 +267,7 @@ class GameBindPlugin(Star):
         """绑定PHP游戏账号"""
         parts = event.message_str.strip().split()
         if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/绑定账号 游戏账号")
+            yield event.plain_result("❌ 格式错误\n正确格式：/绑定账号 游戏账号\n例如：/绑定账号 xhl2511686")
             return
         
         game_account = parts[1]
