@@ -1,0 +1,35 @@
+# 游戏账号绑定插件配置
+
+# 管理员QQ列表
+admins:
+  - 965959320
+  - 123456789
+
+# API配置
+api_url: "http://115.190.64.181:881/api/players.php"
+timeout: 30
+api_secret: "ws7ecejjsznhtxurchknmdemax2fnp5d"
+
+# 积分系统配置
+recharge_ratio: 100000  # 1积分兑换的元宝数量
+max_points_per_day: 1000  # 管理员每日最多添加积分
+min_recharge_points: 1    # 最少充值积分
+
+# 签到奖励规则
+sign_rewards:
+  1: 1
+  2: 2
+  3: 3
+  4: 4
+  5: 5
+  6: 6
+  7: 10
+  14: 15
+  30: 30
+
+# 功能开关
+features:
+  allow_modify_bind: true      # 允许修改绑定
+  allow_gift_points: true      # 允许赠送积分
+  allow_recharge_others: true  # 允许给别人充值
+  allow_points_transfer: true  # 允许积分转移
