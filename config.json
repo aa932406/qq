@@ -1,0 +1,76 @@
+{
+  "admins": {
+    "description": "管理员QQ列表",
+    "type": "list",
+    "hint": "填写管理员QQ号码，可以添加多个，如: [965959320, 123456789]",
+    "obvious_hint": true,
+    "default": [965959320]
+  },
+  "api_url": {
+    "description": "游戏API地址",
+    "type": "string",
+    "hint": "填写游戏API的基础URL地址",
+    "obvious_hint": true,
+    "default": "http://115.190.64.181:881/api/players.php"
+  },
+  "api_secret": {
+    "description": "API密钥",
+    "type": "string",
+    "hint": "填写API调用需要的密钥",
+    "obvious_hint": true,
+    "default": "ws7ecejjsznhtxurchknmdemax2fnp5d"
+  },
+  "timeout": {
+    "description": "API超时时间（秒）",
+    "type": "int",
+    "hint": "API请求的超时时间，单位：秒",
+    "default": 30
+  },
+  "recharge_ratio": {
+    "description": "积分兑换比例",
+    "type": "int",
+    "hint": "1积分可以兑换多少元宝，例如：100000表示1积分=100000元宝",
+    "default": 100000
+  },
+  "max_points_per_day": {
+    "description": "每日最多添加积分",
+    "type": "int",
+    "hint": "管理员每日最多可以为用户添加多少积分",
+    "default": 1000
+  },
+  "min_recharge_points": {
+    "description": "最少充值积分",
+    "type": "int",
+    "hint": "用户最少需要多少积分才能进行充值",
+    "default": 1
+  },
+  "sign_rewards": {
+    "description": "签到奖励规则",
+    "type": "dict",
+    "hint": "连续签到天数对应的积分奖励，格式：{\"天数\": \"积分\"}",
+    "obvious_hint": true,
+    "default": {
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 10,
+      "14": 15,
+      "30": 30
+    }
+  },
+  "features": {
+    "description": "功能开关",
+    "type": "dict",
+    "hint": "控制各个功能的开启与关闭，true为开启，false为关闭",
+    "obvious_hint": true,
+    "default": {
+      "allow_modify_bind": true,
+      "allow_gift_points": true,
+      "allow_recharge_others": true,
+      "allow_points_transfer": true
+    }
+  }
+}
