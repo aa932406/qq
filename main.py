@@ -4,15 +4,18 @@ import aiohttp
 import asyncio
 import random
 from datetime import datetime, date, timedelta
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
-from astrbot.api import logger
+from astrbot.api import logger, AstrBotConfig
+
 
 @register("game_bind", "aa932406", "游戏账号绑定与充值插件", "3.0.0")
 class GameBindPlugin(Star):
-    def __init__(self, context: Context):
+    def __init__(self, context: Context, config: AstrBotConfig):
         super().__init__(context)
+        self.config = config
+        
         # 初始化数据存储
         self.data_dir = os.path.join(os.path.dirname(__file__), "data")
         os.makedirs(self.data_dir, exist_ok=True)
@@ -22,51 +25,43 @@ class GameBindPlugin(Star):
         self.recharge_file = os.path.join(self.data_dir, "recharge_logs.json")
         self.points_file = os.path.join(self.data_dir, "user_points.json")
         self.sign_file = os.path.join(self.data_dir, "sign_records.json")
-        self.admins_file = os.path.join(self.data_dir, "admins.json")
         
         # 加载数据
         self.bindings = self._load_json(self.bind_file)
         self.recharge_logs = self._load_json(self.recharge_file)
         self.user_points = self._load_json(self.points_file)
         self.sign_records = self._load_json(self.sign_file)
-        self.admins = self._load_json(self.admins_file)
         
-        # 默认管理员（可以在这里添加初始管理员QQ）
-        if not self.admins:
-            self.admins = {
-                "admin_qq_ids": [965959320],  # 管理员QQ列表
-                "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-            self._save_json(self.admins_file, self.admins)
+        # 从配置获取管理员列表
+        self.admins = self.config.get("admins", [])
         
-        # API配置
+        # API配置 - 从config中获取
         self.api_config = {
-            "base_url": "http://115.190.64.181:881/api/players.php",
-            "timeout": 30,
-            "qq_bot_secret": "ws7ecejjsznhtxurchknmdemax2fnp5d"
+            "base_url": self.config.get("api_url", "http://115.190.64.181:881/api/players.php"),
+            "timeout": self.config.get("timeout", 30),
+            "qq_bot_secret": self.config.get("api_secret", "ws7ecejjsznhtxurchknmdemax2fnp5d")
         }
         
-        # 系统配置
+        # 系统配置 - 从config中获取
         self.system_config = {
-            # 积分系统
-            "points": {
-                "recharge_ratio": 100000,  # 1积分=100000元宝
-                # 签到奖励（积分）
-                "sign_rewards": {
-                    1: 1,      # 第1天：1积分
-                    2: 2,      # 第2天：2积分
-                    3: 3,      # 第3天：3积分
-                    4: 4,      # 第4天：4积分
-                    5: 5,      # 第5天：5积分
-                    6: 6,      # 第6天：6积分
-                    7: 10,     # 第7天：10积分（周末奖励）
-                    14: 15,    # 第14天：15积分
-                    30: 30     # 第30天：30积分
-                }
-            }
+            "recharge_ratio": self.config.get("recharge_ratio", 100000),
+            "sign_rewards": self.config.get("sign_rewards", {
+                1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 10, 14: 15, 30: 30
+            }),
+            "max_points_per_day": self.config.get("max_points_per_day", 1000),
+            "min_recharge_points": self.config.get("min_recharge_points", 1)
         }
+        
+        # 功能开关 - 从config中获取
+        self.features = self.config.get("features", {
+            "allow_modify_bind": True,
+            "allow_gift_points": True,
+            "allow_recharge_others": True,
+            "allow_points_transfer": True
+        })
         
         logger.info("✨ 游戏账号插件初始化完成！")
+        logger.info(f"配置信息：API地址={self.api_config['base_url']}, 管理员数量={len(self.admins)}")
     
     def _load_json(self, file_path: str) -> dict:
         """加载JSON文件"""
@@ -107,26 +102,7 @@ class GameBindPlugin(Star):
     
     def _is_admin(self, qq_id: str) -> bool:
         """检查是否为管理员"""
-        admin_list = self.admins.get("admin_qq_ids", [])
-        return str(qq_id) in [str(admin) for admin in admin_list]
-    
-    def _add_admin(self, qq_id: str) -> bool:
-        """添加管理员"""
-        if str(qq_id) not in self.admins.get("admin_qq_ids", []):
-            self.admins.setdefault("admin_qq_ids", []).append(str(qq_id))
-            self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self._save_json(self.admins_file, self.admins)
-            return True
-        return False
-    
-    def _remove_admin(self, qq_id: str) -> bool:
-        """移除管理员"""
-        if str(qq_id) in self.admins.get("admin_qq_ids", []):
-            self.admins["admin_qq_ids"] = [admin for admin in self.admins["admin_qq_ids"] if str(admin) != str(qq_id)]
-            self.admins["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self._save_json(self.admins_file, self.admins)
-            return True
-        return False
+        return str(qq_id) in [str(admin) for admin in self.admins]
     
     def _is_account_already_bound(self, game_account: str, exclude_qq: str = None) -> tuple:
         """检查游戏账号是否已被绑定"""
@@ -141,9 +117,9 @@ class GameBindPlugin(Star):
         """获取用户积分信息"""
         if qq_id not in self.user_points:
             self.user_points[qq_id] = {
-                "points": 0,          # 当前积分（元宝余额）
-                "total_earned": 0,    # 累计获得积分
-                "total_spent": 0,     # 累计消耗积分
+                "points": 0,
+                "total_earned": 0,
+                "total_spent": 0,
                 "first_sign_date": None,
                 "last_sign_date": None,
                 "continuous_days": 0
@@ -157,6 +133,9 @@ class GameBindPlugin(Star):
     
     def _transfer_points(self, from_qq: str, to_qq: str, points: int, reason: str = "") -> tuple:
         """转移积分"""
+        if not self.features.get("allow_points_transfer", True):
+            return False, "积分转移功能已禁用"
+        
         if from_qq not in self.user_points:
             return False, "源用户不存在"
         if to_qq not in self.user_points:
@@ -188,30 +167,6 @@ class GameBindPlugin(Star):
         
         return True, "转移成功"
     
-    def _add_points_to_user(self, qq_id: str, points: int, reason: str = "") -> tuple:
-        """给用户添加积分（管理员功能）"""
-        if qq_id not in self.user_points:
-            return False, "用户不存在"
-        
-        # 添加积分
-        self.user_points[qq_id]["points"] += points
-        self.user_points[qq_id]["total_earned"] += points
-        
-        self._save_json(self.points_file, self.user_points)
-        
-        # 记录管理员操作
-        admin_action_id = f"A{datetime.now().strftime('%Y%m%d%H%M%S')}_{qq_id}"
-        self.recharge_logs[admin_action_id] = {
-            "type": "admin_add_points",
-            "target_qq": qq_id,
-            "points": points,
-            "reason": reason,
-            "action_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        }
-        self._save_json(self.recharge_file, self.recharge_logs)
-        
-        return True, "添加成功"
-    
     async def initialize(self):
         logger.info("🚀 游戏账号插件已启动！")
     
@@ -231,12 +186,26 @@ class GameBindPlugin(Star):
 • /积分充值 <积分数量>    # 用积分充值游戏
 • /查询账号 [账号]        # 查看账号信息
 
-💰 积分相关：
-• /赠送积分 <QQ> <积分> [备注]  # 赠送积分给他人
+💰 积分相关："""
+        
+        if self.features.get("allow_gift_points", True):
+            help_text += """
+• /赠送积分 <QQ> <积分> [备注]  # 赠送积分给他人"""
+        
+        if self.features.get("allow_recharge_others", True):
+            help_text += """
+• /给别人充值 <QQ> <积分> [备注] # 为他人充值游戏"""
+        
+        help_text += """
 • /查询积分 <QQ>          # 查询他人积分
 
-🔧 其他命令：
-• /修改绑定 <新账号>      # 修改绑定账号
+🔧 其他命令："""
+        
+        if self.features.get("allow_modify_bind", True):
+            help_text += """
+• /修改绑定 <新账号>      # 修改绑定账号"""
+        
+        help_text += """
 • /解绑账号              # 解绑当前账号
 • /测试连接              # 测试API连接"""
         
@@ -245,16 +214,15 @@ class GameBindPlugin(Star):
 
 👑 管理员命令：
 • /添加积分 <QQ> <积分> [备注]  # 给用户添加积分
-• /添加管理员 <QQ>         # 添加管理员
-• /移除管理员 <QQ>         # 移除管理员
 • /管理员列表             # 查看管理员列表
 • /用户列表 [页码]        # 查看所有用户
-• /充值记录 [数量]        # 查看充值记录"""
+• /充值记录 [数量]        # 查看充值记录
+• /插件配置              # 查看当前配置"""
 
-        help_text += """
+        help_text += f"""
 
 💎 规则：
-• 1积分 = 100000元宝
+• 1积分 = {self.system_config['recharge_ratio']:,}元宝
 • 签到获得积分
 • 积分用于充值游戏账号
 • 没有积分无法充值"""
@@ -331,7 +299,7 @@ class GameBindPlugin(Star):
             return
         
         user_points = self._get_user_points(qq_id)
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        recharge_ratio = self.system_config["recharge_ratio"]
         
         content = f"""💰 我的积分
 
@@ -383,10 +351,10 @@ class GameBindPlugin(Star):
         continuous_days = user_points["continuous_days"]
         
         # 基础奖励
-        base_reward = 1  # 默认1积分
+        base_reward = 1
         
         # 特殊天数奖励
-        for day, reward in self.system_config["points"]["sign_rewards"].items():
+        for day, reward in self.system_config["sign_rewards"].items():
             if continuous_days == day:
                 base_reward = reward
                 break
@@ -415,7 +383,7 @@ class GameBindPlugin(Star):
         self._save_json(self.sign_file, self.sign_records)
         
         # 构建响应
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        recharge_ratio = self.system_config["recharge_ratio"]
         content = f"""✨ 签到成功！
 
 获得积分：{total_reward} 积分
@@ -444,6 +412,13 @@ class GameBindPlugin(Star):
             points_to_use = int(parts[1])
             if points_to_use <= 0:
                 raise ValueError("必须是正数")
+            
+            # 检查最小充值积分限制
+            min_points = self.system_config.get("min_recharge_points", 1)
+            if points_to_use < min_points:
+                yield event.plain_result(f"❌ 充值积分过少\n最少需要 {min_points} 积分才能充值")
+                return
+                
             remark = " ".join(parts[2:]) if len(parts) > 2 else "积分兑换"
         except ValueError:
             yield event.plain_result("❌ 参数错误，积分数量必须是正整数")
@@ -466,8 +441,8 @@ class GameBindPlugin(Star):
             yield event.plain_result(f"❌ 积分不足\n需要积分：{points_to_use}\n当前积分：{user_points['points']}\n\n💡 获取积分：每日签到，多签多得")
             return
         
-        # 计算充值金额（1积分=10000元宝）
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        # 计算充值金额
+        recharge_ratio = self.system_config["recharge_ratio"]
         recharge_amount = points_to_use * recharge_ratio
         
         game_account = self.bindings[qq_id]["game_account"]
@@ -526,6 +501,10 @@ class GameBindPlugin(Star):
     @filter.command("给别人充值")
     async def recharge_for_others_cmd(self, event: AstrMessageEvent):
         """给他人游戏账号充值（消耗自己的积分）"""
+        if not self.features.get("allow_recharge_others", True):
+            yield event.plain_result("❌ 功能已禁用\n此功能已被管理员禁用")
+            return
+        
         parts = event.message_str.strip().split()
         if len(parts) < 3:
             yield event.plain_result("❌ 格式错误\n正确格式：/给别人充值 <QQ> <积分数量> [备注]\n例如：/给别人充值 123456 10 赠送")
@@ -563,7 +542,7 @@ class GameBindPlugin(Star):
         account_name = self.bindings[target_qq].get("account_name", game_account)
         
         # 计算充值金额
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        recharge_ratio = self.system_config["recharge_ratio"]
         recharge_amount = points_to_use * recharge_ratio
         
         # 执行充值
@@ -675,6 +654,10 @@ class GameBindPlugin(Star):
     @filter.command("赠送积分")
     async def gift_points_cmd(self, event: AstrMessageEvent):
         """赠送积分给其他用户"""
+        if not self.features.get("allow_gift_points", True):
+            yield event.plain_result("❌ 功能已禁用\n此功能已被管理员禁用")
+            return
+        
         parts = event.message_str.strip().split()
         if len(parts) < 3:
             yield event.plain_result("❌ 格式错误\n正确格式：/赠送积分 <QQ> <积分数量> [备注]\n例如：/赠送积分 123456 50 节日礼物")
@@ -753,7 +736,7 @@ class GameBindPlugin(Star):
             return
         
         user_points = self._get_user_points(target_qq)
-        recharge_ratio = self.system_config["points"]["recharge_ratio"]
+        recharge_ratio = self.system_config["recharge_ratio"]
         
         content = f"""💰 用户积分查询
 
@@ -803,14 +786,33 @@ class GameBindPlugin(Star):
             yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
             return
         
-        # 添加积分
-        success, message = self._add_points_to_user(target_qq, points_to_add, remark)
+        # 检查每日积分上限
+        max_per_day = self.system_config.get("max_points_per_day", 1000)
+        if points_to_add > max_per_day:
+            yield event.plain_result(f"❌ 超出每日上限\n单次最多添加 {max_per_day} 积分")
+            return
         
-        if success:
-            user_points = self._get_user_points(target_qq)
-            recharge_ratio = self.system_config["points"]["recharge_ratio"]
-            
-            content = f"""👑 管理员操作成功！
+        # 添加积分
+        user_points = self._get_user_points(target_qq)
+        user_points["points"] += points_to_add
+        user_points["total_earned"] += points_to_add
+        self._update_user_points(target_qq, user_points)
+        
+        # 记录管理员操作
+        admin_action_id = f"A{datetime.now().strftime('%Y%m%d%H%M%S')}_{target_qq}"
+        self.recharge_logs[admin_action_id] = {
+            "type": "admin_add_points",
+            "target_qq": target_qq,
+            "points": points_to_add,
+            "reason": remark,
+            "admin_qq": admin_qq,
+            "action_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        self._save_json(self.recharge_file, self.recharge_logs)
+        
+        recharge_ratio = self.system_config["recharge_ratio"]
+        
+        content = f"""👑 管理员操作成功！
 
 目标用户：QQ {target_qq}
 添加积分：{points_to_add} 积分
@@ -823,72 +825,10 @@ class GameBindPlugin(Star):
 
 操作管理员：{admin_qq}
 操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"❌ 操作失败\n{message}")
+        
+        yield event.plain_result(content)
     
     # ========== 管理员管理功能 ==========
-    @filter.command("添加管理员")
-    async def add_admin_cmd(self, event: AstrMessageEvent):
-        """添加管理员"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/添加管理员 <QQ>\n例如：/添加管理员 123456")
-            return
-        
-        target_qq = parts[1]
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
-            return
-        
-        success = self._add_admin(target_qq)
-        
-        if success:
-            content = f"""✅ 管理员添加成功！
-
-新管理员：QQ {target_qq}
-操作管理员：{admin_qq}
-操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-当前管理员数量：{len(self.admins.get('admin_qq_ids', []))} 人"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 已经是管理员")
-    
-    @filter.command("移除管理员")
-    async def remove_admin_cmd(self, event: AstrMessageEvent):
-        """移除管理员"""
-        parts = event.message_str.strip().split()
-        if len(parts) < 2:
-            yield event.plain_result("❌ 格式错误\n正确格式：/移除管理员 <QQ>\n例如：/移除管理员 123456")
-            return
-        
-        target_qq = parts[1]
-        admin_qq = self._get_user_id(event)
-        
-        if not self._is_admin(admin_qq):
-            yield event.plain_result("❌ 权限不足\n只有管理员可以使用此命令")
-            return
-        
-        success = self._remove_admin(target_qq)
-        
-        if success:
-            content = f"""✅ 管理员移除成功！
-
-移除的管理员：QQ {target_qq}
-操作管理员：{admin_qq}
-操作时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-当前管理员数量：{len(self.admins.get('admin_qq_ids', []))} 人"""
-            
-            yield event.plain_result(content)
-        else:
-            yield event.plain_result(f"⚠️ 操作提示\nQQ {target_qq} 不是管理员")
-    
     @filter.command("管理员列表")
     async def admin_list_cmd(self, event: AstrMessageEvent):
         """查看管理员列表"""
@@ -898,19 +838,15 @@ class GameBindPlugin(Star):
             yield event.plain_result("❌ 权限不足\n只有管理员可以查看此列表")
             return
         
-        admin_list = self.admins.get("admin_qq_ids", [])
-        last_updated = self.admins.get("last_updated", "未知")
-        
-        if not admin_list:
+        if not self.admins:
             content = "当前没有管理员"
         else:
             content = f"""👑 管理员列表
 
-管理员数量：{len(admin_list)} 人
-最后更新：{last_updated}
+管理员数量：{len(self.admins)} 人
 
 管理员QQ列表："""
-            for i, qq in enumerate(admin_list, 1):
+            for i, qq in enumerate(self.admins, 1):
                 content += f"\n{i}. {qq}"
         
         content += f"\n\n当前操作用户：{admin_qq}"
@@ -1006,7 +942,7 @@ class GameBindPlugin(Star):
         
         # 获取最近的充值记录
         recharge_ids = list(self.recharge_logs.keys())
-        recharge_ids.sort(reverse=True)  # 按时间倒序
+        recharge_ids.sort(reverse=True)
         recent_logs = recharge_ids[:limit]
         
         content = f"""📋 充值记录
@@ -1051,6 +987,10 @@ class GameBindPlugin(Star):
     @filter.command("修改绑定")
     async def modify_bind_cmd(self, event: AstrMessageEvent):
         """修改绑定账号"""
+        if not self.features.get("allow_modify_bind", True):
+            yield event.plain_result("❌ 功能已禁用\n此功能已被管理员禁用")
+            return
+        
         parts = event.message_str.strip().split()
         if len(parts) < 2:
             yield event.plain_result("❌ 格式错误\n正确格式：/修改绑定 新游戏账号\n例如：/修改绑定 new_account")
@@ -1138,6 +1078,62 @@ class GameBindPlugin(Star):
         else:
             yield event.plain_result("⚠️ 未绑定账号\n您未绑定任何游戏账号")
     
+    # ========== 插件配置查看功能 ==========
+    @filter.command("插件配置")
+    async def show_config_cmd(self, event: AstrMessageEvent):
+        """查看插件当前配置"""
+        admin_qq = self._get_user_id(event)
+        
+        if not self._is_admin(admin_qq):
+            yield event.plain_result("❌ 权限不足\n只有管理员可以查看插件配置")
+            return
+        
+        content = f"""⚙️ 插件当前配置
+
+👑 管理员列表：
+{', '.join(map(str, self.admins)) if self.admins else '无'}
+
+🌐 API配置：
+• 地址：{self.api_config['base_url']}
+• 超时：{self.api_config['timeout']}秒
+• 密钥：{'已配置' if self.api_config['qq_bot_secret'] else '未配置'}
+
+💰 积分系统：
+• 兑换比例：1积分 = {self.system_config['recharge_ratio']:,}元宝
+• 每日上限：{self.system_config.get('max_points_per_day', 1000)}积分
+• 最少充值：{self.system_config.get('min_recharge_points', 1)}积分
+
+✅ 功能开关："""
+        
+        for feature, enabled in self.features.items():
+            status = "✅ 开启" if enabled else "❌ 关闭"
+            feature_name = {
+                "allow_modify_bind": "修改绑定",
+                "allow_gift_points": "赠送积分",
+                "allow_recharge_others": "给别人充值",
+                "allow_points_transfer": "积分转移"
+            }.get(feature, feature)
+            content += f"\n• {feature_name}: {status}"
+        
+        content += f"""
+
+📊 签到奖励规则：
+连续签到天数 -> 奖励积分"""
+        
+        for day, reward in sorted(self.system_config["sign_rewards"].items()):
+            content += f"\n• 第{day}天: {reward}积分"
+        
+        content += f"""
+
+📈 数据统计：
+• 已绑定用户：{len(self.bindings)} 人
+• 积分用户：{len(self.user_points)} 人
+• 充值记录：{len(self.recharge_logs)} 条
+
+查看时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
+        
+        yield event.plain_result(content)
+    
     # ========== 测试连接功能 ==========
     @filter.command("测试连接")
     async def test_connection_cmd(self, event: AstrMessageEvent):
@@ -1179,7 +1175,6 @@ class GameBindPlugin(Star):
         """调用API查询账号信息"""
         try:
             async with aiohttp.ClientSession() as session:
-                # 通过passport查询账号
                 params = {
                     "action": "search",
                     "passport": passport,
@@ -1195,7 +1190,6 @@ class GameBindPlugin(Star):
                     if response.status == 200:
                         result = await response.json()
                         if result.get("success") and result['data']['total'] > 0:
-                            # 获取第一个匹配的账号
                             player = result['data']['players'][0]
                             return {
                                 "passport": player.get('passport'),
@@ -1217,11 +1211,11 @@ class GameBindPlugin(Star):
             async with aiohttp.ClientSession() as session:
                 form_data = aiohttp.FormData()
                 form_data.add_field("action", "recharge")
-                form_data.add_field("passport", passport)  # 使用passport
+                form_data.add_field("passport", passport)
                 form_data.add_field("amount", str(amount))
                 form_data.add_field("remark", remark)
-                form_data.add_field("source", "qq_bot")  # 来源标识
-                form_data.add_field("secret", self.api_config["qq_bot_secret"])  # 使用配置的密钥
+                form_data.add_field("source", "qq_bot")
+                form_data.add_field("secret", self.api_config["qq_bot_secret"])
                 
                 async with session.post(
                     self.api_config["base_url"],
