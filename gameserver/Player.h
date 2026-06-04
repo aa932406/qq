@@ -48,6 +48,7 @@
 #include "GuanWei.h"
 #include "Achievement.h"
 #include "WarVictory.h"
+#include "LevelRefining.h"
 #define MAX_GOLD_SHARE_COUNT 40
 #define MAX_CHALLENGE_MAP_MINUTES 120
 #define MAX_STRATEGICS_READ_COUNT 5

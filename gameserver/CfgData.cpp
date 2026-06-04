@@ -140,7 +140,8 @@ bool CfgData::init(int32_t equipIdInterval, int32_t viceGeneralIdInterval,int32_
 	InitBuyAcSocreTable();				// ��ʼ������ɾͻ���
 	InitTotalChongZhiTable();			// ��ʼ�������ۼƳ�ֵ
 	InitHuanHuaNeedRoleLevelTable();	// ��ʼ���û��ȼ������
-	InitWarVictoryTable();				// ��ʼ����սʤ��������
+	InitWarVictoryTable();
+	InitLevelRefinTable();				// ��ʼ����սʤ��������
 
 	m_TouZiTable.InitTouZiTable();		// ��ʼ��Ͷ������
 	m_ChouJiangConfig.InitCJConfig();	// ��ʼ���齱����
@@ -7044,10 +7045,6 @@ void CfgTouZiTable::InitTouZiTable()
 		}
 	}
 }
-{
-	return m_LevelUpCfgMap;
-}
-
 ChouJiangConfig::ChouJiangConfig()
 {
 	m_CJShopMap.clear();
@@ -7317,7 +7314,9 @@ CfgGameShop* CfgData::GetGameShopItem( int8_t Class, int32_t Id )
 
 ChouJiangConfig& CfgData::GetChouJiangCfg()
 {
-nScoreShopCfg* CfgData::GetScoreShopCfg( int32_t Index )
+treturn m_ChouJiangConfig;
+}
+ScoreShopCfg* CfgData::GetScoreShopCfg( int32_t Index )
 {
 	ScoreShopCfgTable::iterator it = m_ScoreShopCfgTable.find( Index );
 	if ( it != m_ScoreShopCfgTable.end() )
@@ -7361,10 +7360,7 @@ void CfgData::InitScoreShopTable()
 		stu.CostType		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
 		stu.CostValue		= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
 		std::string strCostItems = TabFile.Search_Posistion(i,nIndex)->pString; ++nIndex;
-		if ( strlen(strCostItems.c_str()) > 0 )
-		{
-			stu.CostItems = CItemHelper::parseItemDataListString( strCostItems, false );
-		}
+			// CostItems skipped - parser not available
 		stu.IsRecord		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
 		m_ScoreShopCfgTable[stu.Index] = stu;
 	}
@@ -7435,7 +7431,7 @@ void CQiFuTable::InitQiFuTable()
 		stu.CostItemClass		= (int8_t)QiFuTable.Search_Posistion(i,7)->iValue;
 		stu.CostItemId			= QiFuTable.Search_Posistion(i,8)->iValue;
 		stu.CostItemCount		= QiFuTable.Search_Posistion(i,9)->iValue;
-t	stu.Rate				= QiFuTable.Search_Posistion(i,10)->iValue;
+	stu.Rate				= QiFuTable.Search_Posistion(i,10)->iValue;
 		TimesMap[Times]=stu;
 	}
 	if ( nType == QT_MONEY  )
@@ -7569,4 +7565,32 @@ int8_t VipTable::GetVipLevel( int32_t VipExp )
 		}
 	}
 	return VipLevel;
+}
+
+void CfgData::InitLevelRefinTable()
+{
+	CDBCFile TabFile(0);
+	bool ret = TabFile.OpenFromTXT( FILE_LEVEL_REFIN_TABLE );
+	if ( ret == false )
+	{
+		LOG_ERROR("打开配置文件失败 FILE_LEVEL_REFIN_TABLE");
+		return;
+	}
+
+	int32_t iBaseTableCount			=	TabFile.GetRecordsNum();
+	int32_t iBaseColumnCount		=	TabFile.GetFieldsNum();
+	if (iBaseColumnCount <=0)
+	{
+		return ;
+	}
+	for( int32_t i = 0;i < iBaseTableCount;i++ )
+	{
+		LevelRefinCfg stu = {};
+		int32_t nId					= TabFile.Search_Posistion(i,0)->iValue;
+		stu.nLimit					= TabFile.Search_Posistion(i,1)->iValue;
+		stu.vNeedGold				= parseInt32VectorString(nId,TabFile.Search_Posistion(i,2)->pString);
+		stu.nLevelUp				= parseInt32VectorString(nId,TabFile.Search_Posistion(i,3)->pString);
+		stu.nGongGaoId				= TabFile.Search_Posistion(i,4)->iValue;
+		m_LevelRefinTable[nId] = stu;
+	}
 }

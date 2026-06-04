@@ -97,6 +97,7 @@
 #define FILE_TOTAL_CHONG_ZHI_TABLE				"./ServerConfig/Tables/ChongZhiHuiKui.txt"			// �ۼƳ�ֵ��ֵ
 #define FILE_HUAN_HUA_NEED_ROLE_LEVEL_TABLE		"./ServerConfig/Tables/huanHuaNeedRoleLevel.txt"	// �û�����ȼ������
 #define FILE_OPEN_TOTEM_TABLE					"./ServerConfig/Tables/OpenTuTeng.txt"				// ����ͼ�ڿ�������#define FILE_WAR_VICTORY_TABLE				"./ServerConfig/Tables/KangZhan.txt"				// ��սʤ����
+#define FILE_LEVEL_REFIN_TABLE					"./ServerConfig/Tables/LevelRefining.txt"			// 等级精炼配置
 #define FILE_TOU_ZI_TABLE						"./ServerConfig/Tables/TouZi.txt"					// Ͷ���䱸
 
 #endif	//__TPOC_FILE_DEF__

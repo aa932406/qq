@@ -228,6 +228,7 @@ enum CurrencyChangeReason
 	GCR_REVIVE							= 2026,		// ԭ�ظ���
 	GCR_TASK_CYCLE_REFRESH_STAR			= 2027,		// �ճ�����ˢ���Ǽ�
 	GCR_TASK_CYCLE_GET_REWARD			= 2028,		// �ճ�����౶��ȡ����
+GCR_LEVEL_REFIN					= 2058,		// 等级精炼
 	GCR_DONATION_JUE_WEI				= 2029,		// ��λ����
 	GCR_FAMILY_CONTRIBUTE				= 2030,		// ���ɾ���
 	GCR_BUY_FA_BAO_RES					= 2031,		// ���򷨱���Դ
@@ -371,7 +372,8 @@ enum ITEM_DEL_REASON
 	IDCR_PUT_IN_EXP_BALL			= 32,	// װ��������
 	IDCR_USE_MULTI_ITEM				= 33,	// ʹ�ö��
 	IDCR_ENTER_BOSS_HOME			= 34,	// ����boss֮��
-	IDCR_SITE_REVIVE				= 35,	// ���
+	IDCR_SITE_REVIVE				= 35,	//
+	IDCR_SCORE_SHOP_COST			= 36,	// ���
 };
 
 enum ItemEffectType

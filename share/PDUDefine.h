@@ -544,6 +544,10 @@ enum MSG_CM_CODE
 	// XP
 	CM_START_XP									= 760,			// ��ʼXP
 
+	CM_LEVEL_REFINING					= 768,			// 等级精炼
+	CM_LEVEL_REFIN_INFO					= 769,			// 等级精炼信息
+	
+
 	// ѭ������
 	CM_TASK_CYCLE_RECEIVE						= 770,			// ����ѭ������
 	CM_TASK_CYCLE_SUBMIT						= 771,			// �ύѭ������
@@ -1138,7 +1142,9 @@ enum MSG_SM_CODE
 	SM_SEND_JUE_WEI_RANK				= 11446,		//���;�λ��������
 	SM_SEND_JUE_TOTAL_RANK				= 11447,		//���;�λ�����а�
 	SM_SEND_JUE_WEI_GONG_GAO			= 11448,		//����
-	SM_FAMILY_WAR_ICON			= 0x2CD6,
+	SM_LEVEL_REFIN_BROADCAST	= 0x2CD6,
+	SM_FAMILY_WAR_ICON			= 0x2CD7,
+	SM_SEND_LEVEL_REFIN			= 0x2D0A,
 
 	//����
 	SM_SEND_DA_TI_READY_START			= 11450,		//׼����ʼ

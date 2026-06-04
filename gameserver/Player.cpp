@@ -8249,6 +8249,9 @@ void Player::InitExtSystems()
 	m_PlayerTouZi.Init( this );
 	m_ExtSysMgr.Register( &m_PlayerTouZi );
 
+	m_levelRefining.Init( this );
+	m_ExtSysMgr.Register( &m_levelRefining );
+
 	m_PlayerHuoYueDu.Init( this );
 	m_ExtSysMgr.Register( &m_PlayerHuoYueDu );
 	

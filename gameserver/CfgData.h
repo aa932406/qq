@@ -3143,6 +3143,15 @@ struct ChouJiangCfg
 };
 typedef std::list<ChouJiangCfg> CJCfgList;
 
+struct LevelRefinCfg
+{
+	int32_t		nLimit;		// 每��限制次数
+	Int32Vector	vNeedGold;	// 每次��消耗金��
+	Int32Vector	nLevelUp;	// 提升至等级
+	int32_t		nGongGaoId;	// 公告ID
+};
+typedef std::map<int32_t, LevelRefinCfg> LevelRefinCfgTable;
+
 struct CfgKaiFuHuoDongData
 {
 	int32_t		Index;
@@ -3563,6 +3572,8 @@ public:
 	TotalChongZhiMap&			GetTotalChongZhiTable();
 	CfgTotalChongZhi*			GetTotalChongZhiCfg( int8_t Index );
 	int32_t						GetHuanHuaNeedRoleLevel( int32_t Points );
+	LevelRefinCfg*				GetRefining( int32_t nLevel );
+	void						InitLevelRefinTable();
 	WarVictoryHd*				GetWarVictoryHdCfg( int8_t Index );
 private:
 	void getExParams(cfgParams& params,const std::string& str);
@@ -3860,6 +3871,7 @@ private:
 	TotalChongZhiMap		 m_TotalChongZhiTable;
 	HuanHuaNeedRoleLevelList m_HuanHuaNeedRoleLevelList;
 	WarVictoryHdMap			 m_WarVictoryHdMap;
+	LevelRefinCfgTable		 m_LevelRefinTable;
 };
 #define CFG_DATA Answer::Singleton<CfgData>::instance()
 
