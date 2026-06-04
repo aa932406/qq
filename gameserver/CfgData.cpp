@@ -63,7 +63,7 @@ bool CfgData::init(int32_t equipIdInterval, int32_t viceGeneralIdInterval,int32_
 	fetchGamble();
 	fetchLevelExp();
 	fetchSignReward();
-	fetchYellowStone();					//³õÊ¼»¯»Æ×êÀñ°ü
+	fetchYellowStone();					//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	InitEquipTable();
 	InitEquipUpGradeTable();
@@ -100,52 +100,52 @@ bool CfgData::init(int32_t equipIdInterval, int32_t viceGeneralIdInterval,int32_
 	InitItemGemTable();
 	InitItemCombiTable();
 
-	InitBagSlotOpenTimeTable();			// ³õÊ¼»¯±³°ü¿ªÆôÊ±¼ä±í
-	InitFriendExpTable();				// ³õÊ¼»¯ºÃÓÑ¾­Ñé±í
-	InitPkDropRateTable();				// pkµôÂä±ÈÀý
-	InitQiangHuaWorthTable();			// Ç¿»¯¼ÛÖµ
-	InitSysMail();						// ³õÊ¼»¯ÏµÍ³ÓÊ¼þÐÅÏ¢
-	InitBossInfo();						// ³õÊ¼»¯bossÐÅÏ¢
-	InitFaBaoTable();					// ³õÊ¼»¯·¨±¦ÐÅÏ¢±í
-	InitBuyFaBaoResTable();				// ³õÊ¼»¯¹ºÂò·¨±¦×ÊÔ´±í
-	InitDaTiHD();						// ³õÊ¼»¯´ðÌâ»î¶¯
-	InitShangChengTable();				// ³õÊ¼»¯ÉÌ³Ç±í
-	InitPetGiftTable();					// ³õÊ¼»¯»Ã³èÀñ°ü±í
-	InitOnLimeReward();					// ³õÊ¼»¯ÔÚÏßÊ±¼ä
-	InitSevenLoginReward();				// ³õÊ¼»¯ÆßÌìµÇÂ½½±Àø
-	InitLevelGift();					// ³õÊ¼»¯µÈ¼¶Àñ°ü
-	InitWeekOnlineReward();				// ³õÊ¼»¯ÖÜÔÚÏß½±Àø
-	InitOffLineExpTable();				// ³õÊ¼»¯ÀëÏß½±Àø±í
-	InitVipCardTable();					// ³õÊ¼»¯vipcard
-	InitBossHomeTable();				// ³õÊ¼»¯bossÖ®¼Ò
-	InitVipGuaJiMap();					// ³õÊ¼»¯vip¹Ò»úµØÍ¼
-	InitFunctionOpenTable();			// ³õÊ¼»¯¹¦ÄÜ¿ªÆô
-	InitMoLingRuQinMap();				// ³õÊ¼»¯Ä§ÁéÈëÇÖµØÍ¼
-	InitAutoPetGfit();					// ³õÊ¼»¯×Ô¶¯Ê¹ÓÃµÄ³èÎïÀñ°ü
-	InitPlantEventTable();				// ³õÊ¼»¯²É¼¯ÎïÊÂ¼þ±í
-	InitZiYuanZhaoHuiTable();			// ³õÊ¼»¯×ÊÔ´ÕÒ»Ø±í
-	InitMoHuaHuanYiTable();				// ³õÊ¼»¯Ä§»¯×ªÒÆ±í
-	InitShouChongLiBao();				// ³õÊ¼»¯Ê×³åÀñ°ü±í
-	InitNewServerFavorable();			// ÐÂ·þÌØ»ÝÀñ°ü
-	InitEveryDayChongZhi();				// ³õÊ¼»¯Ã¿ÈÕ³äÖµ
-	InitKaiFuHuoDongTable();			// ³õÊ¼¿ª·þ»î¶¯
-	InitHuoYueDuTable();				// ³õÊ¼»¯»îÔ¾¶È±í
-	InitGuangWeiTable();				// ³õÊ¼»¯¹ÙÎ»±í
-	InitAppendAttrTable();				// ³õÊ¼»¯¸½¼ÓÊôÐÔ±í
-	InitwuHunExpTable();				// ³õÊ¼»¯Îä»ê¾­Ñé±í
-	InitPetBuyTable();					// ³õÊ¼»¯¹ºÂò³èÎï»Ã»¯
-	InitFamilyRewardTable();			// ³õÊ¼»¯¾üÍÅ½±Àø±í
-	InitAchievementTable();				// ³õÊ¼»¯³É¾Í±í
-	InitXunZhangTable();				// ³õÊ¼»¯Ñ«ÕÂ±í
-	InitBuyAcSocreTable();				// ³õÊ¼»¯¹ºÂò³É¾Í»ý·Ö
-	InitTotalChongZhiTable();			// ³õÊ¼»¯¿ª·þÀÛ¼Æ³äÖµ
-	InitHuanHuaNeedRoleLevelTable();	// ³õÊ¼»¯»Ã»¯µÈ¼¶ÐèÇó±í
-	InitWarVictoryTable();				// ³õÊ¼»¯¿¹Õ½Ê¤Àû½±Àø±í
+	InitBagSlotOpenTimeTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	InitFriendExpTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½
+	InitPkDropRateTable();				// pkï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitQiangHuaWorthTable();			// Ç¿ï¿½ï¿½ï¿½ï¿½Öµ
+	InitSysMail();						// ï¿½ï¿½Ê¼ï¿½ï¿½ÏµÍ³ï¿½Ê¼ï¿½ï¿½ï¿½Ï¢
+	InitBossInfo();						// ï¿½ï¿½Ê¼ï¿½ï¿½bossï¿½ï¿½Ï¢
+	InitFaBaoTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	InitBuyFaBaoResTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ò·¨±ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
+	InitDaTiHD();						// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	InitShangChengTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ì³Ç±ï¿½
+	InitPetGiftTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitOnLimeReward();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	InitSevenLoginReward();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
+	InitLevelGift();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½
+	InitWeekOnlineReward();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½
+	InitOffLineExpTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitVipCardTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½vipcard
+	InitBossHomeTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½bossÖ®ï¿½ï¿½
+	InitVipGuaJiMap();					// ï¿½ï¿½Ê¼ï¿½ï¿½vipï¿½Ò»ï¿½ï¿½ï¿½Í¼
+	InitFunctionOpenTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½
+	InitMoLingRuQinMap();				// ï¿½ï¿½Ê¼ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Í¼
+	InitAutoPetGfit();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô¶ï¿½Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitPlantEventTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½
+	InitZiYuanZhaoHuiTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ò»Ø±ï¿½
+	InitMoHuaHuanYiTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½Ä§ï¿½ï¿½×ªï¿½Æ±ï¿½
+	InitShouChongLiBao();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitNewServerFavorable();			// ï¿½Â·ï¿½ï¿½Ø»ï¿½ï¿½ï¿½ï¿½
+	InitEveryDayChongZhi();				// ï¿½ï¿½Ê¼ï¿½ï¿½Ã¿ï¿½Õ³ï¿½Öµ
+	InitKaiFuHuoDongTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	InitHuoYueDuTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½È±ï¿½
+	InitGuangWeiTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+	InitAppendAttrTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½
+	InitwuHunExpTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ê¾­ï¿½ï¿½ï¿½
+	InitPetBuyTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	InitFamilyRewardTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitAchievementTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¾Í±ï¿½
+	InitXunZhangTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½Ñ«ï¿½Â±ï¿½
+	InitBuyAcSocreTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾Í»ï¿½ï¿½ï¿½
+	InitTotalChongZhiTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµ
+	InitHuanHuaNeedRoleLevelTable();	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ã»ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	InitWarVictoryTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Õ½Ê¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	m_TouZiCfg.InitTouZiTable();		// ³õÊ¼»¯Í¶×ÊÅäÖÃ
-	m_ChouJiangConfig.InitCJConfig();	// ³õÊ¼»¯³é½±ÅäÖÃ
-	m_QiFuTable.InitQiFuTable();		// ³õÊ¼»¯Æí¸£ÅäÖÃ
-	m_VipTable.InitVipTable();			// ³õÊ¼»¯vipÅäÖÃ
+	m_TouZiTable.InitTouZiTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_ChouJiangConfig.InitCJConfig();	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½é½±ï¿½ï¿½ï¿½ï¿½
+	m_QiFuTable.InitQiFuTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_VipTable.InitVipTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½vipï¿½ï¿½ï¿½ï¿½
 	m_debug = debug;
 
 	return true;
@@ -1031,9 +1031,9 @@ int32_t CfgData::getDebug()
 	return m_debug;
 }
 
-CTouZiCfg&	CfgData::GetTouZhiCfg()
+CfgTouZiTable&	CfgData::GetTouZiTable()
 {
-	return m_TouZiCfg;
+	return m_TouZiTable;
 }
 
 void CfgData::parasKaiFuHuoDongCondition( std::string& Effect, int32_t Conditions, int32_t& Param1, int32_t& Param2 )
@@ -1079,7 +1079,7 @@ void CfgData::InitGuangWeiTable()
 	bool ret = TabFile.OpenFromTXT(FILE_GUAN_WEI_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_GUAN_WEI_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_GUAN_WEI_TABLE");
 		return;
 	}
 
@@ -1118,7 +1118,7 @@ void CfgData::InitGuangWeiTable()
 	ret = TabFileQiShi.OpenFromTXT(FILE_QI_SHI_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_QI_SHI_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_QI_SHI_TABLE");
 		return;
 	}
 
@@ -1218,7 +1218,7 @@ void CfgData::InitBuyAcSocreTable()
 	bool ret = TabFile.OpenFromTXT( FILE_BUY_AC_SOCRE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_BUY_AC_SOCRE_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_BUY_AC_SOCRE_TABLE");
 		return;
 	}
 
@@ -1257,7 +1257,7 @@ void CfgData::InitXunZhangTable()
 	bool ret = TabFile.OpenFromTXT( FILE_XUN_ZHANG_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_XUN_ZHANG_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_XUN_ZHANG_TABLE");
 		return;
 	}
 
@@ -1294,7 +1294,7 @@ void CfgData::InitAchievementTable()
 	bool ret = TabFile.OpenFromTXT( FILE_ACHIEVEMENT_TASK_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_ACHIEVEMENT_TASK_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_ACHIEVEMENT_TASK_TABLE");
 		return;
 	}
 
@@ -1357,7 +1357,7 @@ void CfgData::InitFamilyRewardTable()
 	bool ret = TabFile.OpenFromTXT( FILE_FAMILY_TASK_RING );
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_FAMILY_TASK_RING");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_FAMILY_TASK_RING");
 		return;
 	}
 
@@ -1394,7 +1394,7 @@ void CfgData::InitPetBuyTable()
 	bool ret = TabFile.OpenFromTXT(FILE_BUY_PET_INFO);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_BUY_PET_INFO");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_BUY_PET_INFO");
 		return;
 	}
 
@@ -1422,7 +1422,7 @@ void CfgData::InitwuHunExpTable()
 	bool ret = TabFile.OpenFromTXT(FILE_WU_HUN_EXP);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_WU_HUN_EXP");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_WU_HUN_EXP");
 		return;
 	}
 
@@ -1448,7 +1448,7 @@ void CfgData::InitAppendAttrTable()
 	bool ret = TabFile.OpenFromTXT(FILE_APPEND_ATTR_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_APPEND_ATTR_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_APPEND_ATTR_TABLE");
 		return;
 	}
 
@@ -1499,7 +1499,7 @@ void CfgData::InitHuoYueDuTable()
 	bool ret = TabFile.OpenFromTXT(FILE_HUO_YUE_DU_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_HUO_YUE_DU_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_HUO_YUE_DU_TABLE");
 		return;
 	}
 
@@ -1526,7 +1526,7 @@ void CfgData::InitHuoYueDuTable()
 	ret = TabFileReward.OpenFromTXT(FILE_HUO_YUE_DU_REWARD_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_HUO_YUE_DU_REWARD_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_HUO_YUE_DU_REWARD_TABLE");
 		return;
 	}
 
@@ -1582,7 +1582,7 @@ void CfgData::InitKaiFuHuoDongTable()
 	bool ret = TabFile.OpenFromTXT(FILE_KAI_FU_HUO_DONG);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎóFILE_KAI_FU_HUO_DONG");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½FILE_KAI_FU_HUO_DONG");
 		return;
 	}
 
@@ -1621,7 +1621,7 @@ void CfgData::InitHuanHuaNeedRoleLevelTable()
 	bool ret = TabFile.OpenFromTXT(FILE_HUAN_HUA_NEED_ROLE_LEVEL_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_HUAN_HUA_NEED_ROLE_LEVEL_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_HUAN_HUA_NEED_ROLE_LEVEL_TABLE");
 		return;
 	}
 
@@ -1660,7 +1660,7 @@ void CfgData::InitWarVictoryTable()
 	bool ret = TabFile.OpenFromTXT(FILE_WAR_VICTORY_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_WAR_VICTORY_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_WAR_VICTORY_TABLE");
 		return;
 	}
 
@@ -1702,7 +1702,7 @@ void CfgData::InitTotalChongZhiTable()
 	bool ret = TabFile.OpenFromTXT(FILE_TOTAL_CHONG_ZHI_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_TOTAL_CHONG_ZHI_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_TOTAL_CHONG_ZHI_TABLE");
 		return;
 	}
 
@@ -1712,7 +1712,7 @@ void CfgData::InitTotalChongZhiTable()
 	{
 		return ;
 	}
-	for( int32_t i = 0;i < iBaseTableCount -1 ;i++ ) //ÕâÕÅ±í×îºóÒ»Ñù·þÎñ¶ËÃ»ÓÃ
+	for( int32_t i = 0;i < iBaseTableCount -1 ;i++ ) //ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½
 	{
 		CfgTotalChongZhi stu = {};
 		stu.Index			= (int8_t)TabFile.Search_Posistion(i,0)->iValue;
@@ -1745,7 +1745,7 @@ void CfgData::InitEveryDayChongZhi()
 	bool ret = TabFile.OpenFromTXT(FILE_EVERYDAY_CHONG_ZHI);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_EVERYDAY_CHONG_ZHI");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_EVERYDAY_CHONG_ZHI");
 		return;
 	}
 
@@ -1787,7 +1787,7 @@ void CfgData::InitNewServerFavorable()
 	bool ret = TabFile.OpenFromTXT(FILE_NEW_SERVER_FAVORABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_NEW_SERVER_FAVORABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_NEW_SERVER_FAVORABLE");
 		return;
 	}
 
@@ -1811,7 +1811,7 @@ void CfgData::InitNewServerFavorable()
 	ret = TabFile2.OpenFromTXT(FILE_THREE_PET_GIFT);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_THREE_PET_GIFT");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_THREE_PET_GIFT");
 		return;
 	}
 
@@ -1857,7 +1857,7 @@ void CfgData::InitShouChongLiBao()
 	bool ret = TabFile.OpenFromTXT(FILE_SHOU_CHONG_LI_BAO);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_SHOU_CHONG_LI_BAO");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_SHOU_CHONG_LI_BAO");
 		return;
 	}
 
@@ -1884,7 +1884,7 @@ void CfgData::InitMoHuaHuanYiTable()
 	bool ret = TabFile.OpenFromTXT(FILE_MO_HUA_ZHUAN_YI_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_MO_HUA_ZHUAN_YI_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_MO_HUA_ZHUAN_YI_TABLE");
 		return;
 	}
 
@@ -2059,7 +2059,7 @@ void CfgData::InitMoLingRuQinMap()
 	bool ret = TabFile.OpenFromTXT(FILE_MO_LING_RU_QING_HD_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_MO_LING_RU_QING_HD_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_MO_LING_RU_QING_HD_TABLE");
 		return;
 	}
 
@@ -2097,7 +2097,7 @@ void CfgData::InitFunctionOpenTable()
 	bool ret = TabFile.OpenFromTXT(FILE_FUNCTION_OPEN_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_FUNCTION_OPEN_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_FUNCTION_OPEN_TABLE");
 		return;
 	}
 
@@ -2138,7 +2138,7 @@ void CfgData::InitVipGuaJiMap()
 	bool ret = TabFile.OpenFromTXT(FILE_VIP_GUA_JI_MAP);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_VIP_GUA_JI_MAP");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_VIP_GUA_JI_MAP");
 		return;
 	}
 
@@ -2185,7 +2185,7 @@ void CfgData::InitBossHomeTable()
 	bool ret = TabFile.OpenFromTXT(FILE_BOSS_HOME_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_BOSS_HOME_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_BOSS_HOME_TABLE");
 		return;
 	}
 
@@ -2236,7 +2236,7 @@ void CfgData::InitVipCardTable()
 	bool ret = TabFile.OpenFromTXT(FILE_VIP_CARD_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_VIP_CARD_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_VIP_CARD_TABLE");
 		return;
 	}
 
@@ -2289,7 +2289,7 @@ void CfgData::InitOffLineExpTable()
 	bool ret = TabFile.OpenFromTXT(FILE_OFF_LINE_EXP_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_OFF_LINE_EXP_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_OFF_LINE_EXP_TABLE");
 		return;
 	}
 
@@ -2327,7 +2327,7 @@ void CfgData::InitWeekOnlineReward()
 	bool ret = TabFile.OpenFromTXT(FILE_WEEK_ONLINE_REWARD);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_WEEK_ONLINE_REWARD");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_WEEK_ONLINE_REWARD");
 		return;
 	}
 
@@ -2372,7 +2372,7 @@ void CfgData::InitLevelGift()
 	bool ret = TabFile.OpenFromTXT(FILE_LEVEL_GIFT);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_LEVEL_GIFT");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_LEVEL_GIFT");
 		return;
 	}
 
@@ -2413,7 +2413,7 @@ void CfgData::InitSevenLoginReward()
 	bool ret = TabFile.OpenFromTXT(FILE_SEVEN_LOGIN_REWARD);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_SEVEN_LOGIN_REWARD");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_SEVEN_LOGIN_REWARD");
 		return;
 	}
 
@@ -2448,7 +2448,7 @@ void CfgData::InitOnLimeReward()
 	bool ret = TabFile.OpenFromTXT(FILE_ONLINE_REWARD);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_ONLINE_REWARD");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_ONLINE_REWARD");
 		return;
 	}
 
@@ -2490,7 +2490,7 @@ void CfgData::fetchSignReward()
 	bool ret = TabFile.OpenFromTXT(FILE_SIGIN_REWARD_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó FILE_SIGIN_REWARD_TABLE");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ FILE_SIGIN_REWARD_TABLE");
 		return;
 	}
 
@@ -2531,7 +2531,7 @@ void CfgData::fetchYellowStone()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_yellow_stone.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_yellow_stone.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_yellow_stone.txt");
 		return;
 	}
 
@@ -3480,7 +3480,7 @@ void CfgData::fetchMovie()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_movie.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_movie.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_movie.txt");
 		return;
 	}
 
@@ -3510,7 +3510,7 @@ void CfgData::fetchLevelExp()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_level_exp.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_level_exp.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_level_exp.txt");
 		return;
 	}
 
@@ -3721,7 +3721,7 @@ void CfgData::fetchMonster()
 		monster.level				= MonsterFile.Search_Posistion(i,2)->iValue;
 		monster.quality				= MonsterFile.Search_Posistion(i,3)->iValue;
 
-		// ÊôÐÔ
+		// ï¿½ï¿½ï¿½ï¿½
 		monster.hp					= MonsterFile.Search_Posistion(i,4)->iValue;
 		monster.phy_atk_min			= MonsterFile.Search_Posistion(i,5)->iValue;
 		monster.phy_atk_max			= MonsterFile.Search_Posistion(i,6)->iValue;
@@ -3969,7 +3969,7 @@ void  CfgData::fetchGamble()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_gamble.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_gamble.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_gamble.txt");
 		return;
 	}
 	int32_t iBaseTableCount			=	TabFile.GetRecordsNum();
@@ -4006,7 +4006,7 @@ void  CfgData::fetchGamble()
 	ret = TabFileEquip.OpenFromTXT("./ServerConfig/Tables/cfg_gamble_equip.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_gamble_equip.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_gamble_equip.txt");
 		return;
 	}
 	iBaseTableCount			=	TabFileEquip.GetRecordsNum();
@@ -4031,7 +4031,7 @@ void CfgData::fetchNpc()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_npc.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_npc.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_npc.txt");
 		return;
 	}
 
@@ -4068,7 +4068,7 @@ void CfgData::fetchNpc()
 	ret = TabFileAir.OpenFromTXT("./ServerConfig/Tables/cfg_npc_airport.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_npc_airport.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_npc_airport.txt");
 		return;
 	}
 
@@ -4100,7 +4100,7 @@ void CfgData::fetchPlant()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_plant.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_plant.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_plant.txt");
 		return;
 	}
 
@@ -4144,7 +4144,7 @@ void CfgData::fetchSkill()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_skill_info.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_skill_result.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_skill_result.txt");
 		return;
 	}
 
@@ -4179,7 +4179,7 @@ void CfgData::fetchSkill()
 	ret = TabFileResult.OpenFromTXT("./ServerConfig/Tables/cfg_skill_result.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_skill_result.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_skill_result.txt");
 		return;
 	}
 
@@ -4223,7 +4223,7 @@ void CfgData::fetchTask()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_task.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_task.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_task.txt");
 		return;
 	}
 
@@ -4286,7 +4286,7 @@ void CfgData::fetchTrailer()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_trailer.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_trailer.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_trailer.txt");
 		return;
 	}
 
@@ -4315,7 +4315,7 @@ void CfgData::fetchTrap()
 	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/cfg_trap.txt");
 	if ( ret == false )
 	{
-		LOG_ERROR("´ò¿ªÅäÖÃ±í´íÎó cfg_trap.txt");
+		LOG_ERROR("ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ cfg_trap.txt");
 		return;
 	}
 
@@ -4500,7 +4500,7 @@ AttrAddonVector CfgData::parseEffect(int32_t id, const std::string &str)
 	return attrAddons;
 }
 
-AttrAddonVector CfgData::parseItemEffect(int32_t id, const std::string &str)//½âÎöÎïÆ·×÷ÓÃÐ§¹û
+AttrAddonVector CfgData::parseItemEffect(int32_t id, const std::string &str)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 {
 	AttrAddonVector attrAddons;
 
@@ -4958,8 +4958,8 @@ TaskRequest CfgData::parseTaskCondition(int32_t id, int32_t condition, const std
 
 	switch (condition)
 	{
-	//3¸ö²ÎÊýµÄ
-	case TC_ITEM:		//ÐèÒªÎïÆ·
+	//3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_ITEM:		//ï¿½ï¿½Òªï¿½ï¿½Æ·
 		if (requests.size() == 3)
 		{
 			request.param1 = atoi(requests[0].c_str()); //item id
@@ -4971,12 +4971,12 @@ TaskRequest CfgData::parseTaskCondition(int32_t id, int32_t condition, const std
 			LOG_ERROR("CfgData::parseTaskCondition wrong data with id = %d, string = %s\n", id, strRequest.c_str());
 		}
 		break;
-	//2¸ö²ÎÊýµÄ
-	case TC_MONSTER_ID:		//Ö¸¶¨¹ÖÎï
-	case TC_MONSTER_LEVEL:  //Ö¸¶¨µÈ¼¶¹ÖÎï
-	case TC_PLANT:			//²É¼¯
-	case TC_USER_SKILL:     //Ê¹ÓÃ¼¼ÄÜ
-	case TC_FINISH_TASK_TYPE://Íê³ÉÖ¸¶¨ÀàÐÍµÄÈÎÎñ
+	//2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_MONSTER_ID:		//Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_MONSTER_LEVEL:  //Ö¸ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_PLANT:			//ï¿½É¼ï¿½
+	case TC_USER_SKILL:     //Ê¹ï¿½Ã¼ï¿½ï¿½ï¿½
+	case TC_FINISH_TASK_TYPE://ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½
 	case TC_USE_ITEM:
 	case TC_DRESS_EQUIP:
 	case TC_EQUIP_STAR_COUNT:
@@ -4991,12 +4991,12 @@ TaskRequest CfgData::parseTaskCondition(int32_t id, int32_t condition, const std
 			LOG_ERROR("CfgData::parseTaskCondition wrong data with id = %d, string = %s\n", id, strRequest.c_str());
 		}
 		break;
-	//1¸ö²ÎÊýµÄ
-	case TC_PLAYER_LEVEL:		//´ïµ½µÈ¼¶
-	case TC_PET_ILLUSION:		//³èÎï»Ã»¯
-	case TC_UP_EQUIP_STAR:		//×°±¸Ç¿»¯
-	case TC_UP_EQUIP_GRADE:		//×°±¸Éý¼¶
-	case TC_UP_EQUIP_QUALITY:	//×°±¸ÌáÆ·
+	//1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_PLAYER_LEVEL:		//ï¿½ïµ½ï¿½È¼ï¿½
+	case TC_PET_ILLUSION:		//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	case TC_UP_EQUIP_STAR:		//×°ï¿½ï¿½Ç¿ï¿½ï¿½
+	case TC_UP_EQUIP_GRADE:		//×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	case TC_UP_EQUIP_QUALITY:	//×°ï¿½ï¿½ï¿½ï¿½Æ·
 	case TC_HALL_OF_FAME:
 	case TC_DUNGEON:
 	case TC_KILL_BOSS_COUNT:
@@ -5223,7 +5223,7 @@ void CfgData::InitEquipTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5274,7 +5274,7 @@ void CfgData::InitEquipUpGradeTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_UP_GRADE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_UP_GRADE_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_UP_GRADE_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5313,7 +5313,7 @@ void CfgData::InitEquipUpQualityTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_UP_QUALITY_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_UP_QUALITY_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_UP_QUALITY_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5354,7 +5354,7 @@ void CfgData::InitEquipUpStarTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_UP_STAR_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_UP_STAR_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_UP_STAR_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5392,7 +5392,7 @@ void CfgData::InitEquipAddAttrTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_ADD_ATTR_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_ADD_ATTR_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_ADD_ATTR_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5434,7 +5434,7 @@ void CfgData::InitEquipGoalTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_GOAL_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_GOAL_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_GOAL_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5468,7 +5468,7 @@ void CfgData::InitEquipSuitTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_EQUIP_SUIT_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_EQUIP_SUIT_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_EQUIP_SUIT_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5516,7 +5516,7 @@ void CfgData::InitWuHunHoleTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_WUHUN_HOLE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_WUHUN_HOLE_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_WUHUN_HOLE_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5542,7 +5542,7 @@ void CfgData::InitWuHunMoHunTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_WUHUN_MOHUN_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_WUHUN_MOHUN_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_WUHUN_MOHUN_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5574,7 +5574,7 @@ void CfgData::InitItemGemTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_GEM_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_GEM_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_GEM_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5617,7 +5617,7 @@ void CfgData::InitItemCombiTable()
 	bool ret = readFile.OpenFromTXT( FILE_ITEM_COMBI_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_ITEM_COMBI_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_ITEM_COMBI_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5633,7 +5633,7 @@ void CfgData::InitItemCombiTable()
 		CfgItemCombi itemCombi;
 		int32_t Index = 0;
 		itemCombi.m_nId			= readFile.Search_Posistion( i, Index )->iValue; Index++;
-		//Ãû×ÖÕâÐÐ²»¶Á
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
 		Index++;
 
 		for ( int32_t j = 0; j < 3; j++ )
@@ -5681,7 +5681,7 @@ void CfgData::InitBagSlotOpenTimeTable()
 	bool ret = readFile.OpenFromTXT( FILE_BAG_SLOT_OPEN_TIME_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_BAG_SLOT_OPEN_TIME_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_BAG_SLOT_OPEN_TIME_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5718,7 +5718,7 @@ void CfgData::InitPlayerInitPetTable()
 	bool ret = readFile.OpenFromTXT( FILE_PLAYER_INIT_PET_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PLAYER_INIT_PET_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PLAYER_INIT_PET_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5761,7 +5761,7 @@ void CfgData::InitPetPackageTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_PACKAGE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_PACKAGE_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_PACKAGE_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5792,7 +5792,7 @@ void CfgData::InitPetTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5830,11 +5830,11 @@ void CfgData::InitPetTable()
 		{
 			pet.m_vSkill[k]		= readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 
-			// ¼¼ÄÜ¸ÅÂÊ¼ÓÈ¨
+			// ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½Ê¼ï¿½È¨
 			nRate += readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 			pet.m_vSkillRate[k]	= nRate;
 		}
-		// »ÃÊÞICON	//»ÃÊÞÄ£ÐÍ	//µ°µÄICON	//·õ»¯³É¹¦ºóICON
+		// ï¿½ï¿½ï¿½ï¿½ICON	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½	//ï¿½ï¿½ï¿½ï¿½ICON	//ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ICON
 		nIndex += 4;
 		pet.m_nHatchTime		= readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 		pet.m_nMutiHatchTime	= readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
@@ -5865,7 +5865,7 @@ void CfgData::InitPetEggTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_EGG_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_EGG_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_EGG_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5919,7 +5919,7 @@ void CfgData::InitPetAttrInitRateTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_INIT_ATTR_RATE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_INIT_ATTR_RATE_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_INIT_ATTR_RATE_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5953,7 +5953,7 @@ void CfgData::InitPetIllusionTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_ILLUSION_GROW_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_ILLUSION_GROW_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_ILLUSION_GROW_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -5997,7 +5997,7 @@ void CfgData::InitPetKnightTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_KNIGHT_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_KNIGHT_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_KNIGHT_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6014,10 +6014,10 @@ void CfgData::InitPetKnightTable()
 		int32_t nKnight	= readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 		if ( nKnight <= PK_NONE || nKnight >= PET_KNIGHT_SIZE )
 		{
-			LOG_ERROR("open FILE_PET_KNIGHT_TABLE Ê§°Ü,Î´¶¨ÒåµÄ»ÃÊÞÆïÊ¿ÀàÐÍ");
+			LOG_ERROR("open FILE_PET_KNIGHT_TABLE Ê§ï¿½ï¿½,Î´ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½");
 			return;
 		}
-		++nIndex;	// Ãû³Æ
+		++nIndex;	// ï¿½ï¿½ï¿½ï¿½
 		m_cfgPetKnightTable.m_vKnight[nKnight].nLevel = readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 		m_cfgPetKnightTable.m_vKnight[nKnight].nTitle = readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
 		std::string petType = readFile.Search_Posistion( i, nIndex )->pString;	++nIndex;
@@ -6032,7 +6032,7 @@ void CfgData::InitPetKnightTable()
 		}
 
 		m_cfgPetKnightTable.m_vKnight[nKnight].nEffectType = readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
-		++nIndex;	// ÃèÊö
+		++nIndex;	// ï¿½ï¿½ï¿½ï¿½
 		for ( int32_t k = 0; k < MAX_KNIGHT_QUALITY_SIZE; ++k )
 		{
 			m_cfgPetKnightTable.m_vKnight[nKnight].vQuality[k]		= readFile.Search_Posistion( i, nIndex )->iValue;	++nIndex;
@@ -6052,7 +6052,7 @@ void CfgData::InitCharPetHatchPoolTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_HATCH_POOL_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_HATCH_POOL_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_HATCH_POOL_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6095,7 +6095,7 @@ void CfgData::InitPetLucyItemTable()
 	bool ret = readFile.OpenFromTXT( FILE_PET_LUCKY_ITEM_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PET_LUCKY_ITEM_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PET_LUCKY_ITEM_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6132,7 +6132,7 @@ void CfgData::InitFamilyTable()
 	bool ret = readFile.OpenFromTXT( FILE_FAMILY_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FAMILY_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_FAMILY_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6178,7 +6178,7 @@ void CfgData::InitFamilyPositionTable()
 	bool ret = readFile.OpenFromTXT( FILE_FAMILY_POSITION_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FAMILY_POSITION_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_FAMILY_POSITION_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6212,7 +6212,7 @@ void CfgData::InitFamilyPetRegistTable()
 	bool ret = readFile.OpenFromTXT( FILE_FAMILY_PET_REGIST_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FAMILY_PET_REGIST_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_FAMILY_PET_REGIST_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6243,7 +6243,7 @@ void CfgData::InitTeamBuffTable()
 	bool ret = readFile.OpenFromTXT( FILE_TEAM_BUFF_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_TEAM_BUFF_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_TEAM_BUFF_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6507,7 +6507,7 @@ void CfgData::InitHallOfFameRewardTable()
 	bool ret = readFile.OpenFromTXT( FILE_HALL_OF_FAME_REWARD_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_HALL_OF_FAME_REWARD_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_HALL_OF_FAME_REWARD_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6559,7 +6559,7 @@ void CfgData::InitSkillLevelUpTable()
 	bool ret = readFile.OpenFromTXT( FILE_SKILL_LEVEL_UP_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_SKILL_LEVEL_UP_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_SKILL_LEVEL_UP_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6596,7 +6596,7 @@ void CfgData::InitTaskCycleStarTable()
 	bool ret = readFile.OpenFromTXT( FILE_TASK_CYCLE_STAR_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_TASK_CYCLE_STAR_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_TASK_CYCLE_STAR_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6639,7 +6639,7 @@ void CfgData::InitFriendExpTable()
 	bool ret = readFile.OpenFromTXT( FILE_FRIEND_EXP_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FRIEND_EXP_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_FRIEND_EXP_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6665,7 +6665,7 @@ void CfgData::InitPkDropRateTable()
 	bool ret = readFile.OpenFromTXT( FILE_PK_DROP_RATE_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_PK_DROP_RATE_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_PK_DROP_RATE_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6711,7 +6711,7 @@ void CfgData::InitQiangHuaWorthTable()
 	bool ret = readFile.OpenFromTXT( FILE_QIANG_HUA_WORTH_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_QIANG_HUA_WORTH_TABLE Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_QIANG_HUA_WORTH_TABLE Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6765,7 +6765,7 @@ void CfgData::InitBuyFaBaoResTable()
 	bool ret = readFile.OpenFromTXT( FILE_BUY_FA_BAO_RES_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_BUY_FA_BAO_RES_TABLE.txt Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_BUY_FA_BAO_RES_TABLE.txt Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6819,7 +6819,7 @@ void CfgData::InitDaTiHD()
 	bool Ret = ReadFile.OpenFromTXT( FILE_QUESTIONS_TABLE );
 	if ( Ret == false )
 	{
-		LOG_ERROR("open FILE_QUESTIONS_TABLE.txt Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_QUESTIONS_TABLE.txt Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6845,7 +6845,7 @@ void CfgData::InitFaBaoTable()
 	bool ret = readFile.OpenFromTXT( FILE_FA_BAO_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FA_BAO_TABLE.txt Ê§°Ü,Çë¼ì²éÎÄ¼þÃû´óÐ¡Ð´");
+		LOG_ERROR("open FILE_FA_BAO_TABLE.txt Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´");
 		return;
 	}
 
@@ -6990,90 +6990,58 @@ void FaBaoTable::AddFaBao( CfgFaBao& Stu )
 	m_FaBaoTable[Stu.FaBaoId] = Stu;
 }
 
-CTouZiCfg::CTouZiCfg()
-{
-	m_MoonCardCfgMap.clear();
-	m_LevelUpCfgMap.clear();
-}
 
-void CTouZiCfg::InitTouZiTable()
+void CfgTouZiTable::InitTouZiTable()
 {
+	m_SevenTouZiMap.clear();
+	m_MonthTouZiMap.clear();
+
 	CDBCFile TabFile(0);
-	bool ret = TabFile.OpenFromTXT(FILE_MOON_CARD_TOU_ZI_TABEL);
+	bool ret = TabFile.OpenFromTXT(FILE_TOU_ZI_TABLE);
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_MOON_CARD_TOU_ZI_TABEL failed,please check!!");
+		LOG_ERROR("open FILE_TOU_ZI_TABLE failed,please check!!");
 		return;
 	}
 
-	int32_t iBaseTableCount		=	TabFile.GetRecordsNum();
-	int32_t iBaseColumnCount	=	TabFile.GetFieldsNum();
-	if (iBaseColumnCount <=0)
+	int32_t iBaseTableCount = TabFile.GetRecordsNum();
+	int32_t iBaseColumnCount = TabFile.GetFieldsNum();
+	if (iBaseColumnCount <= 0)
 	{
-		return ;
-	}
-
-	for( int32_t i = 0;i < iBaseTableCount;i++ )
-	{
-		MoonCardTouZiCfg stu = {};
-		stu.Index			= (int16_t)TabFile.Search_Posistion(i,0)->iValue;
-		stu.NeedDay			= (int16_t)TabFile.Search_Posistion(i,1)->iValue;
-		stu.CurrencyType	= (int8_t)TabFile.Search_Posistion(i,2)->iValue;
-		stu.CurrencyValues	= TabFile.Search_Posistion(i,3)->iValue;
-		m_MoonCardCfgMap[stu.Index] = stu;
-	}
-
-	CDBCFile LevelTabFile(0);
-	bool ret1 = LevelTabFile.OpenFromTXT(FILE_LEVEL_UP_TOU_ZI_TABLE);
-	if ( ret1 == false )
-	{
-		LOG_ERROR("open FILE_LEVEL_UP_TOU_ZI_TABLE failed,please check!!");
 		return;
 	}
-
-	int32_t iBaseTableCount1		=	LevelTabFile.GetRecordsNum();
-	int32_t iBaseColumnCount1		=	LevelTabFile.GetFieldsNum();
-	if (iBaseColumnCount1 <=0)
+	for( int32_t i = 0; i < iBaseTableCount; i++ )
 	{
-		return ;
-	}
+		int32_t nIndex = 0;
+		int8_t nType = (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
 
-	for( int32_t i = 0;i < iBaseTableCount1;i++ )
-	{
-		LevelUpTouZiCfg stu = {};
-		stu.Index			= (int16_t)LevelTabFile.Search_Posistion(i,0)->iValue;
-		stu.NeedLevel		= LevelTabFile.Search_Posistion(i,1)->iValue;
-		stu.Rate			= LevelTabFile.Search_Posistion(i,2)->iValue;
-		m_LevelUpCfgMap[stu.Index] = stu;
+		if ( nType == 1 )
+		{
+			SevenTouZi stu = {};
+			stu.nId = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			stu.nType = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			stu.nCondition = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			MemChrBag bag = {};
+			bag.itemClass = (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			bag.itemId = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			bag.itemCount = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			stu.vItem = bag;
+			m_SevenTouZiMap[stu.nId] = stu;
+		}
+		else if ( nType == 2 )
+		{
+			MonthTouZi stu = {};
+			stu.nDay = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			MemChrBag bag = {};
+			bag.itemClass = (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			bag.itemId = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			bag.itemCount = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			stu.vItem = bag;
+			stu.nGongGaoId = TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+			m_MonthTouZiMap[stu.nDay] = stu;
+		}
 	}
 }
-
-MoonCardTouZiCfg* CTouZiCfg::GetMoonCardTouZiCfg( int16_t Index )
-{
-	MoonCardTouZiCfgMap::iterator it = m_MoonCardCfgMap.find( Index );
-	if ( it != m_MoonCardCfgMap.end() )
-	{
-		return &(it->second);
-	}
-	return NULL;
-}
-
-LevelUpTouZiCfg* CTouZiCfg::GetLevelUpTouZiCfg( int16_t Index )
-{
-	LevelUpTouZiCfgMap::iterator it = m_LevelUpCfgMap.find( Index );
-	if ( it != m_LevelUpCfgMap.end() )
-	{
-		return &(it->second);
-	}
-	return NULL;
-}
-
-MoonCardTouZiCfgMap& CTouZiCfg::GetMoonCardTable()
-{
-	return m_MoonCardCfgMap;
-}
-
-LevelUpTouZiCfgMap&	CTouZiCfg::GetLevelUpTable()
 {
 	return m_LevelUpCfgMap;
 }
@@ -7337,7 +7305,7 @@ CfgGameShop* CfgData::GetGameShopItem( int8_t Class, int32_t Id )
 	for ( ; it != m_GameShopMap.end(); ++it )
 	{
 		if ( it->second.ItemClass == Class && it->second.ItemId == Id 
-			&& it->second.ShopType != BANG_SHI_SHANG_CHENG_TYPE )	// ÏàÍ¬id¿ÉÄÜÔÚ°óÊ¯ÉÌ³ÇÖÐ´æÔÚ
+			&& it->second.ShopType != BANG_SHI_SHANG_CHENG_TYPE )	// ï¿½ï¿½Í¬idï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½Ê¯ï¿½Ì³ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
 		{
 			return &(it->second);
 		}

@@ -907,10 +907,10 @@ public:
 
 	void CleanUp()
 	{
-		m_TouZiValues			= 0;			
-		m_MoonCardStartTime		= 0;	
-		m_MoonCardRecord.clear();		
-		m_LevelUpRecord.clear();		
+		m_SevenDayTouZiTime		= 0;
+		m_SevenDayRecord		= 0;
+		m_MonthTouZiTime		= 0;
+		m_MonthTouZiRecord		= 0;
 	}
 
 public:
@@ -918,16 +918,16 @@ public:
 	{
 		bzero( szSQL, sizeof( szSQL ) );
 		snprintf( szSQL, sizeof( szSQL ) - 1,
-			"INSERT INTO `mem_chr_tou_zi` (`cid`, `MoonCardStartTime`, `TouZiValues`, `MoonCardRecord`,`LevelUpRecord`) VALUES (%lld, %d, %d, '%s', '%s') ON DUPLICATE KEY UPDATE `MoonCardStartTime` = %d, `TouZiValues` = %d, `MoonCardRecord` = '%s', `LevelUpRecord`='%s'",
+			"INSERT INTO `mem_chr_tou_zi` (`cid`, `MoonCardStartTime`, `TouZiValues`, `MoonCardRecord`,`LevelUpRecord`) VALUES (%lld, %d, %d, %d, %d) ON DUPLICATE KEY UPDATE `MoonCardStartTime` = %d, `TouZiValues` = %d, `MoonCardRecord` = %d, `LevelUpRecord`=%d",
 			nCid, 
-			m_MoonCardStartTime, 
-			m_TouZiValues, 
-			GetRecordString(TT_MOON_CARD).c_str(),
-			GetRecordString( TT_LEVEL_UP ).c_str(),
-			m_MoonCardStartTime, 
-			m_TouZiValues, 
-			GetRecordString(TT_MOON_CARD).c_str(),
-			GetRecordString( TT_LEVEL_UP ).c_str()
+			m_SevenDayTouZiTime, 
+			m_MonthTouZiTime, 
+			m_SevenDayRecord,
+			m_MonthTouZiRecord,
+			m_SevenDayTouZiTime, 
+			m_MonthTouZiTime, 
+			m_SevenDayRecord,
+			m_MonthTouZiRecord
 			 );
 		sqls.push_back( szSQL ); 
 	}
@@ -939,12 +939,10 @@ public:
 		Answer::MySqlQuery result = db.query( szSQL );
 		while ( !result.eof() )
 		{
-			m_MoonCardStartTime	= result.getIntValue("MoonCardStartTime");
-			m_TouZiValues		= result.getIntValue("TouZiValues");
-			string RewardString	= result.getStringValue("MoonCardRecord");
-			InitRecordString( RewardString, TT_MOON_CARD );
-			RewardString		= result.getStringValue("LevelUpRecord");
-			InitRecordString( RewardString, TT_LEVEL_UP );
+			m_SevenDayTouZiTime	= result.getIntValue("MoonCardStartTime");
+			m_MonthTouZiTime	= result.getIntValue("TouZiValues");
+			m_SevenDayRecord	= result.getIntValue("MoonCardRecord");
+			m_MonthTouZiRecord	= result.getIntValue("LevelUpRecord");
 			result.nextRow();
 		}
 		return true;
@@ -952,94 +950,25 @@ public:
 
 	virtual void PackageData( Answer::NetPacket* packet )
 	{
-		packet->writeInt32( m_TouZiValues );
-		packet->writeInt32( m_MoonCardStartTime );
-		int32_t	nSize = m_MoonCardRecord.size();
-		packet->writeInt32( nSize );
-		RecordMap::iterator it = m_MoonCardRecord.begin();
-		for ( ; it != m_MoonCardRecord.end(); ++it )
-		{
-			packet->writeInt16( it->first );
-		}
-		nSize = m_LevelUpRecord.size();
-		packet->writeInt32( nSize );
-		RecordMap::iterator iter = m_LevelUpRecord.begin();
-		for ( ; iter != m_LevelUpRecord.end(); ++iter )
-		{
-			packet->writeInt16( iter->first );
-			packet->writeInt32( iter->second );
-		}
+		packet->writeInt32( m_SevenDayTouZiTime );
+		packet->writeInt32( m_SevenDayRecord );
+		packet->writeInt32( m_MonthTouZiTime );
+		packet->writeInt32( m_MonthTouZiRecord );
 	}
 
 	virtual void UnPackageData( Answer::NetPacket* inPacket, CharId_t nCid = 0 )
 	{
-		m_TouZiValues			= inPacket->readInt32();
-		m_MoonCardStartTime		= inPacket->readInt32();
-		int32_t nSize			= inPacket->readInt32();
-		for ( int32_t i = 0; i < nSize; i++ )
-		{
-			int16_t Index = inPacket->readInt16();
-			m_MoonCardRecord[Index] = 1;
-		}
-		nSize					= inPacket->readInt32();
-		for ( int32_t j = 0; j < nSize; j++ )
-		{
-			int16_t Index	= inPacket->readInt16();
-			int32_t Values	= inPacket->readInt32();
-			m_LevelUpRecord[Index] = Values;
-		}
-	}
-	
-	std::string GetRecordString( int8_t Type )
-	{
-		std::stringstream ss;
-		if ( Type == TT_MOON_CARD )
-		{
-			RecordMap::iterator it = m_MoonCardRecord.begin();
-			for ( ; it != m_MoonCardRecord.end(); ++it )
-			{
-				ss << "|" << (int32_t)it->first << ":" << it->second;
-			}
-		}
-		else
-		{
-			RecordMap::iterator it = m_LevelUpRecord.begin();
-			for ( ; it != m_LevelUpRecord.end(); ++it )
-			{
-				ss << "|" << (int32_t)it->first << ":" << it->second;
-			}
-		}
-		return ss.str();
-	}
-	void		InitRecordString( std::string RecordString, int8_t Type )
-	{
-		StringVector vStr = Answer::StringUtility::split( RecordString, "|" );
-		int32_t isize = vStr.size();
-		for ( int32_t i = 0; i < isize; ++i )
-		{
-			StringVector tv = Answer::StringUtility::split( vStr[i], ":" );
-			if ( tv.size() != 2 )
-			{
-				continue;
-			}
-			int16_t Index  = atoi( tv[0].c_str() );
-			int32_t Values = atoi( tv[1].c_str() );
-			if ( Type == TT_MOON_CARD )
-			{
-				m_MoonCardRecord[Index] = Values;
-			}
-			else
-			{
-				m_LevelUpRecord[Index] = Values;
-			}
-		}
+		m_SevenDayTouZiTime	= inPacket->readInt32();
+		m_SevenDayRecord	= inPacket->readInt32();
+		m_MonthTouZiTime	= inPacket->readInt32();
+		m_MonthTouZiRecord	= inPacket->readInt32();
 	}
 
 public:
-	int32_t					m_TouZiValues;			//µÈ¼¶Í¶×Ê½ð¶î
-	int32_t					m_MoonCardStartTime;	//ÔÂ¿¨Í¶×ÊÊ±¼ä
-	RecordMap				m_MoonCardRecord;		//ÔÂ¿¨Í¶×ÊÁìÈ¡¼ÇÂ¼
-	RecordMap				m_LevelUpRecord;		//µÈ¼¶Í¶×ÊÁìÈ¡¼ÇÂ¼
+	int32_t					m_SevenDayTouZiTime;	// 7ï¿½ï¿½Í¶ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t					m_SevenDayRecord;		// 7ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Â¼(Î»Í¼)
+	int32_t					m_MonthTouZiTime;		// ï¿½Â¶ï¿½Í¶ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t					m_MonthTouZiRecord;		// ï¿½Â¶ï¿½ï¿½ï¿½È¡ï¿½ï¿½Â¼(Î»Í¼)
 };
 //========================================================================================================================================
 class MemChrBagData : public IDataStruct
@@ -1455,12 +1384,12 @@ public:
 	}
 
 public:
-	int32_t	nFinishTimes;			// µ±Ç°Íê³É¼¸´ÎÁË
-	int32_t	nTaskId;				// µ±Ç°ÈÎÎñID
-	int8_t	nStar;					// µ±Ç°ÐÇ¼¶
-	int8_t	nState;					// µ±Ç°ÈÎÎñ×´Ì¬ 2 ¿É½Ó 3 ÒÑ½Ó 4 ¿ÉÌá½»
-	int32_t	nKills;					// ÒÑ¾­É±ÁË¼¸¸öÁË
-	int32_t	nRefreshStarTimes;		// Ë¢ÐÇ´ÎÊý
+	int32_t	nFinishTimes;			// ï¿½ï¿½Ç°ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	nTaskId;				// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ID
+	int8_t	nStar;					// ï¿½ï¿½Ç°ï¿½Ç¼ï¿½
+	int8_t	nState;					// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬ 2 ï¿½É½ï¿½ 3 ï¿½Ñ½ï¿½ 4 ï¿½ï¿½ï¿½á½»
+	int32_t	nKills;					// ï¿½Ñ¾ï¿½É±ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	nRefreshStarTimes;		// Ë¢ï¿½Ç´ï¿½ï¿½ï¿½
 };
 //========================================================================================================================================
 
@@ -2603,7 +2532,7 @@ public:
 		bzero( szSQL, sizeof( szSQL ) );
 		snprintf( szSQL, sizeof(szSQL)-1, "SELECT * FROM `sys_user_prevent_wallow` WHERE `uid`= %d AND `sid`= %d", nUid, nSid );
 		Answer::MySqlQuery result = db.query(szSQL);
-		//Ã»ÓÐ¼ÇÂ¼
+		//Ã»ï¿½Ð¼ï¿½Â¼
 		if (result.eof())
 		{
 			data.sid		= nSid;
@@ -2951,13 +2880,13 @@ public:
 		}
 	}
 public:
-	uint8_t			m_Quality;										//×øÆïÆ·ÖÊ(µÈ½×)
-	int32_t			m_LuckyPoint;									//ÐÒÔËÖµ
-	uint8_t			m_SkillLatticeCount;							//¿ªÆôµÄ¼¼ÄÜ¸ñ×ÓÊýÁ¿
-	int32_t			m_EatMountHeart;								//ÒÔ³Ô×øÆïÖ®ÐÄ¸öÊý
+	uint8_t			m_Quality;										//ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½(ï¿½È½ï¿½)
+	int32_t			m_LuckyPoint;									//ï¿½ï¿½ï¿½ï¿½Öµ
+	uint8_t			m_SkillLatticeCount;							//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_EatMountHeart;								//ï¿½Ô³ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½Ä¸ï¿½ï¿½ï¿½
 	uint8_t			m_nMountState;
 	uint8_t			m_CurRide;
-	std::map<uint8_t,uint8_t>	 m_SkillMap;						//<uint8_t ¼¼ÄÜÀàÐÍ,uint8_t ¼¼ÄÜµÈ¼¶>
+	std::map<uint8_t,uint8_t>	 m_SkillMap;						//<uint8_t ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,uint8_t ï¿½ï¿½ï¿½ÜµÈ¼ï¿½>
 };
 //========================================================================================================================================
 class OperateLimitDBData : public IDataStruct
@@ -3653,13 +3582,13 @@ public:
 	}
 
 public:
-	PetId_t		nPetId;							// ³èÎïID
-	int8_t		bStartIllusion;					// ³õÁéÐÞÁ¶×´Ì¬
-	int8_t		nAttrType;						// Ôö¼ÓÊôÐÔ
-	int32_t		nAttrValue;						// Ôö¼ÓÖµ
-	int32_t		nOnlineTime;					// ÔÚÏßÊ±¼ä
-	int32_t		nLeftTime;						// ³õÁéÐÞÁ¶½áÊøÊ±¼ä£¨¼ÓËÙ»úÖÆµ¼ÖÂÐèÒª¼ÆËãÊ£ÓàÊ±¼ä£©
-	int16_t		nBuyExpTimes;					// ½ñÈÕ¹ºÂò¾­ÑéÖµ´ÎÊý
+	PetId_t		nPetId;							// ï¿½ï¿½ï¿½ï¿½ID
+	int8_t		bStartIllusion;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	int8_t		nAttrType;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		nAttrValue;						// ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t		nOnlineTime;					// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t		nLeftTime;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¨ï¿½ï¿½ï¿½Ù»ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½Ê±ï¿½ä£©
+	int16_t		nBuyExpTimes;					// ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
 };
 //========================================================================================================================================
 
@@ -3730,8 +3659,8 @@ public:
 	}
 
 public:
-	int32_t		nTimes;						// Ä¤°Ý´ÎÊý
-	std::string	strCharList;				// Ä¤°ÝÁÐ±í
+	int32_t		nTimes;						// Ä¤ï¿½Ý´ï¿½ï¿½ï¿½
+	std::string	strCharList;				// Ä¤ï¿½ï¿½ï¿½Ð±ï¿½
 };
 //========================================================================================================================================
 
@@ -3802,8 +3731,8 @@ public:
 	}
 
 public:
-	int32_t	nLevel;				// µÈ¼¶
-	int64_t	nSoul;				// »êÁ¦
+	int32_t	nLevel;				// ï¿½È¼ï¿½
+	int64_t	nSoul;				// ï¿½ï¿½ï¿½ï¿½
 };
 //========================================================================================================================================
 

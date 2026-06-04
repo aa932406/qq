@@ -1,7 +1,7 @@
 #pragma once
 //////////////////////////////////////////////////////////////////////////
 //author:zxj		modify time:2012-7-7
-//description:ÓÎÏ·ÖÐ½á¹¹µÄ½á¹¹¶¨Òå
+//description:ï¿½ï¿½Ï·ï¿½Ð½á¹¹ï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////////
 #include <algorithm>
 #include <map>
@@ -24,73 +24,73 @@ typedef std::list<AddAttribute> AddAttrList;
 
 class ChrMount;
 
-//»î¶¯Êý¾Ý½á¹¹
+//ï¿½î¶¯ï¿½ï¿½ï¿½Ý½á¹¹
 struct CfgActivity 
 {
-	int32_t id;							// id±êÊ¶·û
-	int16_t	typeId;						// Àà±ð
-	Int32Vector weekday;				// »î¶¯µÄÊ±¼ä·¶Î§(1234567);s
-	int32_t begin_date;					// »î¶¯¿ªÊ¼Ê±¼ä
-	int32_t end_date;					// »î¶¯½áÊøÊ±¼ä
-	int32_t line;						// ·ÖÏß
-	Int32Vector start_hour;				// Æð³õÊ±¼ä
-	int32_t duration;					// »î¶¯×Ü³¤¶È
+	int32_t id;							// idï¿½ï¿½Ê¶ï¿½ï¿½
+	int16_t	typeId;						// ï¿½ï¿½ï¿½
+	Int32Vector weekday;				// ï¿½î¶¯ï¿½ï¿½Ê±ï¿½ä·¶Î§(1234567);s
+	int32_t begin_date;					// ï¿½î¶¯ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	int32_t end_date;					// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t line;						// ï¿½ï¿½ï¿½ï¿½
+	Int32Vector start_hour;				// ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t duration;					// ï¿½î¶¯ï¿½Ü³ï¿½ï¿½ï¿½
 	int32_t level;
 
-	Int32Vector maps;					// °üº¬µØÍ¼
-	int32_t target_mapid;				// µ±Ç°µÄµØÍ¼ID
-	Int32Vector target_regiona;			// ³öÉúµã1
-	Int32Vector target_regionb;			// ³öÉúµã2
-	int32_t state;						// »î¶¯µÄ×´Ì¬ÀàÐÍ
-	Int32Vector gift_id;				// ½±
-	Int32Vector daily_reward;			// ÈÕ³£½±Àø
+	Int32Vector maps;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
+	int32_t target_mapid;				// ï¿½ï¿½Ç°ï¿½Äµï¿½Í¼ID
+	Int32Vector target_regiona;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
+	Int32Vector target_regionb;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
+	int32_t state;						// ï¿½î¶¯ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
+	Int32Vector gift_id;				// ï¿½ï¿½
+	Int32Vector daily_reward;			// ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½
 	int32_t exp_add_interval;
-	int32_t	iconid;						// »î¶¯Í¼±êID
+	int32_t	iconid;						// ï¿½î¶¯Í¼ï¿½ï¿½ID
 };
-//»î¶¯ÁÐ±í
+//ï¿½î¶¯ï¿½Ð±ï¿½
 typedef std::map<int32_t, CfgActivity> CfgActivityTable;
 
-//»î¶¯¹ÖÎï
+//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
 typedef std::list<Position> PosList;
 struct CfgActivityMonster 
 {
 	int32_t id;
-	int32_t wave;//¹ÖÎï²¨´Î
+	int32_t wave;//ï¿½ï¿½ï¿½ï²¨ï¿½ï¿½
 	int32_t mid;
 	int32_t x;
 	int32_t y;
 	int32_t count;
 	int32_t side;
 	PosList road;
-	int32_t	delay;	// Ë¢¹Ö¼ä¸ô
-	int32_t	times;	// Ë¢¹Ö´ÎÊý
+	int32_t	delay;	// Ë¢ï¿½Ö¼ï¿½ï¿½
+	int32_t	times;	// Ë¢ï¿½Ö´ï¿½ï¿½ï¿½
 };
-//ËùÓÐ»î¶¯ÖÐµÄ¹ÖÎï±í
+//ï¿½ï¿½ï¿½Ð»î¶¯ï¿½ÐµÄ¹ï¿½ï¿½ï¿½ï¿½
 typedef std::map<int32_t, CfgActivityMonster> CfgActivityMonsterTable;
 
-//»î¶¯Npc
+//ï¿½î¶¯Npc
 struct CfgActivityNpc 
 {
-	int32_t id;							//ID±êÊ¶·û
-	int32_t activity_id;				//»î¶¯ID
+	int32_t id;							//IDï¿½ï¿½Ê¶ï¿½ï¿½
+	int32_t activity_id;				//ï¿½î¶¯ID
 	int32_t npc_id;						//ncp ID
-	int32_t count;						//NPC¸öÊý
-	Int32Vector region_id;				//ÇøÓòIDs
+	int32_t count;						//NPCï¿½ï¿½ï¿½ï¿½
+	Int32Vector region_id;				//ï¿½ï¿½ï¿½ï¿½IDs
 };
 typedef std::list<CfgActivityNpc> CfgActivityNpcList;
 typedef std::map<int32_t, CfgActivityNpc> CfgActivityNpcTable;
 
 
-//»î¶¯Ö²Îï
+//ï¿½î¶¯Ö²ï¿½ï¿½
 struct CfgActivityPlant 
 {
-	int32_t id;							//ID±êÊ¶·û
-	int32_t activity_id;				//»î¶¯ID
-	int32_t plant_id;					//Ö²ÎïID
-	int32_t count;						//Ö²Îï¸öÊý
-	int32_t wave;						//·¢¶¯
-	int32_t region_id;					//ÇøÓòID
-	int32_t whoplant;					//²É¼¯Õß
+	int32_t id;							//IDï¿½ï¿½Ê¶ï¿½ï¿½
+	int32_t activity_id;				//ï¿½î¶¯ID
+	int32_t plant_id;					//Ö²ï¿½ï¿½ID
+	int32_t count;						//Ö²ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t wave;						//ï¿½ï¿½ï¿½ï¿½
+	int32_t region_id;					//ï¿½ï¿½ï¿½ï¿½ID
+	int32_t whoplant;					//ï¿½É¼ï¿½ï¿½ï¿½
 	std::vector<Position>	EnterPosVector;
 };
 
@@ -98,7 +98,7 @@ typedef std::list<CfgActivityPlant> CfgActivityPlantList;
 
 typedef std::map<int32_t, CfgActivityPlant> CfgActivityPlantTable;
 
-//»î¶¯´¥·¢Æ÷
+//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 struct CfgActivityTrap 
 {
 	int32_t id;
@@ -118,7 +118,7 @@ struct CfgActivityDrop
 };
 typedef std::map<int32_t, CfgActivityDrop> CfgActivityDropTable;
 
-// ÕóÓªÕ½²ÎÓë½±Àø
+// ï¿½ï¿½ÓªÕ½ï¿½ï¿½ï¿½ë½±ï¿½ï¿½
 struct CfgFamilyWarJoinReward 
 {
 	int32_t level;
@@ -188,13 +188,13 @@ private:
 	Int32Vector vAddExp;
 };
 
-// ·ÉÌìÉñ¾Ô½±Àø
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½
 struct CfgHorseRacingReward 
 {
 	int32_t nIndex;
 	int32_t nMaxIndex;
-	int32_t	nExp;			// ¾­Ñé
-	int32_t	nMoney;			// ½ðÇ®
+	int32_t	nExp;			// ï¿½ï¿½ï¿½ï¿½
+	int32_t	nMoney;			// ï¿½ï¿½Ç®
 	MemChrBagVector			Items;
 };
 typedef std::list<CfgHorseRacingReward> CfgHorseRacingRewardList;
@@ -241,7 +241,7 @@ struct CfgAnnoucementTime
 };
 typedef std::vector<CfgAnnoucementTime> CfgAnnoucementTimeTable;
 
-struct BuffAttr //¼¼ÄÜ¹¥»÷ÊôÐÔ¡£¡£´óÐ¡Ö®ÀàµÄ
+struct BuffAttr //ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ö®ï¿½ï¿½ï¿½
 {
 	int32_t getRatio(int32_t level)
 	{
@@ -260,48 +260,48 @@ struct BuffAttr //¼¼ÄÜ¹¥»÷ÊôÐÔ¡£¡£´óÐ¡Ö®ÀàµÄ
 	int32_t addon_ratio;
 };
 
-struct CfgBuff //¼¼ÄÜÐ§¹û
+struct CfgBuff //ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 {
 	int32_t id;
 	int32_t beneficial;
 	int32_t special;
-	int32_t duration;//³¤¶Ì
-	int32_t interval;//¼ä¸ô
+	int32_t duration;//ï¿½ï¿½ï¿½ï¿½
+	int32_t interval;//ï¿½ï¿½ï¿½
 	BuffAttr buffAttr[2];
-	int8_t	isShow;	//ÊÇ·ñÒª·¢¸ø¿Í»§¶ËÏÔÊ¾
+	int8_t	isShow;	//ï¿½Ç·ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 };
 typedef std::map<int32_t, CfgBuff> CfgBuffTable;
 
 struct CfgDungeon 
 {
-	int32_t id;				// ¸±±¾ID
-	std::string name;		// ¸±±¾Ãû³Æ
-	int32_t mapid;			// µØÍ¼ID
-	int16_t x;				// ½øÈëµãX
-	int16_t y;				// ½øÈëµãY
-	int8_t	type;			// ÀàÐÍ DungeonType
-	int32_t group_id;		// ËùÔÚ×é£¨¹²Ïí½øÈë´ÎÊý£©
-	int32_t duration;		// ³ÖÐøÊ±¼ä
-	int16_t level;			// ÐèÇóµÈ¼¶
-	int16_t	maxLevel;		// µÈ¼¶ÏÞÖÆ
-	int8_t	vip;			// ÐèÇóVIPµÈ¼¶
-	int32_t last_id;		// Ç°Ò»¸ö¸±±¾ID
-	int32_t next_id;		// ºóÒ»¸ö¸±±¾ID
-	int8_t	player_num;		// ÈËÊýÏÞÖÆ
-	int8_t	weekday;		// Ã¿ÖÜ¿ª·ÅÈÕ
-	int8_t	start_hour;		// Ã¿ÈÕ¿ªÊ¼Ê±¼ä
-	int8_t	end_hour;		// Ã¿ÈÕ½áÊøÊ±¼ä
-	int8_t	daily_count;	// Ã¿ÈÕ´ÎÊýÏÞÖÆ
-	int32_t player_buff;	// ÈËÎïBUFF
-	int32_t star;			// ÐÇÊý
-	int32_t	double_cost;	// Ë«±¶ÏûºÄ
-	int32_t	reward_time;	// ÁìÈ¡½±ÀøÊ±¼ä(Ãë)
-	ItemData costItem;		// ½øÈëÏûºÄ
-	MemChrBag rewardOnce;	// Ê×Í¨½±Àø
-	MemChrBag rewardItem;	// Í¨¹Ø½±Àø
-	int32_t	  Battle;		// Õ½¶·Á¦ÖîÉñÖ®Õ½Í¨¹Ø¼ÓµÄÕ½¶·Àï
-	int32_t  costGold;		// ÏûºÄµÄÔª±¦
-	int32_t  costMoney;		// ÏûºÄµÄÍ­Ç®
+	int32_t id;				// ï¿½ï¿½ï¿½ï¿½ID
+	std::string name;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mapid;			// ï¿½ï¿½Í¼ID
+	int16_t x;				// ï¿½ï¿½ï¿½ï¿½ï¿½X
+	int16_t y;				// ï¿½ï¿½ï¿½ï¿½ï¿½Y
+	int8_t	type;			// ï¿½ï¿½ï¿½ï¿½ DungeonType
+	int32_t group_id;		// ï¿½ï¿½ï¿½ï¿½ï¿½é£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t duration;		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int16_t level;			// ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+	int16_t	maxLevel;		// ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t	vip;			// ï¿½ï¿½ï¿½ï¿½VIPï¿½È¼ï¿½
+	int32_t last_id;		// Ç°Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	int32_t next_id;		// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	int8_t	player_num;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t	weekday;		// Ã¿ï¿½Ü¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t	start_hour;		// Ã¿ï¿½Õ¿ï¿½Ê¼Ê±ï¿½ï¿½
+	int8_t	end_hour;		// Ã¿ï¿½Õ½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int8_t	daily_count;	// Ã¿ï¿½Õ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t player_buff;	// ï¿½ï¿½ï¿½ï¿½BUFF
+	int32_t star;			// ï¿½ï¿½ï¿½ï¿½
+	int32_t	double_cost;	// Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	reward_time;	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½)
+	ItemData costItem;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MemChrBag rewardOnce;	// ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	MemChrBag rewardItem;	// Í¨ï¿½Ø½ï¿½ï¿½ï¿½
+	int32_t	  Battle;		// Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Õ½Í¨ï¿½Ø¼Óµï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	int32_t  costGold;		// ï¿½ï¿½ï¿½Äµï¿½Ôªï¿½ï¿½
+	int32_t  costMoney;		// ï¿½ï¿½ï¿½Äµï¿½Í­Ç®
 };
 typedef std::vector<CfgDungeon> CfgDungeonVector;
 typedef std::map<int32_t, CfgDungeon> CfgDungeonTable;
@@ -379,16 +379,16 @@ typedef std::map<int32_t, CfgDungeonDropGroup> CfgDungeonDropGroupTable;
 struct CfgDungeonMonster 
 {
 	int32_t id;
-	int32_t wave;//¹ÖÎï²¨´Î
+	int32_t wave;//ï¿½ï¿½ï¿½ï²¨ï¿½ï¿½
 	int32_t mid;
 	int32_t x;
 	int32_t y;
 	int32_t count;
 	int32_t side;
 	PosList road;
-	int32_t	delay;	// Ë¢¹Ö¼ä¸ô
-	int32_t	times;	// Ë¢¹Ö´ÎÊý
-	int32_t	money;	// ½±Àø½ðÇ®
+	int32_t	delay;	// Ë¢ï¿½Ö¼ï¿½ï¿½
+	int32_t	times;	// Ë¢ï¿½Ö´ï¿½ï¿½ï¿½
+	int32_t	money;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç®
 };
 typedef std::map<int32_t, CfgDungeonMonster> CfgDungeonMonsterTable;
 
@@ -435,11 +435,11 @@ typedef std::map<int8_t, CfgOnlineReward> CfgOnlineRewardTable;
 
 struct CfgOffLineExp
 {
-	int32_t				Level;			//µÈ¼¶
-	int32_t				MinuteExp;		//ÀëÏßÃ¿·ÖÖÓ»î¶¯µÄ½±Àø
-	int32_t				TwoTimes;		//Ë«±¶ÁìÈ¡Ò»¸öµ¥Î»¾­ÑéµÄµ¥¼Û
-	int32_t				ThreeTimes;		//3±¶ÁìÈ¡Ò»¸öµ¥Î»¾­ÑéµÄµ¥¼Û
-	int32_t				BaseExp;		//Ò»¸öµ¥Î»µÄ¾­Ñé
+	int32_t				Level;			//ï¿½È¼ï¿½
+	int32_t				MinuteExp;		//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ó»î¶¯ï¿½Ä½ï¿½ï¿½ï¿½
+	int32_t				TwoTimes;		//Ë«ï¿½ï¿½ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
+	int32_t				ThreeTimes;		//3ï¿½ï¿½ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
+	int32_t				BaseExp;		//Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä¾ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t,CfgOffLineExp> CfgOffLineExpTable;
 
@@ -513,7 +513,7 @@ struct CfgItemBase
 
 struct CfgItem : public CfgItemBase
 {
-	std::string effect;//×÷ÓÃÐ§¹û
+	std::string effect;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 	std::string use_method;
 	int32_t downgrade;
 	int32_t group_id;
@@ -585,26 +585,26 @@ struct CfgLevelExp
 };
 typedef std::map<int32_t, CfgLevelExp> CfgLevelExpTable;
 
-//µØÍ¼Êý¾Ý½á¹¹
+//ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ý½á¹¹
 struct CfgMap 
 {
 	int32_t id;									//ID
-	std::string name;							//Ãû³Æ
-	int32_t type;								//Àà±ð
-	int32_t param;								//»î¶¯Id²îÊý
-	int32_t width;								//¿í
-	int32_t height;								//¸ß
-	int32_t revive;								//¸´»î
+	std::string name;							//ï¿½ï¿½ï¿½ï¿½
+	int32_t type;								//ï¿½ï¿½ï¿½
+	int32_t param;								//ï¿½î¶¯Idï¿½ï¿½ï¿½ï¿½
+	int32_t width;								//ï¿½ï¿½
+	int32_t height;								//ï¿½ï¿½
+	int32_t revive;								//ï¿½ï¿½ï¿½ï¿½
 	int32_t pk_mode;							//pkÄ£Ê½
-	int32_t anti_protect;						//±£»¤Ä£Ê½
-	int32_t isMount;							//ÊÇ·ñ¿ÉÆï³Ë
-	int32_t isFly;								//ÊÇ·ñ¿ÉÒÔ·É
-	int32_t isVicegeneral;						//ÊÇ·ñ¶à¸±½«
-	int32_t player_level;						//Íæ¼ÒµÈ¼¶
-	int32_t player_level_max;					//Íæ¼Ò×î¸ßµÈ¼¶
-	int32_t team_member;						//ÍÅ¶Ó³ÉÔ±Êý
-	int32_t hide_mini;							//Òþ²ØÐ¡µØÍ¼
-	int32_t runnerId;							//ËùÊôµØÍ¼Ïß³Ì
+	int32_t anti_protect;						//ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	int32_t isMount;							//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t isFly;								//ï¿½Ç·ï¿½ï¿½ï¿½Ô·ï¿½
+	int32_t isVicegeneral;						//ï¿½Ç·ï¿½à¸±ï¿½ï¿½
+	int32_t player_level;						//ï¿½ï¿½ÒµÈ¼ï¿½
+	int32_t player_level_max;					//ï¿½ï¿½ï¿½ï¿½ï¿½ßµÈ¼ï¿½
+	int32_t team_member;						//ï¿½Å¶Ó³ï¿½Ô±ï¿½ï¿½
+	int32_t hide_mini;							//ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Í¼
+	int32_t runnerId;							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ß³ï¿½
 	int8_t	jump;
 
 	bool isType( const MapType& mt ) const
@@ -614,19 +614,19 @@ struct CfgMap
 };
 typedef std::map<int32_t, CfgMap> CfgMapTable;
 
-//¹ÖÎïÔÚµØÍ¼Î»ÖÃÊý¾Ý½á¹¹
+//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Í¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 struct CfgMapMonster 
 {
-	int32_t id;							//¹ÖÎïÎ¨Ò»id
-	int32_t mapid;						//µØÍ¼ID		
-	int32_t monsterid;					//¹ÖÎïID
-	int32_t x;							//xÎ»ÖÃ
-	int32_t y;							//yÎ»ÖÃ
+	int32_t id;							//ï¿½ï¿½ï¿½ï¿½Î¨Ò»id
+	int32_t mapid;						//ï¿½ï¿½Í¼ID		
+	int32_t monsterid;					//ï¿½ï¿½ï¿½ï¿½ID
+	int32_t x;							//xÎ»ï¿½ï¿½
+	int32_t y;							//yÎ»ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgMapMonster> CfgMonsterMap;
-//Ò»ÕÅµØÍ¼ÉÏ¹ÖÎïÁÐ±í
+//Ò»ï¿½Åµï¿½Í¼ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 typedef std::vector<CfgMapMonster> CfgMapMonsterVector;
-//ËùÓÐµØÍ¼ÉÏ¹ÖÎïÁÐ±í
+//ï¿½ï¿½ï¿½Ðµï¿½Í¼ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 typedef std::map<int32_t, CfgMapMonsterVector> CfgMapMonsterTable;
 
 struct CfgMapPlant 
@@ -652,7 +652,7 @@ struct CfgMapRect
 typedef std::vector<CfgMapRect> CfgMapRectVector;
 typedef std::map<int32_t, CfgMapRectVector> CfgMapRectTable;
 
-//µØÍ¼·¶Î§
+//ï¿½ï¿½Í¼ï¿½ï¿½Î§
 struct CfgMapRegion 
 {
 	int32_t id;
@@ -668,40 +668,40 @@ typedef std::map<int32_t, CfgMapRegionVector> Int32CfgMapRegionVectorMap;
 typedef std::map<int32_t, CfgMapRegion> CfgMapRegionTable;
 
 #define MAX_MONSTER_SKILL	10
-struct CfgMonster // ¹ÖÎï
+struct CfgMonster // ï¿½ï¿½ï¿½ï¿½
 {
 	int32_t mid;
 	std::string name;
 	int32_t level;
 	int32_t quality;
 
-	int32_t hp;						// ×î´óÑªÁ¿
-	int32_t phy_atk_min;			// ×îÐ¡ÎïÀí¹¥»÷
-	int32_t phy_atk_max;			// ×î´óÎïÀí¹¥»÷
-	int32_t mag_atk_min;			// ×îÐ¡Ä§·¨¹¥»÷
-	int32_t mag_atk_max;			// ×î´óÄ§·¨¹¥»÷
-	int32_t phy_def;				// ÎïÀí·ÀÓù
-	int32_t mag_def;				// Ä§·¨·ÀÓù
-	int32_t hitrate;				// ÃüÖÐ
-	int32_t dodge;					// ÉÁ±Ü
-	int32_t critrate;				// ±©»÷
-	int32_t dmg_add;				// ¶îÍâÉËº¦
-	int32_t dmg_rdc;				// ºöÊÓÉËº¦
-	int32_t dmg_add_pec;			// ÉËº¦¼Ó³É£¨%£©
-	int32_t dmg_rdc_pec;			// ÉËº¦¼õÃâ£¨%£©
-	int32_t movespeed;				// ÒÆ¶¯ËÙ¶È
-	int32_t	battle;					// ÐÒÔËÖµ
+	int32_t hp;						// ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+	int32_t phy_atk_min;			// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t phy_atk_max;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_atk_min;			// ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_atk_max;			// ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t phy_def;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_def;				// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t hitrate;				// ï¿½ï¿½ï¿½ï¿½
+	int32_t dodge;					// ï¿½ï¿½ï¿½ï¿½
+	int32_t critrate;				// ï¿½ï¿½ï¿½ï¿½
+	int32_t dmg_add;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+	int32_t dmg_rdc;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+	int32_t dmg_add_pec;			// ï¿½Ëºï¿½ï¿½Ó³É£ï¿½%ï¿½ï¿½
+	int32_t dmg_rdc_pec;			// ï¿½Ëºï¿½ï¿½ï¿½ï¿½â£¨%ï¿½ï¿½
+	int32_t movespeed;				// ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+	int32_t	battle;					// ï¿½ï¿½ï¿½ï¿½Öµ
 
 	int32_t exp;
-	int32_t type;//ÀàÐÍ0.¹ÖÎï 1.ÏÝÚå
+	int32_t type;//ï¿½ï¿½ï¿½ï¿½0.ï¿½ï¿½ï¿½ï¿½ 1.ï¿½ï¿½ï¿½ï¿½
 	int32_t kingdom_contribute;
 	int32_t revive_time;
 	int32_t skill_id;
 	MonsterSkill unique_skill[MAX_MONSTER_SKILL];
 	MonsterSkill random_skill[MAX_MONSTER_SKILL];
 	int32_t angry_time;
-	int32_t standby;//´ýÃü
-	int32_t hpPercent;//¹éÎ»Ê±ÑªÁ¿Ôö¼ÓÇ§·Ö±È
+	int32_t standby;//ï¿½ï¿½ï¿½ï¿½
+	int32_t hpPercent;//ï¿½ï¿½Î»Ê±Ñªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç§ï¿½Ö±ï¿½
 	int32_t ai_style;
 	int32_t ai_target;
 	int32_t has_kingdom;
@@ -800,7 +800,7 @@ struct CfgNpcAirport
 };
 typedef std::map<int32_t, CfgNpcAirport> CfgNpcAirportTable;
 
-struct CfgGamble//Ï¡ÊÀ±¦¸ó
+struct CfgGamble//Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 	  int32_t id;
 	  int32_t ratio;
@@ -849,7 +849,7 @@ struct CfgNpcKingdomShop
 };
 typedef std::map<int32_t, CfgNpcKingdomShop> CfgNpcKingdomShopTable;
 
-struct CfgNpcTrade //Ã³Ò×
+struct CfgNpcTrade //Ã³ï¿½ï¿½
 {
 	int32_t id;
 	int32_t npcid;
@@ -943,7 +943,7 @@ struct CfgSkill
 		return roundInt(buff_rate_base + buff_rate_ratio*level*0.1);
 	}
 
-	//Ö÷ÒªÏÞÖÆ²»¿ÉÉý¼¶µÄ¼¼ÄÜ
+	//ï¿½ï¿½Òªï¿½ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 	int32_t getLevelLimit(int32_t level)
 	{
 		return level + level_base;
@@ -958,8 +958,8 @@ struct CfgSkill
 	int32_t area;					// RangeArea
 	int32_t	self;					// SKILL_TARGET_POS
 	int32_t target_num;
-	int32_t beneficial;				// ÔöÒæ±ê¼Ç
-	int32_t sp;						//·ÉÐÐËÙ¶È
+	int32_t beneficial;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t sp;						//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
 	int32_t study_level;
 	int32_t money_base;
 	int32_t money_ratio;
@@ -971,12 +971,12 @@ struct CfgSkill
 	int32_t angry_cost;
 	int32_t special;				// SkillSpecial
 	int32_t attack_type;			// SKILL_ATTACK_TYPE
-	int32_t attack_modify_base;		// ¹¥»÷ÐÞÕý»ù´¡Öµ
-	int32_t attack_modify_ratio;	// ¹¥»÷ÐÞÕýÏµÊý
-	int32_t attack_addon_base;		// ¹¥»÷¼Ó³É»ù´¡Öµ
-	int32_t attack_addon_ratio;		// ¹¥»÷¼Ó³ÉÏµÊý
-	int32_t buff_rate_base;			// buff¸ÅÂÊ»ù´¡Öµ
-	int32_t buff_rate_ratio;		// buff¸ÅÂÊÏµÊý
+	int32_t attack_modify_base;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t attack_modify_ratio;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
+	int32_t attack_addon_base;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ó³É»ï¿½ï¿½ï¿½Öµ
+	int32_t attack_addon_ratio;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½Ïµï¿½ï¿½
+	int32_t buff_rate_base;			// buffï¿½ï¿½ï¿½Ê»ï¿½ï¿½ï¿½Öµ
+	int32_t buff_rate_ratio;		// buffï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
 	int32_t buff;
 	int32_t level_base;
 	int32_t maxLevel;
@@ -1092,10 +1092,10 @@ struct CfgTrap
 {
 	int32_t id;
 	int32_t cd;
-	int32_t delay;			// ÑÓ³ÙÏìÓ¦
-	int32_t	event_type;		// ´¥·¢Ð§¹û
-	std::string effect;		// Ð§¹û²ÎÊý
-	int32_t item_cost;		// ´¥·¢µÀ¾ß
+	int32_t delay;			// ï¿½Ó³ï¿½ï¿½ï¿½Ó¦
+	int32_t	event_type;		// ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+	std::string effect;		// Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t item_cost;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgTrap> CfgTrapTable;
 
@@ -1110,7 +1110,7 @@ typedef std::vector<cfgParam> cfgParams;
 typedef std::map<int16_t, cfgParams> cfgParamsTable;
 
 
-//ÆÕÍ¨»î¶¯µÄÀ©Õ¹
+//ï¿½ï¿½Í¨ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½Õ¹
 struct cfgExActivity
 {
 	int16_t actid;
@@ -1138,7 +1138,7 @@ struct SysServerRatio
 };
 typedef std::map<int32_t, SysServerRatio> SysServerRatioTable;
 
-//×øÆï×°±¸Êý¾Ý½á¹¹
+//ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 struct CfgMountEquip
 {
 	int32_t		id;
@@ -1149,46 +1149,46 @@ struct CfgMountEquip
 };
 typedef std::map<int32_t, CfgMountEquip> CfgMountEquipTable;
 
-////¹ú¼ÒÊý¾Ý½á¹¹
+////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 //struct CfgKingdom
 //{
-//	int32_t id;								//¹ú¼ÒID
-//	std::string name;						//¹ú¼ÒÃû³Æ
-//	int32_t task_id;						//Ñ¡Ôñ¹ú¼ÒºóÈÎÎñID
-//	int32_t random_gift;					//Ëæ»úÀñ°ü
+//	int32_t id;								//ï¿½ï¿½ï¿½ï¿½ID
+//	std::string name;						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	int32_t task_id;						//Ñ¡ï¿½ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½ID
+//	int32_t random_gift;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //};
-////¹ú¼ÒÁÐ±í
+////ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 //typedef std::map<int32_t, CfgKingdom> CfgKingdomTable;
 
 struct CfgYellowStone
 {
 	int32_t id;
-	int32_t yellow_type; //1:»Æ×êÃ¿ÈÕÀñ°ü(µÈ¼¶Îª»Æ×êµÈ¼¶) 2:Äê·Ñ»Æ×ê¶îÍâÃ¿ÈÕÀñ°ü 3:»Æ×ê³É³¤Àñ°ü(µÈ¼¶ÎªÈËÎïµÈ¼¶) 4:»Æ×êÐÂÊÖÀñ°ü
-	int32_t level; //µÈ¼¶
+	int32_t yellow_type; //1:ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½È¼ï¿½Îªï¿½ï¿½ï¿½ï¿½È¼ï¿½) 2:ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ 3:ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½ï¿½(ï¿½È¼ï¿½Îªï¿½ï¿½ï¿½ï¿½È¼ï¿½) 4:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t level; //ï¿½È¼ï¿½
 	MemChrBagVector awards;
 };
 typedef std::map<int32_t, CfgYellowStone> CfgYellowStoneTables;
 
 
-// ×°±¸±í
+// ×°ï¿½ï¿½ï¿½ï¿½
 #define MAX_EQUIP_BASE_ATTR_COUNT	4
 struct CfgEquip
 {
 	int32_t		m_nId;										// id
-	int8_t		m_nType;									// ÀàÐÍ EQUIP_TYPE
-	int32_t		m_nLevel;									// µÈ¼¶
-	int32_t		m_nSoulLevel;								// »êÁ¦µÈ¼¶
+	int8_t		m_nType;									// ï¿½ï¿½ï¿½ï¿½ EQUIP_TYPE
+	int32_t		m_nLevel;									// ï¿½È¼ï¿½
+	int32_t		m_nSoulLevel;								// ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
 	int8_t		m_nJob;										// Ö°Òµ
-	int8_t		m_nQuality;									// Æ·ÖÊ
-	int32_t		m_nSuitId;									// Ì××°ID
-	int32_t		m_nPrice;									// ÊÛ¼Û
-	int32_t		m_nGrade;									// µµ´Î
-	int32_t		m_nRansomWorth;								// Êê»Ø¼ÛÖµ
+	int8_t		m_nQuality;									// Æ·ï¿½ï¿½
+	int32_t		m_nSuitId;									// ï¿½ï¿½×°ID
+	int32_t		m_nPrice;									// ï¿½Û¼ï¿½
+	int32_t		m_nGrade;									// ï¿½ï¿½ï¿½ï¿½
+	int32_t		m_nRansomWorth;								// ï¿½ï¿½Ø¼ï¿½Öµ
 	int32_t		m_Battle;
-	AttrAddon	m_vAttr[MAX_EQUIP_BASE_ATTR_COUNT];			// »ù´¡ÊôÐÔ
-	AttrAddon	m_StarAttr[MAX_EQUIP_BASE_ATTR_COUNT];		// Ç¿»¯»ù´¡ÊôÐÔ
-	int32_t		m_nWuHunExp;								// Îä»ê¾­Ñé
-	int8_t		m_nBroadcast;								// µôÂäÊÇ·ñ¹«¸æ
+	AttrAddon	m_vAttr[MAX_EQUIP_BASE_ATTR_COUNT];			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AttrAddon	m_StarAttr[MAX_EQUIP_BASE_ATTR_COUNT];		// Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		m_nWuHunExp;								// ï¿½ï¿½ê¾­ï¿½ï¿½
+	int8_t		m_nBroadcast;								// ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ¹«¸ï¿½
 };
 typedef std::map<int32_t, CfgEquip> CfgEquipMap;
 
@@ -1209,16 +1209,16 @@ public:
 		bzero( &m_CostUsualItem, sizeof( m_CostUsualItem ) );
 		bzero( &m_CostSpecialItem, sizeof( m_CostSpecialItem ) );
 	}
-	int32_t			m_nId;					// Ô­×°±¸id					
-	int32_t			m_nGiveId;				// Éý¼¶ºóµÄ×°±¸Id		
-	int32_t			m_nFailLine;			// ¿ªÊ¼ÓÐ±©»÷µÄÐÒÔËÖµ							
-	int32_t			m_nSuccessLine;			// ±Ø¶¨³É¹¦µÄÐÒÔËÖµ
-	int32_t			m_nFullLucky;			// ÐÒÔËÖµ×î´óÖµ
-	int32_t			m_nGetLucky;			// Ê§°Ü»ñµÃµÄÐÒÔËÖµ
-	int32_t			m_nRate;				// ±©»÷¸ÅÂÊ
-	int32_t			m_nTotalRate;			// ×î´óËæ»úÖµ
-	ItemData		m_CostUsualItem;		// ÆÕÍ¨ÎïÆ·			
-	ItemData		m_CostSpecialItem;		// ÌØÊâÎïÆ·					
+	int32_t			m_nId;					// Ô­×°ï¿½ï¿½id					
+	int32_t			m_nGiveId;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Id		
+	int32_t			m_nFailLine;			// ï¿½ï¿½Ê¼ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ							
+	int32_t			m_nSuccessLine;			// ï¿½Ø¶ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nFullLucky;			// ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Öµ
+	int32_t			m_nGetLucky;			// Ê§ï¿½Ü»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nRate;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nTotalRate;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	ItemData		m_CostUsualItem;		// ï¿½ï¿½Í¨ï¿½ï¿½Æ·			
+	ItemData		m_CostSpecialItem;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·					
 };
 typedef std::map<int32_t, CfgEquipUpGrade> CfgEquipUpGradeMap;
 
@@ -1241,18 +1241,18 @@ public:
 		bzero( &m_CostUsualItem, sizeof( m_CostUsualItem ) );
 		bzero( &m_CostSpecialItem, sizeof( m_CostSpecialItem ) );
 	}
-	int32_t			m_nId;					// Ô­×°±¸id					
-	int32_t			m_nGiveId;				// Éý¼¶ºóµÄ×°±¸Id		
-	int32_t			m_nFailLine;			// ¿ªÊ¼ÓÐ±©»÷µÄÐÒÔËÖµ							
-	int32_t			m_nSuccessLine;			// ±Ø¶¨³É¹¦µÄÐÒÔËÖµ
-	int32_t			m_nFullLucky;			// ÐÒÔËÖµ×î´óÖµ
-	int32_t			m_nGetLucky;			// Ê§°Ü»ñµÃµÄÐÒÔËÖµ
-	int32_t			m_nRate;				// ±©»÷¸ÅÂÊ
-	int32_t			m_nTotalRate;			// ×î´óËæ»úÖµ
-	ItemData		m_CostUsualItem;		// ÆÕÍ¨ÎïÆ·			
-	ItemData		m_CostSpecialItem;		// ÌØÊâÎïÆ·	
-	int32_t			m_OpenHoleRate;			// ¿ªÆôµÚÒ»±¦Ê¯¿×µÄ¸ÅÂÊ
-	int32_t			m_OpenSecondHoleRate;	// ¿ªÆôµÚ¶þ±¦Ê¯¿×µÄ¸ÅÂÊ
+	int32_t			m_nId;					// Ô­×°ï¿½ï¿½id					
+	int32_t			m_nGiveId;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Id		
+	int32_t			m_nFailLine;			// ï¿½ï¿½Ê¼ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ							
+	int32_t			m_nSuccessLine;			// ï¿½Ø¶ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nFullLucky;			// ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Öµ
+	int32_t			m_nGetLucky;			// Ê§ï¿½Ü»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nRate;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nTotalRate;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	ItemData		m_CostUsualItem;		// ï¿½ï¿½Í¨ï¿½ï¿½Æ·			
+	ItemData		m_CostSpecialItem;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·	
+	int32_t			m_OpenHoleRate;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¯ï¿½×µÄ¸ï¿½ï¿½ï¿½
+	int32_t			m_OpenSecondHoleRate;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Ê¯ï¿½×µÄ¸ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgEquipUpQuality> CfgEquipUpQualityMap;
 
@@ -1272,15 +1272,15 @@ public:
 		bzero( &m_CostUsualItem, sizeof( m_CostUsualItem ) );
 		bzero( &m_CostSpecialItem,sizeof( m_CostSpecialItem ));
 	}
-	int32_t			m_nStar;								// ÐÇ¼¶
-	int32_t			m_nFailLine;							// ±Ø¶¨Ê§°ÜÏß
-	int32_t			m_nSuccessLine;							// ±Ø¶¨³É¹¦Ïß
-	int32_t			m_nFullLucky;							// ×ÜÐÒÔËÖµ
-	int32_t			m_nFailAddLucky;						// Ê§°Ü¼ÓµÄÐÒÔËÖµ
-	int32_t			m_nRate;								// ³É¹¦¸ÅÂÊ
-	int32_t			m_nTotalRate;							// ³É¹¦×Ü¸ÅÂÊ
-	ItemData		m_CostUsualItem;						// ÏûºÄÆÕÍ¨µÀ¾ßÁÐ±í
-	ItemData		m_CostSpecialItem;						// ÏûºÄÌØÊâµÀ¾ß
+	int32_t			m_nStar;								// ï¿½Ç¼ï¿½
+	int32_t			m_nFailLine;							// ï¿½Ø¶ï¿½Ê§ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nSuccessLine;							// ï¿½Ø¶ï¿½ï¿½É¹ï¿½ï¿½ï¿½
+	int32_t			m_nFullLucky;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nFailAddLucky;						// Ê§ï¿½Ü¼Óµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_nRate;								// ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nTotalRate;							// ï¿½É¹ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½
+	ItemData		m_CostUsualItem;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	ItemData		m_CostSpecialItem;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgEquipUpStar> CfgEquipUpStarMap;
 
@@ -1326,14 +1326,14 @@ public:
 		}
 		return 0;
 	}
-	int32_t			m_nLevel;								// µÈ¼¶
-	int32_t			m_nMaxRate;								// ×Ü¸ÅÂÊ
-	CfgAddAttrList	m_lstAddAttr;							// ¸½¼ÓÊôÐÔÁÐ±í
+	int32_t			m_nLevel;								// ï¿½È¼ï¿½
+	int32_t			m_nMaxRate;								// ï¿½Ü¸ï¿½ï¿½ï¿½
+	CfgAddAttrList	m_lstAddAttr;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 };
 typedef std::map<int32_t, CfgEquipAddAttr> CfgEquipAddAttrMap;
 
-#define EQUIP_GOAL_STAR		1		// Ç¿»¯ÐÇ¼¶
-#define EQUIP_GOAL_GEM		2		// ±¦Ê¯µÈ¼¶
+#define EQUIP_GOAL_STAR		1		// Ç¿ï¿½ï¿½ï¿½Ç¼ï¿½
+#define EQUIP_GOAL_GEM		2		// ï¿½ï¿½Ê¯ï¿½È¼ï¿½
 class CfgEquipGoal
 {
 public:
@@ -1346,10 +1346,10 @@ public:
 		bzero( m_vAddAttr, sizeof( m_vAddAttr ) );
 	}
 	
-	int32_t		m_nIndex;								// ÐòÁÐ
-	int8_t		m_nType;								// ÀàÐÍ
-	int32_t		m_nParam;								// ²ÎÊý
-	AttrAddon	m_vAddAttr[MAX_EQUIP_ADD_ATTR_COUNT];	// ¸½¼ÓÊôÐÔÁÐ±í
+	int32_t		m_nIndex;								// ï¿½ï¿½ï¿½ï¿½
+	int8_t		m_nType;								// ï¿½ï¿½ï¿½ï¿½
+	int32_t		m_nParam;								// ï¿½ï¿½ï¿½ï¿½
+	AttrAddon	m_vAddAttr[MAX_EQUIP_ADD_ATTR_COUNT];	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 };
 typedef std::map<int32_t, CfgEquipGoal> CfgEquipGoalMap;
 
@@ -1383,9 +1383,9 @@ public:
 		return attrList;
 	}
 
-	int32_t			m_nId;									// ÐòÁÐ
-	Int32List		m_lstEquips;							// Ì××°°üº¬×°±¸ÁÐ±í 
-	CfgSuitAttrList	m_lstSuitAttr;							// ¸½¼ÓÊôÐÔÁÐ±í
+	int32_t			m_nId;									// ï¿½ï¿½ï¿½ï¿½
+	Int32List		m_lstEquips;							// ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½Ð±ï¿½ 
+	CfgSuitAttrList	m_lstSuitAttr;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 };
 typedef std::map<int32_t, CfgEquipSuit> CfgEquipSuitMap;
 
@@ -1557,7 +1557,7 @@ private:
 	Int32Int32Map			m_mWuHunMoHunExp;
 };
 
-// ±¦Ê¯±í
+// ï¿½ï¿½Ê¯ï¿½ï¿½
 #define MAX_GEM_BASE_ATTR_COUNT		5
 // struct CfgItemGem
 // {
@@ -1570,7 +1570,7 @@ private:
 // 	int32_t		m_nLayNum;
 // };
 
-//ÐÂ±¦Ê¯½á¹¹
+//ï¿½Â±ï¿½Ê¯ï¿½á¹¹
 struct CfgItemGem
 {
 	int32_t		m_nId;
@@ -1580,10 +1580,10 @@ struct CfgItemGem
 	int32_t		m_nPrice;
 	int8_t		m_nQuality;
 	int32_t		m_nLayNum;
-	int32_t		m_EffectType;  //±¦Ê¯Ð§¹ûÀàÐÍ
-	int32_t		m_AddRate;	   //±¦Ê¯Ð§¹û±ÈÀý
+	int32_t		m_EffectType;  //ï¿½ï¿½Ê¯Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		m_AddRate;	   //ï¿½ï¿½Ê¯Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int32_t		m_nGrade;
-	int32_t		m_nRansomWorth;//Êê»Ø¼ÛÖµ
+	int32_t		m_nRansomWorth;//ï¿½ï¿½Ø¼ï¿½Öµ
 	int32_t		m_InValue;
 	int32_t		m_OutValue;
 //	AttrAddon	m_vAttr[MAX_GEM_BASE_ATTR_COUNT];
@@ -1612,7 +1612,7 @@ private:
 	CfgGemMap	m_mGemMap;
 };
 
-// ºÏ³É±í
+// ï¿½Ï³É±ï¿½
 class CfgItemCombi
 {
 public:
@@ -1628,14 +1628,14 @@ public:
 		m_nTotalRate	= 0;	
 	}
 	int32_t	m_nId;
-	ItemDataList CostList;//ºÏ³ÉÒª¿Û³ýµÄÁÐ±í
-	int32_t m_nGiveId;				// ºÏ³É¸øÓèµÀ¾ßID
-	int8_t	m_nGiveClass;			// ºÏ³É¸øÓèµÀ¾ßÀàÐÍ
-	int32_t	m_nGiveCount;			// ºÏ³É¸øÓèµÀ¾ßÊýÁ¿
-	int32_t	m_nMoney;				// ºÏ³ÉÏûºÄÍ­Ç®
-	int32_t m_nRate;				// ºÏ³É³É¹¦¸ÅÂÊ
-	int32_t m_nTotalRate;			// ºÏ³É³É¹¦×Ü¸ÅÂÊ
-	int8_t	m_IsGongGao;			// ÊÇ·ñ¹«¸æ
+	ItemDataList CostList;//ï¿½Ï³ï¿½Òªï¿½Û³ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	int32_t m_nGiveId;				// ï¿½Ï³É¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	int8_t	m_nGiveClass;			// ï¿½Ï³É¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	m_nGiveCount;			// ï¿½Ï³É¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	m_nMoney;				// ï¿½Ï³ï¿½ï¿½ï¿½ï¿½ï¿½Í­Ç®
+	int32_t m_nRate;				// ï¿½Ï³É³É¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t m_nTotalRate;			// ï¿½Ï³É³É¹ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½
+	int8_t	m_IsGongGao;			// ï¿½Ç·ñ¹«¸ï¿½
 };
 typedef std::map<int32_t, CfgItemCombi> CfgItemCombiMap;
 
@@ -1662,13 +1662,13 @@ private:
 
 struct CfgBagSlotOpenTime 
 {
-	int32_t	m_nSlot;			// ±³°ü¸ñ
-	int32_t	m_nSeconds;			// ¿ªÆô±³°üÐèÒªÊ±¼ä
-	int32_t m_nBagAddExp;		// ¿ªÆô±³°ü»ñµÃ¾­Ñé
-	int32_t m_nBagAddHp;		// ¿ªÆô±³°ü»ñµÃHP
-	int32_t m_nDepotNeedSeconds;// ¿ªÆô²Ö¿âÐèÒªµÄÊ±¼ä
-	int32_t m_nDepotAddExp;		// ¿ªÆô²Ö¿â»ñµÃ¾­Ñé
-	int32_t m_nDepotAddHp;		// ¿ªÆô²Ö¿â»ñµÃHP
+	int32_t	m_nSlot;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	m_nSeconds;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÊ±ï¿½ï¿½
+	int32_t m_nBagAddExp;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½ï¿½
+	int32_t m_nBagAddHp;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HP
+	int32_t m_nDepotNeedSeconds;// ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t m_nDepotAddExp;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½Ã¾ï¿½ï¿½ï¿½
+	int32_t m_nDepotAddHp;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½HP
 };
 typedef std::map<int32_t, CfgBagSlotOpenTime> CfgBagSlotOpenTimeMap;
 class CfgBagSlotOpenTimeTable
@@ -1731,7 +1731,7 @@ private:
 };
 
 #define MAX_PET_ATTR_RATE	100
-// ÊôÐÔ³õÊ¼»¯¶ÔÓ¦µÄ°Ù·Ö±È
+// ï¿½ï¿½ï¿½Ô³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ä°Ù·Ö±ï¿½
 class CfgPetAttrInitRateTable
 {
 	friend class CfgData;
@@ -1822,7 +1822,7 @@ private:
 	int32_t	m_vGrowRate[MAX_PET_ATTR_RATE];
 };
 
-#define MAX_PET_SKILL_RATE	100000	// ¼¼ÄÜËæ»ú¸ÅÂÊ»ùÊý
+#define MAX_PET_SKILL_RATE	100000	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê»ï¿½ï¿½ï¿½
 class CfgPetData 
 {
 public:
@@ -1866,27 +1866,27 @@ public:
 	}
 
 public:
-	int32_t			m_nPetId;						// »ù´¡ID
-	std::string		m_strName;						// ³èÎïÃû³Æ
-	Job_t			m_nOrderJob;					// Ö¸»ÓÐèÇó
-	Job_t			m_nPetJob;						// »ÃÊÞÀàÐÍ
-	int32_t			m_nRare;						// º±¼û¶È
-	int32_t			m_nRein;						// ×ªÉú´ÎÊýÏÞÖÆ
-	PET_PHASE		m_nPhase;						// ÏàÐÔ=0ÔòËæ»úÉú³É
-	int32_t			m_nLucky;						// ÐÒÔËÖµ
-	int32_t			m_vMaxAttr[PET_ATTR_COUNT];		// »ù´¡ÊôÐÔ
-	int32_t			m_vMaxPoints[PET_ATTR_COUNT];	// ×î´óÆÀ·Ö
-	SkillId_t		m_nSkillId;						// ³èÎïÌì¸³¼¼ÄÜ
-	SkillId_t		m_nSecondSkillId;				// µÚ¶þÌì¸³¼¼ÄÜ
-	SkillId_t		m_vSkill[PET_SKILL_COUNT];		// ³èÎï¼¼ÄÜ
-	SkillId_t		m_vSkillRate[PET_SKILL_COUNT];	// ³èÎï¼¼ÄÜ¸ÅÂÊ
-	int32_t			m_nHatchTime;					// ·õ»¯Ê±¼ä
-	int32_t			m_nMutiHatchTime;				// ÅúÁ¿·õ»¯Ê±¼ä
-	int32_t			m_nRideSkin;					// Æï³ËÆ¤·ô
-	int32_t			m_nGrowRatio;					// ³É³¤ÏµÊý
-	int8_t			m_nXxoo;						// XOÊÞÀàÐÍ
-	int8_t			m_Zoarium;						// ÊÇ·ñÄÜºÍÌå
-	int32_t			m_WuHunExp;						// Îä»ê¾­Ñé
+	int32_t			m_nPetId;						// ï¿½ï¿½ï¿½ï¿½ID
+	std::string		m_strName;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Job_t			m_nOrderJob;					// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Job_t			m_nPetJob;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nRare;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nRein;						// ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PET_PHASE		m_nPhase;						// ï¿½ï¿½ï¿½ï¿½=0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_nLucky;						// ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t			m_vMaxAttr[PET_ATTR_COUNT];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t			m_vMaxPoints[PET_ATTR_COUNT];	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	SkillId_t		m_nSkillId;						// ï¿½ï¿½ï¿½ï¿½ï¿½ì¸³ï¿½ï¿½ï¿½ï¿½
+	SkillId_t		m_nSecondSkillId;				// ï¿½Ú¶ï¿½ï¿½ì¸³ï¿½ï¿½ï¿½ï¿½
+	SkillId_t		m_vSkill[PET_SKILL_COUNT];		// ï¿½ï¿½ï¿½ï¼¼ï¿½ï¿½
+	SkillId_t		m_vSkillRate[PET_SKILL_COUNT];	// ï¿½ï¿½ï¿½ï¼¼ï¿½Ü¸ï¿½ï¿½ï¿½
+	int32_t			m_nHatchTime;					// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t			m_nMutiHatchTime;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t			m_nRideSkin;					// ï¿½ï¿½ï¿½Æ¤ï¿½ï¿½
+	int32_t			m_nGrowRatio;					// ï¿½É³ï¿½Ïµï¿½ï¿½
+	int8_t			m_nXxoo;						// XOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t			m_Zoarium;						// ï¿½Ç·ï¿½ï¿½Üºï¿½ï¿½ï¿½
+	int32_t			m_WuHunExp;						// ï¿½ï¿½ê¾­ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgPetData>	CfgPetDataMap;
 
@@ -2138,12 +2138,12 @@ private:
 #define MAX_KNIGHT_QUALITY_SIZE		20
 enum PET_KNIGHT_EFFECT
 {
-	PKE_ADD_EXP			= 1,	//£º¾­Ñé¼Ó³É
-	PKE_REMINE_JUMP		= 2,	//£º¼õÉÙÌøÔ¾ÏûºÄµÄÌåÁ¦
-	PKE_ADD_BATTLE		= 3,	//£ºÕ½¶·Á¦¼Ó³É
-	PKE_REMINE_DAMAGE	= 4,	//£ºÉËº¦¼õÃâ
-	PKE_ADD_DAMAGE		= 5,	//£ºÉËº¦¼Ó³É
-	PKE_ADD_MAX_HP		= 6,	//£ºÉúÃüÖµÉÏÏÞÌá¸ß
+	PKE_ADD_EXP			= 1,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½
+	PKE_REMINE_JUMP		= 2,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
+	PKE_ADD_BATTLE		= 3,	//ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½
+	PKE_REMINE_DAMAGE	= 4,	//ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½
+	PKE_ADD_DAMAGE		= 5,	//ï¿½ï¿½ï¿½Ëºï¿½ï¿½Ó³ï¿½
+	PKE_ADD_MAX_HP		= 6,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 class CfgPetKnight 
@@ -2214,12 +2214,12 @@ public:
 		}
 		return 0;
 	}
-	int32_t		nLevel;										// ÐèÇóµÈ¼¶
-	int32_t		nTitle;										// ³ÆºÅ£¿
-	Int32List	compIdList;									// ¿ÉÒÔÈÎÃüµÄ³èÎïÁÐ±í
-	int8_t		nEffectType;								// ×÷ÓÃÀàÐÍ
-	int32_t		vQuality[MAX_KNIGHT_QUALITY_SIZE];			// Æ·ÖÊ
-	int32_t		vEffectValue[MAX_KNIGHT_QUALITY_SIZE];		// ¼Ó³É
+	int32_t		nLevel;										// ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+	int32_t		nTitle;										// ï¿½ÆºÅ£ï¿½
+	Int32List	compIdList;									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	int8_t		nEffectType;								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		vQuality[MAX_KNIGHT_QUALITY_SIZE];			// Æ·ï¿½ï¿½
+	int32_t		vEffectValue[MAX_KNIGHT_QUALITY_SIZE];		// ï¿½Ó³ï¿½
 };
 
 class CfgPetKnightTable
@@ -2328,7 +2328,7 @@ struct CfgPetGift
 	int32_t		nPetBaseId;
 	int32_t		nLevel;
 	int32_t		nGrowTimes;
-	int32_t		m_vMaxAttr[PET_ATTR_COUNT];		// »ù´¡ÊôÐÔ
+	int32_t		m_vMaxAttr[PET_ATTR_COUNT];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t, CfgPetGift> PetGiftMap;
 
@@ -2522,15 +2522,15 @@ public:
 		bzero( vPosition, sizeof( vPosition ) );
 	}
 
-	int32_t		nLevel;								// µÈ¼¶
-	int32_t		nExp;								// ÐèÇó¹±Ï×¶È
-	int32_t		nBattle;							// ¸½¼ÓÕ½¶·Á¦
-	int32_t		nMaxMembers;						// ×î´óÈËÊý
-	int32_t		nTotemCount;						// ×î´óÍ¼ÌÚ¸öÊý
-	int32_t		vPosition[FAMILY_POSITION_COUNT];	// Ö°Î»ÈËÊý
+	int32_t		nLevel;								// ï¿½È¼ï¿½
+	int32_t		nExp;								// ï¿½ï¿½ï¿½ï¿½ï¿½×¶ï¿½
+	int32_t		nBattle;							// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	int32_t		nMaxMembers;						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		nTotemCount;						// ï¿½ï¿½ï¿½Í¼ï¿½Ú¸ï¿½ï¿½ï¿½
+	int32_t		vPosition[FAMILY_POSITION_COUNT];	// Ö°Î»ï¿½ï¿½ï¿½ï¿½
 };
 
-struct WarVictoryHd		//¿¹Õ½»î¶¯
+struct WarVictoryHd		//ï¿½ï¿½Õ½ï¿½î¶¯
 {
 	int8_t				Index;
 	int8_t				Type;
@@ -2618,8 +2618,8 @@ public:
 
 private:
 	CfgFamily			m_vFamily[MAX_FAMILY_LEVEL];
-	int32_t				m_vTotomActiveLevel[MAX_PET_ID+1];						// Í¼ÌÚ¼¤»îËùÐè¾üÍÅµÈ¼¶
-	CfgFamilyPosition	m_vFamilyPosition[FAMILY_POSITION_COUNT];				// ¾üÍÅÖ°Î»ÅäÖÃ
+	int32_t				m_vTotomActiveLevel[MAX_PET_ID+1];						// Í¼ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅµÈ¼ï¿½
+	CfgFamilyPosition	m_vFamilyPosition[FAMILY_POSITION_COUNT];				// ï¿½ï¿½ï¿½ï¿½Ö°Î»ï¿½ï¿½ï¿½ï¿½
 };
 
 struct TeamBuff 
@@ -2855,14 +2855,14 @@ private:
 struct PkDropRate
 {
 	int32_t		PkValues;			//pkÖµ
-	int32_t		EquipCount;			//µôÂä×°±¸Êý
-	int32_t		EquipRate;			//×°±¸µôÂä±ÈÀý
-	int32_t		UsualCountRate;		//ÆÕÍ¨ÎïÆ·µôÂä¸öÊý±ÈÀý
-	int32_t		UsualDropRate;		//ÆÕÍ¨ÎïÆ·µôÂä±ÈÀý
-	int32_t		SpecialCountRate;	//ÌØÊâÎïÆ·µôÂä¸öÊý±ÈÀý
-	int32_t		SpecialDropRate;	//ÌØÊâÎïÆ·µôÂä±ÈÀý
-	int32_t		OverlayRate;		//µþ¼ÓÊýµôÂä±ÈÀý
-	int32_t		MoneyRate;			//Í­Ç®µôÂä±ÈÀý
+	int32_t		EquipCount;			//ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
+	int32_t		EquipRate;			//×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		UsualCountRate;		//ï¿½ï¿½Í¨ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		UsualDropRate;		//ï¿½ï¿½Í¨ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		SpecialCountRate;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		SpecialDropRate;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		OverlayRate;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		MoneyRate;			//Í­Ç®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 
@@ -2897,7 +2897,7 @@ public:
 CfgFaBao*		GetFaBaoCfg( int32_t FaBaoId );
 void			AddFaBao( CfgFaBao& Stu );
 private:
-	FaBaoMap	m_FaBaoTable;		//Êï¹â·¨±¦±í
+	FaBaoMap	m_FaBaoTable;		//ï¿½ï¿½â·¨ï¿½ï¿½ï¿½ï¿½
 };
 
 struct FunctionOpenCfg
@@ -2918,8 +2918,8 @@ struct QiFuCfg
 	int32_t CostItemCount;
 };
 
-typedef map<int8_t, QiFuCfg> QiFuTimesMap;		// <Æí¸£´ÎÊý,Êý¾Ý>
-typedef map<int32_t, QiFuTimesMap> QiFuCfgMap;	// <µÈ¼¶,Êý¾Ý> 
+typedef map<int8_t, QiFuCfg> QiFuTimesMap;		// <ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½>
+typedef map<int32_t, QiFuTimesMap> QiFuCfgMap;	// <ï¿½È¼ï¿½,ï¿½ï¿½ï¿½ï¿½> 
 
 class CQiFuTable
 {
@@ -2935,19 +2935,19 @@ private:
 struct VipCfg
 {
 	int8_t		VipLevel;
-	int8_t		QiFuMoneyTimes;		// Æí¸£Í­Ç®µÄ´ÎÊý
-	int8_t		QiFuExpTimes;		// Æí¸£¾­ÑéµÄ´ÎÊý
-	int8_t		Retroactive;		// ²¹Ç©µÄ´ÎÊý
-	int32_t		NeedVipExp;			// ÐèÒªvip¾­Ñé
-	int32_t		ExpRate;			// ´ò¹Ö¾­Ñé¼Ó³É
-	int32_t		OpenBag;			// ¿ª±³°üµÄ±¶Êý
-	int32_t		DailyTaskTimes;		// ÈÕ³£ÈÎÎñ´ÎÊý
-	MemChrBagVector Item;			// vipÀñ°ü
-	AttrAddonVector	AtttVector;		// vipÊôÐÔ
-	int32_t		PetDeport;			// Ôö¼Ó³èÎï²Ö¿âµÄ¸öÊý
-	int32_t		FamilyLightAddRate;	// ¾üÍÅÖ®¹â¼Ó³É
-	int32_t		HallOfFameBuyTimes;	// ÃûÈËÌÃ¹ºÂò´ÎÊý
-	int32_t		SiteRevive;			// Ã¿Ìì¸´»î´ÎÊý
+	int8_t		QiFuMoneyTimes;		// ï¿½ï¿½ï¿½ï¿½Í­Ç®ï¿½Ä´ï¿½ï¿½ï¿½
+	int8_t		QiFuExpTimes;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+	int8_t		Retroactive;		// ï¿½ï¿½Ç©ï¿½Ä´ï¿½ï¿½ï¿½
+	int32_t		NeedVipExp;			// ï¿½ï¿½Òªvipï¿½ï¿½ï¿½ï¿½
+	int32_t		ExpRate;			// ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½Ó³ï¿½
+	int32_t		OpenBag;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
+	int32_t		DailyTaskTimes;		// ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MemChrBagVector Item;			// vipï¿½ï¿½ï¿½
+	AttrAddonVector	AtttVector;		// vipï¿½ï¿½ï¿½ï¿½
+	int32_t		PetDeport;			// ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ö¿ï¿½Ä¸ï¿½ï¿½ï¿½
+	int32_t		FamilyLightAddRate;	// ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ó³ï¿½
+	int32_t		HallOfFameBuyTimes;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		SiteRevive;			// Ã¿ï¿½ì¸´ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef map<int8_t, VipCfg> VipCfgMap;
 
@@ -2978,33 +2978,45 @@ private:
 	VipCfgMap m_VipCfgMap;
 };
 
-struct MoonCardTouZiCfg
+// 7ï¿½ï¿½Í¶ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ä±¸
+struct SevenTouZi
 {
-	int16_t		Index;
-	int16_t		NeedDay;
-	int8_t		CurrencyType;
-	int32_t		CurrencyValues;
+	int32_t		nId;			// ï¿½ï¿½ï¿½ï¿½
+	int32_t		nType;			// 1=Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2=ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t		nCondition;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MemChrBag	vItem;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 };
-typedef std::map<int16_t,MoonCardTouZiCfg> MoonCardTouZiCfgMap;
-struct LevelUpTouZiCfg
+typedef std::map<int32_t, SevenTouZi> SevenTouZiMap;
+
+// ï¿½Â¶ï¿½Í¶ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ä±¸
+struct MonthTouZi
 {
-	int16_t  Index;
-	int32_t	 NeedLevel;
-	int32_t	 Rate;
+	int32_t		nDay;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MemChrBag	vItem;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	int32_t		nGongGaoId;		// ï¿½ï¿½ï¿½æ±¾ID
 };
-typedef std::map<int16_t,LevelUpTouZiCfg> LevelUpTouZiCfgMap;
-class CTouZiCfg
+typedef std::map<int32_t, MonthTouZi> MonthTouZiMap;
+
+class CfgTouZiTable
 {
 public:
-	CTouZiCfg();
-	void				InitTouZiTable();
-	MoonCardTouZiCfg*	GetMoonCardTouZiCfg( int16_t Index );
-	LevelUpTouZiCfg*	GetLevelUpTouZiCfg( int16_t Index );
-	MoonCardTouZiCfgMap& GetMoonCardTable();
-	LevelUpTouZiCfgMap&	 GetLevelUpTable();
+	CfgTouZiTable(){ m_SevenTouZiMap.clear(); m_MonthTouZiMap.clear(); }
+
+	void					InitTouZiTable();
+
+	const SevenTouZi*	GetSevenTouZi( int32_t nId ) const;
+	const MonthTouZi*	GetMonthTouZi( int32_t nId ) const;
+	bool				IsAllGetSevenDay( int32_t nRecord ) const;
+	bool				IsAllGetMonthTouZi( int32_t nRecord ) const;
+	const SevenTouZiMap&	GetSevenDayTable() const { return m_SevenTouZiMap; }
+	const MonthTouZiMap&	GetMonthTable() const { return m_MonthTouZiMap; }
+
+	void	AddSevenTouZi( const SevenTouZi& stu ) { m_SevenTouZiMap[stu.nId] = stu; }
+	void	AddMonthTouZi( const MonthTouZi& stu ) { m_MonthTouZiMap[stu.nDay] = stu; }
+
 private:
-	MoonCardTouZiCfgMap	m_MoonCardCfgMap;
-	LevelUpTouZiCfgMap  m_LevelUpCfgMap;
+	SevenTouZiMap	m_SevenTouZiMap;
+	MonthTouZiMap	m_MonthTouZiMap;
 };
 
 class CfgSysMail
@@ -3047,8 +3059,8 @@ public:
 		m_NeedResetReviveTime	= 0;
 	}
 	int32_t					m_BossId;
-	Position				m_TransferPos;		// ´«ËÍ×ø±ê
-	std::vector<Position>	m_RevivePosVector;	// ¸´»î×ø±êÁÐ±í
+	Position				m_TransferPos;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	std::vector<Position>	m_RevivePosVector;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	int8_t					m_NeedResetReviveTime;
 	int8_t					m_IsShow;
 };
@@ -3182,13 +3194,13 @@ typedef std::list<CurrencyStu> CurrencyList;
 struct CfgZiYuanZhaoHui
 {
 	int32_t				Index;				//id
-	int32_t				Type;				//×ÊÔ´ÕÒ»ØµÄÀàÐÍ
-	int32_t				Times;				//×Ü´ÎÊý
-	int32_t				Id;					//ÀàÐÍÊÇ»î¶¯ ¾ÍÊÇ»î¶¯µÄÀàÐÍ, ÀàÐÍÊÇ¸±±¾¾ÍÊÇ ¸±±¾groupid
-	int32_t				NeedMoney;			//ÕÒ»ØÐèÒªµÄÍ­Ç®
-	int32_t				NeedGold;			//ÕÒ»ØÐèÒªµÄÔª±¦
-	CurrencyList		GetCurrencyList;	//»ñµÃµÄ×ÊÔ´
-	int32_t				GetExpValues;		//»ñµÃµÄ¾­Ñé
+	int32_t				Type;				//ï¿½ï¿½Ô´ï¿½Ò»Øµï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t				Times;				//ï¿½Ü´ï¿½ï¿½ï¿½
+	int32_t				Id;					//ï¿½ï¿½ï¿½ï¿½ï¿½Ç»î¶¯ ï¿½ï¿½ï¿½Ç»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½groupid
+	int32_t				NeedMoney;			//ï¿½Ò»ï¿½ï¿½ï¿½Òªï¿½ï¿½Í­Ç®
+	int32_t				NeedGold;			//ï¿½Ò»ï¿½ï¿½ï¿½Òªï¿½ï¿½Ôªï¿½ï¿½
+	CurrencyList		GetCurrencyList;	//ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ô´
+	int32_t				GetExpValues;		//ï¿½ï¿½ÃµÄ¾ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t,CfgZiYuanZhaoHui> CfgZYZHMap;
 
@@ -3229,7 +3241,7 @@ struct CfgHuoYueDu
 	int32_t			Count;
 	int32_t			Gold;
 	int32_t			AddHuoYueDu;
-	bool			IsCanSec;					//ÊÇ·ñ¿ÉÒÔÃë
+	bool			IsCanSec;					//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 typedef	std::map<int32_t,CfgHuoYueDu> HuoYueDuTable;
@@ -3256,8 +3268,8 @@ struct CfgGuanWei
 };
 typedef std::map<int32_t,CfgGuanWei> GuanWeiMap;
 
-#define QI_SHI_COUNT 6					//Åå´÷ÆïÊ¿µÄ¸öÊý
-#define MAX_QI_SHI_QUALITY_SIZE 10		//ÊôÐÔ¸öÊý
+#define QI_SHI_COUNT 6					//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½Ä¸ï¿½ï¿½ï¿½
+#define MAX_QI_SHI_QUALITY_SIZE 10		//ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½
 struct CfgQiShi
 {
 	int32_t			QiShiPos;
@@ -3265,9 +3277,9 @@ struct CfgQiShi
 	int32_t			AddBattle;
 	int32_t			AttrType;
 	int32_t			AttrType2;
-	int32_t			vQuality[MAX_QI_SHI_QUALITY_SIZE];			// Æ·ÖÊ
-	int32_t			vEffectValue[MAX_QI_SHI_QUALITY_SIZE];		// ¼Ó³É
-	int32_t			vEffectValue2[MAX_QI_SHI_QUALITY_SIZE];		// ¼Ó³É
+	int32_t			vQuality[MAX_QI_SHI_QUALITY_SIZE];			// Æ·ï¿½ï¿½
+	int32_t			vEffectValue[MAX_QI_SHI_QUALITY_SIZE];		// ï¿½Ó³ï¿½
+	int32_t			vEffectValue2[MAX_QI_SHI_QUALITY_SIZE];		// ï¿½Ó³ï¿½
 };
 typedef std::map<int32_t,CfgQiShi> QiShiMap;
 
@@ -3511,7 +3523,7 @@ public:
 	NewServerFavorableMap&		GetNewServerFavorableCfg();
 	EverydayChongZhiMap&		GetEveryDayTable();
 	CfgEverydayChongZhi*		GetEveryDayChongZhiCfg( int8_t Index );
-	CTouZiCfg&					GetTouZhiCfg();
+	CfgTouZiTable&				GetTouZiTable();
 	KaiFuHuoDongCfg&			GetKaiFuHuoDongCfg();
 	CfgHuoYueDu*				GetHuoYueDuCfg( int32_t Index );
 	HuoYueDuTable&				GetHuoYueDuTable();
@@ -3551,7 +3563,7 @@ private:
 	void fetchLevelExp();
 	void fetchLevelAttr();
 	void fetchBuleprint();
-	void fetchMap();							//»ñÈ¡µØÍ¼ÐÅÏ¢±í
+	void fetchMap();							//ï¿½ï¿½È¡ï¿½ï¿½Í¼ï¿½ï¿½Ï¢ï¿½ï¿½
 	void fetchMapMonster();			
 	void fetchMapPlant();						
 	void fetchMapRegion();						
@@ -3599,7 +3611,7 @@ private:
 	void fetchServerConfig();
 	void sendNewItems(const CfgItemTable &items);
 
-	// ³õÊ¼»¯×°±¸±í
+	// ï¿½ï¿½Ê¼ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
 	void InitEquipTable();
 	void InitEquipUpGradeTable();
 	void InitEquipUpQualityTable();
@@ -3607,76 +3619,76 @@ private:
 	void InitEquipAddAttrTable();
 	void InitEquipGoalTable();
 	void InitEquipSuitTable();
-	void InitWuHunHoleTable();				// ±¦Ê¯¿×¶ÔÓ¦Îä»ê
-	void InitWuHunMoHunTable();				// Ç¿»¯µÈ¼¶¶ÔÓ¦Îä»ê
+	void InitWuHunHoleTable();				// ï¿½ï¿½Ê¯ï¿½×¶ï¿½Ó¦ï¿½ï¿½ï¿½
+	void InitWuHunMoHunTable();				// Ç¿ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½
 
-	void InitItemGemTable();				// ³õÊ¼»¯±¦Ê¯±í
-	void InitItemCombiTable();				// ³õÊ¼»¯ºÏ³É±í
-	void InitBagSlotOpenTimeTable();		// ³õÊ¼»¯±³°ü¿ªÆôÊ±¼ä±í
-	void InitPlayerInitPetTable();			// ³õÊ¼»¯³öÉúÐ¯´ø³èÎï±í
-	void InitPetPackageTable();				// ³õÊ¼»¯³èÎï´ò°ü±í
-	void InitPetTable();					// ³õÊ¼»¯»ÃÊÞ±í
-	void InitPetEggTable();					// ³õÊ¼»¯»ÃÊÞµ°±í
-	void InitPetAttrInitRateTable();		// ³õÊ¼»¯»ÃÊÞÊôÐÔ°Ù·Ö±È¶ÔÓ¦±í
-	void InitPetIllusionTable();			// ³õÊ¼»¯»ÃÊÞ»Ã»¯±í
-	void InitPetKnightTable();				// ³õÊ¼»¯»ÃÊÞÆïÊ¿±í
-	void InitSkillLevelUpTable();			// ³õÊ¼»¯¼¼ÄÜÉý¼¶±í
-	void InitTaskCycleStarTable();			// ³õÊ¼»¯Ñ­»·ÈÎÎñ±í
-	void InitFamilyTable();					// ³õÊ¼»¯¾üÍÅ±í
-	void InitFamilyPositionTable();			// ¾üÍÅÖ°Î»±í
-	void InitFamilyPetRegistTable();		// ³õÊ¼»¯³èÎïµÇ¼Ç±í
-	void InitCharPetHatchPoolTable();		// ³õÊ¼»¯³èÎï·õ»¯³ØÅäÖÃ±í
-	void InitPetLucyItemTable();			// ³õÊ¼»¯³èÎïÐÒÔËÖµ»Ã»¯µÀ¾ß±í
-	void InitTeamBuffTable();				// ³õÊ¼»¯×é¶ÓBuff±í
-	void InitInsidePetTable();				// ³õÊ¼»¯ÁéÊÞ±í
-	void InitInsidePetExpItemTable();		// ³õÊ¼»¯ÁéÊÞ¿ÉÍÌÊÉµÀ¾ß±í
-	void InitFamilyWarJoinRewardTable();	// ³õÊ¼»¯¾üÍÅÕ½²ÎÓë½±Àø±í
-	void InitFamilyLightExpTable();			// ³õÊ¼»¯¾üÍÅÖ®¹â¾­Ñé½±Àø±í
-	void InitSoulAttrTable();				// ³õÊ¼»¯»êÁ¦±í
-	void InitHorseRacingRewardTable();		// ³õÊ¼»¯·ÉÌìÉñ¾Ô½±Àø±í
-	void InitHallOfFameRewardTable();		// ÃûÈËÌÃÅÅÃû½±Àø
+	void InitItemGemTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê¯ï¿½ï¿½
+	void InitItemCombiTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ï³É±ï¿½
+	void InitBagSlotOpenTimeTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	void InitPlayerInitPetTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitPetPackageTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitPetTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Þ±ï¿½
+	void InitPetEggTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½
+	void InitPetAttrInitRateTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô°Ù·Ö±È¶ï¿½Ó¦ï¿½ï¿½
+	void InitPetIllusionTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Þ»Ã»ï¿½ï¿½ï¿½
+	void InitPetKnightTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½
+	void InitSkillLevelUpTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitTaskCycleStarTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitFamilyTable();					// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½
+	void InitFamilyPositionTable();			// ï¿½ï¿½ï¿½ï¿½Ö°Î»ï¿½ï¿½
+	void InitFamilyPetRegistTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼Ç±ï¿½
+	void InitCharPetHatchPoolTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½
+	void InitPetLucyItemTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ã»ï¿½ï¿½ï¿½ï¿½ß±ï¿½
+	void InitTeamBuffTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Buffï¿½ï¿½
+	void InitInsidePetTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Þ±ï¿½
+	void InitInsidePetExpItemTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ß±ï¿½
+	void InitFamilyWarJoinRewardTable();	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ë½±ï¿½ï¿½ï¿½ï¿½
+	void InitFamilyLightExpTable();			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½â¾­ï¿½é½±ï¿½ï¿½ï¿½ï¿½
+	void InitSoulAttrTable();				// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitHorseRacingRewardTable();		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitHallOfFameRewardTable();		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	void InitFriendExpTable();				//³õÊ¼»¯ºÃÓÑ¾­Ñé±í
+	void InitFriendExpTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½
 
-	void InitPkDropRateTable();				//³õÊ¼»¯pkµôÂä¸ÅÂÊ
-	void InitQiangHuaWorthTable();			//³õÊ¼»¯Ç¿»¯¼ÛÖµ±í
-	void InitSysMail();						//³õÊ¼»¯ÏµÍ³ÓÊ¼þ
-	void InitBossInfo();					//³õÊ¼»¯bossÐÅÏ¢
-	void InitFaBaoTable();					//³õÊ¼»¯·¨±¦ÐÅÏ¢±í
-	void InitBuyFaBaoResTable();			//³õÊ¼»¯¹ºÂò·¨±¦×ÊÔ´±í
-	void InitDaTiHD();						//³õÊ¼»¯´ðÌâ»î¶¯
-	void InitShangChengTable();				//³õÊ¼»¯ÉÌ³Ç±í
-	void InitPetGiftTable();				//³õÊ¼»¯»ÃÊÞÀñ°ü±í
-	void InitOnLimeReward();				//³õÊ¼»¯ÔÚÏßÊ±¼ä
-	void InitSevenLoginReward();			//³õÊ¼»¯ÆßÌìµÇÂ½½±Àø
-	void InitLevelGift();					//³õÊ¼»¯µÈ¼¶Àñ°ü
-	void InitWeekOnlineReward();			//³õÊ¼»¯ÔÚÏß½±ÀøÀñ°ü
-	void InitOffLineExpTable();				//³õÊ¼»¯ÀëÏß¾­Ñé±í
-	void InitVipCardTable();				//³õÊ¼»¯vipcard
-	void InitBossHomeTable();				//³õÊ¼»¯bossÖ®¼Ò±í
-	void InitVipGuaJiMap();					//³õÊ¼»¯vip¹Ò»úµØÍ¼
-	void InitFunctionOpenTable();			//³õÊ¼»¯¹¦ÄÜ¿ªÆô
-	void InitMoLingRuQinMap();				//³õÊ¼»¯Ä§ÁéÈëÇÖµØÍ¼
-	void InitAutoPetGfit();					//³õÊ¼»¯×Ô¶¯Ê¹ÓÃµÄ³èÎïÀñ°ü
-	void InitPlantEventTable();				//³õÊ¼»¯²É¼¯ÎïÊÂ¼þ±í
-	void InitZiYuanZhaoHuiTable();			//³õÊ¼»¯×ÊÔ´ÕÒ»Ø±í
-	void InitMoHuaHuanYiTable();			//³õÊ¼»¯Ä§»¯×ªÒÆ±í
-	void InitShouChongLiBao();				//³õÊ¼»¯Ê×³åÀñ°ü
-	void InitNewServerFavorable();			//ÐÂ·þÌØ»ÝÀñ°ü
-	void InitEveryDayChongZhi();			//³õÊ¼»¯Ã¿ÈÕ³äÖµ
-	void InitKaiFuHuoDongTable();			//³õÊ¼¿ª·þ»î¶¯
-	void InitHuoYueDuTable();				//³õÊ¼»¯»îÔ¾¶È±í
-	void InitGuangWeiTable();				//³õÊ¼»¯¹ÙÎ»±í
-	void InitAppendAttrTable();				//³õÊ¼»¯¸½¼ÓÊôÐÔ±í
-	void InitwuHunExpTable();				//³õÊ¼»¯Îä»ê¾­Ñé±í
-	void InitPetBuyTable();					//³õÊ¼»¯¹ºÂò³èÎï»Ã»¯
-	void InitFamilyRewardTable();			//³õÊ¼»¯¾üÍÅ½±Àø±í
-	void InitAchievementTable();			//³õÊ¼»¯³É¾Í±í
-	void InitXunZhangTable();				//³õÊ¼»¯Ñ«ÕÂ±í
-	void InitBuyAcSocreTable();				//³õÊ¼»¯¹ºÂò³É¾Í»ý·Ö
-	void InitTotalChongZhiTable();			//¿ª·þÀÛ¼Æ³äÖµ
-	void InitHuanHuaNeedRoleLevelTable();	//³õÊ¼»¯»Ã»¯µÈ¼¶ÐèÇó±í
-	void InitWarVictoryTable();				//³õÊ¼»¯¿¹Õ½Ê¤Àû½±Àø±í
+	void InitPkDropRateTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½pkï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitQiangHuaWorthTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½
+	void InitSysMail();						//ï¿½ï¿½Ê¼ï¿½ï¿½ÏµÍ³ï¿½Ê¼ï¿½
+	void InitBossInfo();					//ï¿½ï¿½Ê¼ï¿½ï¿½bossï¿½ï¿½Ï¢
+	void InitFaBaoTable();					//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	void InitBuyFaBaoResTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ò·¨±ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
+	void InitDaTiHD();						//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	void InitShangChengTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ì³Ç±ï¿½
+	void InitPetGiftTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitOnLimeReward();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	void InitSevenLoginReward();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
+	void InitLevelGift();					//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½
+	void InitWeekOnlineReward();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitOffLineExpTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½ï¿½
+	void InitVipCardTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½vipcard
+	void InitBossHomeTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½bossÖ®ï¿½Ò±ï¿½
+	void InitVipGuaJiMap();					//ï¿½ï¿½Ê¼ï¿½ï¿½vipï¿½Ò»ï¿½ï¿½ï¿½Í¼
+	void InitFunctionOpenTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½
+	void InitMoLingRuQinMap();				//ï¿½ï¿½Ê¼ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Í¼
+	void InitAutoPetGfit();					//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô¶ï¿½Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitPlantEventTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½
+	void InitZiYuanZhaoHuiTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ò»Ø±ï¿½
+	void InitMoHuaHuanYiTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½Ä§ï¿½ï¿½×ªï¿½Æ±ï¿½
+	void InitShouChongLiBao();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½ï¿½
+	void InitNewServerFavorable();			//ï¿½Â·ï¿½ï¿½Ø»ï¿½ï¿½ï¿½ï¿½
+	void InitEveryDayChongZhi();			//ï¿½ï¿½Ê¼ï¿½ï¿½Ã¿ï¿½Õ³ï¿½Öµ
+	void InitKaiFuHuoDongTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	void InitHuoYueDuTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½È±ï¿½
+	void InitGuangWeiTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+	void InitAppendAttrTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½
+	void InitwuHunExpTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ê¾­ï¿½ï¿½ï¿½
+	void InitPetBuyTable();					//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	void InitFamilyRewardTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitAchievementTable();			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¾Í±ï¿½
+	void InitXunZhangTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½Ñ«ï¿½Â±ï¿½
+	void InitBuyAcSocreTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾Í»ï¿½ï¿½ï¿½
+	void InitTotalChongZhiTable();			//ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµ
+	void InitHuanHuaNeedRoleLevelTable();	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ã»ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void InitWarVictoryTable();				//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Õ½Ê¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 private:
 	CfgMapEventList	m_emptyEvents;
 	CfgActivityTable m_activities;
@@ -3745,27 +3757,27 @@ private:
 	CfgFamilyLevelTable  m_familyLevel;
 	CfgYellowStoneTables m_yellowStone;
 
-	CfgEquipTable			m_cfgEquip;					// ×°±¸±í
-	CfgItemGemTable			m_cfgItemGem;				// ±¦Ê¯±í
-	CfgItemCombiTable		m_cfgItemCombi;				// ºÏ³É±í
-	CfgBagSlotOpenTimeTable	m_cfgBagSlotOpenTime;		// ±³°ü¿ªÆôÊ±¼ä±í
-	CfgPetTable				m_cfgPetTable;				// »ÃÊÞ±í
-	CfgPetEggTable			m_cfgPetEggTable;			// »ÃÊÞµ°±í
-	CfgPetAttrInitRateTable	m_cfgPetAttrInitRateTable;	// »ÃÊÞ³õÊ¼»¯ÊôÐÔ°Ù·Ö±È¶ÔÓ¦±í
-	CfgPetIllusionTable		m_cfgPetIllusionTable;		// »ÃÊÞ»Ã»¯±í
-	CfgPetKnightTable		m_cfgPetKnightTable;		// »ÃÊÞÆïÊ¿±í
-	CfgSkillLevelUpTable	m_cfgSkillLevelUpTable;		// ¼¼ÄÜÉý¼¶±í
-	CfgTaskCycleTable		m_cfgTaskCycleTable;		// Ñ­»·ÈÎÎñ±í
-	CfgFamilyTable			m_cfgFamilyTable;			// ¾üÍÅ±í
-	CfgFamilyPetRegistTable	m_cfgFamilyPetRegistTable;	// ³èÎïµÇ¼Ç±í
-	CfgCharPetTable			m_cfgCharPetTable;			// Íæ¼Ò³èÎïÏµÍ³ÅäÖÃ±í
-	CfgTeamTable			m_cfgTeamTable;				// ×é¶ÓÐÅÏ¢±í
-	CfgInsidePetTable		m_cfgInsidePetTable;		// ÁéÊÞÅäÖÃ±í
-	CfgFamilyWarJoinRewardTable	m_cfgFamilyWarJoinRewardTable;	// ¾üÍÅÕ½²ÎÓë½±Àø
-	CfgFamilyLightExpTable	m_cfgFamilyLightExpTable;	// ¾üÍÅÖ®¹â¾­Ñé½±Àø
-	CfgSoulAttrTable		m_cfgSoulAttrTable;			// »êÁ¦ÊôÐÔ±í
-	CfgHorseRacingRewardTable	m_cfgHorseRacingRewardTable;	// ·ÉÌìÉñ¾Ô½±Àø
-	CfgHallOfFameTable		m_cfgHallOfFameTable;		// ÃûÈËÌÃ±í
+	CfgEquipTable			m_cfgEquip;					// ×°ï¿½ï¿½ï¿½ï¿½
+	CfgItemGemTable			m_cfgItemGem;				// ï¿½ï¿½Ê¯ï¿½ï¿½
+	CfgItemCombiTable		m_cfgItemCombi;				// ï¿½Ï³É±ï¿½
+	CfgBagSlotOpenTimeTable	m_cfgBagSlotOpenTime;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	CfgPetTable				m_cfgPetTable;				// ï¿½ï¿½ï¿½Þ±ï¿½
+	CfgPetEggTable			m_cfgPetEggTable;			// ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½
+	CfgPetAttrInitRateTable	m_cfgPetAttrInitRateTable;	// ï¿½ï¿½ï¿½Þ³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô°Ù·Ö±È¶ï¿½Ó¦ï¿½ï¿½
+	CfgPetIllusionTable		m_cfgPetIllusionTable;		// ï¿½ï¿½ï¿½Þ»Ã»ï¿½ï¿½ï¿½
+	CfgPetKnightTable		m_cfgPetKnightTable;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½
+	CfgSkillLevelUpTable	m_cfgSkillLevelUpTable;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	CfgTaskCycleTable		m_cfgTaskCycleTable;		// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	CfgFamilyTable			m_cfgFamilyTable;			// ï¿½ï¿½ï¿½Å±ï¿½
+	CfgFamilyPetRegistTable	m_cfgFamilyPetRegistTable;	// ï¿½ï¿½ï¿½ï¿½Ç¼Ç±ï¿½
+	CfgCharPetTable			m_cfgCharPetTable;			// ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Ã±ï¿½
+	CfgTeamTable			m_cfgTeamTable;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	CfgInsidePetTable		m_cfgInsidePetTable;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½
+	CfgFamilyWarJoinRewardTable	m_cfgFamilyWarJoinRewardTable;	// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ë½±ï¿½ï¿½
+	CfgFamilyLightExpTable	m_cfgFamilyLightExpTable;	// ï¿½ï¿½ï¿½ï¿½Ö®ï¿½â¾­ï¿½é½±ï¿½ï¿½
+	CfgSoulAttrTable		m_cfgSoulAttrTable;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½
+	CfgHorseRacingRewardTable	m_cfgHorseRacingRewardTable;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½
+	CfgHallOfFameTable		m_cfgHallOfFameTable;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½
 
 	cfgExActivitys m_cfgExActivitys;
 	Answer::RwLock m_exActivityLock;
@@ -3807,7 +3819,7 @@ private:
 	NewServerFavorableMap	 m_NewServerFavorable;
 	NewServerFavorable		 m_ThreePetGift;
 	EverydayChongZhiMap		 m_EveryDayChongZhiTable;
-	CTouZiCfg				 m_TouZiCfg;
+	CfgTouZiTable			 m_TouZiTable;				// Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	KaiFuHuoDongCfg			 m_KaiFuHuoDongTable;
 	HuoYueDuTable			 m_HuoYueDuTable;
 	HuoYueDuRewardTable		 m_HuoYueDuRewardTable;

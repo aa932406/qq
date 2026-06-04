@@ -1,5 +1,6 @@
 #ifndef __TOU_ZHI_H__
 #define __TOU_ZHI_H__
+
 #include "ExtSystemBase.h"
 
 class CTouZi
@@ -15,7 +16,7 @@ public:
 	virtual void			OnCleanUp();
 	virtual void			OnUpdate( int64_t curTick );
 	virtual void			OnDaySwitch( int32_t nDiffDays );
-	
+
 	void					GetTouZiIconState( IconStateList& IconList );
 public:
 	void					SendTouZiIcon();
@@ -25,24 +26,20 @@ private:
 	int32_t					OnGetTouZiReward( Answer::NetPacket *inPacket );
 	int32_t					OnAskTouZiInfo( Answer::NetPacket *inPacket );
 	int32_t					OnTouZi( Answer::NetPacket *inPacket );
-	void					SendMoonCardTouZiInfo();
-	void					SendLevelUpTouZiInfo();
-	void					SendGetRewardSucceed( int8_t Type, int16_t Index );
-	int32_t					GetMoonCardReward( int16_t Index );
-	int32_t					GetLevelUpReward( int16_t Index );
-	int32_t					GetMoonCardStartTime();
-	int32_t					GetLevelUpTouZhiValues();
-	bool					CheckLevelUpTouZiValues( int32_t Values );
-	int32_t					GetDiffDay();
-	void					AddTouZhiRecord( int8_t Type, int8_t MoneyType, int32_t MoneyValues );
-	int32_t					GetRewardCount();
-	void					broadcastTouZi( int32_t ID);
-	bool					IsHaveMoonCardReward();
+	int32_t					GetSevenTouZiReward( int16_t nIndex );
+	int32_t					GetMonthTouZiReward( int16_t nIndex );
+	void					SendTouZiInfo();
+	int32_t					GetSevenDayRewardCount();
+	int32_t					GetMonthRewardCount();
+	bool					IsAllGetSevenDayTouZi();
+	bool					IsAllGetMonthTouZi();
+	void					BroadcastTouZi( int32_t nGongGaoId );
+
 private:
-	int32_t					m_TouZiValues;			//µÈ¼¶Í¶×Ê½ð¶î
-	int32_t					m_MoonCardStartTime;	//ÔÂ¿¨Í¶×ÊÊ±¼ä
-	RecordMap				m_MoonCardRecord;		//ÔÂ¿¨Í¶×ÊÁìÈ¡¼ÇÂ¼
-	RecordMap				m_LevelUpRecord;		//µÈ¼¶Í¶×ÊÁìÈ¡¼ÇÂ¼
+	int32_t					m_SevenDayTouZiTime;	// 7ï¿½ï¿½Í¶ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	int32_t					m_SevenDayRecord;		// 7ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Â¼(Î»Í¼)
+	int32_t					m_MonthTouZiTime;		// ï¿½Â¶ï¿½Í¶ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	int32_t					m_MonthTouZiRecord;		// ï¿½Â¶ï¿½ï¿½ï¿½È¡ï¿½ï¿½Â¼(Î»Í¼)
 };
 
-#endif
+#endif // __TOU_ZHI_H__
