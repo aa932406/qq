@@ -43,6 +43,12 @@ void MonsterActivity::setOwner( CharId_t owner )
 	m_nOwner = owner;
 }
 
+void MonsterActivity::setKiller( CharId_t nKiller )
+{
+	m_killer.id = nKiller;
+	m_killer.type = 1;
+}
+
 void MonsterActivity::init( CActivityMap *pActMap, const CfgActivityMonster &cfgActivityMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, Buff *pBuff )
 {
 	if ( NULL == pActMap )
@@ -147,7 +153,7 @@ void MonsterActivity::broadcastBasicData()
 		packet->writeInt8( nflag );
 		packet->writeInt32(getDeadTime());
 		packet->setSize(packet->getWOffset());
-		if ( m_cfgActivityMoster.id == ACTICITY_MONSTER_ID_FAMILY_WAR_STON || m_cfgActivityMoster.id == ACTICITY_MONSTER_ID_FAMILY_WAR_PILLAR )	// 战神之柱和圣战神石
+		if ( m_cfgActivityMoster.id == ACTICITY_MONSTER_ID_FAMILY_WAR_STON || m_cfgActivityMoster.id == ACTICITY_MONSTER_ID_FAMILY_WAR_PILLAR )	// 战锟斤拷之锟斤拷锟斤拷圣战锟斤拷石
 		{
 			m_pMap->broadcast( packet );
 		}

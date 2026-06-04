@@ -27,6 +27,7 @@ public:
 	void	reset();
 
 	void	setOwner( CharId_t owner );
+	void	setKiller( CharId_t nKiller );
 	int32_t getWave() const;
 	int32_t getActivityMonsterId() const;
 	void	runOnRoad();
@@ -53,7 +54,7 @@ private:
 	CharId_t			m_nOwner;
 	bool				m_delFlag;
 
-	// 军团战
+	// 锟斤拷锟斤拷战
 	int32_t				m_nFamilyMoney;
 	int64_t				m_nFamilyMoneyTick;
 };
