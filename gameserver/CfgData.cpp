@@ -144,6 +144,7 @@ bool CfgData::init(int32_t equipIdInterval, int32_t viceGeneralIdInterval,int32_
 
 	m_TouZiTable.InitTouZiTable();		// ��ʼ��Ͷ������
 	m_ChouJiangConfig.InitCJConfig();	// ��ʼ���齱����
+	InitScoreShopTable();				// ��ʼ��������̳�
 	m_QiFuTable.InitQiFuTable();		// ��ʼ����������
 	m_VipTable.InitVipTable();			// ��ʼ��vip����
 	m_debug = debug;
@@ -7316,6 +7317,58 @@ CfgGameShop* CfgData::GetGameShopItem( int8_t Class, int32_t Id )
 
 ChouJiangConfig& CfgData::GetChouJiangCfg()
 {
+nScoreShopCfg* CfgData::GetScoreShopCfg( int32_t Index )
+{
+	ScoreShopCfgTable::iterator it = m_ScoreShopCfgTable.find( Index );
+	if ( it != m_ScoreShopCfgTable.end() )
+	{
+		return &(it->second);
+	}
+	return NULL;
+}
+
+void CfgData::InitScoreShopTable()
+{
+	CDBCFile TabFile(0);
+	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/ScoreShop.txt");
+	if ( ret == false )
+	{
+		LOG_ERROR("open ScoreShop.txt failed,please check!!");
+		return;
+	}
+
+	m_ScoreShopCfgTable.clear();
+
+	int32_t iBaseTableCount		=	TabFile.GetRecordsNum();
+	int32_t iBaseColumnCount	=	TabFile.GetFieldsNum();
+	if (iBaseColumnCount <=0)
+	{
+		return ;
+	}
+
+	for( int32_t i = 0;i < iBaseTableCount;i++ )
+	{
+		ScoreShopCfg stu = {};
+		int32_t nIndex = 0;
+		stu.Index			= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.PlayerLevel		= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.LimitType		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.LimitCount		= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.itemId			= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.itemClass		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.itemCount		= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.bind			= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.CostType		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		stu.CostValue		= TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		std::string strCostItems = TabFile.Search_Posistion(i,nIndex)->pString; ++nIndex;
+		if ( strlen(strCostItems.c_str()) > 0 )
+		{
+			stu.CostItems = CItemHelper::parseItemDataListString( strCostItems, false );
+		}
+		stu.IsRecord		= (int8_t)TabFile.Search_Posistion(i,nIndex)->iValue; ++nIndex;
+		m_ScoreShopCfgTable[stu.Index] = stu;
+	}
+}
 	return m_ChouJiangConfig;
 }
 

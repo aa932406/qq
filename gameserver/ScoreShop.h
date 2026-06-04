@@ -17,11 +17,12 @@ public:
 
 	void				GetIconState( IconStateList& iconList );
 private:
-	ItemLimitMap		m_ItemLimit;									// 限制物品
+	ItemLimitMap		m_ItemLimit;							// 闄愬埗娆℃暟
 	int32_t				OnBuyItem( Answer::NetPacket *inPacket );
 	void				SendLimitInfo( int32_t Index = 0 );
 	int32_t				GetLimitCount( int32_t index );
 	void				AddLimitCount( int32_t index, int32_t count );
+	void				AddServerRecord( MemChrBag* Item );
 };
 
 #endif

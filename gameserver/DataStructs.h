@@ -321,8 +321,9 @@ enum ITEM_ADD_REASON
 	IACR_GET_VIP_GIFT			= 28,	//��ȡvip���
 	IACR_PALNT_GET				= 29,   //�ɼ�������
 	IACR_EXP_BALL				= 30,	//��������
-	IACR_SHOU_CHONG				= 31,	//�׳�
-	IACR_NEW_SERVER_TE_HUI		= 32,	//�·��ػ�
+	IACR_SHOU_CHONG				= 31,	//�׳�	IACR_NEW_SERVER_TE_HUI			= 32,
+	IACR_SCORE_SHOP_COST			= 33,
+	IACR_SCORE_SHOP_GET				= 34,	//�·��ػ�
 	IACR_EVERYDAY_CHONG_ZHI		= 33,	//ÿ�ճ�ֵ
 	IACR_KAI_FU_HUO_DONG		= 34,	//�����
 	IACR_HUO_YUE_DU				= 35,	//��Ծ��

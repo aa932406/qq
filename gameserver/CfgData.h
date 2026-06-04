@@ -2934,6 +2934,23 @@ private:
 	QiFuCfgMap	m_QiFuExpCfg;
 };
 
+struct ScoreShopCfg
+{
+	int32_t		Index;			// �̵�����
+	int32_t		PlayerLevel;	// �����ҵȼ�
+	int8_t		itemClass;		// ��Ʒ����
+	int32_t		itemId;			// ��ƷID
+	int32_t		itemCount;		// ��Ʒ����
+	int8_t		bind;			// �Ƿ��϶�
+	int8_t		CostType;		// ���ѻ��ҵ�����
+	int32_t		CostValue;		// ���ѽ��
+	ItemDataList	CostItems;	// ���ѵ�����б�
+	int8_t		LimitType;		// �������ͣ�1=ÿ�� 2=����
+	int32_t		LimitCount;	// ���ƴ���
+	int8_t		IsRecord;		// �Ƿ��¼
+};
+typedef std::map<int32_t, ScoreShopCfg>	ScoreShopCfgTable;
+
 struct VipCfg
 {
 	int8_t		VipLevel;
@@ -3496,6 +3513,7 @@ public:
 	QuestionsVector				GetAllQuestions();	
 	CfgPetGift*					GetPetCfg( int32_t nId );
 	ChouJiangConfig&			GetChouJiangCfg();
+	ScoreShopCfg*				GetScoreShopCfg( int32_t Index );
 	CQiFuTable&					GetQiFuTable();
 	VipTable&					GetVipTable();
 	MemChrBagVector				GetSignReward( int8_t SiginCount );	
@@ -3690,6 +3708,8 @@ private:
 	void InitBuyAcSocreTable();				//��ʼ������ɾͻ���
 	void InitTotalChongZhiTable();			//�����ۼƳ�ֵ
 	void InitHuanHuaNeedRoleLevelTable();	//��ʼ���û��ȼ������
+	void InitScoreShopTable();					// ��ʼ��������̳�
+
 	void InitWarVictoryTable();				//��ʼ����սʤ��������
 private:
 	CfgMapEventList	m_emptyEvents;
@@ -3800,6 +3820,7 @@ private:
 	GameShopMap			  m_GameShopMap;
 	PetGiftMap			  m_PetGiftTable;
 	ChouJiangConfig		  m_ChouJiangConfig;
+	ScoreShopCfgTable	  m_ScoreShopCfgTable;
 	CQiFuTable			  m_QiFuTable;
 	VipTable			  m_VipTable;
 	CfgSignRewardTable    m_signReward;

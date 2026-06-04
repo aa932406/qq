@@ -11,7 +11,7 @@ enum ScoreShopType
 
 ScoreShop::ScoreShop()
 {
-
+	m_ItemLimit.clear();
 }
 
 ScoreShop::	~ScoreShop()
@@ -71,6 +71,80 @@ int32_t ScoreShop::OnBuyItem( Answer::NetPacket *inPacket )
 	{
 		return ERR_SYETEM_ERR;
 	}
+
+	// 先尝试新的 ScoreShopCfg 配置
+	ScoreShopCfg* pScoreShop = CFG_DATA.GetScoreShopCfg( Index );
+	if ( pScoreShop )
+	{
+		int32_t nLayNum = CFG_DATA.getOverlay( pScoreShop->itemId, pScoreShop->itemClass );
+		if ( Count * pScoreShop->itemCount > nLayNum )
+		{
+			return ERR_SYETEM_ERR;
+		}
+		if ( m_pPlayer->GetBag().GetFreeSlotCount() <= 0 )
+		{
+			return ERR_SYETEM_ERR;
+		}
+		if ( pScoreShop->CostType < 0 || pScoreShop->CostValue <= 0 )
+		{
+			return ERR_SYETEM_ERR;
+		}
+		if ( pScoreShop->LimitType > 0 )
+		{
+			int32_t Limit = GetLimitCount( Index );
+			if ( Count + Limit > pScoreShop->LimitCount )
+			{
+				return ERR_SYETEM_ERR;
+			}
+		}
+
+		int32_t CostValue = Count * pScoreShop->CostValue;
+
+		// 扣除物品消耗
+		if ( pScoreShop->CostItems.size() > 0 )
+		{
+			ItemDataList CostItems;
+			CostItems.assign( pScoreShop->CostItems.begin(), pScoreShop->CostItems.end() );
+			for ( ItemDataList::iterator it = CostItems.begin(); it != CostItems.end(); ++it )
+			{
+				it->m_nCount *= Count;
+			}
+			if ( !m_pPlayer->GetBag().RemoveItem( CostItems, IACR_SCORE_SHOP_COST ) )
+			{
+				return ERR_SYETEM_ERR;
+			}
+		}
+
+		if ( !m_pPlayer->DecCurrency( (CURRENCY_TYPE)pScoreShop->CostType, CostValue, SCR_BUY_ITEM, Index ) )
+		{
+			return ERR_SYETEM_ERR;
+		}
+
+		MemChrBag item = {};
+		item.itemId		= pScoreShop->itemId;
+		item.itemClass	= pScoreShop->itemClass;
+		item.itemCount	= pScoreShop->itemCount * Count;
+		item.bind		= pScoreShop->bind;
+
+		MemChrBagVector Items;
+		Items.push_back( item );
+		m_pPlayer->GetBag().AddItem( Items, IACR_SCORE_SHOP_GET );
+
+		if ( pScoreShop->LimitType > 0 )
+		{
+			AddLimitCount( Index, Count );
+			SendLimitInfo( Index );
+		}
+		if ( pScoreShop->IsRecord > 0 )
+		{
+			AddServerRecord( &item );
+		}
+
+		GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(), Index );
+		return ERR_OK;
+	}
+
+	// 回退到旧的 ChouJiangShop 配置
 	ChouJiangShop* pShop = CFG_DATA.GetChouJiangCfg().GetCJShop( Index );
 	if ( NULL == pShop )
 	{
@@ -159,6 +233,27 @@ int32_t ScoreShop::OnBuyItem( Answer::NetPacket *inPacket )
 	return ERR_OK;
 }
 
+void ScoreShop::AddServerRecord( MemChrBag* Item )
+{
+	if ( NULL == m_pPlayer || NULL == Item )
+	{
+		return;
+	}
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_PROC, SM_SEND_SCORE_SHOP_RECORD );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( m_pPlayer->getGateIndex() );
+	packet->writeInt64( m_pPlayer->getCid() );
+	packet->writeUTF8( m_pPlayer->getName() );
+	packet->writeInt8( Item->itemClass );
+	packet->writeInt32( Item->itemId );
+	packet->writeInt32( Item->itemCount );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacket( packet );
+}
+
 void ScoreShop::SendLimitInfo( int32_t Index )
 {
 	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_SCORE_SHOP_LIMIT_INFO );
@@ -225,7 +320,21 @@ void ScoreShop::AddLimitCount( int32_t index, int32_t count )
 
 void ScoreShop::OnDaySwitch( int32_t nDiffDays )
 {
-	m_ItemLimit.clear();
+	// 清理每日限制，保留每周限制(LimitType!=1或不存在的配置视为每日限制)
+	ItemLimitMap::iterator it = m_ItemLimit.begin();
+	while ( it != m_ItemLimit.end() )
+	{
+		ScoreShopCfg* pShop = CFG_DATA.GetScoreShopCfg( it->first );
+		if ( pShop == NULL || pShop->LimitType == 1 )
+		{
+			m_ItemLimit.erase( it++ );
+		}
+		else
+		{
+			++it;
+		}
+	}
+	SendLimitInfo();
 }
 
 void ScoreShop::GetIconState( IconStateList& iconList )
