@@ -175,6 +175,7 @@ int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 
 	SendQiFuInfo();
 	SendQiFuSuccess( Type, AddCount, static_cast<int8_t>(CriticalStrike) );
+	SendQIFuIcon();
 	GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(), AddCount );
 	return ERR_OK;
 }
@@ -259,4 +260,35 @@ void CQiFu::SendHuoDongIcon()
 	packet->writeInt8( stu.Effects );
 	packet->setSize(packet->getWOffset());
 	GAME_SERVICE.worldBroadcast( packet );
+}
+
+void CQiFu::SendQIFuIcon()
+{
+	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	if ( !m_pPlayer->GetPlayerFunctionOpen().IsOpened( FT_QI_FU ) )
+	{
+		return;
+	}
+	ShowIcon stu = GetShowIconStu();
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ONE_ICON );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( stu.nId );
+	packet->writeInt8( stu.nState );
+	packet->writeInt32( stu.nLeftTime );
+	packet->writeInt8( stu.IconLeft );
+	packet->writeInt32( stu.IconRight );
+	packet->writeInt8( stu.Effects );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacketTo( m_pPlayer->getGateIndex(), packet );
+}
+
+void CQiFu::GetQiFuStu( IconStateList& IconList )
+{
+	GetChouJiangStu( IconList );
 }

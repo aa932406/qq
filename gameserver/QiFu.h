@@ -24,7 +24,10 @@ public:
 
 private:
 	bool			CheckQiFuType( int8_t Type );
-	void			SendQiFuSuccess( int8_t Type, int32_t AddCount );
+	void			SendQiFuSuccess( int8_t Type, int32_t AddCount, int8_t Double = 1 );
+	void			SendQIFuIcon();
+public:
+	void			GetQiFuStu( IconStateList& IconList );
 };
 
 #endif
