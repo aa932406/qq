@@ -61,6 +61,7 @@ bool CQiFu::CheckQiFuType( int8_t Type )
 	}
 }
 
+
 int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
@@ -73,7 +74,8 @@ int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 		return ERR_SYETEM_ERR;
 	}
 	int8_t Times = 0;
-	//vipϵͳ��δд
+	int32_t QiFuMoneyTimes = 0;
+	int32_t QiFuExpTimes = 0;
 	int8_t VipLevel = m_pPlayer->GetPlayerVip().GetVipLevel();
 	VipCfg* pVipCfg = CFG_DATA.GetVipTable().GetVipCfg( VipLevel );
 	if ( NULL == pVipCfg )
@@ -83,39 +85,50 @@ int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 
 	if ( Type == QT_MONEY )
 	{
+		QiFuMoneyTimes = pVipCfg->QiFuMoneyTimes;
 		Times = m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_MONEY );
-		if ( Times >= pVipCfg->QiFuMoneyTimes )
+		if ( Times >= QiFuMoneyTimes )
 		{
 			return ERR_SYETEM_ERR;
 		}
 	}
-	else if (  Type == QT_EXP )
+	else if ( Type == QT_EXP )
 	{
+		QiFuExpTimes = pVipCfg->QiFuExpTimes;
 		Times = m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_EXP );
-		if ( Times >= pVipCfg->QiFuExpTimes )
+		if ( Times >= QiFuExpTimes )
 		{
 			return ERR_SYETEM_ERR;
 		}
-	} 
+	}
 
-	QiFuCfg* pQiFuCfg = CFG_DATA.GetQiFuTable().GetQiFuCfg( Type,m_pPlayer->getLevel(), Times + 1 );
+	int32_t nLevel = m_pPlayer->getLevel();
+	QiFuCfg* pQiFuCfg = CFG_DATA.GetQiFuTable().GetQiFuCfg( Type, nLevel, Times + 1 );
 	if ( NULL == pQiFuCfg )
 	{
 		return ERR_SYETEM_ERR;
 	}
+
+	int32_t CriticalStrike = 1;
+	int32_t nRand = RANDOM.generate( 1, 100 );
+	if ( pQiFuCfg->Rate >= nRand )
+	{
+		CriticalStrike = 2;
+	}
+
 	ItemData Item = {};
 	Item.m_nClass = pQiFuCfg->CostItemClass;
 	Item.m_nCount = pQiFuCfg->CostItemCount;
-	Item.m_nId	  = pQiFuCfg->CostItemId;
+	Item.m_nId    = pQiFuCfg->CostItemId;
 
 	if ( ( Item.m_nId <= 0 || Item.m_nCount <= 0 ) && ( pQiFuCfg->CostGold < 0 ))
 	{
 		return ERR_SYETEM_ERR;
 	}
 
-	if ( Item.m_nId >0 && Item.m_nCount > 0 )
+	if ( Item.m_nId > 0 && Item.m_nCount > 0 )
 	{
-		if ( !m_pPlayer->GetBag().RemoveItem(Item, IDCR_QI_FU ) )
+		if ( !m_pPlayer->GetBag().RemoveItem( Item, IDCR_QI_FU ) )
 		{
 			return ERR_SYETEM_ERR;
 		}
@@ -128,15 +141,30 @@ int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 			return ERR_SYETEM_ERR;
 		}
 	}
+
+	int32_t AddCount = 0;
+	if ( pQiFuCfg->GetExp > 0 )
+	{
+		AddCount = CriticalStrike * pQiFuCfg->GetExp;
+		m_pPlayer->AddCurrency( CURRENCY_CASH, AddCount, MCR_QI_FU );
+	}
+	if ( pQiFuCfg->GetMoney > 0 )
+	{
+		AddCount = CriticalStrike * pQiFuCfg->GetMoney;
+		m_pPlayer->AddCurrency( CURRENCY_MONEY, AddCount, MCR_QI_FU );
+	}
+
 	if ( Type == QT_MONEY )
 	{
 		m_pPlayer->GetOperateLimit().AddLimitCount( PR_QI_FU_MONEY, 1 );
+		m_pPlayer->GetOperateLimit().AddLimitCount( PR_QI_FU_MONEY_TOTAL, AddCount );
 		m_pPlayer->GetPlayerHuoYueDu().AddHuoYueDuRecord( HYDT_QI_FU_MONEY );
 		m_pPlayer->GetAchievemnet().AddAchievement( AT_QI_FU_MONEY );
 	}
-	else if (  Type == QT_EXP )
+	else if ( Type == QT_EXP )
 	{
 		m_pPlayer->GetOperateLimit().AddLimitCount( PR_QI_FU_EXP, 1 );
+		m_pPlayer->GetOperateLimit().AddLimitCount( PR_QI_FU_EXP_TOTAL, AddCount );
 		m_pPlayer->GetPlayerHuoYueDu().AddHuoYueDuRecord( HYDT_QI_FU_EXP );
 		m_pPlayer->GetAchievemnet().AddAchievement( AT_QI_FU_EXP );
 	}
@@ -144,24 +172,15 @@ int32_t CQiFu::OnQiFu( Answer::NetPacket *inPacket )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	int32_t AddCount = 0;
-	if ( pQiFuCfg->GetExp > 0 )
-	{
-		m_pPlayer->addExp( pQiFuCfg->GetExp );
-		AddCount = pQiFuCfg->GetExp;
-	}
-	if ( pQiFuCfg->GetMoney > 0 )
-	{
-		m_pPlayer->AddCurrency( CURRENCY_MONEY, pQiFuCfg->GetMoney, MCR_QI_FU );
-		AddCount = pQiFuCfg->GetMoney;
-	}
+
 	SendQiFuInfo();
-	SendQiFuSuccess( Type,AddCount );
-	GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(),AddCount  );
+	SendQiFuSuccess( Type, AddCount, static_cast<int8_t>(CriticalStrike) );
+	GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(), AddCount );
 	return ERR_OK;
 }
 
-void CQiFu::SendQiFuSuccess( int8_t Type, int32_t AddCount )
+
+void CQiFu::SendQiFuSuccess( int8_t Type, int32_t AddCount, int8_t Double )
 {
 	if ( NULL == m_pPlayer )
 	{
@@ -174,6 +193,7 @@ void CQiFu::SendQiFuSuccess( int8_t Type, int32_t AddCount )
 	}
 	packet->writeInt8( Type );
 	packet->writeInt32( AddCount );
+	packet->writeInt8( Double );
 	packet->setSize(packet->getWOffset());
 	GAME_SERVICE.sendPacketTo(m_pPlayer->getGateIndex(), packet);	
 }
@@ -191,6 +211,8 @@ void CQiFu::SendQiFuInfo()
 	}
 	packet->writeInt8( (int8_t)m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_MONEY ));
 	packet->writeInt8( (int8_t)m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_EXP ));
+	packet->writeInt32( m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_MONEY_TOTAL ));
+	packet->writeInt32( m_pPlayer->GetOperateLimit().GetLimitCount( PR_QI_FU_EXP_TOTAL ));
 	packet->setSize(packet->getWOffset());
 	GAME_SERVICE.sendPacketTo(m_pPlayer->getGateIndex(), packet);	
 }

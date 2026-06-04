@@ -626,6 +626,8 @@ enum PlayerRecord
 	PR_BUY_CYCLE_TIMES						= 8003,		// ����ѭ���������
 	PR_QI_FU_MONEY							= 8004,		// ����ͭǮ
 	PR_QI_FU_EXP							= 8005,		// ��������
+	PR_QI_FU_MONEY_TOTAL					= 8006,		// ����ͭǮ�ܼ�
+	PR_QI_FU_EXP_TOTAL					= 8007,		// ���������ܼ�
 
 	PR_ACTIVITY_DAILY_REAWRD_START			= 9000,		// �ÿ�ս�����ʼ
 	RP_ACTIVITY_DAILY_REAWRD_END			= 9999,		// �ÿ�ս�������

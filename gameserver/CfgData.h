@@ -2916,6 +2916,7 @@ struct QiFuCfg
 	int8_t  CostItemClass;
 	int32_t	CostItemId;
 	int32_t CostItemCount;
+	int32_t Rate;		// �������� (1-100)
 };
 
 typedef map<int8_t, QiFuCfg> QiFuTimesMap;		// <��������,����>

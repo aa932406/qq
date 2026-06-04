@@ -7381,6 +7381,7 @@ void CQiFuTable::InitQiFuTable()
 		stu.CostItemClass		= (int8_t)QiFuTable.Search_Posistion(i,7)->iValue;
 		stu.CostItemId			= QiFuTable.Search_Posistion(i,8)->iValue;
 		stu.CostItemCount		= QiFuTable.Search_Posistion(i,9)->iValue;
+t	stu.Rate				= QiFuTable.Search_Posistion(i,10)->iValue;
 		TimesMap[Times]=stu;
 	}
 	if ( nType == QT_MONEY  )
