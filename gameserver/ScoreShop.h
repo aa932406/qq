@@ -18,6 +18,7 @@ public:
 	void				GetIconState( IconStateList& iconList );
 private:
 	ItemLimitMap		m_ItemLimit;							// 限制次数
+	ItemLimitMap		m_ItemDayLimit;							// 每日限制次数
 	int32_t				OnBuyItem( Answer::NetPacket *inPacket );
 	void				SendLimitInfo( int32_t Index = 0 );
 	int32_t				GetLimitCount( int32_t index );

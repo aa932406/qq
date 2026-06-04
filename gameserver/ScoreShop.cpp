@@ -12,6 +12,7 @@ enum ScoreShopType
 ScoreShop::ScoreShop()
 {
 	m_ItemLimit.clear();
+	m_ItemDayLimit.clear();
 }
 
 ScoreShop::	~ScoreShop()
@@ -89,6 +90,12 @@ int32_t ScoreShop::OnBuyItem( Answer::NetPacket *inPacket )
 		{
 			return ERR_SYETEM_ERR;
 		}
+
+		int32_t CostValue = Count * pScoreShop->CostValue;
+		if ( m_pPlayer->GetCurrency( (CURRENCY_TYPE)pScoreShop->CostType ) < CostValue )
+		{
+			return ERR_SYETEM_ERR;
+		}
 		if ( pScoreShop->LimitType > 0 )
 		{
 			int32_t Limit = GetLimitCount( Index );
@@ -97,8 +104,6 @@ int32_t ScoreShop::OnBuyItem( Answer::NetPacket *inPacket )
 				return ERR_SYETEM_ERR;
 			}
 		}
-
-		int32_t CostValue = Count * pScoreShop->CostValue;
 
 		// 扣除物品消耗
 		if ( pScoreShop->CostItems.size() > 0 )
@@ -109,7 +114,7 @@ int32_t ScoreShop::OnBuyItem( Answer::NetPacket *inPacket )
 			{
 				it->m_nCount *= Count;
 			}
-			if ( !m_pPlayer->GetBag().RemoveItem( CostItems, IACR_SCORE_SHOP_COST ) )
+			if ( !m_pPlayer->GetBag().RemoveItem( CostItems, IDCR_SCORE_SHOP_COST ) )
 			{
 				return ERR_SYETEM_ERR;
 			}
