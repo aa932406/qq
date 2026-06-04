@@ -1096,6 +1096,7 @@ struct CfgTrap
 	int32_t	event_type;		// ����Ч��
 	std::string effect;		// Ч������
 	int32_t item_cost;		// ��������
+	int32_t life;			// ��������(��)
 };
 typedef std::map<int32_t, CfgTrap> CfgTrapTable;
 

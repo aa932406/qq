@@ -14,19 +14,19 @@ enum TrapState
 enum TrapType
 {
 	TT_BUFF				= 1,	// BUFF
-	TT_MONSTER			= 2,	// Ë¢¹Ö
-	TT_TRANSFER			= 3,	// ´«ËÍ
-	TT_TRANSFER_TEAM	= 4,	// ¶ÓÎé´«ËÍ
-	TT_DELAY_MONSTER	= 5,	// ÑÓÊ±Ë¢¹Ö
-	TT_CHANGE_DUNGEON	= 6,	// ÇÐ»»¸±±¾
-	TT_ADD_DUNGEON_TIME	= 7,	// ÑÓ³¤¸±±¾Ê±¼ä
+	TT_MONSTER			= 2,	// Ë¢ï¿½ï¿½
+	TT_TRANSFER			= 3,	// ï¿½ï¿½ï¿½ï¿½
+	TT_TRANSFER_TEAM	= 4,	// ï¿½ï¿½ï¿½é´«ï¿½ï¿½
+	TT_DELAY_MONSTER	= 5,	// ï¿½ï¿½Ê±Ë¢ï¿½ï¿½
+	TT_CHANGE_DUNGEON	= 6,	// ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
+	TT_ADD_DUNGEON_TIME	= 7,	// ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 };
 
 class Map;
 class Dungeon;
 class CActivityMap;
 /*
-* ÏÝÚå
+* ï¿½ï¿½ï¿½ï¿½
 */
 class Trap
 	: public Entity
@@ -60,6 +60,7 @@ private:
 	CharId_t	m_user;
 	TrapState	m_state;
 	int64_t		m_stateTick;
+	int64_t		m_liftTime;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ms)
 };
 
 

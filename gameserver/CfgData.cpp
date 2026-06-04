@@ -4334,6 +4334,7 @@ void CfgData::fetchTrap()
 		trap.event_type		= TabFile.Search_Posistion(i,4)->iValue;
 		trap.effect			= TabFile.Search_Posistion(i,6)->pString;
 		trap.item_cost		= TabFile.Search_Posistion(i,7)->iValue;
+	trap.life			= TabFile.Search_Posistion(i,8)->iValue;
 
 		m_traps[trap.id] = trap;
 	}

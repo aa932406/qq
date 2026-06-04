@@ -12,7 +12,7 @@
 using namespace Answer;
 
 Trap::Trap()
-	: Entity(ET_TRAP), m_pMap(NULL), m_user(0), m_state(TS_STANDBY), m_stateTick(0)
+	: Entity(ET_TRAP), m_pMap(NULL), m_user(0), m_state(TS_STANDBY), m_stateTick(0), m_liftTime(0)
 {
 
 }
@@ -34,7 +34,11 @@ void Trap::init( Map *pMap, Position pos, const CfgTrap &cfgTrap )
 
 	m_user = 0;
 	m_state = TS_STANDBY;
-	m_stateTick = 0;
+	m_stateTick = m_pMap->getTick();
+	if ( m_cfgTrap.life > 0 )
+	{
+		m_liftTime = m_pMap->getNow() + m_cfgTrap.life;
+	}
 }
 
 void Trap::reset()
@@ -45,12 +49,19 @@ void Trap::reset()
 	m_user = 0;
 	m_state = TS_STANDBY;
 	m_stateTick = 0;
+	m_liftTime = 0;
 }
 
 void Trap::checkState()
 {
 	if (m_pMap == NULL)
 	{
+		return;
+	}
+
+	if ( m_liftTime > 0 && m_state != TS_DIE && m_pMap->getNow() > m_liftTime )
+	{
+		setState(TS_DIE);
 		return;
 	}
 
