@@ -20,6 +20,8 @@ private:
 	int32_t					OnGetEveryDayChongZhiGift( Answer::NetPacket *inPacket );
 	int32_t					OnGetThreePetGift( Answer::NetPacket *inPacket );
 	int32_t					OnGetTotalChongZhi( Answer::NetPacket *inPacket );
+	int32_t					OnGetMobilePhoneGift( Answer::NetPacket *inPacket );
+	int32_t					OnGetZeroBuyPetGift( Answer::NetPacket *inPacket );
 public:
 	void					SendShouChongIcon();
 	void					SendShouChongInfo();
@@ -50,13 +52,24 @@ private:
 
 	ShowIcon				GetTeHuiIconStu();
 	bool					IsHaveTeHuiGift();
+	int32_t					getTeHuiLimitTime();
+	void					checkTeHuiTime();
 
+	void					SendEveryDayChongZhiInfo( int8_t nType );
+	void					SendEveryDayChongZhiIcon( int8_t nType );
 	ShowIcon				GetEveryDayChongZhiIconStu();
 	bool					IsHaveEveryDayChongZhiGift();
+	bool					CanShowEveryChongZhiIcon();
 
 	void					GongGao( int32_t GongGaoId );
 
+	void					SendZeroBuyPetIcon();
+	void					SendMobilePhoneGiftIcon();
+	void					SendAdultGiftIcon();
+
 	int32_t					m_TotalChongZhiDay;
+	int64_t					m_nLastTick;
+	int8_t					m_nLastTeHui;
 };
 
 #endif

@@ -8,6 +8,8 @@
 CYunYingHD::CYunYingHD()
 {
 	m_TotalChongZhiDay = 0;
+	m_nLastTick = 0;
+	m_nLastTeHui = 0;
 }
 
 CYunYingHD::~CYunYingHD()
@@ -45,6 +47,9 @@ void CYunYingHD::GetInterestsProtocol( ProcIdList& procList )
 
 	procList.push_back( CM_GET_TOTAL_CHONG_ZHI_GIFT );
 	procList.push_back( CM_ASK_TOTAL_CHONG_ZHI_INFO );
+
+	procList.push_back( CM_GET_MOBILE_PHONE_GIFT );
+	procList.push_back( CM_GET_ZERO_BUY_PET_GIFT );
 }
 
 int32_t	CYunYingHD::DispatchNetDatas( ProcId_t nProcId, Answer::NetPacket *inPacket )
@@ -95,6 +100,14 @@ int32_t	CYunYingHD::DispatchNetDatas( ProcId_t nProcId, Answer::NetPacket *inPac
 			SendTotalChongZhiInfo();
 			break;
 		}
+	case CM_GET_MOBILE_PHONE_GIFT:
+		{
+			return OnGetMobilePhoneGift( inPacket );
+		}
+	case CM_GET_ZERO_BUY_PET_GIFT:
+		{
+			return OnGetZeroBuyPetGift( inPacket );
+		}
 	default:
 		break;
 	}
@@ -103,12 +116,18 @@ int32_t	CYunYingHD::DispatchNetDatas( ProcId_t nProcId, Answer::NetPacket *inPac
 
 void CYunYingHD::OnCleanUp()
 {
-
+	m_TotalChongZhiDay = 0;
+	m_nLastTick = 0;
+	m_nLastTeHui = 0;
 }
 
 void CYunYingHD::OnUpdate( int64_t curTick )
 {
-
+	if ( curTick - m_nLastTick > 999 )
+	{
+		m_nLastTick = curTick;
+		checkTeHuiTime();
+	}
 }
 
 void CYunYingHD::OnDaySwitch( int32_t nDiffDays )
@@ -683,7 +702,16 @@ bool CYunYingHD::IsHaveTeHuiGift()
 
 void CYunYingHD::SendEveryDayChongZhiInfo()
 {
+	SendEveryDayChongZhiInfo( 3 );
+}
+
+void CYunYingHD::SendEveryDayChongZhiInfo( int8_t nType )
+{
 	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	if ( nType != 3 )
 	{
 		return;
 	}
@@ -692,6 +720,7 @@ void CYunYingHD::SendEveryDayChongZhiInfo()
 	{
 		return;
 	}
+	packet->writeInt8( nType );
 	packet->writeInt32( m_pPlayer->GetTodayPayGold() );
 	packet->writeInt32( m_pPlayer->getRecord( PR_EVERY_DAY_CHONG_ZHI_GIFT_RECORD ) );
 	packet->setSize(packet->getWOffset());
@@ -700,7 +729,16 @@ void CYunYingHD::SendEveryDayChongZhiInfo()
 
 void CYunYingHD::SendEveryDayChongZhiIcon()
 {
+	SendEveryDayChongZhiIcon( 3 );
+}
+
+void CYunYingHD::SendEveryDayChongZhiIcon( int8_t nType )
+{
 	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	if ( !CanShowEveryChongZhiIcon() )
 	{
 		return;
 	}
@@ -727,6 +765,10 @@ void CYunYingHD::SendEveryDayChongZhiIcon()
 void CYunYingHD::GetEVeryDayChongZhiIconState( IconStateList& IconList )
 {
 	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	if ( !CanShowEveryChongZhiIcon() )
 	{
 		return;
 	}
@@ -880,6 +922,143 @@ void CYunYingHD::SendTotalChongZhiIcon()
 	packet->writeInt8( stu.Effects );
 	packet->setSize(packet->getWOffset());
 	GAME_SERVICE.sendPacketTo(m_pPlayer->getGateIndex(), packet);	
+}
+
+bool CYunYingHD::CanShowEveryChongZhiIcon()
+{
+	if ( NULL == m_pPlayer )
+	{
+		return false;
+	}
+	if ( m_pPlayer->GetTotalPayGold() <= 0 )
+	{
+		return false;
+	}
+	int32_t nRecord = m_pPlayer->getRecord( RP_SHOU_CHONG_LI_BAO );
+	return nRecord != (nRecord | 2);
+}
+
+int32_t CYunYingHD::getTeHuiLimitTime()
+{
+	if ( NULL == m_pPlayer )
+	{
+		return 0;
+	}
+	int32_t nLimitTime = 0;
+	int32_t nStartTime = m_pPlayer->getCreateTime();
+	int32_t nNowTime = m_pPlayer->getNow();
+	int32_t OldRecord = m_pPlayer->getRecord( RP_BUY_TE_HUI_RECORD );
+	NewServerFavorableMap CfgTeHuiMap = CFG_DATA.GetNewServerFavorableCfg();
+	NewServerFavorableMap::iterator it = CfgTeHuiMap.begin();
+	for ( ; it != CfgTeHuiMap.end(); ++it )
+	{
+		int32_t NewRecord = OldRecord | ( 1 << ( it->first - 1 ) );
+		if ( OldRecord != NewRecord )
+		{
+			int32_t nTime = nStartTime + it->second.nLimitTime - nNowTime;
+			if ( nTime > 0 && ( nLimitTime == 0 || nLimitTime > nTime ) )
+			{
+				nLimitTime = nTime;
+			}
+		}
+	}
+	return nLimitTime;
+}
+
+void CYunYingHD::checkTeHuiTime()
+{
+	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	int32_t nLimitTime = 0;
+	int8_t nIndex = 0;
+	int32_t nStartTime = m_pPlayer->getCreateTime();
+	int32_t nNowTime = m_pPlayer->getNow();
+	int32_t OldRecord = m_pPlayer->getRecord( RP_BUY_TE_HUI_RECORD );
+	NewServerFavorableMap CfgTeHuiMap = CFG_DATA.GetNewServerFavorableCfg();
+	NewServerFavorableMap::iterator it = CfgTeHuiMap.begin();
+	for ( ; it != CfgTeHuiMap.end(); ++it )
+	{
+		int32_t NewRecord = OldRecord | ( 1 << ( it->first - 1 ) );
+		if ( OldRecord != NewRecord )
+		{
+			int32_t nTime = nStartTime + it->second.nLimitTime - nNowTime;
+			if ( nTime > 0 && ( nLimitTime == 0 || nLimitTime > nTime ) )
+			{
+				nIndex = it->first;
+				nLimitTime = nTime;
+			}
+		}
+	}
+	if ( m_nLastTeHui != nIndex )
+	{
+		m_nLastTeHui = nIndex;
+		SendTeHuiIcon();
+	}
+}
+
+void CYunYingHD::SendZeroBuyPetIcon()
+{
+	if ( NULL == m_pPlayer )
+	{
+		return;
+	}
+	int32_t nEndTime = m_pPlayer->getRecord( 37502 );
+	if ( nEndTime <= 0 )
+	{
+		return;
+	}
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ONE_ICON );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	ShowIcon stu = {};
+	stu.nId = 174;
+	stu.nState = AS_RUNNING;
+	stu.nLeftTime = nEndTime - m_pPlayer->getNow();
+	if ( stu.nLeftTime < 0 )
+	{
+		stu.nLeftTime = 0;
+	}
+	packet->writeInt32( stu.nId );
+	packet->writeInt8( stu.nState );
+	packet->writeInt32( stu.nLeftTime );
+	packet->writeInt8( stu.IconLeft );
+	packet->writeInt32( stu.IconRight );
+	packet->writeInt8( stu.Effects );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacketTo( m_pPlayer->getGateIndex(), packet );
+}
+
+void CYunYingHD::SendMobilePhoneGiftIcon()
+{
+	// Stub - Mobile phone gift icon not yet implemented
+}
+
+void CYunYingHD::SendAdultGiftIcon()
+{
+	// Stub - Adult gift icon not yet implemented
+}
+
+int32_t CYunYingHD::OnGetMobilePhoneGift( Answer::NetPacket *inPacket )
+{
+	// Stub - Mobile phone gift not yet implemented with DB integration
+	return ERR_SYETEM_ERR;
+}
+
+int32_t CYunYingHD::OnGetZeroBuyPetGift( Answer::NetPacket *inPacket )
+{
+	if ( NULL == inPacket || NULL == m_pPlayer )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	if ( m_pPlayer->getRecord( 37502 ) <= 0 || m_pPlayer->getRecord( 37503 ) > 0 )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	return ERR_SYETEM_ERR;
 }
 
 void CYunYingHD::SendTotalChongZhiInfo()

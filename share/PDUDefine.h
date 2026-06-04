@@ -487,6 +487,9 @@ enum MSG_CM_CODE
 
 	//���󿪷��ۼƳ�ֵ��Ϣ
 	CM_ASK_TOTAL_CHONG_ZHI_INFO					= 515,			//���󿪷��ۼƳ�ֵ��Ϣ
+	CM_GET_MOBILE_PHONE_GIFT			= 518,			// 手机绑定礼包
+	CM_GET_ZERO_BUY_PET_GIFT			= 519,			// 0元购宠物
+	CM_DB_GET_MOBILE_PHONE_GIFT		= 20257,		// 数据库返回手机绑定礼包
 	//��ս70
 	CM_ASK_VAR_VICTORY_INFO						= 516,			//����սʤ�����Ϣ
 	CM_GET_VAR_VICTORY_REWARD					= 517,			//����սʤ������

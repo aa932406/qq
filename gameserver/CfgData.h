@@ -474,6 +474,7 @@ struct NewServerFavorable
 {
 	int8_t					Index;
 	int32_t					NeedGold;
+	int32_t					nLimitTime;
 	MemChrEquipBagVector	ItemVector;
 	GongGaoList				GongGaoInfo;
 };
