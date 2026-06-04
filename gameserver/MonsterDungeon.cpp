@@ -18,18 +18,17 @@ MonsterDungeon::~MonsterDungeon()
 
 void MonsterDungeon::refresh()
 {
-	int32_t	curHp = GetHP();
-	int32_t	maxHp = GetMaxHP();
-	int32_t	hpPercent = roundInt( curHp * 100.0f / maxHp );
-	 for ( HPEventList::iterator it = m_eventHp.begin();it != m_eventHp.end();++it)
-	 {
-		 if ( hpPercent >= it->minhp && hpPercent < it->maxhp )
-		 {
-			 m_dungeon->onMonsterHPEvent( this, it->id );
-		 }
-	 }
-
-	 Monster::refresh();
+	int64_t curHp = GetHP();
+	int64_t maxHp = GetMaxHP();
+	int32_t hpPercent = roundInt( curHp * 100.0f / maxHp );
+	for ( HPEventList::iterator it = m_eventHp.begin(); it != m_eventHp.end(); ++it )
+	{
+		if ( hpPercent >= it->minhp && hpPercent < it->maxhp )
+		{
+			m_dungeon->onMonsterHPEvent( this, it->id );
+		}
+	}
+	Monster::refresh();
 }
 
 bool MonsterDungeon::isDungeonMonster()
@@ -64,12 +63,17 @@ void MonsterDungeon::init(Dungeon *dungeon, const CfgDungeonMonster &cfgDungeonM
 	}
 	m_dungeon = dungeon;
 	m_cfgDungeonMonster = cfgDungeonMonster;
-	if ( m_cfgDungeonMonster.road.size() > 0)
+	if ( m_cfgDungeonMonster.road.size() > 0 )
 	{
 		m_road = m_cfgDungeonMonster.road;
 	}
+	if ( m_cfgDungeonMonster.life > 0 )
+	{
+		SetLifeTime( getNow() + m_cfgDungeonMonster.life );
+	}
 
-	Monster::init(cfgmonster, cfgmapmonster, pBuff);
+	AttrAddonVector vAttrAddon;
+	Monster::init(cfgmonster, cfgmapmonster, MS_STAND, &vAttrAddon);
 }
 
 void MonsterDungeon::reset()
@@ -136,12 +140,12 @@ bool MonsterDungeon::needDel() const
 
 void MonsterDungeon::destroy()
 {
-	POOL_MANAGER.push<MonsterDungeon>( this );
+	CPoolManager::instance().push<MonsterDungeon>( this );
 }
 
 void MonsterDungeon::remove()
 {
-	leaveMap();
+	Monster::leaveMap();
 	GAME_SERVICE.removeMonster( this );
 	m_delFlag = true;
 }
@@ -208,5 +212,40 @@ void MonsterDungeon::runOnRoad()
 		broadcastMove();
 		setState( MS_RUN_ON_ROAD );
 	}
+}
+
+void MonsterDungeon::postDamage(int32_t damge, UnitHandle launcher)
+{
+	if ( m_dungeon )
+	{
+		Player* player = NULL;
+		if ( launcher.type == ET_PLAYER )
+		{
+			player = GAME_SERVICE.getPlayer( launcher.id, GetRunnerId() );
+		}
+		else if ( launcher.type == ET_PET )
+		{
+			CObjPet* pPet = GAME_SERVICE.getPet( launcher.id, GetRunnerId() );
+			if ( pPet != NULL )
+			{
+				player = pPet->GetPlayer();
+			}
+		}
+		if ( player != NULL )
+		{
+			m_dungeon->AddPlayerDamage( player->getCid(), damge );
+		}
+	}
+	Monster::postDamage( damge, launcher );
+}
+
+int8_t MonsterDungeon::getDungeonHard() const
+{
+	return 0;
+}
+
+int8_t MonsterDungeon::getDungeonQuality() const
+{
+	return 0;
 }
 

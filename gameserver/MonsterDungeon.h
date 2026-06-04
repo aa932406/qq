@@ -15,11 +15,11 @@ public:
 	virtual void	refresh();
 	virtual void	onArriveTarget();
 	virtual int32_t getSide() const;
-	//virtual CharId_t getOwner() const;
 	virtual void	onRunOnRoad();
 	virtual bool	needDel() const;
 	virtual void	destroy();
 	virtual bool	isDungeonMonster();
+	virtual void	postDamage(int32_t damge, UnitHandle launcher);
 	
 public:
 	void init(Dungeon *dungeon, const CfgDungeonMonster &cfgDungeonMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, Buff *pBuff);
@@ -32,6 +32,8 @@ public:
 	void	addEventHp( const HPEvent& hpEvent );
 	void	remove();
 	int32_t	getMoney() const;
+	int8_t	getDungeonHard() const;
+	int8_t	getDungeonQuality() const;
 
 protected:
 	virtual void	die();
