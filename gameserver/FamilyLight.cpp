@@ -111,7 +111,7 @@ void CFamilyLight::reset()
 
 // bool CFamilyLight::checkData()
 // {
-// 	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚÈýÌì¿ªÆô
+// 	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿ªï¿½ï¿½
 // 	if ( startDays == 2 )
 // 	{
 // 		return true;
@@ -206,16 +206,7 @@ bool CFamilyLight::DrinkWine( Player* player, int32_t Count )
 	{
 		return false;
 	}
-// 	if ( Count < 0 )
-// 	{
-// 		return false;
-// 	}
-// 	PlayerScoreMap::iterator iter = m_mPlayerScore.find( player->getCid() );
-// 	if ( iter == m_mPlayerScore.end() )
-// 	{
-// 		return false;
-// 	}
-// 	iter->second.nItemEndTime = player->getNow() + 600 * Count;
+
 	SendPlayerActivityScore( player, getLeftTime() );
 	return true;
 }
