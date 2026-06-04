@@ -2881,27 +2881,33 @@ class CfgFaBao
 public:
 	CfgFaBao()
 	{
-		FaBaoLevel		= 0;
-		NeedRes			= 0;
-		m_AttrList.clear();
+		CleanUp();
 	}
-	int32_t			FaBaoId;
-	int32_t			NextFaBaoId;
-	int32_t			FaBaoType;
-	int32_t			FaBaoLevel;		
-	int32_t			NeedRes;
-	AddAttrList		m_AttrList;
+	virtual ~CfgFaBao(){}
+	void CleanUp()
+	{
+		FaBaoLevel = 0;
+		NeedCurr = 0;
+		nNeedLevel = 0;
+		vAttr.clear();
+	}
+public:
+	int32_t	FaBaoLevel;					// 法宝等级
+	int32_t	NeedCurr;					// 需要资源数量
+	int32_t	nNeedLevel;					// 需要玩家等级
+	int32_t	GongGaoId;					// 公告ID
+	AttrAddonVector	vAttr;				// 属性加成列表
 };
-typedef std::map<int32_t, CfgFaBao> FaBaoMap;
 
 class FaBaoTable
 {
 public:
 	FaBaoTable();
-CfgFaBao*		GetFaBaoCfg( int32_t FaBaoId );
-void			AddFaBao( CfgFaBao& Stu );
+	virtual ~FaBaoTable(){}
+	CfgFaBao*	GetFaBaoCfg( int8_t Type, int32_t Level );
+	void		AddFaBao( int8_t Type, CfgFaBao* Stu );
 private:
-	FaBaoMap	m_FaBaoTable;		//��ⷨ����
+	std::map<int32_t, CfgFaBao>	m_CfgFaBao[FA_BAO_TYPE_COUNT];
 };
 
 struct FunctionOpenCfg

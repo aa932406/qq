@@ -1862,6 +1862,7 @@ enum FaBaoType
 	FA_BAO_TYPE_SHU_GUANG	= 0,	//��ⷨ��
 	FA_BAO_TYPE_DI_LONG		= 1,	//��������
 	FA_BAO_TYPE_FU_WEN		= 2,	//���ķ���
+	FA_BAO_TYPE_HUN_DUN			= 3,
 	FA_BAO_TYPE_COUNT,
 };
 

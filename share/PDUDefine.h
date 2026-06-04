@@ -403,14 +403,13 @@ enum MSG_CM_CODE
 	CM_ASK_BOSS_INFO							= 438,			//����boss��Ϣ
 
 	//����ϵͳ
-	CM_BUY_FA_BAO_RES							= 439,			//���򷨱���Դ
+	CM_BUY_FA_BAO_RES				= 446,			//���򷨱���Դ
 	CM_ASK_FA_BAO_INFO							= 440,			//���󷨱���Ϣ
-	CM_UP_FA_BAO_LEVEL							= 441,			//��������
+	CM_FA_BAO_PEI_YANG							= 441,			//��������
 
 	//����ս������Ϣ
 	CM_ASK_BATTLE_INFO							= 442,			//����ս������Ϣ
 	//����
-	CM_DRESS_FA_BAO								= 443,			//�����ж��
 	//��λ
 	CM_JUE_WEI_DONATE_MONEY						= 444,			//��λ����
 	CM_ASK_JUE_WEI_INFO							= 445,			//�����λ��Ϣ
@@ -1132,6 +1131,7 @@ enum MSG_SM_CODE
 	//����
 	SM_SEND_FA_BAO_INFO					= 11440,		//���ͷ�����Ϣ
 	SM_SEND_FA_BAO_GONG_GAO				= 11441,		//��������
+	SM_SEND_ALL_FA_BAO_INFO			= 11446,
 	//����boss��Ϣ
 	SM_SEND_BOSS_INFO					= 11442,		//����boos��Ϣ
 	SM_SEND_BOSS_GONG_GAO				= 11443,		//BOSS���������

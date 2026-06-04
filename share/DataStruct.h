@@ -2027,6 +2027,7 @@ public:
 	int8_t	m_FaBaoId[FA_BAO_TYPE_COUNT];
 	int8_t	m_FaBaoDress[FA_BAO_TYPE_COUNT];
 	int32_t m_UpFaBaoResource[FA_BAO_RES_COUNT];
+
 };
 //========================================================================================================================================
 class MailDBData : public IDataStruct

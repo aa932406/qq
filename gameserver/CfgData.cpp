@@ -6848,37 +6848,28 @@ void CfgData::InitFaBaoTable()
 	bool ret = readFile.OpenFromTXT( FILE_FA_BAO_TABLE );
 	if ( ret == false )
 	{
-		LOG_ERROR("open FILE_FA_BAO_TABLE.txt ʧ��,�����ļ�����Сд");
+		LOG_ERROR("open FILE_FA_BAO_TABLE.txt 失败");
 		return;
 	}
 
-	int32_t iBaseTableCount		=	readFile.GetRecordsNum();
-	int32_t iBaseColumnCount		=	readFile.GetFieldsNum();
+	int32_t iBaseTableCount		= readFile.GetRecordsNum();
+	int32_t iBaseColumnCount	= readFile.GetFieldsNum();
 	if ( iBaseColumnCount <= 0 )
 	{
 		return;
 	}
 
-	int32_t iValue = 0;
 	for( int32_t i = 0;i < iBaseTableCount; ++i )
 	{
-		CfgFaBao stu;
-		stu.FaBaoId			= readFile.Search_Posistion( i, 0 )->iValue;
-		stu.NextFaBaoId		= readFile.Search_Posistion( i, 2 )->iValue;
-		stu.FaBaoType		= readFile.Search_Posistion( i, 3 )->iValue;
-		stu.FaBaoLevel		= readFile.Search_Posistion( i, 4 )->iValue;
-		stu.NeedRes			= readFile.Search_Posistion( i, 5 )->iValue;
-		for ( int32_t j = 0; j < 7; j++ )
-		{
-			AddAttribute AddAttr;
-			AddAttr.m_nAddAttrType	= readFile.Search_Posistion( i, 6 + j*2 )->iValue;
-			AddAttr.m_nAddAttrValue	= readFile.Search_Posistion( i, 6 + j*2 + 1 )->iValue;
-			if ( AddAttr.m_nAddAttrValue > 0 )
-			{
-				stu.m_AttrList.push_back( AddAttr );
-			}	
-		}
-		m_FaBaoTable.AddFaBao(  stu );
+		CfgFaBao stu = {};
+		int8_t nType			= (int8_t)readFile.Search_Posistion( i, 0 )->iValue;
+		stu.FaBaoLevel			= readFile.Search_Posistion( i, 1 )->iValue;
+		stu.NeedCurr			= readFile.Search_Posistion( i, 3 )->iValue;
+		stu.nNeedLevel			= readFile.Search_Posistion( i, 4 )->iValue;
+		std::string AttrStr	= readFile.Search_Posistion( i, 6 )->pString;
+		stu.GongGaoId			= readFile.Search_Posistion( i, 7 )->iValue;
+		stu.vAttr				= parseEquipEffect( stu.FaBaoLevel, AttrStr );
+		m_FaBaoTable.AddFaBao( nType, &stu );
 	}
 }
 
@@ -6975,22 +6966,33 @@ CfgSysMail*	CfgData::GetSysMail( int32_t Id )
 
 FaBaoTable::FaBaoTable()
 {
-	m_FaBaoTable.clear();
+	for ( int32_t i = 0; i < FA_BAO_TYPE_COUNT; ++i )
+	{
+		m_CfgFaBao[i].clear();
+	}
 }
 
-CfgFaBao* FaBaoTable::GetFaBaoCfg( int32_t FaBaoId )
+CfgFaBao* FaBaoTable::GetFaBaoCfg( int8_t Type, int32_t Level )
 {
-	FaBaoMap::iterator it = m_FaBaoTable.find( FaBaoId );
-	if ( it != m_FaBaoTable.end() )
+	if ( Type < 0 || Type >= FA_BAO_TYPE_COUNT )
+	{
+		return NULL;
+	}
+	std::map<int32_t, CfgFaBao>::iterator it = m_CfgFaBao[Type].find( Level );
+	if ( it != m_CfgFaBao[Type].end() )
 	{
 		return &(it->second);
 	}
 	return NULL;
 }
 
-void FaBaoTable::AddFaBao( CfgFaBao& Stu )
+void FaBaoTable::AddFaBao( int8_t Type, CfgFaBao* Stu )
 {
-	m_FaBaoTable[Stu.FaBaoId] = Stu;
+	if ( Type < 0 || Type >= FA_BAO_TYPE_COUNT )
+	{
+		return;
+	}
+	m_CfgFaBao[Type][Stu->FaBaoLevel] = *Stu;
 }
 
 

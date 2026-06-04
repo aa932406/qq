@@ -1,6 +1,10 @@
+#include "stdafx.h"
 #include "FaBao.h"
-#include "CfgData.h"
+#include "Player.h"
 #include "GameService.h"
+#include "CfgData.h"
+#include "KaiFuHuoDong.h"
+
 CFaBao::CFaBao()
 {
 	OnCleanUp();
@@ -20,8 +24,8 @@ void CFaBao::OnCleanUp()
 
 void CFaBao::OnLoadFromDB( const PlayerDBData& dbData )
 {
-	memcpy( m_FaBaoId,dbData.m_FaBaoData.m_FaBaoId, sizeof( m_FaBaoId ) );
-	memcpy( m_FaBaoDress,dbData.m_FaBaoData.m_FaBaoDress, sizeof( m_FaBaoDress ) );
+	memcpy( m_FaBaoId, dbData.m_FaBaoData.m_FaBaoId, sizeof( m_FaBaoId ) );
+	memcpy( m_FaBaoDress, dbData.m_FaBaoData.m_FaBaoDress, sizeof( m_FaBaoDress ) );
 	memcpy( m_UpFaBaoResource, dbData.m_FaBaoData.m_UpFaBaoResource, sizeof( m_UpFaBaoResource ) );
 }
 
@@ -35,8 +39,7 @@ void CFaBao::OnSaveToDB( PlayerDBData& dbData )
 void CFaBao::GetInterestsProtocol( ProcIdList& procList )
 {
 	procList.push_back( CM_ASK_FA_BAO_INFO );
-	procList.push_back( CM_UP_FA_BAO_LEVEL );
-	procList.push_back( CM_DRESS_FA_BAO );
+	procList.push_back( CM_FA_BAO_PEI_YANG );
 	procList.push_back( CM_BUY_FA_BAO_RES );
 }
 
@@ -48,16 +51,25 @@ int32_t CFaBao::DispatchNetDatas( ProcId_t nProcId, Answer::NetPacket *inPacket 
 	}
 	switch( nProcId )
 	{
-	case CM_BUY_FA_BAO_RES:			return OnBuyFaBaoRes( inPacket );
-	case CM_ASK_FA_BAO_INFO:		return OnAskFaBaoInfo( inPacket );
-	case CM_UP_FA_BAO_LEVEL:		return OnUpFaBaoLevel( inPacket );
-	case CM_DRESS_FA_BAO:			return OnDressFaBao( inPacket );
+	case CM_ASK_FA_BAO_INFO:	return onAskFaBaoInfo( inPacket );
+	case CM_FA_BAO_PEI_YANG:	return onFaBaoPeiYang( inPacket );
+	case CM_BUY_FA_BAO_RES:		return onBuyFaBaoRes( inPacket );
 	default:
 		return ERR_SYETEM_ERR;
 	}
 }
 
-int32_t CFaBao::OnBuyFaBaoRes( Answer::NetPacket* inPacket )
+bool CFaBao::IsFaBaoType( int8_t Type )
+{
+	return ( Type >= 0 && Type < FA_BAO_TYPE_COUNT );
+}
+
+bool CFaBao::IsFaBaoResType( int8_t Type )
+{
+	return ( Type >= 0 && Type < FA_BAO_RES_COUNT );
+}
+
+int32_t CFaBao::onBuyFaBaoRes( Answer::NetPacket* inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
 	{
@@ -69,11 +81,11 @@ int32_t CFaBao::OnBuyFaBaoRes( Answer::NetPacket* inPacket )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	if ( pFaBaoResCfg->NeedGold <= 0 || pFaBaoResCfg->GetResValues <= 0 )
+	if ( !CheckFaBaoResType( static_cast<FaBaoResourceType>(pFaBaoResCfg->FaBaoResType) ) )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	if ( !CheckFaBaoResType( static_cast<FaBaoResourceType>(pFaBaoResCfg->FaBaoResType) ) )
+	if ( pFaBaoResCfg->GetResValues <= 0 || pFaBaoResCfg->NeedGold <= 0 )
 	{
 		return ERR_SYETEM_ERR;
 	}
@@ -81,149 +93,104 @@ int32_t CFaBao::OnBuyFaBaoRes( Answer::NetPacket* inPacket )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	if ( !m_pPlayer->DecCurrency( CURRENCY_GOLD, pFaBaoResCfg->NeedGold, GCR_BUY_FA_BAO_RES, pFaBaoResCfg->id ))
+	if ( !m_pPlayer->DecCurrency( CURRENCY_GOLD, pFaBaoResCfg->NeedGold, GCR_BUY_FA_BAO_RES, pFaBaoResCfg->id ) )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	
-	AddFaBaoRes( static_cast<FaBaoResourceType>(pFaBaoResCfg->FaBaoResType), pFaBaoResCfg->GetResValues );
+	AddFaBaoRes( static_cast<int8_t>(pFaBaoResCfg->FaBaoResType), pFaBaoResCfg->GetResValues );
 	return ERR_OK;
 }
 
-int32_t CFaBao::OnDressFaBao( Answer::NetPacket *inPacket )
-{
-	if ( NULL == inPacket )
-	{
-		return ERR_SYETEM_ERR;
-	}
-	int8_t nFaBaoType = inPacket->readInt8();
-	if ( !CheckFaBaoType( static_cast<FaBaoType>( nFaBaoType ) ) )
-	{
-		return ERR_SYETEM_ERR;
-	}
-	if ( m_FaBaoId[nFaBaoType] != 0 )
-	{
-		if ( m_FaBaoDress[nFaBaoType] != 1 )
-		{
-			m_FaBaoDress[nFaBaoType] = 1;
-		}
-		else
-		{
-			m_FaBaoDress[nFaBaoType] = 0;
-		}
-		m_pPlayer->recalcAttr();
-		SendFaBaoInfo();
-	}
-	else
-	{
-		return ERR_SYETEM_ERR;
-	}
-	return ERR_OK;
-}
-
-int32_t	CFaBao::OnAskFaBaoInfo( Answer::NetPacket *inPacket )
+int32_t CFaBao::onAskFaBaoInfo( Answer::NetPacket *inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	SendFaBaoInfo();
+	int8_t nType = inPacket->readInt8();
+	if ( !IsFaBaoType( nType ) )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	sendFaBaoInfo( nType );
 	return ERR_OK;
 }
 
-int32_t	CFaBao::OnUpFaBaoLevel( Answer::NetPacket *inPacket )
+int32_t CFaBao::onFaBaoPeiYang( Answer::NetPacket *inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	int32_t	FaBaoId	= inPacket->readInt32();
-	
-	CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( FaBaoId );
+	int8_t nType = inPacket->readInt8();
+	if ( !IsFaBaoType( nType ) )
+	{
+		return ERR_SYETEM_ERR;
+	}
+
+	int32_t FaBaoLevel = m_FaBaoId[nType];
+	CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( nType, FaBaoLevel );
 	if ( NULL == pFaBao )
 	{
 		return ERR_SYETEM_ERR;
 	}
+	if ( pFaBao->NeedCurr < 0 )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	if ( pFaBao->NeedCurr > m_UpFaBaoResource[nType] )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	if ( NULL == CFG_DATA.GetFaBaoTable().GetFaBaoCfg( nType, FaBaoLevel + 1 ) )
+	{
+		return ERR_SYETEM_ERR;
+	}
+	if ( m_pPlayer->getLevel() < pFaBao->nNeedLevel )
+	{
+		return ERR_SYETEM_ERR;
+	}
 
-	if ( !CheckFaBaoType( static_cast<FaBaoType>( pFaBao->FaBaoType ) ) )
+	m_UpFaBaoResource[nType] -= pFaBao->NeedCurr;
+	m_pPlayer->sendGainInfo( nType + 100, -pFaBao->NeedCurr, m_pPlayer->benefitType() );
+	m_FaBaoId[nType] = FaBaoLevel + 1;
+
+	CfgFaBao* pNextFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( nType, m_FaBaoId[nType] );
+	if ( pNextFaBao != NULL && pNextFaBao->GongGaoId > 0 )
 	{
-		return ERR_SYETEM_ERR;
+		broadcastLevelUp( nType, pNextFaBao->GongGaoId );
 	}
-	if ( pFaBao->FaBaoId != m_FaBaoId[pFaBao->FaBaoType] )
+
+	sendFaBaoInfo( nType );
+	m_pPlayer->recalcAttr();
+
+	if ( nType == FA_BAO_TYPE_HUN_DUN )
 	{
-		if ( pFaBao->FaBaoLevel != 0 )
-		{
-			return ERR_SYETEM_ERR;
-		}
+		KAI_FU_HUO_DONG.SendKaiFuHuoDongIcon( m_pPlayer );
 	}
-	if ( pFaBao->NextFaBaoId <= 0 )
-	{
-		return ERR_SYETEM_ERR;
-	}
-	int8_t FaBaoResType = 0;
-	switch( pFaBao->FaBaoType )
-	{
-	case FA_BAO_TYPE_SHU_GUANG:
-		{
-			FaBaoResType	= FA_BAO_RES_SHU_GUANG;
-			break;
-		}
-	case FA_BAO_TYPE_DI_LONG:
-		{
-			FaBaoResType	= FA_BAO_RES_DI_LONG;
-			break;
-		}
-	case FA_BAO_TYPE_FU_WEN:
-		{
-			FaBaoResType	= FA_BAO_RES_FU_WEN;
-			break;
-		}
-	default:
-		return ERR_SYETEM_ERR;
-	}
-	if ( pFaBao->NeedRes > GetFaBaoRes( static_cast<FaBaoResourceType>( FaBaoResType ) ) )
-	{
-		return ERR_SYETEM_ERR;
-	}
-	if ( !DecFaBaoRes( static_cast<FaBaoResourceType>( FaBaoResType), pFaBao->NeedRes ) ) 
-	{
-		return ERR_SYETEM_ERR;
-	}
-	m_FaBaoId[pFaBao->FaBaoType] = pFaBao->NextFaBaoId;
-	if ( pFaBao->FaBaoLevel == 0 )
-	{
-		m_FaBaoDress[pFaBao->FaBaoType] = 1;	//领取法宝时变成佩戴
-	}
-	SendFaBaoInfo();
-	if ( m_FaBaoDress[pFaBao->FaBaoType] == 1 )
-	{
-		m_pPlayer->recalcAttr();
-	}
-	if ( pFaBao->FaBaoLevel >= 3 )
-	{
-		GongGao( pFaBao->NextFaBaoId );
-	}
-	m_pPlayer->GetAchievemnet().AddAchievement( AT_FA_BAO, pFaBao->FaBaoType );
-	GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(),pFaBao->FaBaoId );
+
+	GAME_SERVICE.replySuccess( m_pPlayer->getGateIndex(), inPacket->getProc(), m_FaBaoId[nType] );
 	return ERR_OK;
 }
 
-void CFaBao::GongGao( int32_t FaBaoID )
+void CFaBao::broadcastLevelUp( int8_t Type, int32_t GongGaoId )
 {
-	if ( NULL == m_pPlayer )
+	if ( NULL == m_pPlayer || !IsFaBaoType( Type ) )
 	{
 		return;
 	}
-	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket(Answer::PACK_DISPATCH, SM_SEND_FA_BAO_GONG_GAO);
-	if (NULL == packet)
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_FA_BAO_GONG_GAO );
+	if ( NULL == packet )
 	{
 		return;
 	}
+	packet->writeInt32( GongGaoId );
 	packet->writeInt64( m_pPlayer->getCid() );
-	packet->writeUTF8(  m_pPlayer->getName() );
-	packet->writeInt32( FaBaoID );
-	packet->setSize(packet->getWOffset());
-	GAME_SERVICE.worldBroadcast(packet);
+	packet->writeUTF8( m_pPlayer->getName() );
+	packet->writeInt8( Type );
+	packet->writeInt32( m_FaBaoId[Type] );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.worldBroadcast( packet );
 }
 
 void CFaBao::AddPlayerAttr()
@@ -235,135 +202,106 @@ void CFaBao::AddPlayerAttr()
 
 	for ( int32_t i = 0; i < FA_BAO_TYPE_COUNT; ++i )
 	{
-		CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( m_FaBaoId[i] );
+		CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( static_cast<int8_t>(i), m_FaBaoId[i] );
 		if ( NULL == pFaBao )
 		{
 			continue;
 		}
-		if ( m_FaBaoDress[i] != 1 )
+		AttrAddonVector::iterator it = pFaBao->vAttr.begin();
+		for ( ; it != pFaBao->vAttr.end(); ++it )
 		{
-			continue;
-		}
-		AddAttrList::iterator it = pFaBao->m_AttrList.begin();
-		for ( ; it != pFaBao->m_AttrList.end(); ++it )
-		{ 
-			if ( static_cast<CObjAttrs::Index_T>( it->m_nAddAttrType ) == CObjAttrs::ATTR_BATTLE )
+			if ( static_cast<CObjAttrs::Index_T>( it->index ) == CObjAttrs::ATTR_BATTLE )
 			{
 				continue;
 			}
-			m_pPlayer->AddAttrValue(static_cast<CObjAttrs::Index_T>( it->m_nAddAttrType ), it->m_nAddAttrValue );
+			m_pPlayer->AddAttrValue( static_cast<CObjAttrs::Index_T>( it->index ), it->addon );
 		}
 	}
 }
 
-void CFaBao::SendFaBaoInfo()
+void CFaBao::sendFaBaoInfo( int8_t nType )
 {
-	if ( NULL == m_pPlayer )
+	if ( NULL == m_pPlayer || !IsFaBaoType( nType ) )
 	{
 		return;
 	}
 	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_FA_BAO_INFO );
-	if (NULL == packet)
+	if ( NULL == packet )
 	{
 		return;
 	}
-	packet->writeInt8( static_cast<int8_t>( FA_BAO_TYPE_COUNT) );
-	for ( int32_t i = 0; i < FA_BAO_TYPE_COUNT; i++ )
-	{
-		packet->writeInt8( i );
-		packet->writeInt32( m_FaBaoId[i] );
-		packet->writeInt8( m_FaBaoDress[i] );
-	}
-
-	packet->writeInt8( static_cast<int8_t>( FA_BAO_RES_COUNT) );
-	for ( int32_t i = 0; i < FA_BAO_RES_COUNT; i++ )
-	{
-		packet->writeInt8( i );
-		packet->writeInt32( m_UpFaBaoResource[i] );
-	}
-	packet->setSize(packet->getWOffset());
-	GAME_SERVICE.sendPacketTo(m_pPlayer->getGateIndex(), packet);
+	packet->writeInt8( nType );
+	packet->writeInt32( m_FaBaoId[nType] );
+	packet->writeInt32( m_UpFaBaoResource[nType] );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacketTo( m_pPlayer->getGateIndex(), packet );
 }
 
-bool CFaBao::AddFaBaoRes( FaBaoResourceType Type, int32_t AddValues )
+void CFaBao::SendAllFaBaoInfo()
 {
 	if ( NULL == m_pPlayer )
 	{
-		return false;
+		return;
 	}
-	if ( AddValues <= 0 )
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ALL_FA_BAO_INFO );
+	if ( NULL == packet )
 	{
-		return false;
+		return;
 	}
-	if ( !CheckFaBaoResType( Type ) )
+	packet->writeInt8( static_cast<int8_t>( FA_BAO_TYPE_COUNT ) );
+	for ( int32_t i = 0; i < FA_BAO_TYPE_COUNT; ++i )
 	{
-		return false;
+		packet->writeInt8( static_cast<int8_t>( i ) );
+		packet->writeInt32( m_FaBaoId[i] );
+		packet->writeInt32( m_UpFaBaoResource[i] );
 	}
-	m_UpFaBaoResource[Type]+= AddValues;
-	SendFaBaoInfo();
-	int8_t nType = 0;
-	switch(  Type )
-	{
-	case FA_BAO_RES_SHU_GUANG:
-		{
-			nType = GT_SHU_GUANG;
-			break;
-		}
-	case FA_BAO_RES_DI_LONG:
-		{
-			nType = GT_DI_LONG;
-			break;
-		}
-	case FA_BAO_RES_FU_WEN:
-		{
-			nType = GT_FU_WEN;
-			break;
-		}
-	}
-	m_pPlayer->sendGainInfo( nType, static_cast<int32_t>(AddValues),m_pPlayer->benefitType() );
-	return true;
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacketTo( m_pPlayer->getGateIndex(), packet );
 }
 
-bool CFaBao::DecFaBaoRes( FaBaoResourceType Type, int32_t DecValues )
+void CFaBao::AddFaBaoRes( int8_t nType, int32_t AddValues )
+{
+	if ( NULL == m_pPlayer || !IsFaBaoType( nType ) || AddValues <= 0 )
+	{
+		return;
+	}
+	m_UpFaBaoResource[nType] += AddValues;
+	m_pPlayer->sendGainInfo( nType + 100, AddValues, m_pPlayer->benefitType() );
+	sendFaBaoInfo( nType );
+}
+
+bool CFaBao::DecFaBaoRes( int8_t nType, int32_t DecValues )
 {
 	if ( DecValues <= 0 )
 	{
 		return false;
 	}
-	if ( !CheckFaBaoResType( Type ) )
+	if ( !IsFaBaoResType( nType ) )
 	{
 		return false;
 	}
-	m_UpFaBaoResource[Type] -= DecValues;
-	SendFaBaoInfo();
+	m_UpFaBaoResource[nType] -= DecValues;
+	sendFaBaoInfo( nType );
 	return true;
 }
 
-int32_t	CFaBao::GetFaBaoRes( FaBaoResourceType Type )
+int32_t CFaBao::GetFaBaoRes( int8_t nType )
 {
-	if ( !CheckFaBaoResType( Type ) )
+	if ( !IsFaBaoResType( nType ) )
 	{
 		return 0;
 	}
-	return m_UpFaBaoResource[Type];
+	return m_UpFaBaoResource[nType];
 }
 
 bool CFaBao::CheckFaBaoType( FaBaoType Type )
 {
-	if ( Type < 0 || Type >= FA_BAO_TYPE_COUNT )
-	{
-		return false;
-	}
-	return true;
+	return IsFaBaoType( static_cast<int8_t>( Type ) );
 }
 
 bool CFaBao::CheckFaBaoResType( FaBaoResourceType Type )
 {
-	if ( Type < 0 || Type >= FA_BAO_RES_COUNT )
-	{
-		return false;
-	}
-	return true;
+	return IsFaBaoResType( static_cast<int8_t>( Type ) );
 }
 
 int32_t CFaBao::GetFaBaoCount( int32_t& FaBaoSumLevel )
@@ -374,7 +312,7 @@ int32_t CFaBao::GetFaBaoCount( int32_t& FaBaoSumLevel )
 		if ( m_FaBaoDress[i] == 1 )
 		{
 			FaBaoCount++;
-			CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg(m_FaBaoId[i] );
+			CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( static_cast<int8_t>(i), m_FaBaoId[i] );
 			if ( NULL == pFaBao )
 			{
 				continue;
@@ -387,22 +325,22 @@ int32_t CFaBao::GetFaBaoCount( int32_t& FaBaoSumLevel )
 
 int32_t CFaBao::GetBattleFaBaoInfo( int8_t& FaBaoLevel, int32_t& FaBaoBattle )
 {
-	if ( m_FaBaoDress[FA_BAO_TYPE_FU_WEN] != 1 )		//没有佩戴不加战斗力
+	if ( m_FaBaoDress[FA_BAO_TYPE_FU_WEN] != 1 )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg(m_FaBaoId[FA_BAO_TYPE_FU_WEN] );
+	CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg( FA_BAO_TYPE_FU_WEN, m_FaBaoId[FA_BAO_TYPE_FU_WEN] );
 	if ( NULL == pFaBao )
 	{
 		return ERR_SYETEM_ERR;
 	}
 	FaBaoLevel = pFaBao->FaBaoLevel;
-	AddAttrList::iterator it = pFaBao->m_AttrList.begin();
-	for ( ; it != pFaBao->m_AttrList.end(); ++it )
-	{ 
-		if ( static_cast<CObjAttrs::Index_T>( it->m_nAddAttrType ) == CObjAttrs::ATTR_BATTLE )
+	AttrAddonVector::iterator it = pFaBao->vAttr.begin();
+	for ( ; it != pFaBao->vAttr.end(); ++it )
+	{
+		if ( static_cast<CObjAttrs::Index_T>( it->index ) == CObjAttrs::ATTR_BATTLE )
 		{
-			FaBaoBattle += it->m_nAddAttrValue;
+			FaBaoBattle += it->addon;
 		}
 	}
 	return ERR_OK;
@@ -414,24 +352,20 @@ void CFaBao::PackFaBaoInfo( Answer::NetPacket *inPacket )
 	{
 		return;
 	}
-	for ( int8_t i = 0;  i < FA_BAO_TYPE_COUNT; i++ )
+	inPacket->writeInt8( static_cast<int8_t>( FA_BAO_TYPE_COUNT ) );
+	for ( int32_t i = 0; i < FA_BAO_TYPE_COUNT; ++i )
 	{
-		inPacket->writeInt8( i );
-		inPacket->writeInt8( m_FaBaoId[i] );
-		inPacket->writeInt8( m_FaBaoDress[i] );
+		inPacket->writeInt8( static_cast<int8_t>( i ) );
+		inPacket->writeInt32( m_FaBaoId[i] );
+		inPacket->writeInt32( m_UpFaBaoResource[i] );
 	}
 }
 
-int32_t	CFaBao::GetFaBaoLevel( int8_t Type )
+int32_t CFaBao::GetFaBaoLevel( int8_t Type )
 {
-	if ( Type < 0 || Type >= FA_BAO_TYPE_COUNT )
+	if ( !IsFaBaoType( Type ) )
 	{
 		return 0;
 	}
-	CfgFaBao* pFaBao = CFG_DATA.GetFaBaoTable().GetFaBaoCfg(m_FaBaoId[Type] );
-	if ( NULL == pFaBao )
-	{
-		return 0;
-	}
-	return pFaBao->FaBaoLevel;
+	return m_FaBaoId[Type];
 }
