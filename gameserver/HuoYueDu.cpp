@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "GameService.h"
 #include "FunctionOpen.h"
-#include "FestivalDoubleEleven.h"
+
 using namespace Answer;
 
 CHuoYueDu::CHuoYueDu()
@@ -72,8 +72,7 @@ void CHuoYueDu::OnDaySwitch( int32_t nDiffDays )
 	if ( nLevel >= m_pPlayer->GetMaxLevel() )
 		AddHuoYueDuRecord( HYDT_DA_WEI_WANG, 0, true );
 
-	// Decompiled adds: if max level → HYDT_DA_WEI_WANG, if all equips top → HYDT_EQUIP_STAT_UP, if mini client → HYDT_ILLUSION
-	// These conditions require APIs not available in current codebase
+	// TODO: Decompiled also adds: if all equips top → HYDT_EQUIP_STAT_UP (needs CExtEquip::IsAllPosTop), if mini client → HYDT_ILLUSION (needs IsMiniClient)
 }
 
 int32_t	CHuoYueDu::OnAskHuoYueDuInfo( Answer::NetPacket *inPacket )
