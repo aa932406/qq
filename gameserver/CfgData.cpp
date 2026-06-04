@@ -146,6 +146,7 @@ bool CfgData::init(int32_t equipIdInterval, int32_t viceGeneralIdInterval,int32_
 	m_TouZiTable.InitTouZiTable();		// ��ʼ��Ͷ������
 	m_ChouJiangConfig.InitCJConfig();	// ��ʼ���齱����
 	InitScoreShopTable();				// ��ʼ��������̳�
+	InitEquipBackTable();					// 初始化装备回购配置
 	m_QiFuTable.InitQiFuTable();		// ��ʼ����������
 	m_VipTable.InitVipTable();			// ��ʼ��vip����
 	m_debug = debug;
@@ -7594,5 +7595,49 @@ void CfgData::InitLevelRefinTable()
 		stu.nLevelUp				= parseInt32VectorString(nId,TabFile.Search_Posistion(i,3)->pString);
 		stu.nGongGaoId				= TabFile.Search_Posistion(i,4)->iValue;
 		m_LevelRefinTable[nId] = stu;
+	}
+}
+
+void CfgData::InitEquipBackTable()
+{
+	CDBCFile TabFile(0);
+	bool ret = TabFile.OpenFromTXT("./ServerConfig/Tables/EquipBack.txt");
+	if ( ret == false )
+	{
+		LOG_ERROR("open EquipBack.txt failed,please check!!");
+		return;
+	}
+
+	int32_t iBaseTableCount			=	TabFile.GetRecordsNum();
+	int32_t iBaseColumnCount		=	TabFile.GetFieldsNum();
+	if (iBaseColumnCount <=0)
+	{
+		return ;
+	}
+
+	for( int32_t i = 0; i < iBaseTableCount; i++ )
+	{
+		EquipBack stu = {};
+		int32_t nIndex = 0;
+		stu.nId				= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nType			= (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+
+		// 解析装备ID列表 （逗号分隔）
+		std::string strEquipList = TabFile.Search_Posistion(i, nIndex)->pString; ++nIndex;
+		StringVector vEquips = StringUtility::split(strEquipList, ",");
+		for (StringVector::iterator it = vEquips.begin(); it != vEquips.end(); ++it)
+		{
+			stu.nEquipList.push_back(atoi(it->c_str()));
+		}
+
+		stu.nRecovType		= (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nRecovValues	= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nBuyBackType	= (int8_t)TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nBuyBackValue	= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nOpenDay		= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nLimitNum		= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+		stu.nDisplayDay		= TabFile.Search_Posistion(i, nIndex)->iValue; ++nIndex;
+
+		m_cfgEquip.AddEquipBack( stu );
 	}
 }

@@ -1394,6 +1394,35 @@ public:
 };
 typedef std::map<int32_t, CfgEquipSuit> CfgEquipSuitMap;
 
+// 装备回购配置
+struct EquipBack
+{
+	EquipBack()
+	{
+		nId = 0;
+		nType = 0;
+		nEquipList.clear();
+		nRecovType = 0;
+		nRecovValues = 0;
+		nBuyBackType = 0;
+		nBuyBackValue = 0;
+		nOpenDay = 0;
+		nLimitNum = 0;
+		nDisplayDay = 0;
+	}
+	int32_t		nId;				// 配置ID
+	int8_t		nType;				// 类型: 1=金币回收 2=开服回收
+	Int32List	nEquipList;			// 涉及装备ID列表
+	int8_t		nRecovType;			// 回收获得货币类型
+	int32_t		nRecovValues;		// 回收获得货币数量
+	int8_t		nBuyBackType;		// 回购消耗货币类型
+	int32_t		nBuyBackValue;		// 回购消耗货币数量
+	int32_t		nOpenDay;			// 开服天数限制
+	int32_t		nLimitNum;			// 限制次数
+	int32_t		nDisplayDay;		// 显示天数(开服后)
+};
+typedef std::map<int32_t, EquipBack> EquipBackMap;
+
 class CfgEquipTable
 {
 public:
@@ -1517,6 +1546,26 @@ public:
 		return NULL;
 	}
 
+	void AddEquipBack( const EquipBack& cfg )
+	{
+		m_mEquipBack[cfg.nId] = cfg;
+	}
+
+	const EquipBack* GetEquipBackCfg( int32_t nId ) const
+	{
+		EquipBackMap::const_iterator iter = m_mEquipBack.find( nId );
+		if ( iter != m_mEquipBack.end() )
+		{
+			return &( iter->second );
+		}
+		return NULL;
+	}
+
+	const EquipBackMap& GetEquipBackMap() const
+	{
+		return m_mEquipBack;
+	}
+
 	bool AddWuHunHoleExp( int32_t nHole, int32_t nExp )
 	{
 		m_mWuHunHoleExp[nHole] = nExp;
@@ -1552,6 +1601,7 @@ public:
 	}
 private:
 	CfgEquipMap				m_mEquip;
+	EquipBackMap			m_mEquipBack;
 	CfgEquipUpGradeMap		m_mEquipUpGrade;
 	CfgEquipUpQualityMap	m_mEquipUpQuality;
 	CfgEquipUpStarMap		m_mEquipUpStar;
@@ -3495,6 +3545,8 @@ public:
 	void onBanChatUpdated(int32_t action, int32_t uid, int32_t expire_time);
 
 	const CfgEquipTable&			GetEquipTable() const;
+	const EquipBackMap&			GetEquipBackMap() const { return GetEquipTable().GetEquipBackMap(); }
+	const EquipBack*			GetEquipBackCfg( int32_t nId ) const { return GetEquipTable().GetEquipBackCfg( nId ); }
 	const CfgItemGemTable&			GetItemGemTable() const;
 	const CfgItemCombiTable&		GetItemCombiTable() const;
 	const CfgBagSlotOpenTimeTable&	GetBagSlotOpenTimeTable() const;
@@ -3730,6 +3782,7 @@ private:
 	void InitTotalChongZhiTable();			//�����ۼƳ�ֵ
 	void InitHuanHuaNeedRoleLevelTable();	//��ʼ���û��ȼ������
 	void InitScoreShopTable();					// ��ʼ��������̳�
+	void InitEquipBackTable();					// ��ʼ��װ���ջ���
 
 	void InitWarVictoryTable();				//��ʼ����սʤ��������
 private:

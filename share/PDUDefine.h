@@ -1295,6 +1295,13 @@ enum MSG_SM_CODE
 	SM_HALL_OF_FAME_BATTLE				= 11911,	// ������ս�����
 	SM_HALL_OF_FAME_RANK_INFO			= 11912,	// ���������а�
 
+	// 装备回购系统
+	SM_EQUIP_BACK_BROADCAST			= 11920,	// 装备回购广播公告
+	SM_SEND_EQUIP_BACK_INFO			= 11921,	// 装备回购完整信息
+	SM_SEND_EQUIP_BACK_ON_RECORD	= 11922,	// 单条回购记录
+	SM_SEND_EQUIP_BACK_COUNT_CHANGE	= 11923,	// 仓库库存变化
+	SM_SEND_EQUIP_BACK_LIMIT_CHANGE	= 11924,	// 限制次数变化
+
 	/*
 	* SM_WXJ	11900~11999
 	*/

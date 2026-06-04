@@ -257,7 +257,9 @@ GCR_LEVEL_REFIN					= 2058,		// 等级精炼
 	GCR_BUY_THREE_PET_LI_BAO			= 2054,		// �����������
 	GCR_BUY_AC_SOCRE					= 2055,		// ����ѫ�»���
 	GCR_BUY_WAR_VICTORY_GIFT			= 2056,		// ����սʤ�����
-	GCT_WAR_VICTORY_FAN_LI				= 2057,		// սʤ����ֵ����
+	GCT_WAR_VICTORY_FAN_LI				= 2057,		// сʤ����ֵ����
+	GCR_EQUIP_GOLD_BACK				= 2058,		// 装备回收
+	GCR_EQUIP_BUY_BACK				= 2059,		// 装备回购
 
 //==================================================================================
 //Ԫ��
@@ -333,6 +335,8 @@ enum ITEM_ADD_REASON
 	IACR_FAMILY_TASK_REWARD		= 38,	//��������
 	IACR_TOTAL_CHONG_ZHI		= 39,	//�����ۼƳ�ֵ
 	IACR_VAR_VICTORY			= 40,	//��ս70����
+	IACR_EQUIP_BUY_BACK			= 41,	// 装备回购
+	IACR_KAI_HUO_EQUIP_BACK		= 42,	// 开服活动装备回收
 };
 
 enum ITEM_DEL_REASON
@@ -373,7 +377,8 @@ enum ITEM_DEL_REASON
 	IDCR_USE_MULTI_ITEM				= 33,	// ʹ�ö��
 	IDCR_ENTER_BOSS_HOME			= 34,	// ����boss֮��
 	IDCR_SITE_REVIVE				= 35,	//
-	IDCR_SCORE_SHOP_COST			= 36,	// ���
+	IDCR_SCORE_SHOP_COST			= 36,	// 积分商店消耗
+	IDCR_EQUIP_GOLD_BACK			= 37,	// 装备回收
 };
 
 enum ItemEffectType
