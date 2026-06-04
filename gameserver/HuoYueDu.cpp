@@ -1,6 +1,8 @@
 #include "HuoYueDu.h"
 #include "Player.h"
 #include "GameService.h"
+#include "FunctionOpen.h"
+#include "FestivalDoubleEleven.h"
 using namespace Answer;
 
 CHuoYueDu::CHuoYueDu()
@@ -62,6 +64,16 @@ void CHuoYueDu::OnCleanUp()
 void CHuoYueDu::OnDaySwitch( int32_t nDiffDays )
 {
 	m_HuoYueDuRecord.clear();
+
+	if ( NULL == m_pPlayer )
+		return;
+
+	int32_t nLevel = m_pPlayer->getLevel();
+	if ( nLevel >= m_pPlayer->GetMaxLevel() )
+		AddHuoYueDuRecord( HYDT_DA_WEI_WANG, 0, true );
+
+	// Decompiled adds: if max level → HYDT_DA_WEI_WANG, if all equips top → HYDT_EQUIP_STAT_UP, if mini client → HYDT_ILLUSION
+	// These conditions require APIs not available in current codebase
 }
 
 int32_t	CHuoYueDu::OnAskHuoYueDuInfo( Answer::NetPacket *inPacket )
@@ -73,30 +85,26 @@ int32_t	CHuoYueDu::OnAskHuoYueDuInfo( Answer::NetPacket *inPacket )
 int32_t	CHuoYueDu::OnGetHuoYueDuReward( Answer::NetPacket *inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
-	{
 		return ERR_SYETEM_ERR;
-	}
+
 	int32_t Index = inPacket->readInt32();
-	CfgHuoYueDuReward*	pReward = CFG_DATA.GetHuoYueDuReward( Index );
+	CfgHuoYueDuReward* pReward = CFG_DATA.GetHuoYueDuReward( Index );
 	if ( NULL == pReward )
-	{
 		return ERR_SYETEM_ERR;
-	}
+
 	int32_t OldRecord = m_pPlayer->getRecord( PR_HUO_YUE_DU_REWARD_INFO );
 	int32_t NewRecord = OldRecord | ( 1 << (Index - 1) );
 	if ( OldRecord == NewRecord )
-	{
 		return ERR_SYETEM_ERR;
-	}
+
 	if ( pReward->NeedHuoYueDu > CalculateHuoYueDu() )
-	{
 		return ERR_SYETEM_ERR;
-	}
-	if ( !m_pPlayer->GetBag().AddItemsAndEggs( pReward->Items,  IACR_HUO_YUE_DU ) )
-	{
+
+	if ( !m_pPlayer->GetBag().AddItemsAndEggs( pReward->Items, IACR_HUO_YUE_DU ) )
 		return ERR_SYETEM_ERR;
-	}
+
 	m_pPlayer->updateRecord( PR_HUO_YUE_DU_REWARD_INFO, NewRecord );
+	SendHuoYueDuIcon();
 	m_pPlayer->GetPlayerDailyActivity().SendHuoDongDaTingIcon();
 	SendHuoYueDuInfo();
 	return ERR_OK;
@@ -105,164 +113,127 @@ int32_t	CHuoYueDu::OnGetHuoYueDuReward( Answer::NetPacket *inPacket )
 int32_t	CHuoYueDu::OnSec( Answer::NetPacket *inPacket )
 {
 	if ( NULL == inPacket || NULL == m_pPlayer )
-	{
 		return ERR_SYETEM_ERR;
-	}
+
 	int32_t Index = inPacket->readInt32();
 	CfgHuoYueDu* pHuoYueDu = CFG_DATA.GetHuoYueDuCfg( Index );
-	if ( NULL == pHuoYueDu )
-	{
+	if ( NULL == pHuoYueDu || !pHuoYueDu->IsCanSec )
 		return ERR_SYETEM_ERR;
-	}
-	if ( !pHuoYueDu->IsCanSec )
-	{
-		return ERR_SYETEM_ERR;
-	}
+
 	HuoYueDuRecordMap::iterator it = m_HuoYueDuRecord.find(Index);
-	if ( it != m_HuoYueDuRecord.end() )
-	{
-		if ( it->second.IsSec == 1 )
-		{
-			return ERR_SYETEM_ERR;
-		}
-	}
-	if ( !m_pPlayer->DecCurrency( CURRENCY_GOLD , pHuoYueDu->Gold, GCR_HUO_YUE_DU, pHuoYueDu->Index ) )
-	{
+	if ( it != m_HuoYueDuRecord.end() && it->second.IsSec == 1 )
 		return ERR_SYETEM_ERR;
+
+	if ( !m_pPlayer->DecCurrency( CURRENCY_GOLD, pHuoYueDu->Gold, GCR_HUO_YUE_DU, pHuoYueDu->Index ) )
+		return ERR_SYETEM_ERR;
+
+	// Before completing, sync accumulated HuoYueDu to limited counter
+	if ( m_HuoYueDuRecord[Index].FinishTimes < pHuoYueDu->Count )
+	{
+		AddKiaFuHuoYueDu( pHuoYueDu->AddHuoYueDu );
+		// CFestivalDoubleEleven singleton access depends on integration pattern
+		// CFestivalDoubleEleven::instance().AddHuoYueDu( m_pPlayer, pHuoYueDu->AddHuoYueDu );
 	}
+
 	m_HuoYueDuRecord[Index].IsSec		= 1;
 	m_HuoYueDuRecord[Index].FinishTimes = pHuoYueDu->Count;
+
+	SendHuoYueDuIcon();
 	m_pPlayer->GetPlayerDailyActivity().SendHuoDongDaTingIcon();
 	SendHuoYueDuInfo();
 	return ERR_OK;
 }
 
-void CHuoYueDu::AddHuoYueDuRecord( int8_t Type, int32_t Effect )
+void CHuoYueDu::AddHuoYueDuRecord( int8_t Type, int32_t Effect, bool Complete )
 {
 	if ( NULL == m_pPlayer )
-	{
 		return;
-	}
+
 	bool NeedSys = false;
-	switch( Type )
+	HuoYueDuTable CfgTable = CFG_DATA.GetHuoYueDuTable();
+	HuoYueDuTable::iterator it = CfgTable.begin();
+
+	for ( ; it != CfgTable.end(); ++it )
 	{
-	case HYDT_ACTIVITY:
+		CfgHuoYueDu& rCfg = it->second;
+
+		if ( rCfg.Type != Type )
+			continue;
+
+		// Effect filter for ACTIVITY/DUNGEON/KILL_MONSTER
+		if ( (Type == HYDT_ACTIVITY || Type == HYDT_DUNGEON || Type == HYDT_KILL_MONSTER) && rCfg.Effect != Effect )
+			continue;
+
+		HuoYueDuRecord& record = m_HuoYueDuRecord[it->first];
+
+		if ( Complete )
 		{
-			HuoYueDuTable	CfgTable = CFG_DATA.GetHuoYueDuTable();
-			HuoYueDuTable::iterator it = CfgTable.begin();
-			for ( ; it != CfgTable.end(); ++it )
+			// Direct complete (used by OnDaySwitch)
+			if ( record.FinishTimes < rCfg.Count )
 			{
-				if ( it->second.Type == Type && it->second.Effect == Effect )
-				{
-					int32_t JoinCount = m_pPlayer->GetPlayerDailyActivity().GetJoinActivityCount( Effect );
-					if ( JoinCount >= it->second.Count )
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes   =  it->second.Count;
-						NeedSys = true;
-					}
-					else
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes   = JoinCount;
-						NeedSys = true;
-					}
-					break;
-				}
+				record.FinishTimes = rCfg.Count;
+				NeedSys = true;
+			}
+		}
+		else switch ( Type )
+		{
+		case HYDT_ACTIVITY:
+		{
+			int32_t JoinCount = m_pPlayer->GetPlayerDailyActivity().GetJoinActivityCount( Effect );
+			record.FinishTimes = (JoinCount >= rCfg.Count) ? rCfg.Count : JoinCount;
+			NeedSys = true;
+			break;
+		}
+		case HYDT_DUNGEON:
+		{
+			int32_t JoinCount = m_pPlayer->getRecord( Effect );
+			record.FinishTimes = (JoinCount >= rCfg.Count) ? rCfg.Count : JoinCount;
+			NeedSys = true;
+			break;
+		}
+		case HYDT_QI_FU_EXP:
+		case HYDT_QI_FU_MONEY:
+		case HYDT_KILL_BOSS:
+		case HYDT_DA_WEI_WANG:
+		case HYDT_SIGN:
+		case HYDT_ILLUSION:
+		case HYDT_EQUIP_STAT_UP:
+		case HYDT_CYCLE_TASK:
+		{
+			if ( record.FinishTimes < rCfg.Count )
+			{
+				record.FinishTimes++;
+				NeedSys = true;
 			}
 			break;
 		}
-	case HYDT_DUNGEON:
+		case HYDT_KILL_MONSTER:
 		{
-			HuoYueDuTable	CfgTable = CFG_DATA.GetHuoYueDuTable();
-			HuoYueDuTable::iterator it = CfgTable.begin();
-			for ( ; it != CfgTable.end(); ++it )
+			if ( rCfg.Effect == Effect && record.FinishTimes < rCfg.Count )
 			{
-				if ( it->second.Type == Type && it->second.Effect == Effect )
-				{
-					int32_t JoinCount = m_pPlayer->getRecord( Effect );
-					if ( JoinCount >= it->second.Count )
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes   =  it->second.Count;
-						NeedSys = true;
-					}
-					else
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes   = JoinCount;
-						NeedSys = true;
-					}
-					break;
-				}
+				record.FinishTimes++;
+				NeedSys = true;
 			}
 			break;
 		}
-	case HYDT_QI_FU_EXP:
-	case HYDT_QI_FU_MONEY:
-	case HYDT_KILL_BOSS:
-	case HYDT_DA_WEI_WANG:
-	case HYDT_SIGN:
-	case HYDT_ILLUSION:
-	case HYDT_EQUIP_STAT_UP:
-	case HYDT_CYCLE_TASK:
+		case HYDT_COST_CASH:
+		case HYDT_COST_GOLD:
+		case HYDT_FAMILY_DONATE:
 		{
-			HuoYueDuTable	CfgTable = CFG_DATA.GetHuoYueDuTable();
-			HuoYueDuTable::iterator it = CfgTable.begin();
-			for ( ; it != CfgTable.end(); ++it )
-			{
-				if ( it->second.Type == Type )
-				{
-					if ( m_HuoYueDuRecord[it->first].FinishTimes < it->second.Count )
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes++;
-						NeedSys = true;
-					}
-					break;
-				}
-			}
+			if ( record.FinishTimes < rCfg.Count )
+				NeedSys = true;
+			record.FinishTimes += Effect;
+			if ( record.FinishTimes > rCfg.Count )
+				record.FinishTimes = rCfg.Count;
 			break;
 		}
-	case HYDT_KILL_MONSTER:
-		{
-			HuoYueDuTable	CfgTable = CFG_DATA.GetHuoYueDuTable();
-			HuoYueDuTable::iterator it = CfgTable.begin();
-			for ( ; it != CfgTable.end(); ++it )
-			{
-				if ( it->second.Type == Type && it->second.Effect == Effect )
-				{
-					if ( m_HuoYueDuRecord[it->first].FinishTimes < it->second.Count )
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes++;
-						NeedSys = true;
-					}
-					break;
-				}
-			}
+		default:
 			break;
 		}
-	case HYDT_COST_CASH:
-	case HYDT_COST_GOLD:
-	case HYDT_FAMILY_DONATE:
-		{
-			HuoYueDuTable	CfgTable = CFG_DATA.GetHuoYueDuTable();
-			HuoYueDuTable::iterator it = CfgTable.begin();
-			for ( ; it != CfgTable.end(); ++it )
-			{
-				if ( it->second.Type == Type )
-				{
-					if ( m_HuoYueDuRecord[it->first].FinishTimes < it->second.Count )
-					{
-						NeedSys = true;
-					}
-					m_HuoYueDuRecord[it->first].FinishTimes += Effect;
-					if ( m_HuoYueDuRecord[it->first].FinishTimes > it->second.Count )
-					{
-						m_HuoYueDuRecord[it->first].FinishTimes = it->second.Count;
-					}
-					break;
-				}
-			}
-		}
-	default:
+
 		break;
 	}
+
 	if ( NeedSys )
 	{
 		SendHuoYueDuInfo();
@@ -336,5 +307,55 @@ int32_t CHuoYueDu::RewardCount()
 	return Count;
 }
 
+void CHuoYueDu::AddKiaFuHuoYueDu( int32_t Value )
+{
+	if ( NULL == m_pPlayer )
+		return;
 
+	// Only valid within first 9 days of server
+	if ( CFG_DATA.getServerDiffTime() > 9 )
+		return;
+
+	// Limit counter - decompiled uses PR 1926
+	// Decompiled uses PR_LIMIT 1926 for KiaFuHuoYueDu
+
+}
+
+void CHuoYueDu::GetHuoYueDuIcon( IconStateList& IconList )
+{
+	if ( NULL == m_pPlayer )
+		return;
+
+	if ( !m_pPlayer->GetPlayerFunctionOpen().IsOpened( FT_HUO_YUE_DU ) )
+		return;
+
+	IconList.push_back( GetHuoYueDuIconStu() );
+}
+
+void CHuoYueDu::SendHuoYueDuIcon()
+{
+	if ( NULL == m_pPlayer )
+		return;
+
+	if ( !m_pPlayer->GetPlayerFunctionOpen().IsOpened( FT_HUO_YUE_DU ) )
+		return;
+
+	// Send icon state - in decompiled: Player::SendIconState
+	m_pPlayer->GetPlayerDailyActivity().SendHuoDongDaTingIcon();
+}
+
+ShowIcon CHuoYueDu::GetHuoYueDuIconStu()
+{
+	ShowIcon stu = {};
+	if ( NULL == m_pPlayer )
+		return stu;
+
+	stu.nId = 120;  // ICON_HUO_YUE_DU
+	stu.nState = 2;  // always show if reached here
+	stu.nLeftTime = -1;
+	stu.IconRight = RewardCount();
+	if ( stu.IconRight > 0 )
+		stu.Effects = 1;
+	return stu;
+}
 

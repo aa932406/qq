@@ -4,25 +4,26 @@
 
 enum FunctionType
 {
-	FT_DUAN_ZHAO				= 9,		//¶ÍÔì
-	FT_CYCLE_TASK				= 26,		//Ñ­»·ÈÎÎñ
-	FT_CHOU_JIANG				= 50,		//³é½±
-	FT_FA_BAO					= 51,		//·¨±¦
+	FT_DUAN_ZHAO				= 9,		//ï¿½ï¿½ï¿½ï¿½
+	FT_CYCLE_TASK				= 26,		//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	FT_CHOU_JIANG				= 50,		//ï¿½é½±
+	FT_FA_BAO					= 51,		//ï¿½ï¿½ï¿½ï¿½
 	FT_BOSS						= 53,		//boss
-	FT_JUE_WEI					= 54,		//¾ôÎ»
-	FT_BAI_TAN					= 55,		//°ÚÌ¯
-	FT_LING_SOU					= 56,		//ÁéÊÞ
-	FT_QI_FU					= 57,		//Æí¸£
-	FT_HUN_LI					= 58,		//»êÁ¦
-	FT_HUO_DONG_DA_TING			= 59,		//»î¶¯´óÌü
-	FT_JIANG_LI_DA_TING			= 60,		//½±Àø´óÌü
-	FT_SHOU_CHONG_ICON			= 62,		//Ê×³åÍ¼±ê¿ØÖÆ
-	FT_NEW_SERVER_TE_HUI		= 63,		//ÐÂ·þÌØ»Ý
-	FT_EVERYDAY_SHOUCHONG		= 64,		//Ã¿ÈÕÊ×³å
-	FT_TOU_ZI					= 65,		//Í¶×Ê
-	FT_KAI_FU_HUO_DONG			= 66,		//¿ª·þ»î¶¯
-	FT_GUAN_WEI					= 67,		//¹ÙÎ»
-	FT_HALL_OF_FAME				= 68,		//ÃûÈËÌÃ
+	FT_JUE_WEI					= 54,		//ï¿½ï¿½Î»
+	FT_BAI_TAN					= 55,		//ï¿½ï¿½Ì¯
+	FT_LING_SOU					= 56,		//ï¿½ï¿½ï¿½ï¿½
+	FT_QI_FU					= 57,		//ï¿½ï¿½ï¿½ï¿½
+	FT_HUN_LI					= 58,		//ï¿½ï¿½ï¿½ï¿½
+	FT_HUO_DONG_DA_TING			= 59,		//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	FT_JIANG_LI_DA_TING			= 60,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	FT_SHOU_CHONG_ICON			= 62,		//ï¿½×³ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	FT_NEW_SERVER_TE_HUI		= 63,		//ï¿½Â·ï¿½ï¿½Ø»ï¿½
+	FT_EVERYDAY_SHOUCHONG		= 64,		//Ã¿ï¿½ï¿½ï¿½×³ï¿½
+	FT_TOU_ZI					= 65,		//Í¶ï¿½ï¿½
+	FT_KAI_FU_HUO_DONG			= 66,		//ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	FT_GUAN_WEI					= 67,		//ï¿½ï¿½Î»
+	FT_HALL_OF_FAME				= 68,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	FT_HUO_YUE_DU				= 197,		//ï¿½ï¿½Ô¾ï¿½ï¿½
 };
 
 
@@ -38,7 +39,7 @@ public:
 	bool				IsOpened( int32_t FunctionId );
 	void				FunctionInit( int32_t FunctionId );
 private:
-	std::list<int32_t> m_OpenedList;			//ÒÑ¿ªÆôµÄ
+	std::list<int32_t> m_OpenedList;			//ï¿½Ñ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 #endif

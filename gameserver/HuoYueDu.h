@@ -3,20 +3,20 @@
 #include "ExtSystemBase.h"
 enum HuoYueDuType
 {
-	HYDT_ACTIVITY		= 1,	//»î¶¯
-	HYDT_DUNGEON		= 2,	//¸±±¾
-	HYDT_QI_FU_EXP		= 3,	//Æí¸£¾­Ñé
-	HYDT_QI_FU_MONEY    = 4,	//Æí¸£Í­Ç®
-	HYDT_KILL_BOSS		= 5,	//»÷É±boss 
-	HYDT_DA_WEI_WANG	= 6,	//´óÎ¸Íõ  
-	HYDT_SIGN			= 7,	//Ç©µ½
-	HYDT_ILLUSION		= 8,	//»Ã»¯      
-	HYDT_KILL_MONSTER	= 9,	//»÷É±Ö¸¶¨¹Ö 
-	HYDT_COST_CASH		= 10,	//Ïû·Ñ°ó¶¨Ä§Ê¯
-	HYDT_COST_GOLD		= 11,	//Ïû·ÑÄ§Ê¯
-	HYDT_EQUIP_STAT_UP	= 12,	//×°±¸Ç¿»¯ 
-	HYDT_CYCLE_TASK		= 13,	//Ñ­»·ÈÎÎñ
-	HYDT_FAMILY_DONATE	= 14,	//¾üÍÅ¾èÏ×
+	HYDT_ACTIVITY		= 1,	//ï¿½î¶¯
+	HYDT_DUNGEON		= 2,	//ï¿½ï¿½ï¿½ï¿½
+	HYDT_QI_FU_EXP		= 3,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	HYDT_QI_FU_MONEY    = 4,	//ï¿½ï¿½ï¿½ï¿½Í­Ç®
+	HYDT_KILL_BOSS		= 5,	//ï¿½ï¿½É±boss 
+	HYDT_DA_WEI_WANG	= 6,	//ï¿½ï¿½Î¸ï¿½ï¿½  
+	HYDT_SIGN			= 7,	//Ç©ï¿½ï¿½
+	HYDT_ILLUSION		= 8,	//ï¿½Ã»ï¿½      
+	HYDT_KILL_MONSTER	= 9,	//ï¿½ï¿½É±Ö¸ï¿½ï¿½ï¿½ï¿½ 
+	HYDT_COST_CASH		= 10,	//ï¿½ï¿½ï¿½Ñ°ï¿½Ä§Ê¯
+	HYDT_COST_GOLD		= 11,	//ï¿½ï¿½ï¿½ï¿½Ä§Ê¯
+	HYDT_EQUIP_STAT_UP	= 12,	//×°ï¿½ï¿½Ç¿ï¿½ï¿½ 
+	HYDT_CYCLE_TASK		= 13,	//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	HYDT_FAMILY_DONATE	= 14,	//ï¿½ï¿½ï¿½Å¾ï¿½ï¿½ï¿½
 };
 
 class CHuoYueDu
@@ -33,15 +33,21 @@ public:
 	virtual void			OnCleanUp();
 	virtual void			OnDaySwitch( int32_t nDiffDays );
 
-	void					AddHuoYueDuRecord( int8_t Type, int32_t Effect = 0 );
+	void					AddHuoYueDuRecord( int8_t Type, int32_t Effect = 0, bool Complete = false );
 	void					SendHuoYueDuInfo();
 	int32_t					RewardCount();
+	void					GetHuoYueDuIcon( IconStateList& IconList );
+	void					SendHuoYueDuIcon();
+
 private:
 	int32_t					OnAskHuoYueDuInfo( Answer::NetPacket *inPacket );
 	int32_t					OnGetHuoYueDuReward( Answer::NetPacket *inPacket );
 	int32_t					OnSec( Answer::NetPacket *inPacket );
-	
+
 	int32_t					CalculateHuoYueDu();
+	ShowIcon				GetHuoYueDuIconStu();
+	void					AddKiaFuHuoYueDu( int32_t Value );
+
 private:
 	HuoYueDuRecordMap		m_HuoYueDuRecord;
 };
