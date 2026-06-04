@@ -4,6 +4,7 @@
 #include "PoolManager.h"
 #include "Map.h"
 #include "MonsterActivity.h"
+#include "SkillBuff.h"
 #include "GameService.h"
 
 using namespace Answer;
@@ -49,7 +50,7 @@ void MonsterActivity::setKiller( CharId_t nKiller )
 	m_killer.type = 1;
 }
 
-void MonsterActivity::init( CActivityMap *pActMap, const CfgActivityMonster &cfgActivityMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, Buff *pBuff )
+void MonsterActivity::init( CActivityMap *pActMap, const CfgActivityMonster &cfgActivityMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster )
 {
 	if ( NULL == pActMap )
 	{
@@ -63,7 +64,29 @@ void MonsterActivity::init( CActivityMap *pActMap, const CfgActivityMonster &cfg
 		m_road = m_cfgActivityMoster.road;
 	}
 
-	Monster::init(cfgmonster, cfgmapmonster, pBuff);
+	if ( m_cfgActivityMoster.left > 0 )
+	{
+		SetLifeTime( getNow() + m_cfgActivityMoster.left );
+	}
+
+	AttrAddonVector vAttrAddon;
+	Monster::init(cfgmonster, cfgmapmonster, MS_STAND, &vAttrAddon);
+
+	if ( m_cfgActivityMoster.buff > 0 )
+	{
+		CfgBuff *pCfgBuff = CFG_DATA.getBuff( m_cfgActivityMoster.buff );
+		if ( pCfgBuff != NULL )
+		{
+			SkillBuff *pBuff = new SkillBuff( *this, *pCfgBuff );
+			UnitHandle launcher;
+			launcher.id = getUnitId();
+			launcher.type = getType();
+			if ( pBuff->init( 0, 0, launcher, launcher ) )
+			{
+				addBuff( pBuff );
+			}
+		}
+	}
 }
 
 void MonsterActivity::reset()

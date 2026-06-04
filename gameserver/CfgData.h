@@ -64,6 +64,8 @@ struct CfgActivityMonster
 	PosList road;
 	int32_t	delay;	// ˢ�ּ��
 	int32_t	times;	// ˢ�ִ���
+	int32_t	buff;	// ����������������BUFF
+	int32_t	left;	// ������ʱ
 };
 //���л�еĹ����
 typedef std::map<int32_t, CfgActivityMonster> CfgActivityMonsterTable;
@@ -389,6 +391,7 @@ struct CfgDungeonMonster
 	int32_t	delay;	// ˢ�ּ��
 	int32_t	times;	// ˢ�ִ���
 	int32_t	money;	// ������Ǯ
+	int32_t	life;	// ��ʱ
 };
 typedef std::map<int32_t, CfgDungeonMonster> CfgDungeonMonsterTable;
 

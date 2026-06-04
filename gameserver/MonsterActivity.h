@@ -23,7 +23,7 @@ public:
 	virtual bool	isActivityMonster();
 
 public:
-	void	init( CActivityMap *pActivityMap, const CfgActivityMonster &cfgActivityMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, Buff *pBuff );
+	void	init( CActivityMap *pActivityMap, const CfgActivityMonster &cfgActivityMonster, const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster );
 	void	reset();
 
 	void	setOwner( CharId_t owner );

@@ -12,15 +12,15 @@ enum MonsterState
 	MS_ATTACK,
 	MS_CORPSE,
 	MS_GHOST,
-	MS_RUN_ON_ROAD,				// ¸ù¾ÝÔ¤ÉèÂ·¾¶ÒÆ¶¯
+	MS_RUN_ON_ROAD,				// ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½Â·ï¿½ï¿½ï¿½Æ¶ï¿½
 };
 
 enum MonsterAIStype
 {
-	MAS_PEACE	= 0,			// ºÍÆ½
-	MAS_PASSIVE	= 1,			// ±»¶¯
-	MAS_ACTIVE	= 2,			// Ö÷¶¯
-	MAS_TOWER	= 3,			// Ëþ
+	MAS_PEACE	= 0,			// ï¿½ï¿½Æ½
+	MAS_PASSIVE	= 1,			// ï¿½ï¿½ï¿½ï¿½
+	MAS_ACTIVE	= 2,			// ï¿½ï¿½ï¿½ï¿½
+	MAS_TOWER	= 3,			// ï¿½ï¿½
 };
 
 class Monster
@@ -51,6 +51,7 @@ public:
 
 public:
 	void init(const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, Buff* pBuff);
+	void init(const CfgMonster &cfgmonster, const CfgMapMonster &cfgmapmonster, MonsterState state, const AttrAddonVector *vAttrAddon);
 	void appendInfo(Answer::NetPacket *packet);
 	void leaveMap();
 	void SetDieType( int8_t Type );
@@ -71,6 +72,7 @@ public:
 	FamilyId_t	GetFamilyId() const;
 	void		SetFamilyId( FamilyId_t fid );
 
+	void SetLifeTime(int32_t nLifeTime);
 	void broadcastIntoMap();
 	int32_t move(int16_t currentX, int16_t currentY, int16_t targetX, int16_t targetY, int16_t finalX, int16_t finalY, Direction direction);
 	bool	SpiderQueenCanRevive();
@@ -110,7 +112,7 @@ protected:
 	CfgMonster m_cfgmonster;
 	CfgMapMonster m_cfgmapmonster;
 
-	int32_t m_killerLevel;  // É±ËÀÕßµÄµÈ¼¶,¿ÉÄÜÊÇ³èÎïµÄµÈ¼¶
+	int32_t m_killerLevel;  // É±ï¿½ï¿½ï¿½ßµÄµÈ¼ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ÄµÈ¼ï¿½
 	UnitHandle m_killer;
 	UnitHandle m_target;
 	CfgSkill *m_pCfgSkill;
@@ -132,5 +134,6 @@ protected:
 	int64_t m_LastReverHpTick;
 	int32_t m_ReviveTime;
 	int32_t	m_lastUpdateWarVictoryBossMinute;
+	int64_t	m_liftTime;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±(ms)
 };
 

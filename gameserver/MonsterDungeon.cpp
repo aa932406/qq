@@ -140,7 +140,7 @@ bool MonsterDungeon::needDel() const
 
 void MonsterDungeon::destroy()
 {
-	CPoolManager::instance().push<MonsterDungeon>( this );
+	POOL_MANAGER.push<MonsterDungeon>( this );
 }
 
 void MonsterDungeon::remove()
