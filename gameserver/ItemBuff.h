@@ -15,7 +15,10 @@ public:
 	virtual int32_t getLevel() const;
 
 public:
-	bool init(int32_t itemid);
+	bool init(int32_t itemid, int32_t time = 0);
+	void extend(Buff *pBuff);
+	int32_t getEndTime();
+	int32_t getItemId();
 
 protected:
 	CfgItem *m_cfgItem;

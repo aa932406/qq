@@ -23,7 +23,7 @@ int32_t ItemBuff::getGroupId() const
 {
 	if (m_cfgItem != NULL)
 	{
-		return m_cfgItem->type;
+		return m_cfgItem->group_id;
 	}
 
 	return 0;
@@ -39,15 +39,41 @@ int32_t ItemBuff::getLevel() const
 	return 0;
 }
 
-bool ItemBuff::init(int32_t itemid)
+bool ItemBuff::init(int32_t itemid, int32_t time)
 {
 	m_cfgItem = CFG_DATA.getItem(itemid);
-	if (m_cfgBuff.duration > 0)
+	if ( time > 0 )
+	{
+		m_endTick = m_unit.getTick() + 1000 * time;
+	}
+	else if (m_cfgBuff.duration > 0)
 	{
 		m_endTick = m_unit.getTick() + m_cfgBuff.duration;
 	}
 
 	return m_cfgItem != NULL;
+}
+
+void ItemBuff::extend(Buff *pBuff)
+{
+	if ( pBuff != NULL )
+	{
+		m_endTick += pBuff->getCfgBuff().duration;
+	}
+}
+
+int32_t ItemBuff::getEndTime()
+{
+	return roundInt( static_cast<double>(static_cast<int32_t>(m_endTick - m_unit.getTick())) * 0.001 );
+}
+
+int32_t ItemBuff::getItemId()
+{
+	if ( m_cfgItem != NULL )
+	{
+		return m_cfgItem->id;
+	}
+	return 0;
 }
 
 ChiXuHuiXueBuff::ChiXuHuiXueBuff(Unit &unit, CfgBuff &cfgBuff)
