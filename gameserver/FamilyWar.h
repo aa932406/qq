@@ -1,5 +1,5 @@
-#ifndef __TPOC_FAMILY_WAR_H__
-#define __TPOC_FAMILY_WAR_H__
+#ifndef __FAMILY_WAR_H__
+#define __FAMILY_WAR_H__
 
 #include "stdafx.h"
 #include "Activity.h"
@@ -11,14 +11,9 @@ struct FamilyScore
 	std::string	strFamilyName;
 	int32_t		nScore;
 
-	bool operator<( const FamilyScore& _right ) const
+	bool operator>( const FamilyScore& rhs ) const
 	{
-		return nScore < _right.nScore;
-	}
-
-	bool operator>( const FamilyScore& _right ) const
-	{
-		return nScore > _right.nScore;
+		return nScore > rhs.nScore;
 	}
 };
 typedef std::list<FamilyScore> FamilyScoreList;
@@ -26,98 +21,76 @@ typedef std::list<FamilyScore> FamilyScoreList;
 struct PlayerScore 
 {
 	CharId_t	nCharId;
+	std::string	strName;
 	FamilyId_t	nFamilyId;
+	int32_t		nScore;
 	int32_t		nKillCount;
 	int32_t		nExp;
-	int32_t		nMoney;
-	int32_t		nJoinExp;
-	int32_t		nSeconds;
+	int32_t		nTaskId;
 	int64_t		nStartTick;
-	bool		bInActivity;
-};
-typedef std::map<CharId_t, PlayerScore> PlayerScoreMap;
+	int8_t		bInActivity;
 
-class CFamilyWar
-	: public CActivity
+	bool operator>( const PlayerScore& rhs ) const
+	{
+		if (nScore != rhs.nScore)
+			return nScore > rhs.nScore;
+		return nCharId < rhs.nCharId;
+	}
+};
+typedef std::list<PlayerScore> PlayerScoreList;
+
+class CFamilyWar : public CActivity
 {
 public:
-	CFamilyWar( const CfgActivity& cfgActivity );
+	CFamilyWar(const CfgActivity& cfgActivity);
 	virtual ~CFamilyWar();
 
 public:
-	virtual void Init();
-	virtual void OnUpdate( CActivityMap* pMap );
-
-	virtual void		SendPlayerActivityInfo( Player* player );
-	virtual void		SendPlayerActivityScore( Player* player, int32_t nLeftTime );
-	virtual Position	GetRandBornPos( Player* player );
-	virtual bool		OnSitRevive( Player* player );
-	virtual int32_t		GetRevive( Player* player );
-	virtual int32_t		GiveDailyReward( Player* player );
-	virtual bool		CanUseXP() const;
-	virtual int32_t		HaveRewardCount( Player* Player );
-	virtual void		NotifyActivityInfo( Player* pPlayer = NULL );
-
-	bool	CanAddPillarMoney( Player* player ) const;
-	int32_t	AddPillarMoney( int32_t nMoney );
-	void	SendPlayerPillarInfo( Player* player );
-	void	OnFamilyWarResult( FamilyId_t nFamilyId, int16_t nTimes, string FamilyName, string LeadyerName );
-
-
-	FamilyId_t		GetWinFamily();
-	std::string     GetFamilyName();
-	std::string		GetFamilyLeaderName();
+	virtual void OnUpdate(CActivityMap* pMap);
+	virtual void onMonsterDie(MonsterActivity* pMonster, Player* pKiller);
+	virtual void onPlayerKilled(Player* pDier, Player* pAttacker);
+	virtual void onMonsterAdd(MonsterActivity* pMonster);
+	virtual void addPlayer(Player* player);
+	virtual void removePlayer(Player* player, bool islogout);
+	virtual int32_t canEnter(Player* player, CActivityMap* pTargetMap) const;
+	virtual void onTimeEnd();
+	virtual Answer::NetPacket* packetActivityScore(int8_t connid = 0);
+	virtual void broadcastReady();
+	virtual void broadcastStart();
 
 protected:
-	virtual void	reset();
-	virtual bool	checkData();
-	virtual bool	checkWeek();
-	virtual void	onMonsterDamaged( MonsterActivity* pMonster, int32_t nDamage, Player* pAttacker );
-	virtual void	onMonsterDie( MonsterActivity* pMonster, Player* pKiller );
-	virtual void	onPlayerKilled( Player* pDier, Player* pAttacker );
-	virtual void	onMonsterAdd( MonsterActivity* pMonster );
-	virtual void	addPlayer( Player* player );
-	virtual void	removePlayer( Player* player, bool islogout );
-	virtual int32_t	getNextStartTime();
-	virtual void	broadcastActivityResult();
-	virtual void	onTimeEnd();
-	virtual void	broadcastReady();
-	virtual void	broadcastStart();
-	virtual Answer::NetPacket*	packetActivityScore();
-private:
-	void	addPlayerScore( Player* player, int32_t nExp, int32_t nMoney, int32_t nKillCount );
-	void	addPlayerKillCount( Player* Player );
-	void	addFamilyScore( FamilyId_t nFamilyId, const std::string& strFamilyName, int32_t nScore );
-	void	win( FamilyId_t nFamilyId );
-	void	saveFamilyWarResult();
-	void	addRewards();
-	bool	isDoubleReward() const;
-	bool	isShowDoubleReward();
-
-	Answer::NetPacket*	packetActivityFamilyScore();
-	Answer::NetPacket*	packetActivityPlayerScore( Player* player );
-
-	void	broadcastPillerKilled( FamilyId_t nFamilyId );
-	void	broadcastStoneKilled();
-	void	broadcastWin();
-	void	addBuff( Player* player );
-	void	removeBuff( Player* player );
-	int32_t	getBuffLevel() const;
-	void	FirstFamilyWar( FamilyId_t FamilyId );
+	virtual void reset();
 
 private:
-	MonsterActivity*	m_pSton;				// Õ½ÉñÉñÊ¯
-	MonsterActivity*	m_pPillar;				// Õ½ÉñÖ®Öù
+	PlayerScore* getPlayerScore(CharId_t nCharId);
+	void addPlayerScore(Player* player, int32_t nScore, int32_t nKillCount);
+	void addFamilyScore(FamilyId_t nFamilyId, const std::string& strFamilyName, int32_t nScore);
+	void win(FamilyId_t nFamilyId, const std::string& strFamilyName);
+	void sendPlayerScoreRankReward();
+	void sendFamilyScoreRankReward();
+	void sendWinnerReward(FamilyId_t nFamilyId);
+	void addBuff(Player* player);
+	void removeBuff(Player* player);
+	void broadcastWin(FamilyId_t nFamilyId, const std::string& strFamilyName);
 
-	FamilyId_t			m_nGuidFamily;			// ·ÀÊØ¾üÍÅ
-	int32_t				m_nWinTimes;			// Á¬Ê¤´ÎÊı
-	FamilyScoreList		m_lstFamilyScore;		// ¾üÍÅ»ı·ÖÁĞ±í
-	PlayerScoreMap		m_mPlayerScore;			// Íæ¼Ò»ı·Ö
+public:
+	FamilyId_t		GetWinFamily();
+	std::string		GetFamilyName();
+	std::string		GetFamilyLeaderName();
+	void			OnFamilyWarResult(FamilyId_t nFamilyId, int16_t nTimes, std::string FamilyName, std::string LeadyerName);
 
-	std::string			m_FamilyName;			// Ê×½ì¾üÍÅÕ½¾üÍÅÃû×Ö
-	std::string			m_FamilyLeaderName;		// Ê×½ì¾üÍÅ³¤Ãû×Ö
+private:
+	MonsterActivity*	m_pTitle;			// ç§°å·æ€ªç‰©
+	MonsterActivity*	m_pBoss;			// Bossæ€ªç‰©
+	Player*				m_pBuffPlayer;		// æŒæœ‰Buffçš„ç©å®¶
+	int64_t				m_nBuffStartTick;	// Buffå¼€å§‹æ—¶é—´
+	FamilyId_t			m_nWinFamily;		// è·èƒœå®¶æ—
+	std::string			m_strWingFamily;	// è·èƒœå®¶æ—åç§°
+	int8_t				m_nActiveState;		// æ´»åŠ¨çŠ¶æ€
+	int8_t				m_nActivePillarState;// æŸ±å­çŠ¶æ€
+
+	FamilyScoreList		m_lstFamilyScore;	// å®¶æ—åˆ†æ•°åˆ—è¡¨
+	PlayerScoreList		m_lstPlayerScore;	// ç©å®¶åˆ†æ•°åˆ—è¡¨
 };
 
-//#define FAMILY_WAR Answer::Singleton<CFamilyWar>::instance()
-
-#endif	//__TPOC_FAMILY_WAR_H__
+#endif // __FAMILY_WAR_H__

@@ -1,6 +1,6 @@
 #pragma once
 //////////////////////////////////////////////////////////////////////////
-// »ñÈ¡ÓëÊý¾Ý¿â·þÎñÆ÷Á¬½Ó£¬Ìá¹©Êý¾Ý ²¢·¢ËÍÊý¾Ýµ½dbserver´¦ÀíÇëÇó
+// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½dbserverï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 //////////////////////////////////////////////////////////////////////////
 #include <map>
@@ -15,11 +15,11 @@ public:
 	virtual ~DBService();
 
 protected:
-	//½ÓÊÕÀ´×ÔdbÊý¾Ý°ü
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dbï¿½ï¿½ï¿½Ý°ï¿½
 	virtual void onNetPacket(Answer::NetPacket *inPacket);
 
 public:
-	//·¢ËÍÇëÇóµ½dbserver»ñÈ¡player»ù±¾ÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dbserverï¿½ï¿½È¡playerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	void loadPlayer(int16_t cgindex,  int32_t uid, int32_t sid);
 	void UpdateLoginTime( CharId_t cid, int32_t login_time );
 
@@ -67,11 +67,16 @@ public:
 	/* gift */
 	void InsertDailyGiftLog( const LogDailyGift& gift );
 
-	// »î¶¯
+	// ï¿½î¶¯
 	void SaveFamilyWarResult( int32_t nActId, FamilyId_t nFamilyId, int16_t nWinTimes, int32_t nTime,string FamilyName, string LeaderName );
 	void onUpdateFamilyWarResult( Answer::NetPacket* inPacket );
 	void SaveTerritoryWarResult( int32_t nActId, string winners, int32_t nTime );
 	void onUpdateTerritoryWarResult( Answer::NetPacket* inPacket );
+
+	void SaveCityWarResult( int32_t nActId, int32_t nIndex, FamilyId_t nFamilyId, int32_t nWinTime,
+		CharId_t nLeader, CharId_t nFirst, CharId_t nSecond, CharId_t nThird,
+		const std::string& strFirstFamily, const std::string& strSecondFamily, const std::string& strThirdFamily );
+	void onUpdateCityWarResult( Answer::NetPacket* inPacket );
 
 	void insertItemChange(const LogItemChange &item);
 

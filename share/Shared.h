@@ -11,9 +11,9 @@
 #define MAX_SQL_LENGTH 4096
 
 /*
-* Ò»¸ö·þÎñÆ÷100w¸ö½ÇÉ«
-* 32Î»×Ö¶Î¿ÉÒÔ¿ª2100¸ö·þ
-* ³¬¹ýÕâ¸öÊý°ÑCharId¸Ä³ÉUInt»òÀ©³É64Î»
+* Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100wï¿½ï¿½ï¿½ï¿½É«
+* 32Î»ï¿½Ö¶Î¿ï¿½ï¿½Ô¿ï¿½2100ï¿½ï¿½ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CharIdï¿½Ä³ï¿½UIntï¿½ï¿½ï¿½ï¿½ï¿½ï¿½64Î»
 */
 #define MAX_SERVER_CHAR_ID	1000000
 
@@ -129,21 +129,21 @@ enum ErrorCode
 	ERR_MOUNT_XISUI,
 	ERR_VICEGENERAL_GENGU,
 	ERR_GET_SEVEN_LOGIN,
-	ERR_DUNGEON_COMMON = 10106,//Î´Í¨¹ØÆÕÍ¨¸±±¾£¬¶ÔÓ¦Ä§»¯¸±±¾²»ÄÜ½øÈë
-	ERR_READ_STRATEGICS_FAIL = 10107,//±ø·¨ÔÄ¶ÁÊ§°Ü
+	ERR_DUNGEON_COMMON = 10106,//Î´Í¨ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½ï¿½
+	ERR_READ_STRATEGICS_FAIL = 10107,//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½Ê§ï¿½ï¿½
 };
 
 enum ExActivityCode
 {
 	EXACTIVITY_MIN =0,
-	EXACTIVITY_CHARGE,//³äÖµ»î¶¯
-	EXACTIVITY_YUANBAOUSE, //Ïû·ÑÔª±¦
-	EXACTIVITY_IET_XINGYUNQUAN,//ÆßÍõÃØ³×
-	EXACTIVITY_IET_SUPER_XINGYUNQUAN, //°¢·¿ÒÅ±¦
-	EXACTIVITY_IET_MOJIAYAOSHI, //Ä«¼Ò±¦¿â
-	EXACTIVITY_VIP,//Ãû½«µÈ¼¶»î¶¯
+	EXACTIVITY_CHARGE,//ï¿½ï¿½Öµï¿½î¶¯
+	EXACTIVITY_YUANBAOUSE, //ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+	EXACTIVITY_IET_XINGYUNQUAN,//ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½
+	EXACTIVITY_IET_SUPER_XINGYUNQUAN, //ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½
+	EXACTIVITY_IET_MOJIAYAOSHI, //Ä«ï¿½Ò±ï¿½ï¿½ï¿½
+	EXACTIVITY_VIP,//ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½î¶¯
 	EXACTIVITY_SAVEDB_REALTIME = 25,
-	EXACTIVITY_XISUIDAN,//ÏÂ´Î¼ÓÈëÐÂµÄ»î¶¯µÄÊ±ºòÈç¹ûÊÇÐèÒª¼°Ê±Ð´ÈëÊý¾Ý¿âµÄÔò·Åµ½XISUIDANÖ®Ç°
+	EXACTIVITY_XISUIDAN,//ï¿½Â´Î¼ï¿½ï¿½ï¿½ï¿½ÂµÄ»î¶¯ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê±Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Åµï¿½XISUIDANÖ®Ç°
 	EXACTIVITY_GENGUDAN,
 	EXACTIVITY_XIUWEIDAN,
 	EXACTIVITY_VICEGERNERALJINJIEDAN,
@@ -164,7 +164,7 @@ enum FamilyWarEvent
 
 enum MoneyCostType
 {
-	MCT_EQUIP_ENHANCE = 1,//×°±¸Ç¿»¯
+	MCT_EQUIP_ENHANCE = 1,//×°ï¿½ï¿½Ç¿ï¿½ï¿½
 };
 
 enum LogoutReason
@@ -194,127 +194,127 @@ enum ChatChannel
 	CC_COLOR_WORLD = 6,
 };
 
-enum TaskType /*10¿ªÊ¼ÎªÖ§ÏßÈÎÎñ*/
+enum TaskType /*10ï¿½ï¿½Ê¼ÎªÖ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 {
-	TT_TRUNK	= 1,	// Ö÷ÏßÈÎÎñ
-	TT_CYCLE	= 3,	// Ñ­»·ÈÎÎñ
-	TT_FAMILY	= 37,	// ¾üÍÅÈÎÎñ
+	TT_TRUNK	= 1,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TT_CYCLE	= 3,	// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TT_FAMILY	= 37,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum TaskCondition
 {
-	TC_RECEIVE				= 1,		//¶Ô»°
-	TC_ITEM					= 2,		//ÐèÒªÎïÆ·
-	TC_USE_ITEM				= 3,		//Ê¹ÓÃÎïÆ·
-	TC_MONSTER_ID			= 4,		//É±ËÀÖ¸¶¨¹ÖÎï
-	TC_MONSTER_LEVEL		= 5,		//É±ËÀÖ¸¶¨µÈ¼¶¹ÖÎï					
-	TC_PLAYER_LEVEL			= 6,		//µÈ¼¶´ïµ½
+	TC_RECEIVE				= 1,		//ï¿½Ô»ï¿½
+	TC_ITEM					= 2,		//ï¿½ï¿½Òªï¿½ï¿½Æ·
+	TC_USE_ITEM				= 3,		//Ê¹ï¿½ï¿½ï¿½ï¿½Æ·
+	TC_MONSTER_ID			= 4,		//É±ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_MONSTER_LEVEL		= 5,		//É±ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½					
+	TC_PLAYER_LEVEL			= 6,		//ï¿½È¼ï¿½ï¿½ïµ½
 
-	TC_PET_ILLUSION			= 7,		//³èÎï»Ã»¯
-	TC_UP_EQUIP_STAR		= 8,		//×°±¸Ç¿»¯
-	TC_UP_EQUIP_GRADE		= 9,		//×°±¸Éý¼¶
-	TC_UP_EQUIP_QUALITY		= 10,		//×°±¸ÌáÆ·
-	TC_FINISH_TASK_TYPE		= 11,		//Íê³ÉÖ¸¶¨ÀàÐÍÈÎÎñ
-	TC_PROTECT_BY_CLIENT	= 12,		//¿Í»§¶ËÈÎÎñ
-	TC_PLANT				= 13,		//²É¼¯´ÎÊý	
-	TC_DUNGEON				= 14,		//Íê³É¸±±¾
-	TC_USER_SKILL			= 16,		//Ê¹ÓÃÖ¸¶¨¼¼ÄÜ
-	TC_HALL_OF_FAME			= 17,		//Íê³ÉÖ¸¶¨´ÎÊýµÄÃûÈËÌÃ
-	TC_DRESS_EQUIP			= 18,		//´©´÷¼¸¼þ¼¸¼¶µÄ×°±¸
-	TC_EQUIP_STAR_COUNT		= 19,		//Ç¿»¯xx¼¶xx¼þ
-	TC_PET_POINTS_COUNT		= 20,		//ÓµÓÐ¼¸¸ö¼¸ÐÇµÄ³èÎï
-	TC_KILL_BOSS_COUNT		= 21,		//É±ËÀboss
+	TC_PET_ILLUSION			= 7,		//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	TC_UP_EQUIP_STAR		= 8,		//×°ï¿½ï¿½Ç¿ï¿½ï¿½
+	TC_UP_EQUIP_GRADE		= 9,		//×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_UP_EQUIP_QUALITY		= 10,		//×°ï¿½ï¿½ï¿½ï¿½Æ·
+	TC_FINISH_TASK_TYPE		= 11,		//ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_PROTECT_BY_CLIENT	= 12,		//ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_PLANT				= 13,		//ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½	
+	TC_DUNGEON				= 14,		//ï¿½ï¿½É¸ï¿½ï¿½ï¿½
+	TC_USER_SKILL			= 16,		//Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_HALL_OF_FAME			= 17,		//ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TC_DRESS_EQUIP			= 18,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
+	TC_EQUIP_STAR_COUNT		= 19,		//Ç¿ï¿½ï¿½xxï¿½ï¿½xxï¿½ï¿½
+	TC_PET_POINTS_COUNT		= 20,		//Óµï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÄ³ï¿½ï¿½ï¿½
+	TC_KILL_BOSS_COUNT		= 21,		//É±ï¿½ï¿½boss
 };
 
 enum AchievementType
 {
-	AT_TEAM						= 1,	//×é¶Ó
-	AT_FRIEND					= 2,	//ºÃÓÑ
-	AT_FAMILY					= 3,	//¾üÍÅ
-	AT_EQUIP_UP_STAR			= 4,	//Ç¿»¯×°±¸
-	AT_PET_ILLUSION				= 5,	//³èÎï»Ã»¯
-	AT_LOGIN					= 6,	//µÇÂ½
-	AT_LEVEL					= 7,	//µÈ¼¶
-	AT_THREE_PET				= 8,	//Èý³è
-	AT_PET_POINTS_COUNT			= 9,	//ÓµÓÐ¼¸¸ö¼¸ÐÇ³èÎï
-	AT_PET_KNIGHT				= 10,	//³èÎïÈÎÃü
-	AT_DRESS_EQUIP				= 11,	//´©´÷¼¸¼þ¼¸¼¶µÄ×°±¸
-	AT_KILL_MONSTER_BY_MID		= 12,	//É±Ö¸¶¨¹Ö
+	AT_TEAM						= 1,	//ï¿½ï¿½ï¿½
+	AT_FRIEND					= 2,	//ï¿½ï¿½ï¿½ï¿½
+	AT_FAMILY					= 3,	//ï¿½ï¿½ï¿½ï¿½
+	AT_EQUIP_UP_STAR			= 4,	//Ç¿ï¿½ï¿½×°ï¿½ï¿½
+	AT_PET_ILLUSION				= 5,	//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	AT_LOGIN					= 6,	//ï¿½ï¿½Â½
+	AT_LEVEL					= 7,	//ï¿½È¼ï¿½
+	AT_THREE_PET				= 8,	//ï¿½ï¿½ï¿½ï¿½
+	AT_PET_POINTS_COUNT			= 9,	//Óµï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½
+	AT_PET_KNIGHT				= 10,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_DRESS_EQUIP				= 11,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
+	AT_KILL_MONSTER_BY_MID		= 12,	//É±Ö¸ï¿½ï¿½ï¿½ï¿½
 	AT_KILL_BOSS				= 13,	//É±boss
-	AT_KILL_MONSSTER			= 14,	//É±¹Ö
-	AT_DUNGEON					= 15,	//Íê³É¸±±¾
-	AT_GUAN_WEI					= 16,	//½×
-	AT_FA_BAO					= 17,	//·¨±¦
-	AT_INSID_PET_POINTS			= 18,	//ÄÚÖÃ³èÎï×ÜÆÀ·Ö
-	AT_WU_LING_POINTS			= 19,	//ÎäÁéÆÀ·Ö
-	AT_HUAN_LING_POINTS			= 20,	//»ÃÁéÆÀ·Ö
-	AT_LUCK_POINTS				= 21,	//ÐÒÔËÖµ
-	AT_ACTIVITY					= 22,	//²Î¼Ó»î¶¯
-	AT_QI_FU_EXP				= 23,	//Æí¸£¾­Ñé
-	AT_QI_FU_MONEY				= 24,	//Æí¸£½ð±Ò
-	AT_CHOU_JIANG				= 25,	//³é½±
-	AT_JUE_WEI					= 26,	//¾ôÎ»
-	AT_HALL_FAME				= 27,	//ÌôÕ½´ÎÊý			
+	AT_KILL_MONSSTER			= 14,	//É±ï¿½ï¿½
+	AT_DUNGEON					= 15,	//ï¿½ï¿½É¸ï¿½ï¿½ï¿½
+	AT_GUAN_WEI					= 16,	//ï¿½ï¿½
+	AT_FA_BAO					= 17,	//ï¿½ï¿½ï¿½ï¿½
+	AT_INSID_PET_POINTS			= 18,	//ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_WU_LING_POINTS			= 19,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_HUAN_LING_POINTS			= 20,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_LUCK_POINTS				= 21,	//ï¿½ï¿½ï¿½ï¿½Öµ
+	AT_ACTIVITY					= 22,	//ï¿½Î¼Ó»î¶¯
+	AT_QI_FU_EXP				= 23,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_QI_FU_MONEY				= 24,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AT_CHOU_JIANG				= 25,	//ï¿½é½±
+	AT_JUE_WEI					= 26,	//ï¿½ï¿½Î»
+	AT_HALL_FAME				= 27,	//ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½			
 };
 
 #define WU_LING_RATE	100
 
-// ÈÎÎñ×´Ì¬
+// ï¿½ï¿½ï¿½ï¿½×´Ì¬
 enum TaskState
 {
 	TS_UNKNOWN		= 0,
-	TS_UNRECEIVABLE	= 1,		// ²»¿É½Ó
-	TS_CAN_RECEIVE	= 2,		// ¿É½Ó
-	TS_DOING		= 3,		// ½øÐÐÖÐ
-	TS_CAN_SUBMIT	= 4,		// ¿ÉÍê³É
-	TS_SUBMITED		= 5,		// ÒÑÌá½»
+	TS_UNRECEIVABLE	= 1,		// ï¿½ï¿½ï¿½É½ï¿½
+	TS_CAN_RECEIVE	= 2,		// ï¿½É½ï¿½
+	TS_DOING		= 3,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TS_CAN_SUBMIT	= 4,		// ï¿½ï¿½ï¿½ï¿½ï¿½
+	TS_SUBMITED		= 5,		// ï¿½ï¿½ï¿½á½»
 };
 
 enum DungeonType
 {
-	DT_TASK			= 1,		// Ö÷Ïß¸±±¾
-	DT_ACHIEVEMENT	= 5,		// ³É¾Í¸±±¾
-	DT_EQUIP		= 11,		// ×°±¸¸±±¾
-	DT_TEAM			= 12,		// ×é¶Ó¸±±¾
-	DT_BOSS			= 13,		// boss¸±±¾
-	DT_VIP			= 14,		// VIP¸±±¾ ÊØ»¤
-	DT_TD			= 15,		// ¾­Ñé¸±±¾ Ëþ·À
-	DT_UP_TOWER		= 16,		// ÅÀËþ¸±±¾
-	DT_MY_WORLD		= 17,		// Ä§ÓòÊÀ½ç¸±±¾
-	DT_MLRQ			= 18,		// Ä§ÁéÈëÇÖ
-	DT_MONEY		= 19,		// ½ðÇ®¸±±¾ ÂúXP
-	DT_PET			= 20,		// »ÃÊÞ¸±±¾
+	DT_TASK			= 1,		// ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½
+	DT_ACHIEVEMENT	= 5,		// ï¿½É¾Í¸ï¿½ï¿½ï¿½
+	DT_EQUIP		= 11,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DT_TEAM			= 12,		// ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½
+	DT_BOSS			= 13,		// bossï¿½ï¿½ï¿½ï¿½
+	DT_VIP			= 14,		// VIPï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½
+	DT_TD			= 15,		// ï¿½ï¿½ï¿½é¸±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DT_UP_TOWER		= 16,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DT_MY_WORLD		= 17,		// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ç¸±ï¿½ï¿½
+	DT_MLRQ			= 18,		// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DT_MONEY		= 19,		// ï¿½ï¿½Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½XP
+	DT_PET			= 20,		// ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½
 };
 
 enum ITEM_CLASS
 {
-	IC_NORMAL	= 1,		// ÆÕÍ¨µÀ¾ß
-	IC_EQUIP	= 2,		// ×°±¸
-	IC_GEM		= 3,		// ±¦Ê¯
-	IC_CURRENCY = 4,		// »õ±Ò
-	IC_PET_EGG	= 5,		// »ÃÊÞµ°
-	IC_PET		= 6,		// ³èÎï			
+	IC_NORMAL	= 1,		// ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	IC_EQUIP	= 2,		// ×°ï¿½ï¿½
+	IC_GEM		= 3,		// ï¿½ï¿½Ê¯
+	IC_CURRENCY = 4,		// ï¿½ï¿½ï¿½ï¿½
+	IC_PET_EGG	= 5,		// ï¿½ï¿½ï¿½Þµï¿½
+	IC_PET		= 6,		// ï¿½ï¿½ï¿½ï¿½			
 };
 
 enum CURRENCY_ITEM_ID
 {
 	CURRENCY_MONEY_ID			= 1,		// Í­Ç®
-	CURRENCY_GOLD_ID			= 2,		// Ôª±¦
-	CURRENCY_CASH_ID			= 3,		// °óÔª
-	CURRENCY_VIGOUR_ID			= 4,		// ÔªÆø
-	CURRENCY_HORNOR_ID			= 5,		// ÈÙÓþ
+	CURRENCY_GOLD_ID			= 2,		// Ôªï¿½ï¿½
+	CURRENCY_CASH_ID			= 3,		// ï¿½ï¿½Ôª
+	CURRENCY_VIGOUR_ID			= 4,		// Ôªï¿½ï¿½
+	CURRENCY_HORNOR_ID			= 5,		// ï¿½ï¿½ï¿½ï¿½
 };
 
 enum ItemQuality
 {
-	IQ_WHITE	= 1,	// ÆÕÍ¨
-	IQ_GREEN	= 2,	// Á¼Æ·
-	IQ_BLUE		= 3,	// ÉÏÆ·
-	IQ_PURPLE	= 4,	// ¾«Æ·
-	IQ_GOLD		= 5,	// ¼«Æ·
+	IQ_WHITE	= 1,	// ï¿½ï¿½Í¨
+	IQ_GREEN	= 2,	// ï¿½ï¿½Æ·
+	IQ_BLUE		= 3,	// ï¿½ï¿½Æ·
+	IQ_PURPLE	= 4,	// ï¿½ï¿½Æ·
+	IQ_GOLD		= 5,	// ï¿½ï¿½Æ·
 };
 
-// ¼¼ÄÜ
+// ï¿½ï¿½ï¿½ï¿½
 enum SKILL_ATTACK_TYPE
 {
 	SAT_PATTACK = 1,
@@ -329,28 +329,28 @@ enum SKILL_TYPE
 
 enum SKILL_KIND
 {
-	SK_NORMAL		= 1,	// ÆÕÍ¨¼¼ÄÜ
-	SK_XP			= 2,	// XP¼¼ÄÜ
-	SK_PUSH			= 3,	// ÍÆÈË¼¼ÄÜ
-	SK_HORSERACING	= 4,	// ÈüÂí¼¼ÄÜ
+	SK_NORMAL		= 1,	// ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	SK_XP			= 2,	// XPï¿½ï¿½ï¿½ï¿½
+	SK_PUSH			= 3,	// ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½ï¿½
+	SK_HORSERACING	= 4,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum SKILL_RANGE
 {
-	SR_SELF			= 0,	// ×ÔÉí
-	SR_SOLO			= 1,	// µ¥Ìå
-	SR_LINE			= 2,	// Ö±Ïß
-	SR_AROUND		= 3,	// Ô²ÐÎ
-	SR_HALF_ROUND	= 4,	// °ëÔ²
+	SR_SELF			= 0,	// ï¿½ï¿½ï¿½ï¿½
+	SR_SOLO			= 1,	// ï¿½ï¿½ï¿½ï¿½
+	SR_LINE			= 2,	// Ö±ï¿½ï¿½
+	SR_AROUND		= 3,	// Ô²ï¿½ï¿½
+	SR_HALF_ROUND	= 4,	// ï¿½ï¿½Ô²
 
-	SR_TEAM			= 10,	// Ð¡¶Ó
+	SR_TEAM			= 10,	// Ð¡ï¿½ï¿½
 };
 
 enum SKILL_TARGET_POS
 {
-	STP_TARGET	= 0,	// Ä¿±êµ¥Î»
-	STP_SELF	= 1,	// ×Ô¼º
-	STP_POS		= 2,	// Ä¿±êÎ»ÖÃ
+	STP_TARGET	= 0,	// Ä¿ï¿½êµ¥Î»
+	STP_SELF	= 1,	// ï¿½Ô¼ï¿½
+	STP_POS		= 2,	// Ä¿ï¿½ï¿½Î»ï¿½ï¿½
 };
 
 
@@ -358,7 +358,7 @@ enum KingdomId
 {
 	KI_SHU	=1,
 	KI_WU =2,
-	KI_NEUTRAL = 3,			//ÖÐÁ¢
+	KI_NEUTRAL = 3,			//ï¿½ï¿½ï¿½ï¿½
 	KI_HOME = 99,
 };
 
@@ -369,7 +369,7 @@ enum RankType
 	RT_FIGHT_POWER = 2,
 	RT_WEALTH = 3,
 	RT_SHENGWANG = 4,
-	//5Ô­À´ÊÇ×øÆï
+	//5Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	RT_SINGLE_CONTEST = 6,
 	RT_FAMILY_CONTEST = 7,
 	RT_LACKEY_LEVEL = 8,
@@ -399,10 +399,10 @@ enum AcOutdoorCaveType
 
 enum YellowType
 {
-	YELLOW_DAILY = 1,//»Æ×êÃ¿ÈÕÀñ°ü
-	YELLOW_YEAR = 2,//Äê·Ñ»Æ×ê¶îÍâÃ¿ÈÕÀñ°ü
-	YELLOW_GROW_UP = 3,//»Æ×ê³É³¤Àñ°ü
-	YELLOW_NEW = 4,//»Æ×êÐÂÊÖÀñ°ü
+	YELLOW_DAILY = 1,//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	YELLOW_YEAR = 2,//ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	YELLOW_GROW_UP = 3,//ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½ï¿½
+	YELLOW_NEW = 4,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 
@@ -410,7 +410,7 @@ enum YellowType
 #define GOLD_COST_SUPER_BLESS 5//the gold cost for super bless
 
 #define MAX_GM_ANNOUNCEMENT 606
-// GM¹«¸æ
+// GMï¿½ï¿½ï¿½ï¿½
 struct GmtAnnouncement 
 {
 	int32_t id;
@@ -544,7 +544,7 @@ struct LogEquipSmithing
 	int32_t time;
 };
 
-struct LogEquipDismantle//×°±¸²ð³ý
+struct LogEquipDismantle//×°ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 	CharId_t cid;
 	char name[MAX_NAME_CCH_LENGTH + 1];
@@ -564,43 +564,43 @@ struct LogEquipDismantle//×°±¸²ð³ý
 
 struct LogDungeon
 {
-	CharId_t cid;			// Íæ¼ÒID
-	int32_t	did;			// ¸±±¾ID
-	int32_t type;			// ¸±±¾ÀàÐÍ
-	int32_t level;			// Íæ¼ÒµÈ¼¶
-	int32_t state;			// ×´Ì¬ 0 Î´Íê³É 1 Íê³É 2 ÖÐÍ¾ÍË³ö
-	int32_t start_time;		// ¿ªÆôÊ±¼ä
-	int32_t	finish_time;	// Íê³ÉÊ±¼ä
+	CharId_t cid;			// ï¿½ï¿½ï¿½ID
+	int32_t	did;			// ï¿½ï¿½ï¿½ï¿½ID
+	int32_t type;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t level;			// ï¿½ï¿½ÒµÈ¼ï¿½
+	int32_t state;			// ×´Ì¬ 0 Î´ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ 2 ï¿½ï¿½Í¾ï¿½Ë³ï¿½
+	int32_t start_time;		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t	finish_time;	// ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 };
 
 struct LogBoss
 {
-	int32_t	mid;			// ¹ÖÎïID
-	int32_t	type;			// bossÀàÐÍ
-	CharId_t killer;		// »÷É±Õß
-	int32_t	time;			// »÷É±Ê±¼ä
+	int32_t	mid;			// ï¿½ï¿½ï¿½ï¿½ID
+	int32_t	type;			// bossï¿½ï¿½ï¿½ï¿½
+	CharId_t killer;		// ï¿½ï¿½É±ï¿½ï¿½
+	int32_t	time;			// ï¿½ï¿½É±Ê±ï¿½ï¿½
 };
 
 struct LogActivity
 {
-	CharId_t cid;			// Íæ¼ÒID
-	int32_t	actid;			// »î¶¯ID
-	int32_t	acttype;		// »î¶¯ÀàÐÍ
-	int32_t	time;			// ½øÈëÊ±¼ä
-	int64_t param;			// ²ÎÊý
+	CharId_t cid;			// ï¿½ï¿½ï¿½ID
+	int32_t	actid;			// ï¿½î¶¯ID
+	int32_t	acttype;		// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	int32_t	time;			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int64_t param;			// ï¿½ï¿½ï¿½ï¿½
 };
 
 enum DAILY_GIFT_TYPE
 {
-	DGT_SHOU_CHONG	= 1,	// Ã¿ÈÕÊ×³å
+	DGT_SHOU_CHONG	= 1,	// Ã¿ï¿½ï¿½ï¿½×³ï¿½
 };
 
 struct LogDailyGift
 {
-	CharId_t cid;			// Íæ¼ÒID
-	int32_t	type;			// Àñ°üÀàÐÍ
-	int32_t	giftid;			// Àñ°üid
-	int32_t	time;			// ½øÈëÊ±¼ä
+	CharId_t cid;			// ï¿½ï¿½ï¿½ID
+	int32_t	type;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t	giftid;			// ï¿½ï¿½ï¿½id
+	int32_t	time;			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 };
 
 struct LogFamily
@@ -789,7 +789,7 @@ struct LogEquipRefreshFloatAttr
 	int32_t time;
 };
 
-struct LogEquipStrengthen //Ç¿»¯×°±¸
+struct LogEquipStrengthen //Ç¿ï¿½ï¿½×°ï¿½ï¿½
 {
 	CharId_t cid;
 	char name[MAX_NAME_CCH_LENGTH+1];
@@ -826,27 +826,27 @@ enum AuctionState
 
 struct MemCharacter 
 {
-	CharId_t cid;									// ½ÇÉ«ID
-	char	name[MAX_NAME_CCH_LENGTH+1];			// ½ÇÉ«Ãû³Æ
-	char	familyName[MAX_NAME_CCH_LENGTH+1];		// °ïÅÉÃû³Æ
-	Sex_t	sex;									// ÐÔ±ð
+	CharId_t cid;									// ï¿½ï¿½É«ID
+	char	name[MAX_NAME_CCH_LENGTH+1];			// ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
+	char	familyName[MAX_NAME_CCH_LENGTH+1];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Sex_t	sex;									// ï¿½Ô±ï¿½
 	Job_t	job;									// Ö°Òµ
-	int32_t level;									// µÈ¼¶
-	int32_t battle;									// Õ½¶·Á¦
-	int64_t exp;									// ¾­ÑéÖµ
+	int32_t level;									// ï¿½È¼ï¿½
+	int32_t battle;									// Õ½ï¿½ï¿½ï¿½ï¿½
+	int64_t exp;									// ï¿½ï¿½ï¿½ï¿½Öµ
 	int64_t exp_minus;
-	int32_t	vip;									// vipÊ¹ÓÃ¹ýµÄ¿¨
-	int32_t vip_end_time;							// vipµ½ÆÚÊ±¼ä
-	int32_t mapid;									// ËùÔÚµØÍ¼ID
-	int32_t x;										// ËùÔÚµØÍ¼×ø±êX
-	int32_t y;										// ËùÔÚµØÍ¼×ø±êY
-	int32_t hp;										// µ±Ç°ÑªÁ¿
-	int32_t mp;										// µ±Ç°·¨Á¦Öµ
-	int32_t pp;										// µ±Ç°ÌåÁ¦Öµ
-	int32_t xp;										// µ±Ç°XPÖµ
-	int32_t level_gift;								// µÈ¼¶Àñ°ü
+	int32_t	vip;									// vipÊ¹ï¿½Ã¹ï¿½ï¿½Ä¿ï¿½
+	int32_t vip_end_time;							// vipï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t mapid;									// ï¿½ï¿½ï¿½Úµï¿½Í¼ID
+	int32_t x;										// ï¿½ï¿½ï¿½Úµï¿½Í¼ï¿½ï¿½ï¿½ï¿½X
+	int32_t y;										// ï¿½ï¿½ï¿½Úµï¿½Í¼ï¿½ï¿½ï¿½ï¿½Y
+	int32_t hp;										// ï¿½ï¿½Ç°Ñªï¿½ï¿½
+	int32_t mp;										// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t pp;										// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t xp;										// ï¿½ï¿½Ç°XPÖµ
+	int32_t level_gift;								// ï¿½È¼ï¿½ï¿½ï¿½ï¿½
 	int32_t level_gold;
-	int32_t seven_login;							// ÆßÈÕµÇÂ½
+	int32_t seven_login;							// ï¿½ï¿½ï¿½Õµï¿½Â½
 	int32_t head;
 	int32_t pk_mode;								// pkÄ£Ê½
 	int32_t pk_value;								// pkÖµ
@@ -854,11 +854,11 @@ struct MemCharacter
 	int32_t pk_time;
 	int32_t kill_count;
 
-	int32_t bag_open_time;							// ±³°ü¿ªÆôÊ±¼ä
-	int32_t bag_open_slot;							// ±³°üµ±Ç°¿ªÆôµÄ¸ñÊý
-	int32_t bag_can_open;							// µ±Ç°µÈ¹»¿ªÆôµÄ×î´ó¸ñÊý
-	int32_t last_task_id;							// ÉÏÒ»¸öÖ÷ÏßÈÎÎñID
-	int32_t logout_count;							// µÇ³öÊ±¼ä
+	int32_t bag_open_time;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t bag_open_slot;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+	int32_t bag_can_open;							// ï¿½ï¿½Ç°ï¿½È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t last_task_id;							// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	int32_t logout_count;							// ï¿½Ç³ï¿½Ê±ï¿½ï¿½
 	int32_t pay_click_count;
 	int32_t level_stay_time;
 	int32_t last_login_time;
@@ -883,26 +883,26 @@ struct MemAchievement
 
 struct MemAttr
 {
-	int32_t hp;						// ×î´óÑªÁ¿
-	int32_t mp;						// ×î´óÑªÁ¿
-	int32_t pp;						// ×î´óÑªÁ¿
-	int32_t xp;						// ×î´óÑªÁ¿
-	int32_t phy_atk_min;			// ×îÐ¡ÎïÀí¹¥»÷
-	int32_t phy_atk_max;			// ×î´óÎïÀí¹¥»÷
-	int32_t mag_atk_min;			// ×îÐ¡Ä§·¨¹¥»÷
-	int32_t mag_atk_max;			// ×î´óÄ§·¨¹¥»÷
-	int32_t phy_def;				// ÎïÀí·ÀÓù
-	int32_t mag_def;				// Ä§·¨·ÀÓù
-	int32_t hitrate;				// ÃüÖÐ
-	int32_t dodge;					// ÉÁ±Ü
-	int32_t critrate;				// ±©»÷
-	int32_t dmg_add;				// ¶îÍâÉËº¦
-	int32_t dmg_rdc;				// ºöÊÓÉËº¦
-	int32_t dmg_add_pec;			// ÉËº¦¼Ó³É£¨%£©
-	int32_t dmg_rdc_pec;			// ÉËº¦¼õÃâ£¨%£©
-	int32_t movespeed;				// ÒÆ¶¯ËÙ¶È
-	int32_t battle;					// Õ½¶·Á¦
-	int32_t lucky;					// ÐÒÔËÖµ
+	int32_t hp;						// ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+	int32_t mp;						// ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+	int32_t pp;						// ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+	int32_t xp;						// ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+	int32_t phy_atk_min;			// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t phy_atk_max;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_atk_min;			// ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_atk_max;			// ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t phy_def;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t mag_def;				// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t hitrate;				// ï¿½ï¿½ï¿½ï¿½
+	int32_t dodge;					// ï¿½ï¿½ï¿½ï¿½
+	int32_t critrate;				// ï¿½ï¿½ï¿½ï¿½
+	int32_t dmg_add;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+	int32_t dmg_rdc;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+	int32_t dmg_add_pec;			// ï¿½Ëºï¿½ï¿½Ó³É£ï¿½%ï¿½ï¿½
+	int32_t dmg_rdc_pec;			// ï¿½Ëºï¿½ï¿½ï¿½ï¿½â£¨%ï¿½ï¿½
+	int32_t movespeed;				// ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+	int32_t battle;					// Õ½ï¿½ï¿½ï¿½ï¿½
+	int32_t lucky;					// ï¿½ï¿½ï¿½ï¿½Öµ
 };
 
 struct MemChrAction 
@@ -924,16 +924,16 @@ struct MemChrAutoFight
 
 enum CHAR_BAG_TYPE
 {
-	CBT_EQUIP	= 0,	// ×°±¸À¸
-	CBT_BAG		= 1,	// ±³°ü
-	CBT_DEPORT	= 2,	// ²Ö¿â
-	CBT_CHOUJIANG = 3,	// ³é½±±³°ü
+	CBT_EQUIP	= 0,	// ×°ï¿½ï¿½ï¿½ï¿½
+	CBT_BAG		= 1,	// ï¿½ï¿½ï¿½ï¿½
+	CBT_DEPORT	= 2,	// ï¿½Ö¿ï¿½
+	CBT_CHOUJIANG = 3,	// ï¿½é½±ï¿½ï¿½ï¿½ï¿½
 };
-#define MAX_BAG_SLOT_NUM	150			//±³°ü×î´óÊý
-#define FREE_BAG_SLOT_NUM	40			//±³°ü³õÊ¼»¯´óÐ¡
+#define MAX_BAG_SLOT_NUM	150			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define FREE_BAG_SLOT_NUM	40			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ð¡
 
-#define FREE_DEPOT_SLOT 40				//²Ö¿â³õÊ¼»¯´óÐ¡
-#define MAX_DEPOT_SLOT 150				//²Ö¿â×î´óÊý
+#define FREE_DEPOT_SLOT 40				//ï¿½Ö¿ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ð¡
+#define MAX_DEPOT_SLOT 150				//ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #define MAX_SELL_ITEM_COUNT 15
 #define STONE_COMBINE_NUM 10
@@ -951,12 +951,12 @@ struct ChrBagInfo
 
 struct MemChrBag 
 {
-	int32_t itemId;		// µÀ¾ßID£¨ÅäÖÃ±íÖÐµÄID£©
-	int8_t	itemClass;	// µÀ¾ßÀàÐÍ
-	int32_t itemCount;	// µÀ¾ßÊýÁ¿
-	int8_t	bind;		// °ó¶¨ÀàÐÍ
-	Time_t	endTime;	// ¹ýÆÚÊ±¼ä
-	int64_t	srcId;		// ¹ØÁªID£¨×°±¸ID...£©
+	int32_t itemId;		// ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½Ðµï¿½IDï¿½ï¿½
+	int8_t	itemClass;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t itemCount;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t	bind;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Time_t	endTime;	// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int64_t	srcId;		// ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½×°ï¿½ï¿½ID...ï¿½ï¿½
 };
 typedef std::vector<MemChrBag> MemChrBagVector;
 typedef std::map<int32_t,MemChrBagVector> MemChrBagVectorTable;
@@ -965,9 +965,9 @@ typedef std::map<int32_t,MemChrBag> MemBagTable;
 struct MemChrClothesBag
 {
 	int32_t id;				//Ê±×°id
-	int32_t type;			//Àà±ð
+	int32_t type;			//ï¿½ï¿½ï¿½
 	int32_t job;			//Ö°Òµ
-	int32_t base;			//»ù´¡id
+	int32_t base;			//ï¿½ï¿½ï¿½ï¿½id
 };
 typedef std::vector<MemChrClothesBag> MemChrClothesBagVector;
 typedef std::map<int32_t,MemChrClothesBag>MemChrClothesBagTable;
@@ -995,7 +995,7 @@ struct MemChrBuff
 };
 typedef std::vector<MemChrBuff> MemChrBuffVector;
 
-// Ç©µ½
+// Ç©ï¿½ï¿½
 class MemChrSignInfo
 {
 public:
@@ -1011,7 +1011,7 @@ public:
 	}
 	int32_t				sign_record;
 	std::vector<int8_t>	sign_reward;
-	int32_t				refresh_time;		//ÉÏÒ»´ÎÇ©µ½
+	int32_t				refresh_time;		//ï¿½ï¿½Ò»ï¿½ï¿½Ç©ï¿½ï¿½
 };
 
 enum PlayerBornAttr
@@ -1045,15 +1045,15 @@ enum PlayerBornAttr
 enum PlayerJob
 {
 	PJ_ZHANSHI		= 1,		// Õ½Ê¿
-	PJ_FASHI		= 2,		// ·¨Ê¦
-	PJ_LONGQI		= 3,		// ÁúÆï
+	PJ_FASHI		= 2,		// ï¿½ï¿½Ê¦
+	PJ_LONGQI		= 3,		// ï¿½ï¿½ï¿½ï¿½
 	PJ_JOB_COUNT,
 };
 
 enum PetJob
 {
 	PET_JOB_ZHANSHI		= 1,		// Õ½Ê¿
-	PET_JOB_FASHI		= 2,		// ·¨Ê¦
+	PET_JOB_FASHI		= 2,		// ï¿½ï¿½Ê¦
 };
 
 enum SkillJob
@@ -1067,52 +1067,52 @@ enum SkillJob
 
 enum EQUIP_TYPE
 {
-	ET_WEAPON			= 0,		// ÎäÆ÷
-	ET_NECK				= 1,		// ÏîÁ´
-	ET_HAND				= 2,		// ÊÖïí
-	ET_CLOSE			= 3,		// ÒÂ·þ
-	ET_HEAD				= 4,		// Í·¿ø
-	ET_SHOES			= 5,		// Ñ¥×Ó
-	ET_BELT				= 6,		// Ñü´ø
-	ET_RING				= 7,		// ½äÖ¸
-	ET_XUNZHANG			= 8,		// Ñ«ÕÂ
+	ET_WEAPON			= 0,		// ï¿½ï¿½ï¿½ï¿½
+	ET_NECK				= 1,		// ï¿½ï¿½ï¿½ï¿½
+	ET_HAND				= 2,		// ï¿½ï¿½ï¿½ï¿½
+	ET_CLOSE			= 3,		// ï¿½Â·ï¿½
+	ET_HEAD				= 4,		// Í·ï¿½ï¿½
+	ET_SHOES			= 5,		// Ñ¥ï¿½ï¿½
+	ET_BELT				= 6,		// ï¿½ï¿½ï¿½ï¿½
+	ET_RING				= 7,		// ï¿½ï¿½Ö¸
+	ET_XUNZHANG			= 8,		// Ñ«ï¿½ï¿½
 };
 
 
 enum EquipSlot
 {
-	EQUIP_SLOT_WEAPON			= 0,		// ÎäÆ÷
-	EQUIP_SLOT_NECK				= 1,		// ÏîÁ´
-	EQUIP_SLOT_HAND				= 2,		// ÊÖïí
-	EQUIP_SLOT_CLOTH			= 3,		// ÒÂ·þ
-	EQUIP_SLOT_HEAD				= 4,		// Í·¿ø
-	EQUIP_SLOT_SHOES			= 5,		// Ñ¥×Ó
-	EQUIP_SLOT_BELT				= 6,		// Ñü´ø
-	EQUIP_SLOT_RING				= 7,		// ½äÖ¸
-	EQUIP_SLOT_XUNZHANG			= 8,		// Ñ«ÕÂ
-	EQUIP_SLOT_TOTAL_NUM,					// ×°±¸×ÜÀ¸´óÐ¡
+	EQUIP_SLOT_WEAPON			= 0,		// ï¿½ï¿½ï¿½ï¿½
+	EQUIP_SLOT_NECK				= 1,		// ï¿½ï¿½ï¿½ï¿½
+	EQUIP_SLOT_HAND				= 2,		// ï¿½ï¿½ï¿½ï¿½
+	EQUIP_SLOT_CLOTH			= 3,		// ï¿½Â·ï¿½
+	EQUIP_SLOT_HEAD				= 4,		// Í·ï¿½ï¿½
+	EQUIP_SLOT_SHOES			= 5,		// Ñ¥ï¿½ï¿½
+	EQUIP_SLOT_BELT				= 6,		// ï¿½ï¿½ï¿½ï¿½
+	EQUIP_SLOT_RING				= 7,		// ï¿½ï¿½Ö¸
+	EQUIP_SLOT_XUNZHANG			= 8,		// Ñ«ï¿½ï¿½
+	EQUIP_SLOT_TOTAL_NUM,					// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡
 };
 
 enum NEW_GEM_TYPE
 {
-	GEM_TYPE_BATTLE 	= 1,	//Õ½¶·Á¦±¦Ê¯
-	GEM_TYPE_DAMMAGE    = 2,	//¼õÉË±¦Ê¯
-	GEM_TYPE_EXP		= 3,	//¾­Ñé±¦Ê¯
-	GEM_TYPE_ATTACK		= 4,	//ÉËº¦±¦Ê¯
+	GEM_TYPE_BATTLE 	= 1,	//Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¯
+	GEM_TYPE_DAMMAGE    = 2,	//ï¿½ï¿½ï¿½Ë±ï¿½Ê¯
+	GEM_TYPE_EXP		= 3,	//ï¿½ï¿½ï¿½é±¦Ê¯
+	GEM_TYPE_ATTACK		= 4,	//ï¿½Ëºï¿½ï¿½ï¿½Ê¯
 };
 
 enum GEM_TYPE
 {
-	GEM_TYPE_RED	= 1,	// ºì±¦Ê¯
-	GEM_TYPE_GREEN	= 2,	// ÂÌ±¦Ê¯
-	GEM_TYPE_BLUE	= 3,	// À¶±¦Ê¯
+	GEM_TYPE_RED	= 1,	// ï¿½ì±¦Ê¯
+	GEM_TYPE_GREEN	= 2,	// ï¿½Ì±ï¿½Ê¯
+	GEM_TYPE_BLUE	= 3,	// ï¿½ï¿½ï¿½ï¿½Ê¯
 };
 
 enum GEM_SLOT
 {
-	GEM_SLOT_RED	= 0,	// ºì±¦Ê¯²å²Û
-	GEM_SLOT_GREEN,			// ÂÌ±¦Ê¯²å²Û
-	GEM_SLOT_BLUE,			// À¶±¦Ê¯²å²Û
+	GEM_SLOT_RED	= 0,	// ï¿½ì±¦Ê¯ï¿½ï¿½ï¿½
+	GEM_SLOT_GREEN,			// ï¿½Ì±ï¿½Ê¯ï¿½ï¿½ï¿½
+	GEM_SLOT_BLUE,			// ï¿½ï¿½ï¿½ï¿½Ê¯ï¿½ï¿½ï¿½
 	GEM_SLOT_NUM,
 };
 
@@ -1136,7 +1136,7 @@ enum PlayerInfoIndex
 	PII_GUAN_WEI,
 };
 
-struct MemChrEquip // ·ÏÆú
+struct MemChrEquip // ï¿½ï¿½ï¿½ï¿½
 {
 	int32_t eid;
 	int32_t bind;
@@ -1238,15 +1238,15 @@ public:
 	}
 
 	EquipId_t	id;
-	int32_t		nFlag;			// ¸üÐÂ±ê¼Ç
+	int32_t		nFlag;			// ï¿½ï¿½ï¿½Â±ï¿½ï¿½
 	ItemId_t	base;
 	CharId_t	owner;
-	int32_t		star;			// ÐÇ¼¶
-	int32_t		starLucky;		// ÉýÐÇÐÒÔËÖµ
-	int32_t		UpGradeLucky;	// Éý¼¶ÐÒÔËÖµ
-	int32_t		UpQuality;		// ÉýÆ·ÐÒÔËÖµ
-	int32_t		GemHole[EQUIP_GEM_COUNT];	// ±¦Ê¯¿×
-	int32_t		addAttr;		// ¸½¼ÓÊôÐÔÀàÐÍ
+	int32_t		star;			// ï¿½Ç¼ï¿½
+	int32_t		starLucky;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t		UpGradeLucky;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t		UpQuality;		// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t		GemHole[EQUIP_GEM_COUNT];	// ï¿½ï¿½Ê¯ï¿½ï¿½
+	int32_t		addAttr;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef std::vector<MemEquip> MemEquipVector;
 typedef std::map<EquipId_t, MemEquip> MemEquipTable;
@@ -1294,14 +1294,14 @@ struct SysUser
 	char IP[MAX_IP_LENGTH+1];
 };
 
-//·À³ÁÃÔÑéÖ¤
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
 struct SysUserPreventWallow
 {
 	int32_t uid;
 	int32_t sid;
-	char    name[MAX_NAME_CCH_LENGTH+1]; //ÐÕÃû
-	char    identitycard[MAX_IDENTITYCARD_LENGTH + 1]; //Éí·ÝÖ¤ºÅÂë
-	int32_t isGrowUp; //ÊÇ·ñ³ÉÄêÈË
+	char    name[MAX_NAME_CCH_LENGTH+1]; //ï¿½ï¿½ï¿½ï¿½
+	char    identitycard[MAX_IDENTITYCARD_LENGTH + 1]; //ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
+	int32_t isGrowUp; //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 #define  MAX_IDENTITYCARD_LENGTH 18
@@ -1330,7 +1330,7 @@ struct OperateLimit
 };
 typedef map<int32_t, OperateLimit> OperateLimitMap;
 
-// °ó¶¨×´Ì¬
+// ï¿½ï¿½×´Ì¬
 enum ITEM_BIND_STATE
 {
 	IBS_UNBIND	= 0,
@@ -1361,19 +1361,19 @@ struct CfgSuitAttr
 };
 typedef std::list<CfgSuitAttr> CfgSuitAttrList;
 
-// »õ±Ò
+// ï¿½ï¿½ï¿½ï¿½
 enum CURRENCY_TYPE
 {
 	CURRENCY_INVALID		= -1,
 	CURRENCY_MONEY			= 0,		// Í­Ç®
-	CURRENCY_GOLD			= 1,		// Ôª±¦
-	CURRENCY_CASH			= 2,		// °óÔª
-	CURRENCY_VIGOUR			= 3,		// ÔªÆø
-	CURRENCY_CHOUJINAG		= 4,		// ³é½±»ý·Ö
-	CURRENCY_BOSS			= 5,		// BOSS»ý·Ö
-	CURRENCY_BIND_MONEY		= 6,		// °ó¶¨½ð±Ò
-	CURRENCY_HONOR			= 7,		// ÈÙÓþ
-	CURRENCY_AC_SOCRE		= 8,		// »ý·Ö
+	CURRENCY_GOLD			= 1,		// Ôªï¿½ï¿½
+	CURRENCY_CASH			= 2,		// ï¿½ï¿½Ôª
+	CURRENCY_VIGOUR			= 3,		// Ôªï¿½ï¿½
+	CURRENCY_CHOUJINAG		= 4,		// ï¿½é½±ï¿½ï¿½ï¿½ï¿½
+	CURRENCY_BOSS			= 5,		// BOSSï¿½ï¿½ï¿½ï¿½
+	CURRENCY_BIND_MONEY		= 6,		// ï¿½ó¶¨½ï¿½ï¿½
+	CURRENCY_HONOR			= 7,		// ï¿½ï¿½ï¿½ï¿½
+	CURRENCY_AC_SOCRE		= 8,		// ï¿½ï¿½ï¿½ï¿½
 	CURRENCY_TYPE_COUNT,
 };
 
@@ -1438,14 +1438,14 @@ public:
 	std::string			CharName;
 	CharId_t			KillerId;	
 	std::string			KillerName;
-	Time_t				CanGetLastTime; // ¿ÉÊê»ØµÄ×îºóÊ±¼ä				
-	int32_t				itemId;			// µÀ¾ßID£¨ÅäÖÃ±íÖÐµÄID£©
-	int8_t				itemClass;		// µÀ¾ßÀàÐÍ
-	int32_t				itemCount;		// µÀ¾ßÊýÁ¿
-	int8_t				bind;			// °ó¶¨ÀàÐÍ
-	Time_t				endTime;		// ¹ýÆÚÊ±¼ä
-	int64_t				srcId;			// ¹ØÁªID£¨×°±¸ID...£©
-	int32_t				Mid;			// Èç¹ûÊÇ±»¹ÖÎïÉ±ËÀ
+	Time_t				CanGetLastTime; // ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½				
+	int32_t				itemId;			// ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½Ðµï¿½IDï¿½ï¿½
+	int8_t				itemClass;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t				itemCount;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int8_t				bind;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Time_t				endTime;		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int64_t				srcId;			// ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½×°ï¿½ï¿½ID...ï¿½ï¿½
+	int32_t				Mid;			// ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½ï¿½
 };
  typedef std::list<DropEquipInfo> RANSOM_ITEM_LIST;
 
@@ -1455,45 +1455,45 @@ public:
 	 SUB_RANSOM		= 2,
  };
 
-#define EQUIP_RANSOM_TIME 7*24*60*60	//×°±¸Êê»ØÊ±¼ä
-#define EQUIP_MAX_STAT  12 //×°±¸×î´óÐÇÊý
+#define EQUIP_RANSOM_TIME 7*24*60*60	//×°ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+#define EQUIP_MAX_STAT  12 //×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-#define PET_RANK_OPEN_LEVEL	60		// ³èÎï½øÈëÅÅÐÐ°ñÐèÇóµÈ¼¶
-#define MAX_PET_ID			100		// ×î´ó»ÃÊÞID
-#define PET_SKILL_COUNT		10		// ³èÎï¼¼ÄÜÊý
-#define PET_SKILL_BAR_SIZE	6		// ³èÎï¼¼ÄÜÀ¸´óÐ¡ 
+#define PET_RANK_OPEN_LEVEL	60		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+#define MAX_PET_ID			100		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+#define PET_SKILL_COUNT		10		// ï¿½ï¿½ï¿½ï¼¼ï¿½ï¿½ï¿½ï¿½
+#define PET_SKILL_BAR_SIZE	6		// ï¿½ï¿½ï¿½ï¼¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ 
 enum PET_ATTR
 {
-	PET_ATTR_START_HP					= 0,			// ³õÊ¼ÉúÃü£º		³õÊ¼ÉúÃüÎª»ÃÊÞ1¼¶Ê±µÄÉúÃüÖµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_PHY_ATK_MIN			= 1,			// ³õÊ¼×îÐ¡¹¥»÷£º	³õÊ¼¹¥»÷Îª»ÃÊÞ1¼¶Ê±µÄÎïÀí¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_PHY_ATK_MAX			= 2,			// ³õÊ¼×î´ó¹¥»÷£º	³õÊ¼¹¥»÷Îª»ÃÊÞ1¼¶Ê±µÄÎïÀí¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_PHY_DEF				= 3,			// ³õÊ¼·ÀÓù£º		³õÊ¼·ÀÓùÎª»ÃÊÞ1¼¶Ê±µÄÎïÀí·ÀÓùÖµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_MAG_ATK_MIN			= 4,			// ³õÊ¼×îÐ¡Ä§¹¥£º	³õÊ¼Ä§¹¥Îª»ÃÊÞ1¼¶Ê±µÄÄ§·¨¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_MAG_ATK_MAX			= 5,			// ³õÊ¼×î´óÄ§¹¥£º	³õÊ¼Ä§¹¥Îª»ÃÊÞ1¼¶Ê±µÄÄ§·¨¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_MAG_DEF				= 6,			// ³õÊ¼Ä§·À£º		³õÊ¼Ä§·ÀÎª»ÃÊÞ1¼¶Ê±µÄÄ§·¨·ÀÓùÖµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_DODGE				= 7,			// ³õÊ¼ÉÁ±Ü£º		»ÃÊÞ1¼¶Ê±µÄÉÁ±ÜÖµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_HITRATE				= 8,			// ³õÊ¼ÃüÖÐ£º		»ÃÊÞ1¼¶Ê±µÄÃüÖÐÖµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_CRITRATE				= 9,			// ³õÊ¼±©»÷£º		»ÃÊÞ1¼¶Ê±µÄ±©»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_START_TENACITY				= 10,			// ³õÊ¼ÈÍÐÔ£º
-	PET_ATTR_GROW_HP					= 11,			// ÉúÃü³É³¤£º		Ó°Ïì»ÃÊÞµÄ×îÖÕÉúÃüÖµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©		£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_PHY_ATK_MIN			= 12,			// ×îÐ¡¹¥»÷³É³¤£º	Ó°Ïì»ÃÊÞµÄ×îÖÕ×îÐ¡¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©	£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_PHY_ATK_MAX			= 13,			// ×î´ó¹¥»÷³É³¤£º	Ó°Ïì»ÃÊÞµÄ×îÖÕ×î´ó¹¥»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©	£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_PHY_DEF				= 14,			// ·ÀÓù³É³¤£º		Ó°Ïì»ÃÊÞµÄ×îÖÕ·ÀÓùÖµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©		£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_MAG_ATK_MIN			= 15,			// ×îÐ¡Ä§¹¥³É³¤£º	Ó°Ïì»ÃÊÞµÄ×îÖÕ×îÐ¡Ä§¹¥Öµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©	£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_MAG_ATK_MAX			= 16,			// ×î´óÄ§¹¥³É³¤£º	Ó°Ïì»ÃÊÞµÄ×îÖÕ×î´óÄ§¹¥Öµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©	£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_MAG_DEF				= 17,			// Ä§·À³É³¤£º		Ó°Ïì»ÃÊÞµÄ×îÖÕÄ§·ÀÖµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©		£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_DODGE					= 18,			// ÉÁ±Ü³É³¤£º		Ó°Ïì»ÃÊÞµÄ×îÖÕÉÁ±ÜÖµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©		£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_HITRATE				= 19,			// ÃüÖÐ³É³¤£º		Ó°Ïì»ÃÊÞµÄ×îÖÕÃüÖÐÖµ¡££¨ÊýÖµ·¶Î§1~9999£¬ÓÐÐ¡Êýµã£¬µ½ºóÃæ4Î»£©		£¨1~99990000, ³ýÒÔ10000ÎªÏÔÊ¾Öµ£©
-	PET_ATTR_GROW_CRITRATE				= 20,			// ±©»÷³É³¤£º		»ÃÊÞ1¼¶Ê±µÄ±©»÷Öµ¡££¨ÊýÖµ·¶Î§1~9999999£©
-	PET_ATTR_GROW_TENACITY				= 21,			// ³õÊ¼ÈÍÐÔ£º
+	PET_ATTR_START_HP					= 0,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_PHY_ATK_MIN			= 1,			// ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_PHY_ATK_MAX			= 2,			// ï¿½ï¿½Ê¼ï¿½ï¿½ó¹¥»ï¿½ï¿½ï¿½	ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_PHY_DEF				= 3,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_MAG_ATK_MIN			= 4,			// ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½Ê¼Ä§ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_MAG_ATK_MAX			= 5,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½Ê¼Ä§ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_MAG_DEF				= 6,			// ï¿½ï¿½Ê¼Ä§ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½Ê¼Ä§ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_DODGE				= 7,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ü£ï¿½		ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_HITRATE				= 8,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ð£ï¿½		ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_CRITRATE				= 9,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½Ä±ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_START_TENACITY				= 10,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô£ï¿½
+	PET_ATTR_GROW_HP					= 11,			// ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½		Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½		ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_PHY_ATK_MIN			= 12,			// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½	ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_PHY_ATK_MAX			= 13,			// ï¿½ï¿½ó¹¥»ï¿½ï¿½É³ï¿½ï¿½ï¿½	Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó¹¥»ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½	ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_PHY_DEF				= 14,			// ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½		Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½Õ·ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½		ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_MAG_ATK_MIN			= 15,			// ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ä§ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½	ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_MAG_ATK_MAX			= 16,			// ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½	ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_MAG_DEF				= 17,			// Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½		Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½		ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_DODGE					= 18,			// ï¿½ï¿½ï¿½Ü³É³ï¿½ï¿½ï¿½		Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½		ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_HITRATE				= 19,			// ï¿½ï¿½ï¿½Ð³É³ï¿½ï¿½ï¿½		Ó°ï¿½ï¿½ï¿½ï¿½Þµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4Î»ï¿½ï¿½		ï¿½ï¿½1~99990000, ï¿½ï¿½ï¿½ï¿½10000Îªï¿½ï¿½Ê¾Öµï¿½ï¿½
+	PET_ATTR_GROW_CRITRATE				= 20,			// ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½		ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½Ä±ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§1~9999999ï¿½ï¿½
+	PET_ATTR_GROW_TENACITY				= 21,			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô£ï¿½
 	PET_ATTR_COUNT,
 };
 
 enum INSIDE_PET_ID
 {
-	IPI_ZHANSHI	= 21,	// Õ½Ê¿ÁéÊÞID
-	IPI_FASHI	= 22,	// ·¨Ê¦ÁéÊÞ
-	IPI_LONGQI	= 23,	// ÁúÆïÁéÊÞ
+	IPI_ZHANSHI	= 21,	// Õ½Ê¿ï¿½ï¿½ï¿½ï¿½ID
+	IPI_FASHI	= 22,	// ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½
+	IPI_LONGQI	= 23,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 inline int32_t GetInsidePetId( Job_t nJob )
@@ -1501,8 +1501,8 @@ inline int32_t GetInsidePetId( Job_t nJob )
 	switch( nJob )
 	{
 	case PJ_ZHANSHI:	return IPI_ZHANSHI;		// Õ½Ê¿
-	case PJ_FASHI:		return IPI_FASHI;		// ·¨Ê¦
-	case PJ_LONGQI:		return IPI_LONGQI;		// ÁúÆï
+	case PJ_FASHI:		return IPI_FASHI;		// ï¿½ï¿½Ê¦
+	case PJ_LONGQI:		return IPI_LONGQI;		// ï¿½ï¿½ï¿½ï¿½
 	default:break;
 	}
 	return -1;
@@ -1514,16 +1514,16 @@ inline bool IsInsidePet( int32_t nPetId )
 }
 
 
-// »ÃÊÞÏàÐÔ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 enum PET_PHASE
 {
 	PP_INVALID	= 0,
-	PP_WIND		= 1,	// ·ç
+	PP_WIND		= 1,	// ï¿½ï¿½
 	PP_WATER	= 2,	// Ë®
-	PP_FIRE		= 3,	// »ð
-	PP_EARTH	= 4,	// ÍÁ
-	PP_ELECTRIC	= 5,	// À×
-	PP_GOLD		= 6,	// ½ð
+	PP_FIRE		= 3,	// ï¿½ï¿½
+	PP_EARTH	= 4,	// ï¿½ï¿½
+	PP_ELECTRIC	= 5,	// ï¿½ï¿½
+	PP_GOLD		= 6,	// ï¿½ï¿½
 
 	PP_DEFAULT	= 0xFF
 };
@@ -1538,71 +1538,71 @@ enum PET_PLACE
 
 enum PET_EGG_STATE
 {
-	PES_NORMAL		= 0,		// Õý³£×´Ì¬
-	PES_HATCHING	= 1,		// ·õ»¯ÖÐ
-	PES_CAN_OPEN	= 2,		// ·õ»¯Íê³É
+	PES_NORMAL		= 0,		// ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	PES_HATCHING	= 1,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PES_CAN_OPEN	= 2,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum PET_FROM_WAY
 {
-	PFW_NORMAL		= 0,		// Ò»°ãÀ´Ô´
-	PFW_BORN		= 1,		// ³öÉú×Ô´ø
-	PFW_GIFT		= 2,		// Àñ°ü»ñµÃ
+	PFW_NORMAL		= 0,		// Ò»ï¿½ï¿½ï¿½ï¿½Ô´
+	PFW_BORN		= 1,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½
+	PFW_GIFT		= 2,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
-#define PET_BAG_SIZE					20								// »ÃÊÞÀ¸´óÐ¡
-#define PET_DEPORT_SIZE					15								// »ÃÊÞ²Ö¿â´óÐ¡
-#define PET_VIP_ADD_DEPORT_SIZE			30								// vipÔö¼Ó»ÃÊÞ²Ö¿â×î¶àµÄ¸öÊý				
-#define PET_LIST_SIZE					(PET_BAG_SIZE+PET_DEPORT_SIZE + PET_VIP_ADD_DEPORT_SIZE )	// ×Ü´óÐ¡
-#define PET_EGG_BAG_SIZE				14								// »ÃÊÞ±³°ü´óÐ¡
-#define PET_HATCH_POOL_SIZE				32								// »ÃÊÞ·õ»¯³Ø´óÐ¡
-#define	PET_MUTI_HATCH_POOL_SIZE		40								// »ÃÊÞÅúÁ¿·õ»¯³Ø´óÐ¡
-#define PET_EGG_REHATCH_COST			3								// »ÃÊÞÖØÐÂ·õ»¯ÏûºÄÔª±¦
-#define PET_EGG_QUICK_HATCH_COST		(30*60)							// »ÃÊÞ¿ìËÙ·õ»¯Ã¿30·ÖÖÓÏûºÄ1Ôª±¦
-#define PET_EGG_HATCH_TIME				(20*60)							// ³èÎïµ°·õ»¯Ê±¼ä		20·ÖÖÓ
-#define PET_EGG_MUTI_HATCH_TIME			(6*60*60)						// ³èÎïµ°ÅúÁ¿·õ»¯Ê±¼ä	6Ð¡Ê±
-#define PET_REIN_RATE					10								// ³èÎï×ªÉú´ÎÊý´æ´¢Öµ±ÈÂÊ
+#define PET_BAG_SIZE					20								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡
+#define PET_DEPORT_SIZE					15								// ï¿½ï¿½ï¿½Þ²Ö¿ï¿½ï¿½Ð¡
+#define PET_VIP_ADD_DEPORT_SIZE			30								// vipï¿½ï¿½ï¿½Ó»ï¿½ï¿½Þ²Ö¿ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½				
+#define PET_LIST_SIZE					(PET_BAG_SIZE+PET_DEPORT_SIZE + PET_VIP_ADD_DEPORT_SIZE )	// ï¿½Ü´ï¿½Ð¡
+#define PET_EGG_BAG_SIZE				14								// ï¿½ï¿½ï¿½Þ±ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡
+#define PET_HATCH_POOL_SIZE				32								// ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Ø´ï¿½Ð¡
+#define	PET_MUTI_HATCH_POOL_SIZE		40								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½Ð¡
+#define PET_EGG_REHATCH_COST			3								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+#define PET_EGG_QUICK_HATCH_COST		(30*60)							// ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½Ù·ï¿½ï¿½ï¿½Ã¿30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1Ôªï¿½ï¿½
+#define PET_EGG_HATCH_TIME				(20*60)							// ï¿½ï¿½ï¿½ïµ°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½		20ï¿½ï¿½ï¿½ï¿½
+#define PET_EGG_MUTI_HATCH_TIME			(6*60*60)						// ï¿½ï¿½ï¿½ïµ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½	6Ð¡Ê±
+#define PET_REIN_RATE					10								// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢Öµï¿½ï¿½ï¿½ï¿½
 
-// »ÃÊÞÆïÊ¿
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿
 enum PET_KNIGHT
 {
-	PK_NONE			= 0,		// ÎÞ
-	PK_ZHIHUI		= 1,		// ÖÇ»ÛÆïÊ¿
-	PK_LEITING		= 2,		// À×öªÆïÊ¿
-	PK_DOUHUN		= 3,		// ¶·»êÆïÊ¿
-	PK_SHENGZHAN	= 4,		// Ê¥Õ½ÆïÊ¿
-	PK_GUANGHUI		= 5,		// ¹â»ÔÆïÊ¿
-	PK_SHOUHU		= 6,		// ÊØ»¤ÆïÊ¿
-	PK_CAIJUE		= 7,		// ²Ã¾öÆïÊ¿
-	PK_SHENGGUANG	= 8,		// Ê¥¹âÆïÊ¿
+	PK_NONE			= 0,		// ï¿½ï¿½
+	PK_ZHIHUI		= 1,		// ï¿½Ç»ï¿½ï¿½ï¿½Ê¿
+	PK_LEITING		= 2,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿
+	PK_DOUHUN		= 3,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿
+	PK_SHENGZHAN	= 4,		// Ê¥Õ½ï¿½ï¿½Ê¿
+	PK_GUANGHUI		= 5,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿
+	PK_SHOUHU		= 6,		// ï¿½Ø»ï¿½ï¿½ï¿½Ê¿
+	PK_CAIJUE		= 7,		// ï¿½Ã¾ï¿½ï¿½ï¿½Ê¿
+	PK_SHENGGUANG	= 8,		// Ê¥ï¿½ï¿½ï¿½ï¿½Ê¿
 
 	PET_KNIGHT_SIZE
 };
 
 enum PET_EGG_BAG_TYPE
 {
-	PEBT_BAG				= 1,	// ³èÎïµ°±³°ü
-	PEBT_HATCH_POOL			= 2,	// ³èÎï·õ»¯³Ø
-	PEBT_MUTI_HATCH_POOL	= 3,	// ÅúÁ¿·õ»¯³Ø
+	PEBT_BAG				= 1,	// ï¿½ï¿½ï¿½ïµ°ï¿½ï¿½ï¿½ï¿½
+	PEBT_HATCH_POOL			= 2,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PEBT_MUTI_HATCH_POOL	= 3,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum PET_RANK_TYPE
 {
-	PRT_POINTS					= 0,	// ÆÀ·Ö£¨×ÜÅÅÐÐ£©
-// 	PRT_START_HP				= 1,	// ³õÊ¼ÉúÃü£º	
-// 	PRT_START_PHY_ATK_MIN		= 2,	// ³õÊ¼×îÐ¡¹¥»÷£º
-// 	PRT_START_PHY_ATK_MAX		= 3,	// ³õÊ¼×î´ó¹¥»÷£º
-// 	PRT_START_PHY_DEF			= 4,	// ³õÊ¼·ÀÓù£º	
-// 	PRT_START_MAG_ATK_MIN		= 5,	// ³õÊ¼×îÐ¡Ä§¹¥£º
-// 	PRT_START_MAG_ATK_MAX		= 6,	// ³õÊ¼×î´óÄ§¹¥£º
-// 	PRT_START_MAG_DEF			= 7,	// ³õÊ¼Ä§·À£º	
-	PRT_GROW_HP					= 8,	// ÉúÃü³É³¤£º	
-	PRT_GROW_PHY_ATK_MIN		= 9,	// ×îÐ¡¹¥»÷³É³¤£º
-	PRT_GROW_PHY_ATK_MAX		= 10,	// ×î´ó¹¥»÷³É³¤£º
-	PRT_GROW_PHY_DEF			= 11,	// ·ÀÓù³É³¤£º	
-	PRT_GROW_MAG_ATK_MIN		= 12,	// ×îÐ¡Ä§¹¥³É³¤£º
-	PRT_GROW_MAG_ATK_MAX		= 13,	// ×î´óÄ§¹¥³É³¤£º
-	PRT_GROW_MAG_DEF			= 14,	// Ä§·À³É³¤£º	
+	PRT_POINTS					= 0,	// ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½
+// 	PRT_START_HP				= 1,	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+// 	PRT_START_PHY_ATK_MIN		= 2,	// ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	PRT_START_PHY_ATK_MAX		= 3,	// ï¿½ï¿½Ê¼ï¿½ï¿½ó¹¥»ï¿½ï¿½ï¿½
+// 	PRT_START_PHY_DEF			= 4,	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+// 	PRT_START_MAG_ATK_MIN		= 5,	// ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½ï¿½
+// 	PRT_START_MAG_ATK_MAX		= 6,	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½
+// 	PRT_START_MAG_DEF			= 7,	// ï¿½ï¿½Ê¼Ä§ï¿½ï¿½ï¿½ï¿½	
+	PRT_GROW_HP					= 8,	// ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	
+	PRT_GROW_PHY_ATK_MIN		= 9,	// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½
+	PRT_GROW_PHY_ATK_MAX		= 10,	// ï¿½ï¿½ó¹¥»ï¿½ï¿½É³ï¿½ï¿½ï¿½
+	PRT_GROW_PHY_DEF			= 11,	// ï¿½ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	
+	PRT_GROW_MAG_ATK_MIN		= 12,	// ï¿½ï¿½Ð¡Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½
+	PRT_GROW_MAG_ATK_MAX		= 13,	// ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½
+	PRT_GROW_MAG_DEF			= 14,	// Ä§ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½	
 };
 
 struct SocialPetData
@@ -1645,7 +1645,7 @@ struct DBPetEgg
 	PetId_t	nPetId;
 };
 
-#define MAX_TEAM_MEMBER_COUNT	4		// ×é¶Ó×î´óÈËÊý
+#define MAX_TEAM_MEMBER_COUNT	4		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 struct TeamMember 
 {
 	TeamMember( CharId_t cid, const std::string& name, int16_t idx )
@@ -1659,20 +1659,20 @@ struct TeamMember
 };
 typedef std::list<TeamMember> TeamMemberList;
 
-#define MAX_XP_POINTS			210		// XP×î´óÖµ
-#define ADD_XP_POINTS			30		// XPÃ¿´ÎÔö¼ÓÖµ
+#define MAX_XP_POINTS			210		// XPï¿½ï¿½ï¿½Öµ
+#define ADD_XP_POINTS			30		// XPÃ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 
 enum XP_STATE
 {
-	XS_INCREACE		= 0,	// XPÔö³¤ÖÐ
-	XS_DO_SKILL		= 1,	// XPÊÍ·ÅÖÐ
-	XS_END			= 2,	// XP½áÊøµÈ´ý½áËã
-	XS_BREAK		= 3,	// Î´Ñ¡ÔñXPÖ±½ÓÌø¹ýÁË
-	XS_OTHER_END	= 4,	// XPÖÐÍ¾½øÈë¶ÓÎéµÄÍæ¼Ò½áÊøXPÁË
-	XS_STOP			= 5,	// ÔÚ¶ÓÎéÖÐËÀÍö,ÕâÒ»ÂÖÍ£Ö¹Ôö³¤xp
+	XS_INCREACE		= 0,	// XPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	XS_DO_SKILL		= 1,	// XPï¿½Í·ï¿½ï¿½ï¿½
+	XS_END			= 2,	// XPï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½
+	XS_BREAK		= 3,	// Î´Ñ¡ï¿½ï¿½XPÖ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	XS_OTHER_END	= 4,	// XPï¿½ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½XPï¿½ï¿½
+	XS_STOP			= 5,	// ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½xp
 };
 
-#define CREATE_FAMILY_COST_GOLD		100	// ´´½¨°ïÅÉÐèÒª100Ôª±¦
+#define CREATE_FAMILY_COST_GOLD		100	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª100Ôªï¿½ï¿½
 #define FAMILY_APPLY_COUNT			50
 
 struct FamilyInfo 
@@ -1712,17 +1712,17 @@ struct FamilyInfo
 };
 
 #define MAX_FAMILY_LEVEL			10
-#define FAMILY_OPEN_LEVEL			30			// ¾üÍÅ¿ªÆôµÈ¼¶
-#define MAX_FAMILY_CONTRIBUTE_GOLD	100000		// µ¥±Ê¾èÏ××î´óÄ§Ê¯ 10w
-#define MAX_FAMILY_CONTRIBUTE_MONEY	1000000000	// µ¥±Ê¾èÏ××î´ó½ðÇ® 10y
-#define MAX_FAMILY_CONTRIBUTE		100000000	// ÈËÎïÍ¨¹ý¾èÏ×ÄÜ»ñµÃµÄ×î´ó¹±Ï×¶È 1
-#define MAX_FAMILY_MONEY			1000000000	// °ïÅÉ×î´ó×Ê½ð 10y
-#define FAMILY_TOTOM_ACTIVE_TIME	259200		// ¾üÍÅ¼Ó³ÖÊ±¼ä 3Ìì	3*24*60*60
+#define FAMILY_OPEN_LEVEL			30			// ï¿½ï¿½ï¿½Å¿ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+#define MAX_FAMILY_CONTRIBUTE_GOLD	100000		// ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä§Ê¯ 10w
+#define MAX_FAMILY_CONTRIBUTE_MONEY	1000000000	// ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç® 10y
+#define MAX_FAMILY_CONTRIBUTE		100000000	// ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½×¶ï¿½ 1
+#define MAX_FAMILY_MONEY			1000000000	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ 10y
+#define FAMILY_TOTOM_ACTIVE_TIME	259200		// ï¿½ï¿½ï¿½Å¼Ó³ï¿½Ê±ï¿½ï¿½ 3ï¿½ï¿½	3*24*60*60
 
 struct CfgFamilyPosition 
 {
-	int32_t	nNeedContribution;		// ÐèÇó¹±Ï×¶È
-	int32_t	nShareBattleRatio;		// Õ½¶·Á¦·ÖÏí
+	int32_t	nNeedContribution;		// ï¿½ï¿½ï¿½ï¿½ï¿½×¶ï¿½
+	int32_t	nShareBattleRatio;		// Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum FAMILY_UPDATE_REASON
@@ -1732,19 +1732,19 @@ enum FAMILY_UPDATE_REASON
 	FUR_DELETE	= 3,
 };
 
-// ¾üÍÅÖ°Îñ
+// ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ï¿½
 enum FAMILY_POSITION
 {
-	FP_NONE			= 0,	// °ïÖÚ
-	FP_SENIOR		= 1,	// ×ÊÉî
-	FP_ELIT			= 2,	// ¾«Ó¢
-	FP_SENETE		= 3,	// ÒéÔ±
-	FP_ELDER		= 4,	// ÔªÀÏ
-	FP_VICE			= 5,	// ¸±ÍÅ³¤
-	FP_LEADER		= 6,	// ¾üÍÅ³¤
-	FP_HONOR_VICE	= 7,	// ÈÙÓþ¸±ÍÅ³¤
-	FP_HONOR_ELDER	= 8,	// ÈÙÓþÔªÀÏ
-	FP_HONOR_SENETE	= 9,	// ÈÙÓþÒéÔ±
+	FP_NONE			= 0,	// ï¿½ï¿½ï¿½ï¿½
+	FP_SENIOR		= 1,	// ï¿½ï¿½ï¿½ï¿½
+	FP_ELIT			= 2,	// ï¿½ï¿½Ó¢
+	FP_SENETE		= 3,	// ï¿½ï¿½Ô±
+	FP_ELDER		= 4,	// Ôªï¿½ï¿½
+	FP_VICE			= 5,	// ï¿½ï¿½ï¿½Å³ï¿½
+	FP_LEADER		= 6,	// ï¿½ï¿½ï¿½Å³ï¿½
+	FP_HONOR_VICE	= 7,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½
+	FP_HONOR_ELDER	= 8,	// ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+	FP_HONOR_SENETE	= 9,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 
 	FAMILY_POSITION_COUNT,
 };
@@ -1793,15 +1793,15 @@ inline int8_t GetPositionLevel( int8_t nPosition )
 	switch ( nPosition )
 	{
 	case FP_NONE:			return FPL_NONE;
-	case FP_SENIOR:			return FPL_SENIOR;		// ×ÊÉî»áÔ±
-	case FP_ELIT:			return FPL_ELIT;		// ¾«Ó¢
+	case FP_SENIOR:			return FPL_SENIOR;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
+	case FP_ELIT:			return FPL_ELIT;		// ï¿½ï¿½Ó¢
 	case FP_HONOR_SENETE:
-	case FP_SENETE:			return FPL_SENETE;		// ÒéÔ±¡¢ÈÙÓþÒéÔ±
+	case FP_SENETE:			return FPL_SENETE;		// ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 	case FP_HONOR_ELDER:
-	case FP_ELDER:			return FPL_ELDER;		// ÔªÀÏ¡¢ÈÙÓþÔªÀÏ
+	case FP_ELDER:			return FPL_ELDER;		// Ôªï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 	case FP_HONOR_VICE:
-	case FP_VICE:			return FPL_VICE;		// ¸±ÍÅ³¤¡¢ÈÙÓþ¸±ÍÅ³¤
-	case FP_LEADER:			return FPL_LEADER;		// ¾üÍÅ³¤
+	case FP_VICE:			return FPL_VICE;		// ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½
+	case FP_LEADER:			return FPL_LEADER;		// ï¿½ï¿½ï¿½Å³ï¿½
 	}
 	return 0;
 }
@@ -1818,16 +1818,16 @@ inline int32_t CalFamilyContribute( int32_t nMoney, int32_t nGold )
 
 enum BossType
 {
-	BOSS_TYPE_LING_TU		= 1,	//ÁìÍÁboss
-	BOSS_TYPE_SPIDER_QUEEN  = 2,	//Ö©ÖëÅ®Íõ
-	BOSS_TYPE_WORLD_BOSS	= 3,	//ÊÀ½çboss
-	BOSS_TYPE_BOSS_HOME		= 4,	//bossÖ®¼Ò
+	BOSS_TYPE_LING_TU		= 1,	//ï¿½ï¿½ï¿½ï¿½boss
+	BOSS_TYPE_SPIDER_QUEEN  = 2,	//Ö©ï¿½ï¿½Å®ï¿½ï¿½
+	BOSS_TYPE_WORLD_BOSS	= 3,	//ï¿½ï¿½ï¿½ï¿½boss
+	BOSS_TYPE_BOSS_HOME		= 4,	//bossÖ®ï¿½ï¿½
 };
 
-#define MAIL_MAX_FU_JIAN_COUNT	6			//¸½¼þ¸öÊý
-#define MAIL_TITLE_MAX_LENGTH 30			//ÓÊ¼þ±êÌâ³¤¶È
-#define MAIL_CONTENT_MAX_LENGTH 150			//ÓÊ¼þÄÚÈÝ³¤¶È
-#define MAIL_MAX_KEEP_TIME	14*24*60*60		//ÓÊ¼þ±£ÁôµÄÊ±¼ä		
+#define MAIL_MAX_FU_JIAN_COUNT	6			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define MAIL_TITLE_MAX_LENGTH 30			//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½â³¤ï¿½ï¿½
+#define MAIL_CONTENT_MAX_LENGTH 150			//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½
+#define MAIL_MAX_KEEP_TIME	14*24*60*60		//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½		
 struct MailInfo
 {
 	int32_t			MailId;
@@ -1838,7 +1838,7 @@ struct MailInfo
 	char			ReceiveName[MAX_NAME_CCH_LENGTH];
 	int32_t			SendTime;
 	int8_t			HasRead;
-	int8_t			Extract;		//¸½¼þÊÇ·ñÌáÈ¡
+	int8_t			Extract;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È¡
 	char			MailTitle[MAIL_TITLE_MAX_LENGTH];
 	char			MailContent[MAIL_CONTENT_MAX_LENGTH];
 	MemChrBag		Item[MAIL_MAX_FU_JIAN_COUNT];
@@ -1849,78 +1849,83 @@ typedef std::map<int32_t,MailInfo> MailInfoMap;
 
 enum TI_SHI_VALUES
 {
-	PET_BAG_NOT_ENOUGH		= 2,	//»ÃÊÞ±³°üÒÑÂú
-	PET_EGG_BAG_NOT_ENOUGH	= 3,	//³èÎïµ°±³°ü¸ñ×Ó²»×ã
-	FINISH_FEI_TIAN_SHENG_JV= 4,	//ÒÑ¾­Íê³É¹ý·ÉÌìÉñ¾Ô»î¶¯
-	NO_TRADE				= 5,	//½ûÖ¹½»Ò×
-	NO_ENTER_ACTIVITY		= 6,	//²»ÄÜ´«ËÍ½øÈë»î¶¯,¸±±¾µÈÌØÊâµØÍ¼
-	BAG_SLOT_NOT_ENOUGH		= 2048,	//ÌáÊ¾±³°ü¿Õ¸ñ²»×ã
+	PET_BAG_NOT_ENOUGH		= 2,	//ï¿½ï¿½ï¿½Þ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PET_EGG_BAG_NOT_ENOUGH	= 3,	//ï¿½ï¿½ï¿½ïµ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
+	FINISH_FEI_TIAN_SHENG_JV= 4,	//ï¿½Ñ¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô»î¶¯
+	NO_TRADE				= 5,	//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+	NO_ENTER_ACTIVITY		= 6,	//ï¿½ï¿½ï¿½Ü´ï¿½ï¿½Í½ï¿½ï¿½ï¿½î¶¯,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
+	BAG_SLOT_NOT_ENOUGH		= 2048,	//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½ï¿½
 };
 
 enum FaBaoType
 {
-	FA_BAO_TYPE_SHU_GUANG	= 0,	//Êï¹â·¨±¦
-	FA_BAO_TYPE_DI_LONG		= 1,	//µÛÁú·¨±¦
-	FA_BAO_TYPE_FU_WEN		= 2,	//·ûÎÄ·¨±¦
+	FA_BAO_TYPE_SHU_GUANG	= 0,	//ï¿½ï¿½â·¨ï¿½ï¿½
+	FA_BAO_TYPE_DI_LONG		= 1,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	FA_BAO_TYPE_FU_WEN		= 2,	//ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	FA_BAO_TYPE_COUNT,
 };
 
 enum FaBaoResourceType
 {	
-	FA_BAO_RES_SHU_GUANG	= 0,	//Êï¹âËéÆ¬
-	FA_BAO_RES_DI_LONG		= 1,	//µÛÁúËéÆ¬
-	FA_BAO_RES_FU_WEN		= 2,	//·ûÎÄËéÆ¬
+	FA_BAO_RES_SHU_GUANG	= 0,	//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	FA_BAO_RES_DI_LONG		= 1,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	FA_BAO_RES_FU_WEN		= 2,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
 	FA_BAO_RES_COUNT,		
 };
 
-#define  DA_TIME_MAX_TIME		30		//´ðÌâÊ±¼ä30Ãë
-#define  RAND_ANSWER_TIME		25		//Ëæ»ú´ð°¸25Ãë
+#define  DA_TIME_MAX_TIME		30		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½30ï¿½ï¿½
+#define  RAND_ANSWER_TIME		25		//ï¿½ï¿½ï¿½ï¿½ï¿½25ï¿½ï¿½
 
-//»î¶¯×´Ì¬
+//ï¿½î¶¯×´Ì¬
 enum ACTIVITY_STATE
 {
-	AS_NOT_START	= 0,	// Î´¿ªÆô
-	AS_READY		= 1,	// ×¼±¸
-	AS_RUNNING		= 2,	// ½øÐÐÖÐ
-	AS_END			= 3,	// ½áÊø
-	AS_TIME_OUT		= 4		// ¹ýÆÚ
+	AS_NOT_START	= 0,	// Î´ï¿½ï¿½ï¿½ï¿½
+	AS_READY		= 1,	// ×¼ï¿½ï¿½
+	AS_RUNNING		= 2,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AS_END			= 3,	// ï¿½ï¿½ï¿½ï¿½
+	AS_TIME_OUT		= 4		// ï¿½ï¿½ï¿½ï¿½
 };
 
-//ÓÊ¼þÄÚÈÝid
+//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½id
 enum EamilId	
 {
-	RansomItemId	= 6,			//×°±¸Êê»ØÓÊ¼þÄÚÈÝ
-	DaTiHDFirst		= 6203,			//´ðÌâ»î¶¯µÚÒ»Ãû
-	DaTiHDSecond	= 6204,			//´ðÌâ»î¶¯µÚ¶þÃû
-	DaTiHDThird		= 6205,			//´ðÌâ»î¶¯µÚÈýÃû
-	DaTiHDChanYu	= 6206,			//´ðÌâ»î¶¯²ÎÓë½±
-	DaWeiWangHD		= 6210,			//´óÎ¸Íõ»î¶¯½±Àø
-	PlantAddItem    = 6216,			//²É¼¯Îï»ñÈ¡µÄÎïÆ·
-	ExpBallId		= 6217,			//¾­ÑéÇòid
-	DungeonRewards	= 1000,			//¸±±¾½±Àø
+	RansomItemId	= 6,			//×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	DaTiHDFirst		= 6203,			//ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½Ò»ï¿½ï¿½
+	DaTiHDSecond	= 6204,			//ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½Ú¶ï¿½ï¿½ï¿½
+	DaTiHDThird		= 6205,			//ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DaTiHDChanYu	= 6206,			//ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ë½±
+	DaWeiWangHD		= 6210,			//ï¿½ï¿½Î¸ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	PlantAddItem    = 6216,			//ï¿½É¼ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Æ·
+	ExpBallId		= 6217,			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
+	DungeonRewards	= 1000,			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	MI_AUCTION_SELL			= 6207,			// ÅÄÂôÐÐÊÛÂô³É¹¦
-	MI_AUCTION_BUY			= 6208,			// ÅÄÂôÐÐ¹ºÂò³É¹¦
-	MI_AUCTION_DOWNLOAD		= 6209,			// ÅÄÂôÐÐÏÂ¼Ü³É¹¦
-	MI_FAMILYWAR_REWARD		= 6211,			// ¾üÍÅÕ½½±Àø
-	MI_HORSE_RACING_REWARD1	= 6212,			// ·ÉÌìÉñ¾ÔµÚÒ»Ãû½±Àø
-	MI_HORSE_RACING_REWARD2	= 6213,			// ·ÉÌìÉñ¾ÔµÚ¶þÃû½±Àø
-	MI_HORSE_RACING_REWARD3	= 6214,			// ·ÉÌìÉñ¾ÔµÚÈýÃû½±Àø
+	MI_AUCTION_SELL			= 6207,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+	MI_AUCTION_BUY			= 6208,			// ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½É¹ï¿½
+	MI_AUCTION_DOWNLOAD		= 6209,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Ü³É¹ï¿½
+	MI_FAMILYWAR_REWARD		= 6211,			// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD1	= 6212,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD2	= 6213,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD3	= 6214,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	MI_TERRITORY_WAR_REWARD	= 6218,			// ÁìµØÕ½½±Àø
-	MI_HALL_OF_FAME_REWARD	= 6239,			// ÃûÈËÌÃ½±Àø
+	MI_TERRITORY_WAR_REWARD	= 6218,			// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	MI_HALL_OF_FAME_REWARD	= 6239,			// ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½
 
-	MI_HORSE_RACING_REWARD4	= 6240,			// ·ÉÌìÉñ¾ÔµÚËÄÃû½±Àø
-	MI_HORSE_RACING_REWARD5	= 6241,			// ·ÉÌìÉñ¾ÔµÚÎåÃû½±Àø
-	MI_HORSE_RACING_REWARD6	= 6242,			// ·ÉÌìÉñ¾ÔµÚÁùÃû½±Àø
-	MI_HORSE_RACING_REWARD7	= 6243,			// ·ÉÌìÉñ¾ÔµÚÆßÃû½±Àø
-	MI_HORSE_RACING_REWARD8	= 6244,			// ·ÉÌìÉñ¾ÔµÚ°ËÃû½±Àø
-	MI_HORSE_RACING_REWARD9	= 6245,			// ·ÉÌìÉñ¾ÔµÚ¾ÅÃû½±Àø
-	MI_HORSE_RACING_REWARD0	= 6246,			// ·ÉÌìÉñ¾ÔµÚÊ®Ãû½±Àø
-	MI_HORSE_RACING_REWARD	= 6247,			// ·ÉÌìÉñ¾ÔµÚÊ®ÃûÖ®ºó½±Àø
+	MI_HORSE_RACING_REWARD4	= 6240,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD5	= 6241,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD6	= 6242,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD7	= 6243,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD8	= 6244,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÚ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD9	= 6245,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÚ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD0	= 6246,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MI_HORSE_RACING_REWARD	= 6247,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ê®ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½
+
+	MI_CITY_WAR_REWARD		= 6250,			// åŸŽæˆ˜å‚ä¸Žå¥–åŠ±
+	MI_CITY_WAR_RANK1		= 6251,			// åŸŽæˆ˜ç¬¬1åå®¶æ—å¥–åŠ±
+	MI_CITY_WAR_RANK2		= 6252,			// åŸŽæˆ˜ç¬¬2åå®¶æ—å¥–åŠ±
+	MI_CITY_WAR_RANK3		= 6253,			// åŸŽæˆ˜ç¬¬3åå®¶æ—å¥–åŠ±
 };
 
-// ¹«¸æID
+// ï¿½ï¿½ï¿½ï¿½ID
 enum BROADCAST_ID
 {
 	MO_YU_WORLD_DUNGEON_GONG_GAO	= 1,
@@ -1931,48 +1936,50 @@ enum BROADCAST_ID
 	BCI_WORLD_FAMILYWAR_STONE_KILLED				= 8,
 	BCI_WORLD_FAMILYWAR_WIN							= 9,
 	BCI_WORLD_FAMILYWAR_FAIL						= 10,
-	BCI_MOUNT_DIE_DROP_GONG_GAO		= 11,	// ¹ÖÎïËÀÍöµôÂä
-	BCI_SOUL_LEVEL_UP				= 12,	// »êÁ¦Éý¼¶
-	BCI_HORSE_RACING_WIN_1			= 13,	// ÅÜÂíµÚÒ»Ãû
-	BCI_HORSE_RACING_WIN_2			= 14,	// ÅÜÂíµÚ¶þÃû
-	BCI_HORSE_RACING_WIN_3			= 15,	// ÅÜÂíµÚÈýÃû
+	BCI_MOUNT_DIE_DROP_GONG_GAO		= 11,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_SOUL_LEVEL_UP				= 12,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_HORSE_RACING_WIN_1			= 13,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+	BCI_HORSE_RACING_WIN_2			= 14,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
+	BCI_HORSE_RACING_WIN_3			= 15,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	BCI_HORSE_RACING_READY			= 19,	// ·ÉÌìÉñ¾Ô×¼±¸¹«¸æ
-	BCI_HORSE_RACING_START			= 20,	// ·ÉÌìÉñ¾Ô¿ªÊ¼¹«¸æ
-	BCI_GRADE_BAO_XIANG				= 21,	//  ¸ß¼¶±¦ÏäË¢ÐÂ¹«¸æ
-	BCI_VIP_GONG_GAO_1				= 22,	//  vip¹«¸æ
-	BCI_VIP_GONG_GAO_2				= 23,	//  vip¹«¸æ
-	BCI_VIP_GONG_GAO_3				= 24,	//  vip¹«¸æ
-	BCI_TOU_ZI_MOON_CARD			= 26,	//  ÔÂ¿¨Í¶×Ê¹«¸æ
-	BCI_TOU_ZI_LEVEL_UP				= 27,	//  µÇ¼ÇÍ¶×Ê
-	BCI_DA_TI_FIRST					= 28,	//  ´ðÌâ¹«¸æ
-	BCI_XIAO_JV_HUA_GONG_GAO		= 30,	//  µôÂä¾Õ»¨
+	BCI_HORSE_RACING_READY			= 19,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_HORSE_RACING_START			= 20,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+	BCI_GRADE_BAO_XIANG				= 21,	//  ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â¹ï¿½ï¿½ï¿½
+	BCI_VIP_GONG_GAO_1				= 22,	//  vipï¿½ï¿½ï¿½ï¿½
+	BCI_VIP_GONG_GAO_2				= 23,	//  vipï¿½ï¿½ï¿½ï¿½
+	BCI_VIP_GONG_GAO_3				= 24,	//  vipï¿½ï¿½ï¿½ï¿½
+	BCI_TOU_ZI_MOON_CARD			= 26,	//  ï¿½Â¿ï¿½Í¶ï¿½Ê¹ï¿½ï¿½ï¿½
+	BCI_TOU_ZI_LEVEL_UP				= 27,	//  ï¿½Ç¼ï¿½Í¶ï¿½ï¿½
+	BCI_DA_TI_FIRST					= 28,	//  ï¿½ï¿½ï¿½â¹«ï¿½ï¿½
+	BCI_XIAO_JV_HUA_GONG_GAO		= 30,	//  ï¿½ï¿½ï¿½ï¿½Õ»ï¿½
 
-	BCI_TERRITORY_ACTIVITY_START	= 31,	// ÁìµØÕ½¿ªÊ¼
-	BCI_TERRITORY_BATTLE_READY		= 32,	// ÁìµØÕ½¿ªÊ¼5·ÖÖÓºó
-	BCI_TERRITORY_WIN_SINGLE		= 33,	// ÁìµØÕ½µ¥ÈË»ñÊ¤
-	BCI_TERRITORY_WIN_TEAM			= 34,	// ÁìµØÕ½×é¶Ó»ñÊ¤
-	BCI_SQ_ACTIVITY_START			= 35,	// Ö©ÖëÅ®Íõ»î¶¯¿ªÊ¼
-	BCI_SQ_ACTIVITY_END_BY_SQ_DIE	= 36,	// Ö©ÖëÅ®ÍõËÀÍö»î¶¯½áÊø
-	BCI_SQ_ACTIVITY_END_BY_TIME		= 37,	// Ö©ÖëÅ®Íõ»î¶¯Ê±¼äµ½½áÊø
+	BCI_TERRITORY_ACTIVITY_START	= 31,	// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ê¼
+	BCI_TERRITORY_BATTLE_READY		= 32,	// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ê¼5ï¿½ï¿½ï¿½Óºï¿½
+	BCI_TERRITORY_WIN_SINGLE		= 33,	// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ë»ï¿½Ê¤
+	BCI_TERRITORY_WIN_TEAM			= 34,	// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ó»ï¿½Ê¤
+	BCI_SQ_ACTIVITY_START			= 35,	// Ö©ï¿½ï¿½Å®ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½Ê¼
+	BCI_SQ_ACTIVITY_END_BY_SQ_DIE	= 36,	// Ö©ï¿½ï¿½Å®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	BCI_SQ_ACTIVITY_END_BY_TIME		= 37,	// Ö©ï¿½ï¿½Å®ï¿½ï¿½ï¿½î¶¯Ê±ï¿½äµ½ï¿½ï¿½ï¿½ï¿½
 
-	BCI_HALL_OF_FAME_FIGHT			= 38,	// ÃûÈËÌÃÌôÕ½¹«¸æ
-	BCI_HALL_OF_FAME_RANK_1			= 39,	// ÃûÈËÌÃµÚÒ»Ãû¹«¸æ
-	BCI_HALL_OF_FAME_RANK_2			= 40,	// ÃûÈËÌÃµÚ¶þÃû¹«¸æ
-	BCI_HALL_OF_FAME_RANK_3			= 41,	// ÃûÈËÌÃµÚÈýÃû¹«¸æ
-	BCI_GUAN_WEI_UP					= 42,	// Éý¼¶¹ÙÎ»¹«¸æ
-	BCI_SHOU_CHONG_LI_BAO			= 43,	// ÁìÈ¡Ê×³åÀñ°ü
+	BCI_HALL_OF_FAME_FIGHT			= 38,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	BCI_HALL_OF_FAME_RANK_1			= 39,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_HALL_OF_FAME_RANK_2			= 40,	// ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_HALL_OF_FAME_RANK_3			= 41,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BCI_GUAN_WEI_UP					= 42,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	BCI_SHOU_CHONG_LI_BAO			= 43,	// ï¿½ï¿½È¡ï¿½×³ï¿½ï¿½ï¿½ï¿½
 
-	BCI_DROP_EQUIP					= 83,	// Íæ¼Ò×°±¸µôÂä¹«¸æ
-	BCI_DROP_EQUIP_2				= 84,	// Íæ¼Ò×°±¸µôÂä¹«¸æ
-	BCI_RANSOM_EQUIP				= 85,	// Êê»Ø×°±¸
-	BCI_RANSOM_EQUIP_2				= 86,	// Êê»Ø×°±¸
-	BCI_WAR_VICTORY_BOSS_REVIVE		= 95,	// ¿¹Õ½boss¸´»î
-	BCI_WAR_VICTORY_BOSS_LEAVE		= 96,   // ¿¹Õ½bossÀë¿ª
-	BCI_WAR_VICTORY_BOSS_KILLED		= 97,	// ¿¹Õ½boss±»É±
+	BCI_DROP_EQUIP					= 83,	// ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ä¹«ï¿½ï¿½
+	BCI_DROP_EQUIP_2				= 84,	// ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ä¹«ï¿½ï¿½
+	BCI_RANSOM_EQUIP				= 85,	// ï¿½ï¿½ï¿½×°ï¿½ï¿½
+	BCI_RANSOM_EQUIP_2				= 86,	// ï¿½ï¿½ï¿½×°ï¿½ï¿½
+	BCI_WAR_VICTORY_BOSS_REVIVE		= 95,	// ï¿½ï¿½Õ½bossï¿½ï¿½ï¿½ï¿½
+	BCI_WAR_VICTORY_BOSS_LEAVE		= 96,   // ï¿½ï¿½Õ½bossï¿½ë¿ª
+	BCI_WAR_VICTORY_BOSS_KILLED		= 97,	// ï¿½ï¿½Õ½bossï¿½ï¿½É±
+	BCI_TITLE_ADDED					= 98,
+	BCI_TITLE_EXPIRED				= 99,
 };
 
-// GM¹«¸æ
+// GMï¿½ï¿½ï¿½ï¿½
 class GMBroadcast 
 {
 public:
@@ -1997,7 +2004,7 @@ public:
 typedef std::list<GMBroadcast> GMBroadcastList;
 typedef std::map<int32_t, GMBroadcast> GMBroadcastMap;
 
-// ½ûÑÔ
+// ï¿½ï¿½ï¿½ï¿½
 struct GMBanChat 
 {
 	CharId_t nCharId;
@@ -2006,7 +2013,7 @@ struct GMBanChat
 typedef std::list<GMBanChat> GMBanChatList;
 typedef std::map<CharId_t,GMBanChat> GMBanChatMap;
 
-// ·âºÅ
+// ï¿½ï¿½ï¿½
 struct GMSeal 
 {
 	CharId_t nCharId;
@@ -2015,37 +2022,37 @@ struct GMSeal
 typedef std::list<GMSeal> GMSealList;
 typedef std::map<CharId_t,GMSeal> GMSealMap;
 
-// ÃûÈËÌÃ
-#define HALL_OF_FAME_RANK_SIZE		2000	// ÅÅÐÐ°ñ´óÐ¡
-#define HALL_OF_FAME_CD_TIME		180		// CDÊ±¼ä 10·ÖÖÓ
-#define HALL_OF_FAME_FREE_TIMES		10		// Ã¿Ìì¿ÉÌôÕ½10´Î
-#define HALL_OF_FAME_BUY_COST		10		// ¹ºÂòÏûºÄÄ§Ê¯
-#define HALL_OF_FAME_CLEAR_CD_COST	2		// ÇåCDÏûºÄÄ§Ê¯
-#define HALL_OF_FAME_REWARD_TIME	1320	// Ã¿Ìì22:00·¢½±Àø
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define HALL_OF_FAME_RANK_SIZE		2000	// ï¿½ï¿½ï¿½Ð°ï¿½ï¿½Ð¡
+#define HALL_OF_FAME_CD_TIME		180		// CDÊ±ï¿½ï¿½ 10ï¿½ï¿½ï¿½ï¿½
+#define HALL_OF_FAME_FREE_TIMES		10		// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Õ½10ï¿½ï¿½
+#define HALL_OF_FAME_BUY_COST		10		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä§Ê¯
+#define HALL_OF_FAME_CLEAR_CD_COST	2		// ï¿½ï¿½CDï¿½ï¿½ï¿½ï¿½Ä§Ê¯
+#define HALL_OF_FAME_REWARD_TIME	1320	// Ã¿ï¿½ï¿½22:00ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
-#define JUE_WEI_RANK_MIN_DONATE	30000000		//3Ç§Íò²Å¿ªÊ¼ÅÅÃû
+#define JUE_WEI_RANK_MIN_DONATE	30000000		//3Ç§ï¿½ï¿½Å¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 
 typedef std::map<int32_t,MailInfo> MailInfoMap;
 
-#define BANG_SHI_SHANG_CHENG_TYPE	4 //°óÊ¯ÉÌ³ÇµÄÉÌ³ÇÀàÐÍ
+#define BANG_SHI_SHANG_CHENG_TYPE	4 //ï¿½ï¿½Ê¯ï¿½Ì³Çµï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½
 
 enum ShangChengLimitType
 {
-	LIMIT_TYPE_INVALID		= 0,		 //	²»ÏÞ¹º
-	LIMIT_TYPE_CHAR			= 1,		 // ¸öÈËÏÞ¹º(Ã¿ÌìµÄ¹ºÂò´ÎÊý)
-	LIMIT_TYPE_SERVER		= 2,		 //	È«·þÏÞ¹º(Ã¿ÌìµÄ¹ºÂò´ÎÊý)
-	LIMIT_TYPE_TIME			= 3,		 //	Ê±¼äÏÞ¹º
+	LIMIT_TYPE_INVALID		= 0,		 //	ï¿½ï¿½ï¿½Þ¹ï¿½
+	LIMIT_TYPE_CHAR			= 1,		 // ï¿½ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½(Ã¿ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	LIMIT_TYPE_SERVER		= 2,		 //	È«ï¿½ï¿½ï¿½Þ¹ï¿½(Ã¿ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	LIMIT_TYPE_TIME			= 3,		 //	Ê±ï¿½ï¿½ï¿½Þ¹ï¿½
 };
 
 enum ShopType
 {
-	ST_GAME_SHOP  = 1,	//ÉÌ³Ç
-	ST_CHAR_SHOP  = 2,	//¸öÈËÉÌµê
-	ST_SCORE_SHOP = 3,	//»ý·ÖÉÌ³Ç
+	ST_GAME_SHOP  = 1,	//ï¿½Ì³ï¿½
+	ST_CHAR_SHOP  = 2,	//ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
+	ST_SCORE_SHOP = 3,	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 };
 
-typedef std::map<int32_t,int32_t> ItemLimitMap;		// <ÉÌ³Çid,¹ºÂò´ÎÊý>
+typedef std::map<int32_t,int32_t> ItemLimitMap;		// <ï¿½Ì³ï¿½id,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>
 
 struct CfgGameShop
 {
@@ -2057,14 +2064,14 @@ struct CfgGameShop
 	int32_t		LimitCount;
 	int32_t		LimitStartTime;
 	int32_t		LimitEndTime;
-	int32_t		OriginalPrice;		//Ô­¼Û
+	int32_t		OriginalPrice;		//Ô­ï¿½ï¿½
 	int32_t		Price;
 	int32_t		ShopType;
-	int8_t		VipLevelLimit;		//µÈ¼¶
+	int8_t		VipLevelLimit;		//ï¿½È¼ï¿½
 };
 typedef std::map<int32_t,CfgGameShop> GameShopMap;
 
-// 0~6 ×ª»¯³É 1~7
+// 0~6 ×ªï¿½ï¿½ï¿½ï¿½ 1~7
 inline int8_t GetWeekDay( int8_t tm_wday )
 {
 	return ( tm_wday + 6 ) % 7 + 1;
@@ -2072,32 +2079,32 @@ inline int8_t GetWeekDay( int8_t tm_wday )
 
 enum AUCTION_ITEM_TYPE
 {
-	AIC_ITEM	= 0,		// µÀ¾ßÅÄÂô
-	AIC_MONEY	= 1,		// Í­Ç®ÅÄÂô
-	AIC_GOLD	= 2,		// Ä§Ê¯ÅÄÂô
+	AIC_ITEM	= 0,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	AIC_MONEY	= 1,		// Í­Ç®ï¿½ï¿½ï¿½ï¿½
+	AIC_GOLD	= 2,		// Ä§Ê¯ï¿½ï¿½ï¿½ï¿½
 };
 
-#define MAX_ITEM_LIST	105 //×î´ó±³°ü¿Õ¼ä
+#define MAX_ITEM_LIST	105 //ï¿½ï¿½ó±³°ï¿½ï¿½Õ¼ï¿½
 
 struct ChouJiangRecord
 {
 	MemChrBag	  CJItem;
-	int32_t		  Time;		//³é½±Ê±¼ä
+	int32_t		  Time;		//ï¿½é½±Ê±ï¿½ï¿½
 };
 typedef std::list<ChouJiangRecord> CJRecordList;
 
 enum VipCardType
 {
-	VT_TI_YAN_CARD		= 1,	//vipÌåÑé
-	VT_STAR_CARD		= 2,	//ÐÇÖ®×£¸£¿¨
-	VT_MOON_CARD		= 3,	//ÔÂÖ®×£¸£¿¨
-	VT_GOD_CARD			= 4,	//ÉñÖ®×£¸£¿¨
+	VT_TI_YAN_CARD		= 1,	//vipï¿½ï¿½ï¿½ï¿½
+	VT_STAR_CARD		= 2,	//ï¿½ï¿½Ö®×£ï¿½ï¿½ï¿½ï¿½
+	VT_MOON_CARD		= 3,	//ï¿½ï¿½Ö®×£ï¿½ï¿½ï¿½ï¿½
+	VT_GOD_CARD			= 4,	//ï¿½ï¿½Ö®×£ï¿½ï¿½ï¿½ï¿½
 };
-#define  VIP_CARD_TYPE_COUNT	 4		//vipÖÖÀà
-#define  MAX_VIP_LEVEL			12		//×î´óvipµÈ¼¶
-#define  SPECIAL_FLAG			1000    //½ñÌì½ø¸±±¾ºÍ×òÌì½ø¸±±¾¼ÇÂ¼idÏà²î1000
+#define  VIP_CARD_TYPE_COUNT	 4		//vipï¿½ï¿½ï¿½ï¿½
+#define  MAX_VIP_LEVEL			12		//ï¿½ï¿½ï¿½vipï¿½È¼ï¿½
+#define  SPECIAL_FLAG			1000    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼idï¿½ï¿½ï¿½1000
 
-typedef std::set<int32_t> JoinedActivityId;		//²Î¼Ó¹ýµÄ»î¶¯
+typedef std::set<int32_t> JoinedActivityId;		//ï¿½Î¼Ó¹ï¿½ï¿½Ä»î¶¯
 struct JoinedActivityInfo
 {
 	JoinedActivityId	YesterdayRecord;
@@ -2107,36 +2114,40 @@ typedef std::map<int32_t,JoinedActivityInfo> JoinedActivityRecord;
 
 enum ACTIVITY_TYPE_ID
 {
-	ATI_FAMILY_WAR		= 1,	// ¾üÍÅÕ½
-	ATI_HORSE_RACING	= 2,	// ÈüÂí
-	ATI_FAMILY_LIGHT	= 3,	// ¾üÍÅÖ®¹â
-	ATI_MO_LING_RU_QIN	= 4,	// Ä§ÁéÈëÇÖ
-	ATI_DA_TI_HUO_DONG	= 5,	// ´ðÌâ»î¶¯
-	ATI_BAO_XIANG		= 6,	// ¿ª±¦Ïä
-	ATI_SAFE_GUAJI		= 7,	// °²È«¹Ò»ú
-	ATI_TERRITORY_WAR	= 8,	// ÁìµØÕ½
-	ATI_SPIDER_QUEEN	= 9,	// Ö©ÖëÅ®Íõ
+	ATI_FAMILY_WAR		= 1,	// ï¿½ï¿½ï¿½ï¿½Õ½
+	ATI_HORSE_RACING	= 2,	// ï¿½ï¿½ï¿½ï¿½
+	ATI_FAMILY_LIGHT	= 3,	// ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+	ATI_MO_LING_RU_QIN	= 4,	// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ATI_DA_TI_HUO_DONG	= 5,	// ï¿½ï¿½ï¿½ï¿½î¶¯
+	ATI_BAO_XIANG		= 6,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ATI_SAFE_GUAJI		= 7,	// ï¿½ï¿½È«ï¿½Ò»ï¿½
+	ATI_TERRITORY_WAR	= 8,	// ï¿½ï¿½ï¿½Õ½
+	ATI_SPIDER_QUEEN	= 9,	// Ö©ï¿½ï¿½Å®ï¿½ï¿½
+	ATI_CITY_WAR		= 10,	// åŸŽæˆ˜
+	ATI_ACTIVITY_WORLD_BOSS	= 11,	// æ´»åŠ¨ä¸–ç•ŒBoss
+	ATI_CAMP_WAR		= 12,	// é˜µè¥æˆ˜
+	ATI_PEERLESS_WAR	= 13,	// æ— åŒäº‰éœ¸
 };
-#define RACING_HD_SKILL_ID	130		//ÈüÂí»î¶¯»Ö¸´¼¼ÄÜ
+#define RACING_HD_SKILL_ID	130		//ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½
 
 enum TouZiType
 {
-	TT_MOON_CARD		= 1,	//ÔÂ¿¨Í¶×Ê
-	TT_LEVEL_UP			= 2,	//Éý¼¶Í¶×Ê
+	TT_MOON_CARD		= 1,	//ï¿½Â¿ï¿½Í¶ï¿½ï¿½
+	TT_LEVEL_UP			= 2,	//ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½
 };
 
 typedef map<int16_t,int32_t>	RecordMap; 
 
 enum KaiFuHuoDongCondition
 {
-	KFHDC_LEVEL_UP			= 1,		//Éý¼¶
-	KFHDC_PET_RANK			= 2,		//³èÎïÐÇ¼¶ÅÅÐÐ°ñ
-	KFHDC_PET_POINT			= 3,		//³èÎï»ý·Ö
-	KFHDC_JUN_TUAN_LEADER	= 4,		//¾üÍÅÕ½¾üÍÅ³¤
-	KFHDC_JUN_TUAN_WIN		= 5,		//¾üÍÅÕ½»ñÊ¤·½³ÉÔ±
-	KFHDC_FAMILY_WAR_JOIN	= 6,		//¾üÍÅÕ½²ÎÓë½±
-	KFHDC_BATTLE_RANK		= 7,		//Õ½¶·Á¦ÅÅÐÐ°ñ
-	KFHDC_BATTLE_POINT		= 8,		//Õ½¶·Á¦Öµ
+	KFHDC_LEVEL_UP			= 1,		//ï¿½ï¿½ï¿½ï¿½
+	KFHDC_PET_RANK			= 2,		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½Ð°ï¿½
+	KFHDC_PET_POINT			= 3,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	KFHDC_JUN_TUAN_LEADER	= 4,		//ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Å³ï¿½
+	KFHDC_JUN_TUAN_WIN		= 5,		//ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ï¿½Ô±
+	KFHDC_FAMILY_WAR_JOIN	= 6,		//ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ë½±
+	KFHDC_BATTLE_RANK		= 7,		//Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½
+	KFHDC_BATTLE_POINT		= 8,		//Õ½ï¿½ï¿½ï¿½ï¿½Öµ
 };
 
 
@@ -2152,8 +2163,8 @@ typedef std::map<int32_t,RankInfo> KaiFuHuoDongRank;
 
 struct HuoYueDuRecord
 {
-	int32_t			FinishTimes;			//Íê³É´ÎÊý
-	int8_t			IsSec;					//ÊÇ·ñÊÇÃë
+	int32_t			FinishTimes;			//ï¿½ï¿½É´ï¿½ï¿½ï¿½
+	int8_t			IsSec;					//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 typedef std::map<int32_t, HuoYueDuRecord> HuoYueDuRecordMap;
 
@@ -2161,9 +2172,9 @@ enum SkillAttackState
 {
 	SAS_NORMAL = 0,
 	SAS_MISS = 1,//miss
-	SAS_IGNORE = 2,//ºöÊÓ
-	SAS_VIOLENT = 3,//±©»÷
-	SAS_PARRY = 4,//ÉÁ±Ü
+	SAS_IGNORE = 2,//ï¿½ï¿½ï¿½ï¿½
+	SAS_VIOLENT = 3,//ï¿½ï¿½ï¿½ï¿½
+	SAS_PARRY = 4,//ï¿½ï¿½ï¿½ï¿½
 };
 
 struct AchievementState
@@ -2175,4 +2186,4 @@ struct AchievementState
 };
 typedef std::map<int32_t,AchievementState> AchievementMap;
 
-#define FAMILY_LIGHT_MAP_PARA	4	//¾üÍÅÖ®¹âµØÍ¼²ÎÊý
+#define FAMILY_LIGHT_MAP_PARA	4	//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½

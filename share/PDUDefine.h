@@ -2,15 +2,15 @@
 
 
 /*
-* MSG_CM_CODE	©м╩╖╤к╥╒км╦Ь╥ЧнЯ╤к╣дп╜рИ	0~10000
-* MSG_SM_CODE	╥ЧнЯ╤к╥╒км╦Ь©м╩╖╤к╣дп╜рИ	10000~20000
-* MSG_IM_CODE	╥ЧнЯ╤к╦В╥ЧнЯфВж╝╪Д╣дп╜рИ	>20000
+* MSG_CM_CODE	О©╫м╩О©╫О©╫к╥О©╫О©╫м╦О©╫О©╫О©╫О©╫О©╫к╣О©╫п╜О©╫О©╫	0~10000
+* MSG_SM_CODE	О©╫О©╫О©╫О©╫к╥О©╫О©╫м╦О©╫О©╫м╩О©╫О©╫к╣О©╫п╜О©╫О©╫	10000~20000
+* MSG_IM_CODE	О©╫О©╫О©╫О©╫к╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╝О©╫О©╫О©╫п╜О©╫О©╫	>20000
 */
 
 /*
-* жЛ©╙		CM_ZK	400~699		SM_ZK	11400~11699
-* мТцТ╥Ф	CM_WMF	700~899		SM_WMF	11700~11899
-* мУЖн╫ё	CM_WXJ	900~999		SM_WXJ	11900~11999
+* О©╫Л©╙		CM_ZK	400~699		SM_ZK	11400~11699
+* О©╫О©╫О©╫О©╫О©╫О©╫	CM_WMF	700~899		SM_WMF	11700~11899
+* О©╫О©╫О©╫н╫О©╫	CM_WXJ	900~999		SM_WXJ	11900~11999
 */
 
 /*
@@ -25,222 +25,222 @@
 enum MSG_CM_CODE
 {
 	CM_CHARACTER_MIN		=0,
-	CM_GET_CHARACTER		=1,		//╩Ях║мФ╪р
-	CM_NEW_CHARACTER		=2,		//пбмФ╪р
-	CM_DEL_CHARACTER		=3,		// ╥офЗ и╬ЁЩмФ╪рпео╒
+	CM_GET_CHARACTER		=1,		//О©╫О©╫х║О©╫О©╫О©╫
+	CM_NEW_CHARACTER		=2,		//О©╫О©╫О©╫О©╫О©╫
+	CM_DEL_CHARACTER		=3,		// О©╫О©╫О©╫О©╫ и╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 	CM_CHARACTER_MAX		=4,
 
 	CM_GAME_MIN				=5,
-	CM_ENTER_GAME			=6,		//╫ЬхКсно╥
-	CM_ENTER_GAME_ROBOT		=7,		//©м╥Ч╤кн╢й╧сц
+	CM_ENTER_GAME			=6,		//О©╫О©╫О©╫О©╫О©╫О©╫о╥
+	CM_ENTER_GAME_ROBOT		=7,		//О©╫м╥О©╫О©╫О©╫н╢й╧О©╫О©╫
 	CM_LOGOUT				=8,		
-	CM_SYNC_TIME			=9,		//м╛╡╫й╠╪Д
-	CM_MOVE					=10,	//рф╤╞
-	CM_JUMP					=11,	//лЬт╬
-	CM_TRAILER_MOVE			=12,	//в╥вырф╤╞
-	CM_HIT					=13,	//╪╪дэЁЕ╥Ф
+	CM_SYNC_TIME			=9,		//м╛О©╫О©╫й╠О©╫О©╫
+	CM_MOVE					=10,	//О©╫ф╤О©╫
+	CM_JUMP					=11,	//О©╫О©╫т╬
+	CM_TRAILER_MOVE			=12,	//в╥О©╫О©╫О©╫ф╤О©╫
+	CM_HIT					=13,	//О©╫О©╫О©╫эЁО©╫О©╫
 	CM_UNIT_THROWED			=14,
-	CM_ARRIVE				=15,	//╣╫╢О
-	CM_SWITCH_MAP			=16,	//я║тЯ╣ьм╪
+	CM_ARRIVE				=15,	//О©╫О©╫О©╫О©╫
+	CM_SWITCH_MAP			=16,	//я║О©╫О©╫О©╫м╪
 	//CM_GETMATCHINFO			=17,
 
-	CM_ENTER_DUNGEON					=18,	//╫ЬхК╦╠╠╬
-	CM_ENTER_ACHIEVEMENT_DUNGEON		=19,	//╫ЬхКЁи╬м╦╠╠╬
+	CM_ENTER_DUNGEON					=18,	//О©╫О©╫О©╫К╦╠О©╫О©╫
+	CM_ENTER_ACHIEVEMENT_DUNGEON		=19,	//О©╫О©╫О©╫О©╫и╬м╦О©╫О©╫О©╫
 	CM_BUY_DULTI_DUNGEON				=20,
-	CM_LEAVE_DUNGEON					=21,	//юК©╙╦╠╠╬
+	CM_LEAVE_DUNGEON					=21,	//О©╫К©╙О©╫О©╫О©╫О©╫
 	CM_LEAVE_ACTDUNGEON					=22,
-	CM_DUNGEON_ENTRUST					=23,	// ╥офЗ//©╙й╪н╞мп╦╠╠╬
-	CM_ENTRUST_STOP						=24,	// ╥офЗ//мёж╧н╞мп
-	CM_ENTRUST_COLLING					=25,	// ╥офЗ//н╞мпюДх╢
-	CM_ENTRUST_COLLECT					=26,	// ╥офЗ//н╞мпйу╪╞
-	CM_ENTRUST_QUERY					=27,	// ╥офЗ//╫ЬхКн╞мп╦╠╠╬╡Ия╞
-	CM_DUNGEON_SELECT_REWARD			=28,	//я║тЯ╦╠╠╬╫╠юЬ
-	CM_ENTER_ACTIVIY					=29,	//╫ЬхК╩Н╤╞
-	CM_LEAVE_ACTIVIY					=30,	//юК©╙╩Н╤╞
-	CM_GETAWARD_ACTIVIY					=31,	//аЛх║╫╠ф╥
+	CM_DUNGEON_ENTRUST					=23,	// О©╫О©╫О©╫О©╫//О©╫О©╫й╪н╞О©╫п╦О©╫О©╫О©╫
+	CM_ENTRUST_STOP						=24,	// О©╫О©╫О©╫О©╫//мёж╧н╞О©╫О©╫
+	CM_ENTRUST_COLLING					=25,	// О©╫О©╫О©╫О©╫//н╞О©╫О©╫О©╫О©╫х╢
+	CM_ENTRUST_COLLECT					=26,	// О©╫О©╫О©╫О©╫//н╞О©╫О©╫О©╫у╪О©╫
+	CM_ENTRUST_QUERY					=27,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫н╞О©╫п╦О©╫О©╫О©╫О©╫О©╫я╞
+	CM_DUNGEON_SELECT_REWARD			=28,	//я║О©╫Я╦╠╠О©╫О©╫О©╫О©╫О©╫
+	CM_ENTER_ACTIVIY					=29,	//О©╫О©╫О©╫О©╫Н╤╞
+	CM_LEAVE_ACTIVIY					=30,	//О©╫К©╙О©╫Н╤╞
+	CM_GETAWARD_ACTIVIY					=31,	//О©╫О©╫х║О©╫О©╫ф╥
 
-	CM_ENTER_FAMILY_ACTIVITY			=32,	// ╥офЗ
-	CM_LEAVE_FAMILY_ACTIVITY			=33,	// ╥офЗ
-	CM_GET_EXACTIVITY_GIFT				=34,	// ╥офЗ
+	CM_ENTER_FAMILY_ACTIVITY			=32,	// О©╫О©╫О©╫О©╫
+	CM_LEAVE_FAMILY_ACTIVITY			=33,	// О©╫О©╫О©╫О©╫
+	CM_GET_EXACTIVITY_GIFT				=34,	// О©╫О©╫О©╫О©╫
 
-	CM_ENTER_FAMILY_POT_ACTIVITY		=35,	// ╥офЗ//╫ЬхК╟Оеи╩П╧Ь
-	CM_QUERY_FAMILY_POT_INFO			=36,	// ╥офЗ//╡Ия╞╟Оеи╩П╧Ь
+	CM_ENTER_FAMILY_POT_ACTIVITY		=35,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫и╩О©╫О©╫
+	CM_QUERY_FAMILY_POT_INFO			=36,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫и╩О©╫О©╫
 
-	CM_ENTER_FAMILY_MAP					=37,	// ╥офЗ//╫ЬхК╟Оеи╣ьм╪
-	CM_LEAVE_FAMILY_MAP					=38,	// ╥офЗ//юК©╙╟Оеи╣ьм╪
-	CM_SELECT_UNIT						=39,	//я║тЯс╒пшorнД╫╚
-	CM_DO_UNIT_SKILL					=40,	//й╧сц╪╪дэ
-	CM_PICK_DROPITEM					=41,	//╡иу╙жуж╧
-	CM_BEGIN_GATHER						=42,	//©╙й╪╡и╪╞
-	CM_END_GATHER						=43,	//╫АйЬ╡и╪╞
-	CM_USE_TRAP							=44,	//й╧сц╢╔╥╒фВ
+	CM_ENTER_FAMILY_MAP					=37,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫и╣О©╫м╪
+	CM_LEAVE_FAMILY_MAP					=38,	// О©╫О©╫О©╫О©╫//О©╫К©╙О©╫О©╫О©╫и╣О©╫м╪
+	CM_SELECT_UNIT						=39,	//я║О©╫О©╫с╒О©╫О©╫orО©╫Д╫╚
+	CM_DO_UNIT_SKILL					=40,	//й╧О©╫ц╪О©╫О©╫О©╫
+	CM_PICK_DROPITEM					=41,	//О©╫О©╫у╙О©╫О©╫ж╧
+	CM_BEGIN_GATHER						=42,	//О©╫О©╫й╪О©╫и╪О©╫
+	CM_END_GATHER						=43,	//О©╫О©╫О©╫О©╫О©╫и╪О©╫
+	CM_USE_TRAP							=44,	//й╧О©╫ц╢О©╫О©╫О©╫О©╫О©╫
 	CM_SWITCH_PK_MODE					=45,	//PKдёй╫
 
-	// вИ╤сп╜рИ
-	CM_QUERY_TEAMS_AROUND				=46,	// кяя╟╦╫╫Э╤снИ
-	//CM_CREATE_TEAM						=47,	// ╢╢╫╗╤снИ
-	//CM_INVITE_INTO_TEAM					=48,	// яШгКмФ╪рхК╤с
-	//CM_CHANGE_TEAM_NAME					=49,	// ╥офЗ
-	//CM_SET_TEAM_LEADER					=50,	// ╤сЁ╓в╙хц
-	//CM_KICKOUT_TEAM_MEMBER				=51,	// лъхк
-	//CM_LEAVE_TEAM						=52,	// юК©╙╤снИ
-	//CM_APPLY_INTO_TEAM					=53,	// иЙгКхК╤с
-	//CM_REPLY_TEAM_INVITE				=54,	// ╩ь╦╢вИ╤сяШгК
-	//CM_REPLY_TEAM_APPLY					=55,	// ╩ь╦╢вИ╤сиЙгК
+	// О©╫О©╫О©╫п╜О©╫О©╫
+	CM_QUERY_TEAMS_AROUND				=46,	// О©╫О©╫я╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_CREATE_TEAM						=47,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_INVITE_INTO_TEAM					=48,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_CHANGE_TEAM_NAME					=49,	// О©╫О©╫О©╫О©╫
+	//CM_SET_TEAM_LEADER					=50,	// О©╫сЁО©╫в╙О©╫О©╫
+	//CM_KICKOUT_TEAM_MEMBER				=51,	// О©╫О©╫О©╫О©╫
+	//CM_LEAVE_TEAM						=52,	// О©╫К©╙О©╫О©╫О©╫О©╫
+	//CM_APPLY_INTO_TEAM					=53,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_REPLY_TEAM_INVITE				=54,	// О©╫ь╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_REPLY_TEAM_APPLY					=55,	// О©╫ь╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_SAFE_REVIVE						=56,	//╩ьЁг╦╢╩Н
-	CM_ON_SITE_REVIVE					=57,	//а╒╪╢╦╢╩Н
+	CM_SAFE_REVIVE						=56,	//О©╫ьЁг╦О©╫О©╫О©╫
+	CM_ON_SITE_REVIVE					=57,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	CM_STRONG_REVIVE					=58,	//
-	CM_QUERY_CHR_INFO					=59,	//╡И©╢╫╚аЛ
+	CM_QUERY_CHR_INFO					=59,	//О©╫И©╢О©╫О©╫О©╫О©╫
 	CM_UPGRADE_LEVEL					=60,
-	CM_KINGDOM_SELECT					=61,	// ╥офЗ//я║тЯея╧З╧эюМт╠
-	CM_CHANGE_KINGDOM					=62,	// ╥офЗ//ея╧З
-	CM_SELECT_KINGDOM					=63,	// ╥офЗ//я║тЯ╧З╪р
-	CM_EXCHANGE_EQUIP					=64,	// ╥офЗ//в╟╠╦╦д╠Д
+	CM_KINGDOM_SELECT					=61,	// О©╫О©╫О©╫О©╫//я║О©╫О©╫О©╫я╧О©╫О©╫О©╫О©╫О©╫т╠
+	CM_CHANGE_KINGDOM					=62,	// О©╫О©╫О©╫О©╫//О©╫я╧О©╫
+	CM_SELECT_KINGDOM					=63,	// О©╫О©╫О©╫О©╫//я║О©╫О©╫О©╫О©╫О©╫
+	CM_EXCHANGE_EQUIP					=64,	// О©╫О©╫О©╫О©╫//в╟О©╫О©╫О©╫д╠О©╫
 	CM_SWITCH_MOUNT						=65,
 	CM_EXCHANGE_ARTIFACT				=66,	//null
 	CM_ADD_ARTIFACT_EXP					=67,	//null
 	CM_ADD_ARTIFACT_MAX_LEVEL			=68,	//null
 	CM_ADD_ARTIFACT_QUALITY				=69,	//null
-	CM_MOUNT_XISUI_UPGRADE				=70,	// ╥офЗ//вЬфОо╢кХ 
-	CM_MOUNT_USER_XIUWEIDAN				=71,	// ╥офЗ//й╧сцвйжй╣╓я╣а╥(пЧлЗ)
-	CM_QUERY_BAG_ITEMS					=72,	// ╥офЗ//╡Ия╞╟Э╧Э
+	CM_MOUNT_XISUI_UPGRADE				=70,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫о╢О©╫О©╫ 
+	CM_MOUNT_USER_XIUWEIDAN				=71,	// О©╫О©╫О©╫О©╫//й╧О©╫О©╫О©╫О©╫О©╫й╣О©╫я╣О©╫О©╫(О©╫О©╫О©╫О©╫)
+	CM_QUERY_BAG_ITEMS					=72,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫О©╫
 
-	CM_QUERY_SIGN_INFO					=73,	//г╘╣╫пео╒
-	CM_SIGN								=74,	//ц©хуг╘╣╫
-	CM_GET_SIGN_REWARD					=75,	//аЛх║г╘╣╫╫╠юЬ
-	/*иЯ╫╚╢╚к╣ё╗в╙иМё╘*/
-	CM_QUERY_AC_EXCHANGE				=76,	//╡Ия╞Ёи╬м
-	CM_QUERY_AC_OUTDOOR					=77,	//╢╚к╣р╟мБ
-	CM_QUERY_AC_CAVE					=78,	//╤╢я╗
-	CM_QUERY_AC_GROW_UP					=79,	//ЁиЁ╓ё╗Ёи╬мё╘
-	CM_QUERY_AC_CHALLENGE				=80,	//лТу╫ё╗в╙иМё╘
-	CM_QUERY_AC_SPECIAL					=81,	//льйБЁи╬м
+	CM_QUERY_SIGN_INFO					=73,	//г╘О©╫О©╫О©╫О©╫о╒
+	CM_SIGN								=74,	//ц©О©╫О©╫г╘О©╫О©╫
+	CM_GET_SIGN_REWARD					=75,	//О©╫О©╫х║г╘О©╫О©╫О©╫О©╫О©╫О©╫
+	/*О©╫Я╫╚╢О©╫к╣О©╫О©╫в╙О©╫О©╫О©╫О©╫*/
+	CM_QUERY_AC_EXCHANGE				=76,	//О©╫О©╫я╞О©╫и╬О©╫
+	CM_QUERY_AC_OUTDOOR					=77,	//О©╫О©╫к╣р╟О©╫О©╫
+	CM_QUERY_AC_CAVE					=78,	//О©╫О©╫я╗
+	CM_QUERY_AC_GROW_UP					=79,	//О©╫иЁО©╫О©╫О©╫О©╫и╬мёО©╫
+	CM_QUERY_AC_CHALLENGE				=80,	//О©╫О©╫у╫О©╫О©╫в╙О©╫О©╫О©╫О©╫
+	CM_QUERY_AC_SPECIAL					=81,	//О©╫О©╫О©╫О©╫и╬О©╫
 	CM_QUERY_AC_DAILY					=82,
-	CM_QUERY_AC_TASK					=83,	//Ёи╬мхннЯ  
-	CM_GET_ACHIEVEMENT_REWARD			=84,	//аЛх║Ёи╬м╫╠юЬ
-	CM_GET_AC_EXCHANGE_REWARD			=85,	//аЛх║лТу╫Ёи╬м╫╠юЬ
-	CM_QUICK_AC_DAILY					=86,	//©ЛкымЙЁихуЁёЁи╬м
-	CM_QUICK_AC_OUTDOORCAVE				=87,	//аЗ╩Йй╞©ЛкымЙЁи
+	CM_QUERY_AC_TASK					=83,	//О©╫и╬О©╫О©╫О©╫О©╫О©╫  
+	CM_GET_ACHIEVEMENT_REWARD			=84,	//О©╫О©╫х║О©╫и╬м╫О©╫О©╫О©╫
+	CM_GET_AC_EXCHANGE_REWARD			=85,	//О©╫О©╫х║О©╫О©╫у╫О©╫и╬м╫О©╫О©╫О©╫
+	CM_QUICK_AC_DAILY					=86,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫уЁО©╫О©╫и╬О©╫
+	CM_QUICK_AC_OUTDOORCAVE				=87,	//О©╫О©╫О©╫О©╫й╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_ADD_BAGSLOT						=88,	//тЖ╪с╟Э╧Эн╩жц
-	CM_USE_ITEM							=89,	//й╧сц╟Э╧ЭнОф╥
-	CM_PATCH_USE_ITEM					=90,	//еЗа©й╧сц╣ю╬ъ
-	CM_MOVE_ITEM						=91,	//рф╤╞в╟╠╦ 
+	CM_ADD_BAGSLOT						=88,	//О©╫О©╫О©╫с╟О©╫О©╫О©╫н╩О©╫О©╫
+	CM_USE_ITEM							=89,	//й╧О©╫ц╟О©╫О©╫О©╫О©╫О©╫ф╥
+	CM_PATCH_USE_ITEM					=90,	//О©╫О©╫О©╫О©╫й╧О©╫ц╣О©╫О©╫О©╫
+	CM_MOVE_ITEM						=91,	//О©╫ф╤О©╫в╟О©╫О©╫ 
 	CM_SPLIT_ITEM						=92,
 	CM_DESTROY_ITEM						=93,
-	CM_SORT_BAG							=94,	//уШюМ╟Э╧Э
-	CM_SELL_ITEM						=95,	//бТЁЖ╠Ё╟ЭнОф╥
-	CM_ITEM_COMBINE						=96,	// ╥офЗ//╨оЁи
-	CM_EQUIP_ENHANCE					=97,	// ╥офЗ//г©╩╞в╟╠╦
-	CM_QUERY_EQUIP_ENHANCE_TIME			=98,	// ╥офЗ//╡И©╢г©╩╞в╟╠╦
-	CM_RESET_ENHANCE_TIME				=99,	// ╥офЗ
-	CM_EQUIP_SMITTHING					=100,	// ╥офЗ//в╟╠╦╤мтЛиЩ╪╤
-	CM_EQUIP_MAGIC_SMITH				=101,	// ╥офЗ//иЯжЩ╢РтЛв╟╠╦
-	CM_EQUIP_DISMANTLE					=102,	// ╥офЗ//╥ж╫Бв╟╠╦
-	CM_UNDRESS_SHIZHUANG				=103,	// ╥офЗ//мя╣Тй╠в╟
-	CM_MOUNT_XISUI						=104,	// ╥офЗ//вЬфОо╢кХ
-	CM_EQUIP_ADDGEM						=105,	// ╥офЗ//оБг╤╠╕й╞в╟╠╦
-	CM_EQUIP_REMOVEGEM					=106,	// ╥офЗ//х║оШоБг╤╠╕й╞
-	CM_STRATEGICS_READ					=107,	// ╥офЗ//тд╤а╠Ь╥╗
-	CM_STRATEGICS_EXERCISE				=108,	// ╥офЗ//Strategic ╠Ь╥╗я╣а╥
-	CM_STRATEGICS_QUERY					=109,	// ╥офЗ//╡Ия╞╠Ь╥╗
-	CM_QUERY_SKILL_LIST					=110,	//╡Ия╞╪╪дэLIST
-	CM_UPGRADE_SKILL_LEVEL				=111,	//иЩ╪╤SKILL LEVEL
-	CM_QUERY_ZHENFA_LIST				=112,	// ╥офЗ//╡Ия╞пд╥╗LIST
-	CM_UPGRADE_ZHENGFA_LEVEL			=113,	// ╥офЗ//╦ЭпбуС╥╗╣х╪╤
+	CM_SORT_BAG							=94,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SELL_ITEM						=95,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	CM_ITEM_COMBINE						=96,	// О©╫О©╫О©╫О©╫//О©╫оЁО©╫
+	CM_EQUIP_ENHANCE					=97,	// О©╫О©╫О©╫О©╫//г©О©╫О©╫в╟О©╫О©╫
+	CM_QUERY_EQUIP_ENHANCE_TIME			=98,	// О©╫О©╫О©╫О©╫//О©╫И©╢г©О©╫О©╫в╟О©╫О©╫
+	CM_RESET_ENHANCE_TIME				=99,	// О©╫О©╫О©╫О©╫
+	CM_EQUIP_SMITTHING					=100,	// О©╫О©╫О©╫О©╫//в╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_EQUIP_MAGIC_SMITH				=101,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫в╟О©╫О©╫
+	CM_EQUIP_DISMANTLE					=102,	// О©╫О©╫О©╫О©╫//О©╫ж╫О©╫в╟О©╫О©╫
+	CM_UNDRESS_SHIZHUANG				=103,	// О©╫О©╫О©╫О©╫//О©╫я╣О©╫й╠в╟
+	CM_MOUNT_XISUI						=104,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫о╢О©╫О©╫
+	CM_EQUIP_ADDGEM						=105,	// О©╫О©╫О©╫О©╫//О©╫О©╫г╤О©╫О©╫й╞в╟О©╫О©╫
+	CM_EQUIP_REMOVEGEM					=106,	// О©╫О©╫О©╫О©╫//х║О©╫О©╫О©╫О©╫г╤О©╫О©╫й╞
+	CM_STRATEGICS_READ					=107,	// О©╫О©╫О©╫О©╫//О©╫д╤О©╫О©╫О©╫О©╫О©╫
+	CM_STRATEGICS_EXERCISE				=108,	// О©╫О©╫О©╫О©╫//Strategic О©╫О©╫О©╫О©╫я╣О©╫О©╫
+	CM_STRATEGICS_QUERY					=109,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫О©╫
+	CM_QUERY_SKILL_LIST					=110,	//О©╫О©╫я╞О©╫О©╫О©╫О©╫LIST
+	CM_UPGRADE_SKILL_LEVEL				=111,	//О©╫О©╫О©╫О©╫SKILL LEVEL
+	CM_QUERY_ZHENFA_LIST				=112,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫д╥О©╫LIST
+	CM_UPGRADE_ZHENGFA_LEVEL			=113,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫С╥╗╣х╪О©╫
 	CM_QUERY_TASK_LIST					=114,
-	CM_RECEIVE_TASK						=115,	//╫сйэхннЯ
-	CM_SUBMIT_TASK						=116,	//лА╫╩хннЯ
-	CM_GIVEUP_TASK						=117,	//╥ефЗхннЯ
-	CM_SET_TASK_CAN_SUBMIT				=118,	//иХжцхннЯлА╫╩ 
-	CM_RECEIVE_TASK_CYCLE				=119,	// ╥офЗ ╫сйэя╜╩╥хннЯ
-	CM_SUBMIT_TASK_CYCLE				=120,	// ╥офЗ лА╫╩я╜╩╥хннЯ
-	CM_RECEIVE_TASK_FAMILY				=121,	//╫сйэ╟ОеихннЯ
-	CM_SUBMIT_TASK_FAMILY				=122,	//лА╫╩╟ОеихннЯ
-	CM_RECEIVE_TASK_KINGDOM				=123,	//╫сйэ╧З╪рхннЯ
-	CM_SUBMIT_TASK_KINGDOM				=124,	//лА╫╩╧З╪рхннЯ
-	CM_TALK_WITH_NPC					=125,	//╨мNPC╫╩л╦
-	CM_QUICK_DONE						=126,	//©ЛкымЙЁи
-	CM_TELEPORT							=127,	//╢╚км 
-	CM_TELEPORT_ACTIVITY				=128,	//╩Н╤╞╢╚км
-	CM_QUERY_VICE_GENERAL_LIST			=129,	// ╥офЗ//╡Ия╞╦╠╫╚ап╠М
-	CM_QUERY_LAKEY						=130,	// ╥офЗ//╡Ия╞кФ╢с
+	CM_RECEIVE_TASK						=115,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SUBMIT_TASK						=116,	//О©╫А╫╩О©╫О©╫О©╫О©╫
+	CM_GIVEUP_TASK						=117,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SET_TASK_CAN_SUBMIT				=118,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫А╫╩ 
+	CM_RECEIVE_TASK_CYCLE				=119,	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SUBMIT_TASK_CYCLE				=120,	// О©╫О©╫О©╫О©╫ О©╫А╫╩я╜О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_RECEIVE_TASK_FAMILY				=121,	//О©╫О©╫О©╫э╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SUBMIT_TASK_FAMILY				=122,	//О©╫А╫╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_RECEIVE_TASK_KINGDOM				=123,	//О©╫О©╫О©╫э╧О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SUBMIT_TASK_KINGDOM				=124,	//О©╫А╫╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TALK_WITH_NPC					=125,	//О©╫О©╫NPCО©╫О©╫л╦
+	CM_QUICK_DONE						=126,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TELEPORT							=127,	//О©╫О©╫О©╫О©╫ 
+	CM_TELEPORT_ACTIVITY				=128,	//О©╫Н╤╞О©╫О©╫О©╫О©╫
+	CM_QUERY_VICE_GENERAL_LIST			=129,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	CM_QUERY_LAKEY						=130,	// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫
 	CM_MONSTER_MOVE						=131,
-	CM_KICK_OUT_MOVE					=132,	//╥╢ЁЕрф╤╞
-	CM_VICE_GENERAL_MOVE				=133,	// ╥офЗ//╦╠╫╚рф╤╞
-	CM_VICEGENERAL_FREE					=134,	// ╥офЗ
-	CM_VICEGENERAL_MAIN_SETTING			=135,	// ╥офЗ
-	CM_VICEGENERAL_MODE_SETTING			=136,	// ╥офЗ
-	CM_VICEGENERAL_GENGU_UPGRADE		=137,	// ╥офЗ//╦╠╫╚г©╩╞вйжй
-	CM_VICEGENERAL_WUYI_UPGRADE			=138,	// ╥офЗ//╦╠╫╚нДруиЩ╪╤
-	CM_MOUNT_UPGRADE					=139,	//вЬфО╫Ь╫в
-	CM_SHIZHUANG_CHANGE_FORM			=140,	//╩╩в╟ -- ╥офЗ
-	CM_VICE_GENERAL_DO_SKILL			=141,	// ╥офЗ//╦╠╫╚й╧сц╪╪дэ
+	CM_KICK_OUT_MOVE					=132,	//О©╫О©╫О©╫О©╫О©╫ф╤О©╫
+	CM_VICE_GENERAL_MOVE				=133,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫ф╤О©╫
+	CM_VICEGENERAL_FREE					=134,	// О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_MAIN_SETTING			=135,	// О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_MODE_SETTING			=136,	// О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_GENGU_UPGRADE		=137,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫г©О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_WUYI_UPGRADE			=138,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_MOUNT_UPGRADE					=139,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SHIZHUANG_CHANGE_FORM			=140,	//О©╫О©╫в╟ -- О©╫О©╫О©╫О©╫
+	CM_VICE_GENERAL_DO_SKILL			=141,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫й╧О©╫ц╪О©╫О©╫О©╫
 	CM_ADD_ACTION						=142,
 	CM_REMOVE_ACTION					=143,
-	CM_EXCHANGE_ACTION					=144,	//╫╩╩╩╪╪дэн╩жц
-	CM_SET_AUTOFIGHT					=145,	//иХжцвт╤╞у╫╤╥
-	CM_SET_SYSTEM_SETTING				=146,	//о╣мЁиХжц
-	CM_QUERY_GAME_SHOP					=147,	//©м╩╖╤кн╢й╧сц
-	CM_BUY_GAME_SHOP_ITEM				=148,	//╧╨бРилЁгнОф╥
-	CM_BUY_GAME_CHR_ITEM				=149,	//╧╨бР╦ЖхкилЁг
-	CM_BUY_TOP_SHOP_ITEM				=150,	//╧╨бРилЁгххбТилф╥
-	CM_BUY_BACK_CHR_ITEM				=151,	//╧╨╩ь╦ЖхкилЁгнОф╥
-	CM_BUY_RESOURCE						=152,	//╤р╩╩пд╥╗
-	CM_BUY_TASK_COUNT					=153,	//╧╨бРхннЯ╢нйЩ
-	CM_GET_ONLINE_REWARD				=154,	//аЛх║тзоъ╫╠юЬ
-	CM_ASK_ONLINE_TEME_INFO				=155,	//гКгСтзоъй╠╪Дпео╒
-	CM_GET_WEEK_ONLINE_REWARD			=156,	//╩Ях║жэтзоъ╫╠юЬ
+	CM_EXCHANGE_ACTION					=144,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫н╩О©╫О©╫
+	CM_SET_AUTOFIGHT					=145,	//О©╫О©╫О©╫О©╫О©╫т╤О©╫у╫О©╫О©╫
+	CM_SET_SYSTEM_SETTING				=146,	//о╣мЁО©╫О©╫О©╫О©╫
+	CM_QUERY_GAME_SHOP					=147,	//О©╫м╩О©╫О©╫О©╫н╢й╧О©╫О©╫
+	CM_BUY_GAME_SHOP_ITEM				=148,	//О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫ф╥
+	CM_BUY_GAME_CHR_ITEM				=149,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫лЁО©╫
+	CM_BUY_TOP_SHOP_ITEM				=150,	//О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	CM_BUY_BACK_CHR_ITEM				=151,	//О©╫О©╫О©╫ь╦О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫ф╥
+	CM_BUY_RESOURCE						=152,	//О©╫р╩О©╫О©╫д╥О©╫
+	CM_BUY_TASK_COUNT					=153,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_GET_ONLINE_REWARD				=154,	//О©╫О©╫х║О©╫О©╫О©╫ъ╫О©╫О©╫О©╫
+	CM_ASK_ONLINE_TEME_INFO				=155,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╠О©╫О©╫О©╫О©╫о╒
+	CM_GET_WEEK_ONLINE_REWARD			=156,	//О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫ъ╫О©╫О©╫О©╫
 	CM_QUERY_MONSTER_BROADCAST			=157,
-//	CM_GET_OFFLINE_EXP					=158,	//╥офЗ//╩Ях║юКоъ╬╜яИ
-	CM_TELEPORT_BY_ITEM					=159,	//╢╚км
-	CM_BUY_TELEPORT_COUNT				=160,	//╧╨бР╢╚км╢нйЩ
-	CM_CLICK_PAY_BUTTON					=161,	//ЁДж╣
+//	CM_GET_OFFLINE_EXP					=158,	//О©╫О©╫О©╫О©╫//О©╫О©╫х║О©╫О©╫О©╫ъ╬О©╫О©╫О©╫
+	CM_TELEPORT_BY_ITEM					=159,	//О©╫О©╫О©╫О©╫
+	CM_BUY_TELEPORT_COUNT				=160,	//О©╫О©╫О©╫О©╫О©╫м╢О©╫О©╫О©╫
+	CM_CLICK_PAY_BUTTON					=161,	//О©╫О©╫ж╣
 	CM_MAP_ENTERED						=162,
-	CM_DEBUG_CMD						=163,	//цЭаНппйДхК
+	CM_DEBUG_CMD						=163,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 	CM_GET_BLESS_EXP					=164,	//null
-	CM_QUERY_PLAYER_INFO				=165,	//╡Ия╞мФ╪рпео╒
-	CM_MOUNT_PUTUP						=166,	//╠Ё╟Эй╧сцвЬфО ё╗нчй╣ожё╘
-	CM_PILL_USE							=167,	//╥офЗ//╣╓р╘й╧сц
-	CM_LACKEY_UPGRADE					=168,	//╥офЗ//иЩ╪╤е╚фм
-	CM_QUERY_DAILY_ITEM					=169,	//╡Ия╞╩Нт╬╤хоНд©
-	CM_GET_DAILY_REWARD					=170,	// ╥офЗ аЛх║╩Нт╬╫╠юЬ
-	CM_DAILY_SEARCHBACK_REWARD			=171,	// ╥офЗ аЛх║хуЁё╫╠юЬ
-	CM_DAILY_FAMILY_REWARD				=172,	// ╥офЗ ╟Оеиы╨б╩
-	CM_DAILY_KINGDOM_REWARD				=173,	// ╥офЗ ╧З╪ры╨б╩
-	CM_DAILY_WUSHEN_REWARD				=174,	// ╥офЗ нДиЯы╨б╩a
-	CM_DAILY_LEVEL_REWARD				=175,	// ╥офЗ ╣х╪╤ы╨б╩
-	CM_GET_FAV_REWARD					=176,	//йу╡ь╨м╠ё╢Ф©Л╫щ╥╫й╫╨С╣д╫╠юЬ
-	CM_QUERY_LAN_AND_VAL_GIFT_INFO		=177,	//╡Ия╞т╙оЭгИхкк╚╫з╩Н╤╞аЛ╫╠гИ©Ж
-	CM_GET_LAN_AND_VAL_GIFT				=178,	//╩Ях║т╙оЭгИхк╫зк╚╫з╩Н╤╞╫╠юЬ
-	CM_DAILY_CLOSE_TABLE				=179,	//╧ь╠ухуЁё╩Нт╬╤хцФ╟Е
+	CM_QUERY_PLAYER_INFO				=165,	//О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫о╒
+	CM_MOUNT_PUTUP						=166,	//О©╫О©╫О©╫О©╫й╧О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫й╣О©╫жёО©╫
+	CM_PILL_USE							=167,	//О©╫О©╫О©╫О©╫//О©╫О©╫р╘й╧О©╫О©╫
+	CM_LACKEY_UPGRADE					=168,	//О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫е╚О©╫О©╫
+	CM_QUERY_DAILY_ITEM					=169,	//О©╫О©╫я╞О©╫О©╫т╬О©╫О©╫О©╫О©╫д©
+	CM_GET_DAILY_REWARD					=170,	// О©╫О©╫О©╫О©╫ О©╫О©╫х║О©╫О©╫т╬О©╫О©╫О©╫О©╫
+	CM_DAILY_SEARCHBACK_REWARD			=171,	// О©╫О©╫О©╫О©╫ О©╫О©╫х║О©╫уЁО©╫О©╫О©╫О©╫О©╫
+	CM_DAILY_FAMILY_REWARD				=172,	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ы╨б╩
+	CM_DAILY_KINGDOM_REWARD				=173,	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ы╨б╩
+	CM_DAILY_WUSHEN_REWARD				=174,	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ы╨б╩a
+	CM_DAILY_LEVEL_REWARD				=175,	// О©╫О©╫О©╫О©╫ О©╫х╪О©╫ы╨б╩
+	CM_GET_FAV_REWARD					=176,	//О©╫у╡ь╨м╠О©╫О©╫О©╫О©╫щ╥О©╫й╫О©╫О©╫д╫О©╫О©╫О©╫
+	CM_QUERY_LAN_AND_VAL_GIFT_INFO		=177,	//О©╫О©╫я╞т╙О©╫О©╫О©╫О©╫О©╫О©╫к╚О©╫з╩Н╤╞О©╫Л╫╠О©╫О©╫О©╫
+	CM_GET_LAN_AND_VAL_GIFT				=178,	//О©╫О©╫х║т╙О©╫О©╫О©╫О©╫О©╫к╫О©╫к╚О©╫з╩Н╤╞О©╫О©╫О©╫О©╫
+	CM_DAILY_CLOSE_TABLE				=179,	//О©╫ь╠О©╫О©╫уЁО©╫О©╫О©╫т╬О©╫О©╫О©╫О©╫О©╫
 	CM_QUERY_CHARGE_REWARDS_INFO		=180,
-	CM_GET_CHARGE_REWARD				=181,	//аЛх║йвЁЕюЯ╟Э
-	CM_SECOND_DAY_LOGIN					=182,	//╣з╤ЧлЛ╣гб╫╫╠юЬ
-	CM_BUY_READ_COUNT					=183,	// ╥офЗ//╧╨бР тд╤а╢нйЩ
-	CM_OPEN_LEVEL						=184,	// ╥офЗ//в╙иЗ
-	CM_GAMBLE							=185,	//╥офЗ //р║╫╠ё╗о║йю╠╕╦Сё╘
-	CM_BUY_PVP_STATE					=186,	//╧╨бР оЮ╧ьв╢л╛
-	CM_QUERY_DAILY_PK_INFO				=187,	//╡Ия╞ ц©хуPK пео╒
+	CM_GET_CHARGE_REWARD				=181,	//О©╫О©╫х║О©╫вЁО©╫О©╫О©╫О©╫
+	CM_SECOND_DAY_LOGIN					=182,	//О©╫з╤О©╫О©╫О©╫О©╫б╫О©╫О©╫О©╫О©╫
+	CM_BUY_READ_COUNT					=183,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫ О©╫д╤О©╫О©╫О©╫О©╫О©╫
+	CM_OPEN_LEVEL						=184,	// О©╫О©╫О©╫О©╫//в╙О©╫О©╫
+	CM_GAMBLE							=185,	//О©╫О©╫О©╫О©╫ //р║О©╫О©╫О©╫О©╫о║О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_BUY_PVP_STATE					=186,	//О©╫О©╫О©╫О©╫ О©╫О©╫О©╫в╢л╛
+	CM_QUERY_DAILY_PK_INFO				=187,	//О©╫О©╫я╞ ц©О©╫О©╫PK О©╫О©╫о╒
 	
-	CM_GOTO_ENEMY_KILLER_RANK			=188,	//╢╚км╣╫╣пхк н╩жц	// ╥офЗ
-	CM_GET_DAILY_PK_REWARD				=189,	//╩Ях║ ц©хуPK ╫╠юЬ
+	CM_GOTO_ENEMY_KILLER_RANK			=188,	//О©╫О©╫О©╫м╣О©╫О©╫О©╫О©╫О©╫ н╩О©╫О©╫	// О©╫О©╫О©╫О©╫
+	CM_GET_DAILY_PK_REWARD				=189,	//О©╫О©╫х║ ц©О©╫О©╫PK О©╫О©╫О©╫О©╫
 	CM_QUERY_KILLER_RANK_SELF			=190,
-	CM_BUY_LEVEL_EQUIP					=191,	// ╥офЗ
+	CM_BUY_LEVEL_EQUIP					=191,	// О©╫О©╫О©╫О©╫
 	CM_QUERY_EVERY_GOLD					=192,
 	CM_GET_EVERY_GOLD					=193,
-	CM_FAMILY_BREAK						=194,	// ╥офЗ ╫БкЦ╟Оеи
-	CM_GET_LEVEL_GIFT					=195,	//аЛх║ ╣х╪╤юЯ╟Э
-	CM_QUERY_LEVEL_GIFT					=196,	//╡Ия╞ ╣х╪╤юЯ╟Э 
-	CM_GAME_PUBLIC_CHAT					=197,	//адлЛ
+	CM_FAMILY_BREAK						=194,	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_GET_LEVEL_GIFT					=195,	//О©╫О©╫х║ О©╫х╪О©╫О©╫О©╫О©╫
+	CM_QUERY_LEVEL_GIFT					=196,	//О©╫О©╫я╞ О©╫х╪О©╫О©╫О©╫О©╫ 
+	CM_GAME_PUBLIC_CHAT					=197,	//О©╫О©╫О©╫О©╫
 	CM_QUERY_GAMBLE_DEPOT_ITEM			=198,	
 	CM_GET_GAMBLE_DEPOT_ITEM			=199,
-	CM_GET_LEVEL_GOLD					=200,	//аЛх║  ╣х╪╤т╙╠╕
-	CM_QUERY_LEVEL_GOLD					=201,	//╡Ия╞ ╣х╪╤т╙╠╕
+	CM_GET_LEVEL_GOLD					=200,	//О©╫О©╫х║  О©╫х╪О©╫т╙О©╫О©╫
+	CM_QUERY_LEVEL_GOLD					=201,	//О©╫О©╫я╞ О©╫х╪О©╫т╙О©╫О©╫
 
-	CM_GET_SEVEN_LOGIN					=202,	//фъхуюЯ╟ЭаЛх║
+	CM_GET_SEVEN_LOGIN					=202,	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║
 
 	CM_QUERY_SEVEN_LOGIN				=203,
 	
@@ -249,355 +249,355 @@ enum MSG_CM_CODE
 
 	CM_GET_NEW_SERVER_ACTIVITY_GOLD		=206,
 
-	CM_GET_MAGIC_WEAPON					=207,	// ╥офЗ//в╟╠╦иЯфВ
-	CM_GET_MAGIC_WEAPON_INFO			=208,	// ╥офЗ//╩Ях║иЯфВпео╒
-	CM_MAGIC_WEAPON_UPGRADE				=209,	// ╥офЗ//иЯ╠Ь
+	CM_GET_MAGIC_WEAPON					=207,	// О©╫О©╫О©╫О©╫//в╟О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_GET_MAGIC_WEAPON_INFO			=208,	// О©╫О©╫О©╫О©╫//О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_MAGIC_WEAPON_UPGRADE				=209,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫
 	CM_USER_JOIN						=210,
-	//CM_TEAM_DUNGEON_START				=211,	// ╥офЗ//вИ╤с╦╠╠╬©╙й╪
-	//CM_TEAM_DUNGEON_KICK_OUT			=212,	// ╥офЗ//лъЁЖ╤снИ
-	CM_USE_JIANSHELING					=213,	// ╥офЗ//й╧сц╫╗иХаН
-	CM_VICEGENERAL_UPGRADE				=214,	// ╥офЗ//╦╠╫╚╫Ь╫в
-	CM_EXCHANGE_GAMBLE_GOLD_EQUIP		=215,	// ╥офЗ
+	//CM_TEAM_DUNGEON_START				=211,	// О©╫О©╫О©╫О©╫//О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫й╪
+	//CM_TEAM_DUNGEON_KICK_OUT			=212,	// О©╫О©╫О©╫О©╫//О©╫ъЁО©╫О©╫О©╫О©╫О©╫
+	CM_USE_JIANSHELING					=213,	// О©╫О©╫О©╫О©╫//й╧О©╫ц╫О©╫О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_UPGRADE				=214,	// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_EXCHANGE_GAMBLE_GOLD_EQUIP		=215,	// О©╫О©╫О©╫О©╫
 
 	//CM_BUY_VIP							=216,
-	CM_YELLOW_STONE						=217,	//QQ╩фвЙльх╗	
-	CM_GET_YELLOW_AWARD					=218,	//аЛх║QQ╩фвЙюЯ╟Э
+	CM_YELLOW_STONE						=217,	//QQО©╫О©╫О©╫О©╫О©╫О©╫х╗	
+	CM_GET_YELLOW_AWARD					=218,	//О©╫О©╫х║QQО©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_GET_STRATEGICS_PAGE					= 219,			// ╥офЗ//╠Ь╥╗йИрЁаЛх║
-	CM_FLUSH_STRATEGICS_PAGE				= 220,			// ╥офЗ//к╒пбйИрЁ
-	//CM_LEAVE_DUNGEON_TEAM					= 221,			// ╥офЗ//юК©╙╦╠╠╬вИ╤с ╤снИ
-	CM_ADVANCED_TRIALS_QUERY				= 222,			// ╥офЗ//╫Ь╫вйта╤ЁУй╪				
-	CM_ADVANCED_TRIALS_RESET				= 223,			// ╥офЗ//╫Ь╫вжьжц
-	CM_ADVANCED_TRIALS_RAIDS_START			= 224,			// ╥офЗ//╫Ь╫в╦╠╠╬и╗╣╢©╙й╪
-	CM_ADVANCED_TRIALS_RAIDS_QUERY			= 225,			// ╥офЗ//╫Ь╫ви╗╣╢пео╒
-	CM_ADVANCED_TRIALS_RAIDS_STOP			= 226,			// ╥офЗ//и╗╣╢мёж╧
-	CM_ADVANCED_TRIALS_RAIDS_REWARD			= 227,			// ╥офЗ//и╗╣╢й╠╪Д╣╫,аЛх║╫╠юЬ
-	CM_ADVANCED_TRIALS_RAIDS_COOLING		= 228,			// ╥офЗ//юДх╢и╗╣╢
-	CM_SHOP_MYSTERIOUS_QUERY				= 229,			//ЁУй╪╩╞иЯцьил╣Й(╦д╟Ф╣д)
-	CM_SHOP_MYSTERIOUS_FLUSH				= 230,			//к╒пбиЯцьил╣Й
-	CM_SHOP_MYSTERIOUS_BUY					= 231,			//иЯцьил╣Й ╧╨бР
+	CM_GET_STRATEGICS_PAGE					= 219,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫рЁО©╫О©╫х║
+	CM_FLUSH_STRATEGICS_PAGE				= 220,			// О©╫О©╫О©╫О©╫//к╒О©╫О©╫О©╫О©╫рЁ
+	//CM_LEAVE_DUNGEON_TEAM					= 221,			// О©╫О©╫О©╫О©╫//О©╫К©╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+	CM_ADVANCED_TRIALS_QUERY				= 222,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╪				
+	CM_ADVANCED_TRIALS_RESET				= 223,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_ADVANCED_TRIALS_RAIDS_START			= 224,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫в╦О©╫О©╫О©╫и╗О©╫О©╫О©╫О©╫й╪
+	CM_ADVANCED_TRIALS_RAIDS_QUERY			= 225,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫и╗О©╫О©╫О©╫О©╫о╒
+	CM_ADVANCED_TRIALS_RAIDS_STOP			= 226,			// О©╫О©╫О©╫О©╫//и╗О©╫О©╫мёж╧
+	CM_ADVANCED_TRIALS_RAIDS_REWARD			= 227,			// О©╫О©╫О©╫О©╫//и╗О©╫О©╫й╠О©╫Д╣╫,О©╫О©╫х║О©╫О©╫О©╫О©╫
+	CM_ADVANCED_TRIALS_RAIDS_COOLING		= 228,			// О©╫О©╫О©╫О©╫//О©╫О©╫х╢и╗О©╫О©╫
+	CM_SHOP_MYSTERIOUS_QUERY				= 229,			//О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫л╣О©╫(О©╫д╟О©╫О©╫)
+	CM_SHOP_MYSTERIOUS_FLUSH				= 230,			//к╒О©╫О©╫О©╫О©╫О©╫О©╫О©╫л╣О©╫
+	CM_SHOP_MYSTERIOUS_BUY					= 231,			//О©╫О©╫О©╫О©╫О©╫л╣О©╫ О©╫О©╫О©╫О©╫
 
-	CM_VICE_GENERAL_TIME_QUERY				= 232,			// ╥офЗ//нД╫╚упд╪й╠╪Дпео╒
-	CM_VICE_GENERAL_RECRUIT					= 233,			// ╥офЗ//нД╫╚упд╪
-	CM_VICE_GENERAL_SHOW					= 234,			// ╥офЗ//т╓ююнД╫╚
-	CM_VICE_GENERAL_FORWARD					= 235,			// ╥офЗ//нД╫╚╪лЁп
-	CM_VICEGENERAL_GENGU_REPLACE			= 236,			// ╥офЗ//нД╫╚вйжйлФ╩╩
-	CM_VICEGENERAL_GENGU_CANCLE				= 237,			// ╥офЗ//нД╫╚вйжйх║оШ
+	CM_VICE_GENERAL_TIME_QUERY				= 232,			// О©╫О©╫О©╫О©╫//О©╫Д╫╚О©╫О©╫д╪й╠О©╫О©╫О©╫О©╫о╒
+	CM_VICE_GENERAL_RECRUIT					= 233,			// О©╫О©╫О©╫О©╫//О©╫Д╫╚О©╫О©╫д╪
+	CM_VICE_GENERAL_SHOW					= 234,			// О©╫О©╫О©╫О©╫//т╓О©╫О©╫О©╫Д╫╚
+	CM_VICE_GENERAL_FORWARD					= 235,			// О©╫О©╫О©╫О©╫//О©╫Д╫╚О©╫лЁО©╫
+	CM_VICEGENERAL_GENGU_REPLACE			= 236,			// О©╫О©╫О©╫О©╫//О©╫Д╫╚О©╫О©╫О©╫О©╫О©╫Ф╩╩
+	CM_VICEGENERAL_GENGU_CANCLE				= 237,			// О©╫О©╫О©╫О©╫//О©╫Д╫╚О©╫О©╫О©╫О©╫х║О©╫О©╫
 
 
-	CM_PB_THY_RELIEF_RESIDENT				= 250,			// ╥офЗ//иЩ╪╤цеиЗ
-	CM_PB_THY_RELIEF_SERVANT				= 251,			// ╥офЗ//иЩ╪╤цШй©
-	CM_PB_THY_HIGH_RECRUIT					= 252,			// ╥офЗ//╦ъ╪╤упд╪
-	CM_PB_THY_RECRUIT_EXP					= 253,			// ╥офЗ//иЩ╪╤╬╜яИ╡ж©Б
-	CM_PB_THY_RECRUIT_MONEY					= 254,			// ╥офЗ//иЩ╪╤м╜г╝╡ж©Б
-	CM_MOUNT_CHANGESHAPE					= 255,			//вЬфО╩╞пн
+	CM_PB_THY_RELIEF_RESIDENT				= 250,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_THY_RELIEF_SERVANT				= 251,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫й©
+	CM_PB_THY_HIGH_RECRUIT					= 252,			// О©╫О©╫О©╫О©╫//О©╫ъ╪О©╫О©╫О©╫д╪
+	CM_PB_THY_RECRUIT_EXP					= 253,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж©О©╫
+	CM_PB_THY_RECRUIT_MONEY					= 254,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫м╜г╝О©╫ж©О©╫
+	CM_MOUNT_CHANGESHAPE					= 255,			//О©╫О©╫О©╫О╩╞О©╫О©╫
 
-	CM_VICEGENERAL_USEREXP					= 256,			// ╥офЗ//╦╠╫╚й╧сц╬╜яИ╣╓
-	CM_VICEGENERAL_FIGHTMODE				= 257,			// ╥офЗ//╦╠╫╚╦Э╦ду╫╤╥дёй╫ иоуС обуС
-	CM_VICEGENERAL_FIRE						= 258,			// ╥офЗ//╦╠╫╚╫Б╧м
+	CM_VICEGENERAL_USEREXP					= 256,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫й╧О©╫ц╬О©╫О©╫И╣╓
+	CM_VICEGENERAL_FIGHTMODE				= 257,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫дёй╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+	CM_VICEGENERAL_FIRE						= 258,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_BUY_THREE_LIMIT_SHOP					= 259,			// ╥офЗ//╧╨бР©╙╥Ч3лЛилЁгнОф╥
+	CM_BUY_THREE_LIMIT_SHOP					= 259,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫Р©╙╥О©╫3О©╫О©╫О©╫лЁО©╫О©╫О©╫ф╥
 
 //===============================
-//уБюО╩╧сп40лУп╜рИ©иртсц
+//О©╫О©╫О©╫О╩╧О©╫О©╫40О©╫О©╫п╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 //===============================
 
-	CM_PREVENT_WALLOW						= 299,			//╥юЁацт
-	CM_PB_THY_QUERY							= 300,			// ╥офЗ
-	CM_PB_THY_GET_EXP						= 301,			// ╥офЗ
-	CM_PB_THY_GET_MONEY						= 302,			// ╥офЗ
-	CM_PB_THY_RELIEF						= 303,			// ╥офЗ//иЩ╪╤
-	CM_PB_THY_RECRUIT						= 304,			// ╥офЗ//упом
-	CM_PB_THY_RELIEF_COOLING				= 305,			// ╥офЗ
-	CM_PB_THY_RECRUIT_COOLING				= 306,			// ╥офЗ
+	CM_PREVENT_WALLOW						= 299,			//О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_THY_QUERY							= 300,			// О©╫О©╫О©╫О©╫
+	CM_PB_THY_GET_EXP						= 301,			// О©╫О©╫О©╫О©╫
+	CM_PB_THY_GET_MONEY						= 302,			// О©╫О©╫О©╫О©╫
+	CM_PB_THY_RELIEF						= 303,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫
+	CM_PB_THY_RECRUIT						= 304,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫
+	CM_PB_THY_RELIEF_COOLING				= 305,			// О©╫О©╫О©╫О©╫
+	CM_PB_THY_RECRUIT_COOLING				= 306,			// О©╫О©╫О©╫О©╫
 
-	CM_PB_YWC_ACTIVATION					= 307,			// ╥офЗ//а╥╠ЬЁ║иЩ╪╤
-	CM_PB_YWC_CULTIVATION					= 308,			// ╥офЗ//©╙й╪а╥╠ЬЁ║я╣а╥
-	CM_PB_YWC_GET_EXP						= 309,			// ╥офЗ//аЛх║а╥╠ЬЁ║╬╜яИ
-	CM_PB_YWC_COOLING						= 310,			// ╥офЗ//юДх╔а╥╠ЬЁ║
-	CM_PB_YWC_QUERY							= 311,			// ╥офЗ//а╥╠ЬЁ║
-	CM_PB_YWC_BUY_EXERCISE_COUNT			= 312,			// ╥офЗ//╧╨бРящнДЁ║пча╤╢нйЩ
+	CM_PB_YWC_ACTIVATION					= 307,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_YWC_CULTIVATION					= 308,			// О©╫О©╫О©╫О©╫//О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫О©╫я╣О©╫О©╫
+	CM_PB_YWC_GET_EXP						= 309,			// О©╫О©╫О©╫О©╫//О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_YWC_COOLING						= 310,			// О©╫О©╫О©╫О©╫//О©╫О©╫х╔О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_YWC_QUERY							= 311,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PB_YWC_BUY_EXERCISE_COUNT			= 312,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫ДЁ║О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_PB_FYB_QUERY							= 313,			// ╥офЗ//╦╠╠╬╡Ия╞	
-	CM_PB_FYB_GET_WUHUEN					= 314,			// ╥офЗ
-	CM_PB_FYB_AGAINSEAL						= 315,			// ╥офЗ
+	CM_PB_FYB_QUERY							= 313,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫я╞	
+	CM_PB_FYB_GET_WUHUEN					= 314,			// О©╫О©╫О©╫О©╫
+	CM_PB_FYB_AGAINSEAL						= 315,			// О©╫О©╫О©╫О©╫
 
-	CM_GB_SLD_REFINING_PILL					= 316,			// ╥офЗ
-	CM_GB_SLD_ACTIVE						= 317,			// ╥офЗ
-	CM_GB_SLD_QUERY							= 318,			// ╥офЗ
+	CM_GB_SLD_REFINING_PILL					= 316,			// О©╫О©╫О©╫О©╫
+	CM_GB_SLD_ACTIVE						= 317,			// О©╫О©╫О©╫О©╫
+	CM_GB_SLD_QUERY							= 318,			// О©╫О©╫О©╫О©╫
 
-	CM_GB_SJT_PRODUCTION					= 319,  		// ╥офЗ//ё©йух║нОф╥ё╗╟ы╡щт╟ё╘
-	CM_GB_SJT_SHEJITU_QUERY					= 320,			// ╥офЗ
+	CM_GB_SJT_PRODUCTION					= 319,  		// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫х║О©╫О©╫ф╥О©╫О©╫О©╫ы╡О©╫т╟О©╫О©╫
+	CM_GB_SJT_SHEJITU_QUERY					= 320,			// О©╫О©╫О©╫О©╫
 
-	CM_GB_LTFD_CULTIVATION					= 321,			// ╥офЗ//н╧яЬ
-	CM_GB_LTFD_GET_XIUWEI					= 322,			// ╥офЗ//╩Ях║ЁиЁ╓ж╣
-	CM_GB_LTFD_COOLING						= 323,			// ╥офЗ//н╧яЬа╒╪╢юДх╢
-	CM_GB_LTFD_QUERY						= 324,			// ╥офЗ
+	CM_GB_LTFD_CULTIVATION					= 321,			// О©╫О©╫О©╫О©╫//н╧О©╫О©╫
+	CM_GB_LTFD_GET_XIUWEI					= 322,			// О©╫О©╫О©╫О©╫//О©╫О©╫х║О©╫иЁО©╫ж╣
+	CM_GB_LTFD_COOLING						= 323,			// О©╫О©╫О©╫О©╫//н╧О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╢
+	CM_GB_LTFD_QUERY						= 324,			// О©╫О©╫О©╫О©╫
 
-	CM_SB_KLJ_QUERY							= 325,			// ╥офЗ//╡Ия╞г╛ю╓╬╣
-	CM_SB_KLJ_AGAINCHALLENGE				= 326,			// ╥офЗ
+	CM_SB_KLJ_QUERY							= 325,			// О©╫О©╫О©╫О©╫//О©╫О©╫я╞г╛О©╫О©╫О©╫О©╫
+	CM_SB_KLJ_AGAINCHALLENGE				= 326,			// О©╫О©╫О©╫О©╫
 
-	CM_SB_JTT_QUERY							= 327,			// ╥офЗ//╡Ия╞╩ЗйЮ╬е╧╛
-	CM_SB_JTT_GET_ITEM						= 328,			// ╥офЗ
-	CM_SB_JTT_AGAINCHALLENGE				= 329,			// ╥офЗ
-	CM_SB_LHT_CHANGEJOB						= 330,			// ╥офЗ
+	CM_SB_JTT_QUERY							= 327,			// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫О©╫е╧О©╫
+	CM_SB_JTT_GET_ITEM						= 328,			// О©╫О©╫О©╫О©╫
+	CM_SB_JTT_AGAINCHALLENGE				= 329,			// О©╫О©╫О©╫О©╫
+	CM_SB_LHT_CHANGEJOB						= 330,			// О©╫О©╫О©╫О©╫
 
-	CM_SB_FM_QUERY							= 331,			// ╥офЗ
-	CM_SB_DTT_QUERY							= 332,			// ╥офЗ//╡Ия╞ффаЗце
+	CM_SB_FM_QUERY							= 331,			// О©╫О©╫О©╫О©╫
+	CM_SB_DTT_QUERY							= 332,			// О©╫О©╫О©╫О©╫//О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫О©╫
 		
-	CM_UPDATE_FLY_ICON_INT					= 333,			//©╙фТкЬ╤╗╧╕дэ╣╞╢╟
+	CM_UPDATE_FLY_ICON_INT					= 333,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫э╣О©╫О©╫О©╫
 //============================================
-// уБюО╩╧сп╨ц╤Юп╜рИ©иртсц
+// О©╫О©╫О©╫О╩╧О©╫п╨ц╤О©╫п╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 //============================================
 	CM_ACTIVITY_BANQUET_TOAST				= 400,
 
 	/*
 	* CM_ZK	401~699
 	*/
-	//╠Ё╟Э╡ж©Б
-	CM_GET_DEPOT_ITEM							= 401,			//х║╩ь╡ж©БнОф╥
-	CM_SAVE_DEPOT_ITEM							= 402,			//╢ФнОф╥╣╫╡ж©Б
-	CM_GET_DEPOT_CURRENCY						= 403,			//х║ЁЖ╡ж©Б╩У╠р
-	CM_SAVE_DEPOT_CURRENCY						= 404,			//╢Ф╩У╠р╣╫╡ж©Б
-	CM_SORT_DEPOT								= 405,			//уШюМ╡ж©Б
-	CM_OPEN_DEPOT_SLOT							= 406,			//©╙фТ╡ж©Б╦Явс
-	//╠╕й╞оБг╤
-	CM_NEW_ADD_GEM								= 407,			//оБг╤╠╕й╞
-	CM_NEW_REMOVE_GEM							= 408,			//у╙х║╠╕й╞
-	CM_OPQN_GEM_HOLE							= 409,			//в╟╠╦©╙©в
-	//в╟╠╦йЙ╩ь
-	CM_ASK_RANSOM_INFO							= 410,			//гКгСв╟╠╦йЙ╩ьпео╒
-	CM_ASK_SPOILS_INFO							= 411,			//гКгСу╫юШф╥пео╒
-	CM_ASK_RANSOM_ITEM							= 412,			//гКгСйЙ╩ьнОф╥							
-	//вЬфО
-	CM_REQUEST_ASK_MOUNT_TRAIN_INFO				= 413,			//гКгСвЬфОпео╒
-	CM_REQUEST_TRAIN_MOUNT						= 414,			//вЬфОеЮяЬ
-	CM_REQUEST_REQEST_EAT_MOUNT_HEART			= 415,			//ЁтвЬфОж╝пд
-	CM_REQUEST_ACTIVE_MOUNT_USE_DEFAULT_MOUNT	= 416,			//ЁкфО
-	CM_REQUEST_STUDY_AND_UP_MOUNT_SKILL			= 417,			//я╖о╟╨миЩ╪╤вЬфО╪╪дэ
-	CM_REQUEST_ASK_MOUNT_SKILL_INFO				= 418,			//гКгСвЬфО╪╪дэпео╒
-	//╫╩рв
-	CM_REQUEST_TRADE							= 419,			//гКгС╫╩рв
-	CM_AGREE_TRADE								= 420,			//м╛рБ╫╩рв
-	CM_ADD_TRADE_ITEM							= 421,			//мЫ╫╩рв╠Ё╟Эжп╪снОф╥
-	CM_REMOVE_TRADE_ITEM						= 422,			//рфЁЩ╫╩рв╠Ё╟Эжп╣днОф╥
-//	CM_REQUSET_SHUI_JI							= 423,			//╡БйткФ╩З
-	CM_SUB_TRADE_MONEY							= 424,			//╪Уиы╠Ё╟Эжп╣двйт╢
-	CM_LOCK_TRADE								= 425,			//кЬ╤╗╫╩рв╠Ё╟Э
-	CM_SURED_TRADE								= 426,			//х╥╤╗╫╩рв
-	CM_CANCEL_TRADE								= 427,			//х║оШ╫╩рв
-	CM_ADD_TRADE_MONEY							= 428,			//лМ╪с╫╩рв╠Ё╟Эжп╣двйт╢
-	//сй╪Ч
-	CM_READ_MAIL								= 429,			//╤асй╪Ч
-	CM_ASK_MAIL_LIST							= 430,			//гКгСсй╪Чап╠М
-	CM_GET_FU_JIAN								= 431,			//╩Ях║╦╫╪Ч
-	CM_DEL_MAIL									= 432,			//и╬ЁЩсй╪Ч
-	//илЁг
-	CM_ASK_SHANG_CHENG_LIMIT_INFO				= 433,			//гКгСилЁгочжфпео╒
-	CM_BUY_SHANG_CHENG_ITEM						= 434,			//╧╨бРилЁгнОф╥
+	//О©╫О©╫О©╫О©╫О©╫ж©О©╫
+	CM_GET_DEPOT_ITEM							= 401,			//х║О©╫ь╡ж©О©╫О©╫О©╫ф╥
+	CM_SAVE_DEPOT_ITEM							= 402,			//О©╫О©╫О©╫О©╫ф╥О©╫О©╫О©╫ж©О©╫
+	CM_GET_DEPOT_CURRENCY						= 403,			//х║О©╫О©╫О©╫ж©О©╫О©╫О©╫О©╫
+	CM_SAVE_DEPOT_CURRENCY						= 404,			//О©╫О©╫О©╫О©╫р╣О©╫О©╫ж©О©╫
+	CM_SORT_DEPOT								= 405,			//О©╫О©╫О©╫О©╫О©╫ж©О©╫
+	CM_OPEN_DEPOT_SLOT							= 406,			//О©╫О©╫О©╫О©╫О©╫ж©О©╫О©╫О©╫О©╫
+	//О©╫О©╫й╞О©╫О©╫г╤
+	CM_NEW_ADD_GEM								= 407,			//О©╫О©╫г╤О©╫О©╫й╞
+	CM_NEW_REMOVE_GEM							= 408,			//у╙х║О©╫О©╫й╞
+	CM_OPQN_GEM_HOLE							= 409,			//в╟О©╫О©╫О©╫О©╫О©╫О©╫
+	//в╟О©╫О©╫О©╫О©╫О©╫
+	CM_ASK_RANSOM_INFO							= 410,			//О©╫О©╫О©╫О©╫в╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_ASK_SPOILS_INFO							= 411,			//О©╫О©╫О©╫О©╫у╫О©╫О©╫ф╥О©╫О©╫о╒
+	CM_ASK_RANSOM_ITEM							= 412,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥							
+	//О©╫О©╫О©╫О©╫
+	CM_REQUEST_ASK_MOUNT_TRAIN_INFO				= 413,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_REQUEST_TRAIN_MOUNT						= 414,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_REQUEST_REQEST_EAT_MOUNT_HEART			= 415,			//О©╫О©╫О©╫О©╫О©╫О©╫ж╝О©╫О©╫
+	CM_REQUEST_ACTIVE_MOUNT_USE_DEFAULT_MOUNT	= 416,			//О©╫О©╫О©╫О©╫
+	CM_REQUEST_STUDY_AND_UP_MOUNT_SKILL			= 417,			//я╖о╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О╪╪О©╫О©╫
+	CM_REQUEST_ASK_MOUNT_SKILL_INFO				= 418,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О╪╪О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫О©╫О©╫
+	CM_REQUEST_TRADE							= 419,			//О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_AGREE_TRADE								= 420,			//м╛О©╫Б╫╩О©╫О©╫
+	CM_ADD_TRADE_ITEM							= 421,			//О©╫О©╫О©╫О©╫О©╫в╠О©╫О©╫О©╫О©╫п╪О©╫О©╫О©╫ф╥
+	CM_REMOVE_TRADE_ITEM						= 422,			//О©╫фЁО©╫О©╫О©╫О©╫в╠О©╫О©╫О©╫О©╫п╣О©╫О©╫О©╫ф╥
+//	CM_REQUSET_SHUI_JI							= 423,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SUB_TRADE_MONEY							= 424,			//О©╫О©╫О©╫ы╠О©╫О©╫О©╫О©╫п╣О©╫О©╫О©╫т╢
+	CM_LOCK_TRADE								= 425,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫в╠О©╫О©╫О©╫
+	CM_SURED_TRADE								= 426,			//х╥О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_CANCEL_TRADE								= 427,			//х║О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_ADD_TRADE_MONEY							= 428,			//О©╫О©╫О©╫с╫О©╫О©╫в╠О©╫О©╫О©╫О©╫п╣О©╫О©╫О©╫т╢
+	//О©╫й╪О©╫
+	CM_READ_MAIL								= 429,			//О©╫О©╫О©╫й╪О©╫
+	CM_ASK_MAIL_LIST							= 430,			//О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫п╠О©╫
+	CM_GET_FU_JIAN								= 431,			//О©╫О©╫х║О©╫О©╫О©╫О©╫
+	CM_DEL_MAIL									= 432,			//и╬О©╫О©╫О©╫й╪О©╫
+	//О©╫лЁО©╫
+	CM_ASK_SHANG_CHENG_LIMIT_INFO				= 433,			//О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_BUY_SHANG_CHENG_ITEM						= 434,			//О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫ф╥
 
-	//╨цся
-	CM_ASK_FRIEND_REWARD_INFO					= 436,			//гКгС╨цся╫╠юЬпео╒
-	CM_ASK_GET_FRIEND_REWARD					= 437,			//гКгС╩Ях║╫╠юЬ
-	//гКгСbossпео╒
-	CM_ASK_BOSS_INFO							= 438,			//гКгСbossпео╒
+	//О©╫О©╫О©╫О©╫
+	CM_ASK_FRIEND_REWARD_INFO					= 436,			//О©╫О©╫О©╫О©╫О©╫О©╫я╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_ASK_GET_FRIEND_REWARD					= 437,			//О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫bossО©╫О©╫о╒
+	CM_ASK_BOSS_INFO							= 438,			//О©╫О©╫О©╫О©╫bossО©╫О©╫о╒
 
-	//╥╗╠╕о╣мЁ
-	CM_BUY_FA_BAO_RES							= 439,			//╧╨бР╥╗╠╕вйт╢
-	CM_ASK_FA_BAO_INFO							= 440,			//гКгС╥╗╠╕пео╒
-	CM_UP_FA_BAO_LEVEL							= 441,			//╥╗╠╕иЩ╪╤
+	//О©╫О©╫О©╫О©╫о╣мЁ
+	CM_BUY_FA_BAO_RES							= 439,			//О©╫О©╫О©╫Р╥╗╠О©╫О©╫О©╫т╢
+	CM_ASK_FA_BAO_INFO							= 440,			//О©╫О©╫О©╫С╥╗╠О©╫О©╫О©╫о╒
+	CM_UP_FA_BAO_LEVEL							= 441,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	//гКгСу╫╤╥а╕пео╒
-	CM_ASK_BATTLE_INFO							= 442,			//гКгСу╫╤╥а╕пео╒
-	//╥╗╠╕
-	CM_DRESS_FA_BAO								= 443,			//еЕ╢В╩Рп╤об
-	//╬Тн╩
-	CM_JUE_WEI_DONATE_MONEY						= 444,			//╬Тн╩╬Хов
-	CM_ASK_JUE_WEI_INFO							= 445,			//гКгС╬Тн╩пео╒
-	//ЁИ╫╠
-	CM_TIDY_CHOU_JIANG_BAG						= 448,			//уШюМЁИ╫╠╠Ё╟Э
-	CM_GET_CHOU_JIANG_ITEM						= 449,			//х║ЁЖЁИ╫╠нОф╥
-	CM_ASK_CHOU_JIANG_RECORD					= 450,			//гКгСЁИ╫╠╪гб╪ 
-	CM_BUY_SCORE_SHOP_ITEM						= 451,			//╧╨бР╩Щ╥жил╣ЙнОф╥
-	CM_ASK_CHOU_JIANG							= 452,			//гКгСЁИ╫╠
-	CM_ASK_SCORE_SHOP_INFO						= 453,			//гКгС╩Щ╥жилЁгочжфпео╒
-	//фМ╦ё
-	CM_ASK_QI_FU_INFO							= 454,			//гКгСфМ╦ёпео╒
-	CM_ASK_QI_FU								= 455,			//гКгСфМ╦ё
-	//╢Сн╦мУ
-	CM_ASK_DWW_INFO								= 456,			//гКгС╢Сн╦мУпео╒
-	CM_ASK_DWW_REWARD							= 457,			//гКгС╢Сн╦мУ╫╠юЬ
-	//юКоъ╬╜яИ
-	CM_ASK_OFFLINE_INFO							= 459,			//гКгСюКоъ╬╜яИпео╒
-	CM_GET_OFFLINE_EXP							= 460,			//╩Ях║юКоъ╬╜яИ
-	//гКгС╩Н╤╞╢СлЭйЩ╬щ
-	CM_ASK_HUO_DONG_DA_TING_INFO				= 462,			//гКгС╩Н╤╞╢СлЭйЩ╬щ
+	//О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_ASK_BATTLE_INFO							= 442,			//О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫О©╫О©╫
+	CM_DRESS_FA_BAO								= 443,			//О©╫О©╫О©╫О©╫О©╫п╤О©╫О©╫
+	//О©╫О©╫н╩
+	CM_JUE_WEI_DONATE_MONEY						= 444,			//О©╫О©╫н╩О©╫О©╫О©╫О©╫
+	CM_ASK_JUE_WEI_INFO							= 445,			//О©╫О©╫О©╫О©╫О©╫н╩О©╫О©╫о╒
+	//О©╫И╫╠
+	CM_TIDY_CHOU_JIANG_BAG						= 448,			//О©╫О©╫О©╫О©╫О©╫И╫╠О©╫О©╫О©╫О©╫
+	CM_GET_CHOU_JIANG_ITEM						= 449,			//х║О©╫О©╫О©╫И╫╠О©╫О©╫ф╥
+	CM_ASK_CHOU_JIANG_RECORD					= 450,			//О©╫О©╫О©╫О©╫И╫╠О©╫О©╫б╪ 
+	CM_BUY_SCORE_SHOP_ITEM						= 451,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫л╣О©╫О©╫О©╫ф╥
+	CM_ASK_CHOU_JIANG							= 452,			//О©╫О©╫О©╫О©╫И╫╠
+	CM_ASK_SCORE_SHOP_INFO						= 453,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫О©╫О©╫
+	CM_ASK_QI_FU_INFO							= 454,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_ASK_QI_FU								= 455,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫н╦О©╫О©╫
+	CM_ASK_DWW_INFO								= 456,			//О©╫О©╫О©╫О©╫О©╫н╦О©╫О©╫О©╫О©╫о╒
+	CM_ASK_DWW_REWARD							= 457,			//О©╫О©╫О©╫О©╫О©╫н╦О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫ъ╬О©╫О©╫О©╫
+	CM_ASK_OFFLINE_INFO							= 459,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫ъ╬О©╫О©╫О©╫О©╫О©╫о╒
+	CM_GET_OFFLINE_EXP							= 460,			//О©╫О©╫х║О©╫О©╫О©╫ъ╬О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_ASK_HUO_DONG_DA_TING_INFO				= 462,			//О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	//vip
-	CM_BUY_VIP									= 463,			//╧╨бРvip©╗
-	CM_GET_VIP_GIFT								= 464,			//VIPюЯ╟Э
-	CM_GET_VIP_CARD_GIFT						= 465,			//vip©╗юЯ╟Э
-	//╫ЬхКbossж╝╪р
-	CM_BUY_ENTER_BOSS_HOME						= 467,			//╫ЬхКbossж╝╪р
-	CM_LEAVE_BOSS_HOME							= 468,			//юК©╙bossж╝╪р
-	//╫ЬхКvip╧р╩З╣ьм╪
-	CM_ENTER_VIP_GUA_JI_MAP						= 469,			//╫ЬхКvip╧р╩З╣ьм╪
-	//╫ЬхКд╖аИхКгж
-	CM_ENTER_MO_LING_RU_QIN						= 472,			//╫ЬхКд╖аИхКгж
-	//вйт╢ур╩ь
-	CM_ASK_SEARCHBACK_INFO						= 475,			//гКгСвйт╢ур╩ьпео╒
-	CM_ASK_GET_SEARCHBACK_REWARD				= 476,			//ур╩ьвйт╢
-	//╬╜яИгР
-	CM_PUT_IN_EXP_BALL							= 477,			//в╟ио╬╜яИгР
-	CM_ASK_EXP_BALL_INFO						= 478,			//гКгС╬╜яИгРпео╒
-	//╣Ц╩В©╙й╪сно╥
-	CM_CLICK_GAME								= 480,			//╣Ц╩В©╙й╪сно╥
-	//й╧сц╤Ю╦ЖнОф╥
-	CM_USE_MMULTI_ITEM							= 481,			//й╧сц╤Ю╦ЖнОф╥
-	//ткс╙╩Н╤╞
-	CM_GET_SHOU_CHONG_REWARD					= 482,			//аЛйвЁЕюЯ╟Э
-	CM_ASK_SHOU_CHONG_INFO						= 483,			//гКгСйвЁЕпео╒
-	CM_ASK_SHOU_TE_HUI_INFO						= 484,			//гКгСпб╥Чль╩щ
-	CM_BUY_TEI_HUI_GIFT							= 485,			//╧╨бРль╩щюЯ╟Э
-	CM_ASK_EVERYDAY_CHONG_ZHI_INFO				= 486,			//гКгСц©хуЁДж╣пео╒
-	CM_GET_EVERYDAY_CHONG_ZHI_LI_BAO			= 487,			//╩Ях║ц©хуЁДж╣юЯ╟Э
-	CM_GET_THREE_PET_GIFT						= 488,			//╩Ях║3ЁХюЯ╟Э			
-	CM_GET_TOTAL_CHONG_ZHI_GIFT					= 489,			//©╙╥ЧЁДж╣юЯ╟Э
-	//м╤вй
-	CM_ASK_TOU_ZI_INFO							= 490,			//гКгСм╤вйпео╒
-	CM_GET_TOU_ZI_REWARD						= 491,			//аЛх║м╤вй
-	CM_TOU_ZI									= 492,			//м╤вй
+	CM_BUY_VIP									= 463,			//О©╫О©╫О©╫О©╫vipО©╫О©╫
+	CM_GET_VIP_GIFT								= 464,			//VIPО©╫О©╫О©╫
+	CM_GET_VIP_CARD_GIFT						= 465,			//vipО©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫bossж╝О©╫О©╫
+	CM_BUY_ENTER_BOSS_HOME						= 467,			//О©╫О©╫О©╫О©╫bossж╝О©╫О©╫
+	CM_LEAVE_BOSS_HOME							= 468,			//О©╫К©╙bossж╝О©╫О©╫
+	//О©╫О©╫О©╫О©╫vipО©╫р╩О©╫О©╫О©╫м╪
+	CM_ENTER_VIP_GUA_JI_MAP						= 469,			//О©╫О©╫О©╫О©╫vipО©╫р╩О©╫О©╫О©╫м╪
+	//О©╫О©╫О©╫О©╫д╖О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_ENTER_MO_LING_RU_QIN						= 472,			//О©╫О©╫О©╫О©╫д╖О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫т╢О©╫р╩О©╫
+	CM_ASK_SEARCHBACK_INFO						= 475,			//О©╫О©╫О©╫О©╫О©╫О©╫т╢О©╫р╩О©╫О©╫О©╫о╒
+	CM_ASK_GET_SEARCHBACK_REWARD				= 476,			//О©╫р╩О©╫О©╫О©╫т╢
+	//О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PUT_IN_EXP_BALL							= 477,			//в╟О©╫о╬О©╫О©╫О©╫О©╫О©╫
+	CM_ASK_EXP_BALL_INFO						= 478,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫о╥
+	CM_CLICK_GAME								= 480,			//О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫о╥
+	//й╧О©╫ц╤О©╫О©╫О©╫О©╫ф╥
+	CM_USE_MMULTI_ITEM							= 481,			//й╧О©╫ц╤О©╫О©╫О©╫О©╫ф╥
+	//О©╫О©╫с╙О©╫Н╤╞
+	CM_GET_SHOU_CHONG_REWARD					= 482,			//О©╫О©╫О©╫вЁО©╫О©╫О©╫О©╫
+	CM_ASK_SHOU_CHONG_INFO						= 483,			//О©╫О©╫О©╫О©╫О©╫вЁО©╫О©╫О©╫о╒
+	CM_ASK_SHOU_TE_HUI_INFO						= 484,			//О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫ь╩О©╫
+	CM_BUY_TEI_HUI_GIFT							= 485,			//О©╫О©╫О©╫О©╫О©╫ь╩О©╫О©╫О©╫О©╫
+	CM_ASK_EVERYDAY_CHONG_ZHI_INFO				= 486,			//О©╫О©╫О©╫О©╫ц©О©╫уЁО©╫ж╣О©╫О©╫о╒
+	CM_GET_EVERYDAY_CHONG_ZHI_LI_BAO			= 487,			//О©╫О©╫х║ц©О©╫уЁО©╫ж╣О©╫О©╫О©╫
+	CM_GET_THREE_PET_GIFT						= 488,			//О©╫О©╫х║3О©╫О©╫О©╫О©╫О©╫			
+	CM_GET_TOTAL_CHONG_ZHI_GIFT					= 489,			//О©╫О©╫О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫
+	//м╤О©╫О©╫
+	CM_ASK_TOU_ZI_INFO							= 490,			//О©╫О©╫О©╫О©╫м╤О©╫О©╫О©╫О©╫о╒
+	CM_GET_TOU_ZI_REWARD						= 491,			//О©╫О©╫х║м╤О©╫О©╫
+	CM_TOU_ZI									= 492,			//м╤О©╫О©╫
 	
-	//©╙╥Ч╩Н╤╞
-	CM_ASK_KAI_FU_HUO_DAO_INFO					= 495,			//гКгС©╙╥Ч╩Н╤╞пео╒
-	CM_GET_KAI_FU_HUO_DAO_WARD					= 496,			//╩Ях║©╙╥Ч╩Н╤╞юЯ╟Э
-	CM_ASK_KAI_FU_HUO_DONG_STATE				= 497,			//гКгС©╙╥Ч╩Н╤╞в╢л╛
+	//О©╫О©╫О©╫О©╫О©╫Н╤╞
+	CM_ASK_KAI_FU_HUO_DAO_INFO					= 495,			//О©╫О©╫О©╫С©╙╥О©╫О©╫Н╤╞О©╫О©╫о╒
+	CM_GET_KAI_FU_HUO_DAO_WARD					= 496,			//О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫
+	CM_ASK_KAI_FU_HUO_DONG_STATE				= 497,			//О©╫О©╫О©╫С©╙╥О©╫О©╫Н╤╞в╢л╛
 
-	//╩Нт╬╤х
-	CM_ASK_HUO_YUE_DU_INFO						= 500,			//гКгС╩Нт╬╤хпео╒
-	CM_GET_HUO_YUE_DU_REWARD					= 501,			//╩Ях║╩Нт╬╤х╫╠юЬ
-	CM_ASK_MIAO_HUO_YUE_DU						= 502,			//цК╩Нт╬╤х
-	//╧ын╩
-	CM_ASK_GUAN_WEI_INFO						= 505,			//гвгС╧ын╩пео╒
-	CM_ASK_GUAN_WEI_REWARD						= 506,			//╩Ях║╧ын╩╫╠юЬ
-	CM_UP_GUAN_WEI								= 507,			//иЩ╪╤╧ын╩
-	CM_WEAR_QI_SHI								= 508,			//еЕ╢ВфОй©
-	//Ёи╬м
-	CM_ACHIEVEMENT_GET_REWARD					= 510,			//аЛх║Ёи╬м╫╠юЬ
-	CM_ACHIEVEMENT_UP_XUN_ZHANG					= 511,			//иЩ╪╤я╚уб
-	CM_ACHIEVEMENT_BUY_XUN_ZHANG_SOCER			= 512,			//╧╨бРя╚уб╩Щ╥ж
+	//О©╫О©╫т╬О©╫О©╫
+	CM_ASK_HUO_YUE_DU_INFO						= 500,			//О©╫О©╫О©╫О©╫О©╫т╬О©╫О©╫О©╫О©╫о╒
+	CM_GET_HUO_YUE_DU_REWARD					= 501,			//О©╫О©╫х║О©╫О©╫т╬О©╫х╫О©╫О©╫О©╫
+	CM_ASK_MIAO_HUO_YUE_DU						= 502,			//О©╫О©╫О©╫т╬О©╫О©╫
+	//О©╫О©╫н╩
+	CM_ASK_GUAN_WEI_INFO						= 505,			//О©╫О©╫О©╫О©╫О©╫н╩О©╫О©╫о╒
+	CM_ASK_GUAN_WEI_REWARD						= 506,			//О©╫О©╫х║О©╫О©╫н╩О©╫О©╫О©╫О©╫
+	CM_UP_GUAN_WEI								= 507,			//О©╫О©╫О©╫О©╫О©╫О©╫н╩
+	CM_WEAR_QI_SHI								= 508,			//О©╫О©╫О©╫О©╫О©╫й©
+	//О©╫и╬О©╫
+	CM_ACHIEVEMENT_GET_REWARD					= 510,			//О©╫О©╫х║О©╫и╬м╫О©╫О©╫О©╫
+	CM_ACHIEVEMENT_UP_XUN_ZHANG					= 511,			//О©╫О©╫О©╫О©╫я╚О©╫О©╫
+	CM_ACHIEVEMENT_BUY_XUN_ZHANG_SOCER			= 512,			//О©╫О©╫О©╫О©╫я╚О©╫б╩О©╫О©╫О©╫
 
-	//гКгС©╙╥Чюш╪фЁДж╣пео╒
-	CM_ASK_TOTAL_CHONG_ZHI_INFO					= 515,			//гКгС©╙╥Чюш╪фЁДж╣пео╒
-	//©╧у╫70
-	CM_ASK_VAR_VICTORY_INFO						= 516,			//гКгС©╧у╫й╓юШ╩Н╤╞пео╒
-	CM_GET_VAR_VICTORY_REWARD					= 517,			//гКгС©╧у╫й╓юШ╫╠юЬ
-	//и╠╧жмЁ╪ф
-	CM_ASK_KILL_MONSTER_COUNT					= 600,			//гКгСи╠╧жпео╒
+	//О©╫О©╫О©╫С©╙╥О©╫О©╫ш╪фЁО©╫ж╣О©╫О©╫о╒
+	CM_ASK_TOTAL_CHONG_ZHI_INFO					= 515,			//О©╫О©╫О©╫С©╙╥О©╫О©╫ш╪фЁО©╫ж╣О©╫О©╫о╒
+	//О©╫О©╫у╫70
+	CM_ASK_VAR_VICTORY_INFO						= 516,			//О©╫О©╫О©╫О©╫у╫й╓О©╫О©╫О©╫Н╤╞О©╫О©╫о╒
+	CM_GET_VAR_VICTORY_REWARD					= 517,			//О©╫О©╫О©╫О©╫у╫й╓О©╫О©╫О©╫О©╫О©╫О©╫
+	//и╠О©╫О©╫мЁО©╫О©╫
+	CM_ASK_KILL_MONSTER_COUNT					= 600,			//О©╫О©╫О©╫О©╫и╠О©╫О©╫О©╫О©╫о╒
 	/*
 	* CM_WMF	700~899
 	*/
 
-	// в╟╠╦мФ╥╗
-	CM_EQUIP_REQUEST_INFO						= 710,			// гКгСв╟╠╦пео╒
-	CM_EQUIP_DRESS								= 711,			// ╢╘в╟╠╦
-	CM_EQUIP_UNDRESS							= 712,			// мяв╟╠╦
-	CM_EQUIP_UP_GRADE							= 713,			// в╟╠╦иЩ╫в
-	CM_EQUIP_UP_STAR							= 714,			// в╟╠╦иЩпг
-	CM_EQUIP_UP_QUALITY							= 715,			// в╟╠╦иЩф╥ё╗Ёхв╟╤мтЛё╘
-	CM_EQUIP_ADD_GEM							= 716,			// ╠╕й╞оБг╤
-	CM_EQUIP_REMOVE_GEM							= 717,			// ╠╕й╞у╙х║
-	CM_EQUIP_ITEM_COMBI							= 718,			// ╣ю╬ъ╨оЁи
-	CM_EQUIP_EXCHANGE_STAR						= 719,			// г©╩╞в╙рф
+	// в╟О©╫О©╫О©╫Ф╥╗
+	CM_EQUIP_REQUEST_INFO						= 710,			// О©╫О©╫О©╫О©╫в╟О©╫О©╫О©╫О©╫о╒
+	CM_EQUIP_DRESS								= 711,			// О©╫О©╫в╟О©╫О©╫
+	CM_EQUIP_UNDRESS							= 712,			// О©╫О©╫в╟О©╫О©╫
+	CM_EQUIP_UP_GRADE							= 713,			// в╟О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_EQUIP_UP_STAR							= 714,			// в╟О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_EQUIP_UP_QUALITY							= 715,			// в╟О©╫О©╫О©╫О©╫ф╥О©╫О©╫О©╫О©╫в╟О©╫О©╫О©╫Лё╘
+	CM_EQUIP_ADD_GEM							= 716,			// О©╫О©╫й╞О©╫О©╫г╤
+	CM_EQUIP_REMOVE_GEM							= 717,			// О©╫О©╫й╞у╙х║
+	CM_EQUIP_ITEM_COMBI							= 718,			// О©╫О©╫О©╫ъ╨оЁО©╫
+	CM_EQUIP_EXCHANGE_STAR						= 719,			// г©О©╫О©╫в╙О©╫О©╫
 
-	// вИ╤с╡╧ЁД
-	CM_TEAM_SET_AUTO_OPERATE					= 720,			// вИ╤сд╛хоиХжц
-	//CM_TEAM_DESTROY_TEAM						= 721,			// ╤сЁ╓╫Би╒╤снИ
+	// О©╫О©╫с╡О©╫О©╫О©╫
+	CM_TEAM_SET_AUTO_OPERATE					= 720,			// О©╫О©╫О©╫д╛О©╫О©╫О©╫О©╫О©╫О©╫
+	//CM_TEAM_DESTROY_TEAM						= 721,			// О©╫сЁО©╫О©╫О©╫и╒О©╫О©╫О©╫О©╫
 
-	// ╩цйчо╣мЁ
-	CM_PET_REQUEST_INFO							= 730,			// гКгСЁХнОпео╒
-	CM_PET_FIGHTING								= 731,			// ЁЖу╫
-	CM_PET_REST									= 732,			// пщо╒
-	CM_PET_ZOARIUM								= 733,			// ╨олЕ
-	CM_PET_ZOARIUM_OFF							= 734,			// ╫БЁЩ╨олЕ
-	CM_PET_RIDE									= 735,			// фОЁк
-	CM_PET_CHANGE_NAME							= 736,			// ЁХнО╦дцШ
-	CM_PET_RELEASE								= 737,			// ╥еиЗЁХнО
-	CM_PET_HATCHING								= 738,			// ╥У╩╞
-	CM_PET_MUTI_HATCHING						= 739,			// еЗа©╥У╩╞
-	CM_PET_REHATCHING							= 740,			// жьпб╥У╩╞
-	CM_PET_OPEN_EGG								= 741,			// ╢Р©╙ЁХнО╣╟
-	CM_PET_DROP_EGG								= 742,			// ╤╙фЗ╣╟
-	CM_PET_USE_EXP_ITEM							= 743,			// й╧сц╬╜яИ╣ю╬ъё╨й╔йчд╖╬╖║╒╬╜яИгР║╒ль╪╤╬╜яИгР
-	CM_PET_USE_PHASE_ITEM						= 744,			// й╧сц╦д╠ДоЮпт╣ю╬ъё╨╣Г╫╛р╘к╝║╒фФрЛ╧Ш
-	CM_PET_STOP_HATCHING						= 745,			// мёж╧╥У╩╞
-	CM_PET_QUICK_HATCHING						= 746,			// ©Лкы╥У╩╞
-	CM_PET_EGG_MOVE								= 747,			// ЁХнО╣╟рф╤╞
-	CM_PET_LEARN_SKILL							= 748,			// ЁХнОя╖о╟╪╪дэё╗╪╪дэйИя╖о╟ё╘
-	CM_PET_FORGET_SKILL							= 749,			// ЁХнОремЭ╪╪дэ
-	CM_PET_ILLUSION								= 750,			// ╩ц╩╞
-	CM_PET_DEPORT								= 751,			// ╡ж©Б╢Фх║╡ывВ
-	CM_PET_SET_KNIGHT							= 752,			// хнцЭфОй©
-	CM_PET_USE_LUCKY_ITEM						= 753,			// й╧сцпрткж╣╣ю╬ъ
-	CM_PET_MOVE_TO_BAG							= 754,			// ╢Р╟Э╣╫╠Ё╟Э
-	CM_PET_GET_FROM_BAG							= 755,			// ╢с╠Ё╟Эрф╤╞╣╫╩цйчю╦
-	CM_PET_ILLUSION_BY_LI_BAO					= 756,			// юЯ╟Э╩ц╩╞
+	// О©╫О©╫О©╫О©╫о╣мЁ
+	CM_PET_REQUEST_INFO							= 730,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_PET_FIGHTING								= 731,			// О©╫О©╫у╫
+	CM_PET_REST									= 732,			// О©╫О©╫о╒
+	CM_PET_ZOARIUM								= 733,			// О©╫О©╫О©╫О©╫
+	CM_PET_ZOARIUM_OFF							= 734,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_RIDE									= 735,			// О©╫О©╫О©╫
+	CM_PET_CHANGE_NAME							= 736,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_RELEASE								= 737,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_HATCHING								= 738,			// О©╫О©╫О©╫О©╫
+	CM_PET_MUTI_HATCHING						= 739,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_REHATCHING							= 740,			// О©╫О©╫О©╫б╥О©╫О©╫О©╫
+	CM_PET_OPEN_EGG								= 741,			// О©╫Р©╙ЁО©╫О©╫О╣╟
+	CM_PET_DROP_EGG								= 742,			// О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_USE_EXP_ITEM							= 743,			// й╧О©╫ц╬О©╫О©╫О©╫О©╫О©╫ъёО©╫й╔О©╫О©╫д╖О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ь╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_USE_PHASE_ITEM						= 744,			// й╧О©╫ц╦д╠О©╫О©╫О©╫О©╫т╣О©╫О©╫ъёО©╫О©╫Г╫╛р╘к╝О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_STOP_HATCHING						= 745,			// мёж╧О©╫О©╫О©╫О©╫
+	CM_PET_QUICK_HATCHING						= 746,			// О©╫О©╫О©╫ы╥О©╫О©╫О©╫
+	CM_PET_EGG_MOVE								= 747,			// О©╫О©╫О©╫О╣╟О©╫ф╤О©╫
+	CM_PET_LEARN_SKILL							= 748,			// О©╫О©╫О©╫О©╫я╖о╟О©╫О©╫О©╫эёО©╫О©╫О©╫О©╫О©╫О©╫О©╫я╖о╟О©╫О©╫
+	CM_PET_FORGET_SKILL							= 749,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_ILLUSION								= 750,			// О©╫ц╩О©╫
+	CM_PET_DEPORT								= 751,			// О©╫ж©О©╫О©╫х║О©╫О©╫О©╫О©╫
+	CM_PET_SET_KNIGHT							= 752,			// О©╫О©╫О©╫О©╫О©╫О©╫й©
+	CM_PET_USE_LUCKY_ITEM						= 753,			// й╧О©╫О©╫О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫О©╫
+	CM_PET_MOVE_TO_BAG							= 754,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_GET_FROM_BAG							= 755,			// О©╫с╠О©╫О©╫О©╫О©╫ф╤О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_PET_ILLUSION_BY_LI_BAO					= 756,			// О©╫О©╫О©╫О©╫ц╩О©╫
 	// XP
-	CM_START_XP									= 760,			// ©╙й╪XP
+	CM_START_XP									= 760,			// О©╫О©╫й╪XP
 
-	// я╜╩╥хннЯ
-	CM_TASK_CYCLE_RECEIVE						= 770,			// ╫сйэя╜╩╥хннЯ
-	CM_TASK_CYCLE_SUBMIT						= 771,			// лА╫╩я╜╩╥хннЯ
-	CM_TASK_CYCLE_REFRESH_STAR					= 772,			// к╒пбя╜╩╥хннЯпг╪╤
-	CM_TASK_CYCLE_BUY_TIMES						= 773,			// ╧╨бРя╜╩╥хннЯ╢нйЩ
+	// я╜О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TASK_CYCLE_RECEIVE						= 770,			// О©╫О©╫О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TASK_CYCLE_SUBMIT						= 771,			// О©╫А╫╩я╜О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TASK_CYCLE_REFRESH_STAR					= 772,			// к╒О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫г╪О©╫
+	CM_TASK_CYCLE_BUY_TIMES						= 773,			// О©╫О©╫О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	// ╬Эме
-	CM_FAMILY_CONTRIBUTION						= 780,			// ╬Эме╬Хов
-	CM_FAMILY_REGIST_PET						= 781,			// в╒╡АЁХнО
-	CM_FAMILY_UNREGIST_PET						= 782,			// х║оШв╒╡АЁХнО
-	CM_FAMILY_RECEIVE_TASK						= 783,			// ╫с╬ЭмехннЯ
-	CM_FAMILY_GET_TASK_REWARD					= 784,			// аЛх║╟Оеи
-	// ╦╠╠╬
-	CM_DUNGEON_BUILD_TOWER						= 790,			// ╦╠╠╬жжкЧ
-	CM_DUNGEON_START							= 791,			// ╦╠╠╬©╙й╪ё╗лЬ╧Щ╣х╢Щ╫в╤нё╘
-	CM_DUNGOEN_BUY_TOWER						= 792,			// ╧╨бРкЧ
+	// О©╫О©╫О©╫О©╫
+	CM_FAMILY_CONTRIBUTION						= 780,			// О©╫О©╫О©╫е╬О©╫О©╫О©╫
+	CM_FAMILY_REGIST_PET						= 781,			// в╒О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_UNREGIST_PET						= 782,			// х║О©╫О©╫в╒О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_RECEIVE_TASK						= 783,			// О©╫с╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_GET_TASK_REWARD					= 784,			// О©╫О©╫х║О©╫О©╫О©╫О©╫
+	// О©╫О©╫О©╫О©╫
+	CM_DUNGEON_BUILD_TOWER						= 790,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_DUNGEON_START							= 791,			// О©╫О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╢О©╫О©╫в╤нёО©╫
+	CM_DUNGOEN_BUY_TOWER						= 792,			// О©╫О©╫О©╫О©╫О©╫О©╫
 
-	// вИ╤с╦╠╠╬
-	CM_TEAM_DUNGEON_CREATE						= 800,			// гКгС╢╢╫╗вИ╤с╦╠╠╬
-	CM_TEAM_DUNGEON_JOIN						= 801,			// гКгС╪схКвИ╤с╦╠╠╬
-	CM_TEAM_DUNGEON_START						= 802,			// вИ╤с╦╠╠╬©╙й╪
+	// О©╫О©╫с╦О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_CREATE						= 800,			// О©╫О©╫О©╫С╢╢╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_JOIN						= 801,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_START						= 802,			// О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫й╪
 
-	// аИйчо╣мЁ
-	CM_INSIDE_PET_REQUEST_INFO					= 810,			// гКгСаИйчпео╒
-	CM_INSIDE_PET_BASE_ILLUSION					= 811,			// ЁУаИ
-	CM_INSIDE_PET_GROW_ILLUSION					= 812,			// ╩цаИ
-	CM_INSIDE_PET_LUCKY_ILLUSION				= 813,			// пртк
-	CM_INSIDE_PET_EXP_ILLUSION					= 814,			// нДаИ
-	CM_INSIDE_PET_USE_LUCKY_ITEM				= 815,			// й╧сцпрткж╣╣ю╬ъ
-	CM_INSIDE_PET_USE_PHASE_ITEM				= 816,			// й╧сцоЮпт╣ю╬ъ
-	CM_INSIDE_PET_BUY_EXP						= 817,			// ╧╨бР╬╜яИж╣
-	CM_INSIDE_PET_REQUEST_BASE_ILLUSION			= 818,			// гКгСЁУаИпео╒
-	CM_INSIDE_PET_ITEM_ILLUSION					= 819,			// нОф╥╩ц╩╞
+	// О©╫О©╫О©╫О©╫о╣мЁ
+	CM_INSIDE_PET_REQUEST_INFO					= 810,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_INSIDE_PET_BASE_ILLUSION					= 811,			// О©╫О©╫О©╫О©╫
+	CM_INSIDE_PET_GROW_ILLUSION					= 812,			// О©╫О©╫О©╫О©╫
+	CM_INSIDE_PET_LUCKY_ILLUSION				= 813,			// О©╫О©╫О©╫О©╫
+	CM_INSIDE_PET_EXP_ILLUSION					= 814,			// О©╫О©╫О©╫О©╫
+	CM_INSIDE_PET_USE_LUCKY_ITEM				= 815,			// й╧О©╫О©╫О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫О©╫
+	CM_INSIDE_PET_USE_PHASE_ITEM				= 816,			// й╧О©╫О©╫О©╫О©╫О©╫т╣О©╫О©╫О©╫
+	CM_INSIDE_PET_BUY_EXP						= 817,			// О©╫О©╫О©╫О©╫О©╫О©╫ж╣
+	CM_INSIDE_PET_REQUEST_BASE_ILLUSION			= 818,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_INSIDE_PET_ITEM_ILLUSION					= 819,			// О©╫О©╫ф╥О©╫ц╩О©╫
 
-	// ╟зл╞
-	CM_OPEN_STALL								= 820,			// ЁЖл╞
-	CM_CLOSE_STALL								= 821,			// йул╞
+	// О©╫О©╫л╞
+	CM_OPEN_STALL								= 820,			// О©╫О©╫л╞
+	CM_CLOSE_STALL								= 821,			// О©╫О©╫л╞
 
-	// ╩Н╤╞
-	CM_REQUEST_ACTIVITY_INFO					= 830,			// гКгС╩Н╤╞пео╒
-	CM_REQUEST_ACTIVITY_FAMILY_WAR_PILLAR_INFO	= 831,			// гКгСу╫иЯж╝жЫпео╒
-	CM_ACTIVITY_FAMILYWAR_ADD_PILLAR_MONEY		= 832,			// у╫иЯж╝жЫв╒хК╬Эмевй╫П
-	CM_ACTIVITY_GET_DAILY_REWARD				= 833,			// ц©ху╩Н╤╞╫╠юЬ
-	CM_ACTIVITY_REQUEST_TERRITORY_INFO			= 834,			// гКгСаЛ╣ьу╫пео╒
+	// О©╫Н╤╞
+	CM_REQUEST_ACTIVITY_INFO					= 830,			// О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫о╒
+	CM_REQUEST_ACTIVITY_FAMILY_WAR_PILLAR_INFO	= 831,			// О©╫О©╫О©╫О©╫у╫О©╫О©╫ж╝О©╫О©╫О©╫О©╫о╒
+	CM_ACTIVITY_FAMILYWAR_ADD_PILLAR_MONEY		= 832,			// у╫О©╫О©╫ж╝О©╫О©╫в╒О©╫О©╫О©╫О©╫О©╫О©╫й╫О©╫
+	CM_ACTIVITY_GET_DAILY_REWARD				= 833,			// ц©О©╫у╩Н╤╞О©╫О©╫О©╫О©╫
+	CM_ACTIVITY_REQUEST_TERRITORY_INFO			= 834,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫о╒
 
-	// ╩Йа╕
-	CM_ADD_SOUL									= 840,			// ╤р╩╩╩Йа╕
-	CM_UPGRADE_SOUL_LEVEL						= 841,			// иЩ╪╤╩Йа╕
+	// О©╫О©╫О©╫О©╫
+	CM_ADD_SOUL									= 840,			// О©╫р╩О©╫О©╫О©╫О©╫О©╫
+	CM_UPGRADE_SOUL_LEVEL						= 841,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	// цШхклц
-	CM_HALL_OF_FAME_FIGHT						= 850,			// лТу╫
-	CM_HALL_OF_FAME_BUY_TIMES					= 851,			// ╧╨бР╢нйЩ
-	CM_HALL_OF_FAME_CLEAR_CD					= 852,			// цКCD
-	CM_HALL_OF_FAME_INFO						= 853,			// гКгС╫ГцФпео╒
+	// О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_HALL_OF_FAME_FIGHT						= 850,			// О©╫О©╫у╫
+	CM_HALL_OF_FAME_BUY_TIMES					= 851,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_HALL_OF_FAME_CLEAR_CD					= 852,			// О©╫О©╫CD
+	CM_HALL_OF_FAME_INFO						= 853,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 
 	/*
 	* CM_WXJ	900~998
@@ -611,7 +611,7 @@ enum MSG_CM_CODE
 	CM_GATE_LOGIN_ROBOT			= 1002,
 	CM_GATE_SWITCH_LINE			= 1003,
 	CM_GATE_QUERY_LINE			= 1004,
-	CM_GATE_LOAD_UI				= 1005,			//╢╢╫г╫ГцФ╪стьмЙЁи
+	CM_GATE_LOAD_UI				= 1005,			//О©╫О©╫О©╫г╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	CM_GATE_MAX,
 
 	CM_LOGIN_MIN				= 2000,
@@ -619,7 +619,7 @@ enum MSG_CM_CODE
 	CM_LOGIN_MAX,
 
 
-	//иГ╩А
+	//О©╫О©╫О©╫
 	CM_SOCIAL_MIN				= 3000,
 
 	CM_QUERY_MAIL_LIST			= 3001,
@@ -630,126 +630,126 @@ enum MSG_CM_CODE
 //	CM_READ_MAIL				= 3006,
 	CM_SEND_SYS_MAIL			= 3007,
 
-	CM_RELATION_REQUEST_LIST	= 3008,			//╧ьо╣ап╠Мё╗╨зцШ╣╔╣х╣хё╘
-	CM_ADD_RELATION				= 3009,			//лМ╪с╨цся
-	CM_DELETE_RELATION			= 3010,			//и╬ЁЩ╨цся
+	CM_RELATION_REQUEST_LIST	= 3008,			//О©╫О©╫о╣О©╫п╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╣хёО©╫
+	CM_ADD_RELATION				= 3009,			//О©╫О©╫О©╫с╨О©╫О©╫О©╫
+	CM_DELETE_RELATION			= 3010,			//и╬О©╫О©╫О©╫О©╫О©╫О©╫
 	CM_REMOVE_BAD_RELATION		= 3011,
 
-	CM_FAMILY_REQUEST_LIST				= 3012,			// ╟Оеиап╠М
-	CM_FAMILY_REQUEST_LOGS				= 3013,			// ╡И©╢╟Оеихуж╬
-	CM_FAMILY_REQUEST_INFO				= 3014,			// ╟Оеипео╒
-	CM_FAMILY_REQUEST_MEMBER_LIST		= 3015,			// ╡И©╢╟ОеиЁит╠ап╠М
-	CM_FAMILY_REQUEST_TOTOM_LIST		= 3016,			// ╡И©╢╟Оеим╪лз
-	CM_FAMILY_REQUEST_APPLIERS			= 3017,			// ╟ОеииЙгКпео╒
-	CM_FAMILY_REQUEST_PLAYER_PETS		= 3018,			// ╡И©╢в╒╡АЁХнО
-	CM_FAMILY_EDIT_NOTICE				= 3019,			// ╠Ю╪╜╟Оеи╧╚╦Ф
-	CM_FAMILY_CREATE					= 3020,			// ╢╢╫╗╟Оеи
-	CM_FAMILY_APPLY						= 3021,			// ╪схК╟Оеи
-	CM_FAMILY_CANCLE_APPLY				= 3022,			// х║оШ╪схК
-	CM_FAMILY_DESTROY					= 3023,			// ╫Би╒╬Эме
-	CM_FAMILY_REQUEST_REGIST_PETS		= 3024,			// ╟ОеиЁХнОап╠М
-	CM_FAMILY_APPOINT					= 3025,			// ╟ОеихнцЭ
-	CM_FAMILY_APPROVE					= 3026,			// еЗв╪╪схК
-	CM_FAMILY_KICK						= 3027,			// ╟ОеиTхк
-	CM_FAMILY_LEAVE						= 3028,			// юК©╙╟Оеи
-	CM_FAMILY_ACTIVE_TOTOM				= 3029,			// ╪╓╩Н╟Оеим╪лз
-	CM_FAMILY_TASK_COUNT				= 3030,			// гКгС╟ОеихннЯйЩа©
+	CM_FAMILY_REQUEST_LIST				= 3012,			// О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	CM_FAMILY_REQUEST_LOGS				= 3013,			// О©╫И©╢О©╫О©╫О©╫О©╫О©╫О©╫ж╬
+	CM_FAMILY_REQUEST_INFO				= 3014,			// О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_FAMILY_REQUEST_MEMBER_LIST		= 3015,			// О©╫И©╢О©╫О©╫О©╫иЁО©╫т╠О©╫п╠О©╫
+	CM_FAMILY_REQUEST_TOTOM_LIST		= 3016,			// О©╫И©╢О©╫О©╫О©╫О©╫м╪О©╫О©╫
+	CM_FAMILY_REQUEST_APPLIERS			= 3017,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_FAMILY_REQUEST_PLAYER_PETS		= 3018,			// О©╫И©╢в╒О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_EDIT_NOTICE				= 3019,			// О©╫Ю╪╜О©╫О©╫О©╫и╧О©╫О©╫О©╫
+	CM_FAMILY_CREATE					= 3020,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_APPLY						= 3021,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_CANCLE_APPLY				= 3022,			// х║О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_DESTROY					= 3023,			// О©╫О©╫и╒О©╫О©╫О©╫О©╫
+	CM_FAMILY_REQUEST_REGIST_PETS		= 3024,			// О©╫О©╫О©╫иЁО©╫О©╫О©╫О©╫п╠О©╫
+	CM_FAMILY_APPOINT					= 3025,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_FAMILY_APPROVE					= 3026,			// О©╫О©╫в╪О©╫О©╫О©╫О©╫
+	CM_FAMILY_KICK						= 3027,			// О©╫О©╫О©╫О©╫TО©╫О©╫
+	CM_FAMILY_LEAVE						= 3028,			// О©╫К©╙О©╫О©╫О©╫О©╫
+	CM_FAMILY_ACTIVE_TOTOM				= 3029,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╪О©╫О©╫
+	CM_FAMILY_TASK_COUNT				= 3030,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	//CM_TEAM_DUNGEON_ADD					= 3031,			// ╥офЗ//╪схК
-	//CM_TEAM_DUNGEON_QUERY				= 3032,			// ╥офЗ
-	//CM_TEAM_DUNGEON_INVITE				= 3033,			// ╥офЗ//йю╫Г╢╟©з╦╠╠╬яШгК
+	//CM_TEAM_DUNGEON_ADD					= 3031,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫
+	//CM_TEAM_DUNGEON_QUERY				= 3032,			// О©╫О©╫О©╫О©╫
+	//CM_TEAM_DUNGEON_INVITE				= 3033,			// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫Г╢╟О©╫з╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	CM_KILLER_RANK_QUERY				= 3034,			//╡Ия╞
-	CM_QUERY_ALL_ENEMY_INFO				= 3035,			//╡Ия╞ кЫсп ╣пхк пео╒
-	CM_GOTO_ENEMY						= 3036,			//в╥и╠╣пхк
+	CM_KILLER_RANK_QUERY				= 3034,			//О©╫О©╫я╞
+	CM_QUERY_ALL_ENEMY_INFO				= 3035,			//О©╫О©╫я╞ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫о╒
+	CM_GOTO_ENEMY						= 3036,			//в╥и╠О©╫О©╫О©╫О©╫
 
-	CM_RANK_REQUEST_INFO				= 3037,			// ╥офЗ //еепп╟Япео╒
-	CM_QUERY_REAL_TIME_RANK				= 3038,			// ╥офЗ
-	CM_QUERY_TITLE_POSITION				= 3039,			// ╥офЗ//╡И©╢╧ы╬Т
+	CM_RANK_REQUEST_INFO				= 3037,			// О©╫О©╫О©╫О©╫ //О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
+	CM_QUERY_REAL_TIME_RANK				= 3038,			// О©╫О©╫О©╫О©╫
+	CM_QUERY_TITLE_POSITION				= 3039,			// О©╫О©╫О©╫О©╫//О©╫И©╢О©╫ы╬О©╫
 	CM_QUERY_KINGDOM_TOP				= 3040,
-	CM_SET_KINGDOM_POSTION				= 3041,			// ╥офЗ
-	CM_QUERY_GAMBLE_RECORD				= 3042,			// ╥офЗ
-	CM_ASK_KINGDOM_POST					= 3043,			// ╥офЗ
-    CM_REFUSE_KINGDOM_REQUIRE			= 3044,			// ╥офЗ
+	CM_SET_KINGDOM_POSTION				= 3041,			// О©╫О©╫О©╫О©╫
+	CM_QUERY_GAMBLE_RECORD				= 3042,			// О©╫О©╫О©╫О©╫
+	CM_ASK_KINGDOM_POST					= 3043,			// О©╫О©╫О©╫О©╫
+    CM_REFUSE_KINGDOM_REQUIRE			= 3044,			// О©╫О©╫О©╫О©╫
 	CM_QUERY_LIMIT_SHOP					= 3045,
 	CM_BUY_LIMIT_SHOP_ITEM				= 3046,
-	CM_QUERY_MYSTERIOUS_SHOP			= 3047,			//╡Ия╞иЯцьил╣Й
+	CM_QUERY_MYSTERIOUS_SHOP			= 3047,			//О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫л╣О©╫
 	CM_EXCHANGE_MYSTERIOUS_SHOP_ITEM	= 3048,
 	
 	CM_SET_OFFICE						= 3049,
 	CM_USE_EXCHANGE_CODE				= 3050,
 
-	CM_SOCIAL_PUBLIC_CHAT				= 3051,			//╧╚╧╡адлЛ
-	CM_SOCIAL_PRIVATE_CHAT				= 3052,			//к╫ад
+	CM_SOCIAL_PUBLIC_CHAT				= 3051,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SOCIAL_PRIVATE_CHAT				= 3052,			//к╫О©╫О©╫
 
 	CM_CHANGE_NAME						= 3053,
 	CM_CHANGE_FAMILY_NAME				= 3054,
-	CM_QUERY_ACTIVITY_INFO				= 3055,			// ╥офЗ
-	CM_GET_AWARD_ZHIYUANQIANXIAN		= 3056,			// ╥офЗ
-	CM_GET_JUANXIANWUZI_INFO			= 3057,			// ╥офЗ
+	CM_QUERY_ACTIVITY_INFO				= 3055,			// О©╫О©╫О©╫О©╫
+	CM_GET_AWARD_ZHIYUANQIANXIAN		= 3056,			// О©╫О©╫О©╫О©╫
+	CM_GET_JUANXIANWUZI_INFO			= 3057,			// О©╫О©╫О©╫О©╫
 
-	// вИ╤со╣мЁ
-	//CM_QUERY_TEAMS_AROUND				= 3058,			// кяя╟╦╫╫Э╤снИ
-	CM_CREATE_TEAM						= 3059,			// ╢╢╫╗╤снИ
-	CM_INVITE_INTO_TEAM					= 3060,			// яШгКмФ╪рхК╤с
-	CM_SET_TEAM_LEADER					= 3061,			// ╤сЁ╓в╙хц
-	CM_KICKOUT_TEAM_MEMBER				= 3062,			// лъхк
-	CM_LEAVE_TEAM						= 3063,			// юК©╙╤снИ
-	CM_APPLY_INTO_TEAM					= 3064,			// иЙгКхК╤с
-	CM_REPLY_TEAM_INVITE				= 3065,			// ╩ь╦╢вИ╤сяШгК
-	CM_REPLY_TEAM_APPLY					= 3066,			// ╩ь╦╢вИ╤сиЙгК
-	CM_TEAM_DESTROY_TEAM				= 3067,			// ╤сЁ╓╫Би╒╤снИ
-	//CM_TEAM_SET_AUTO_OPERATE			= 3068,			// вИ╤сд╛хоиХжц
-	//╬Эме
-	CM_FAMILY_AUTO_AGREE				= 3069,			// иХжцвт╤╞
-	//╨цсяо╣мЁ
-	CM_ASK_FRIEND_LIST					= 3071,			// гКгС╨цсяап╠М
-	CM_ASK_ADD_FRIEND					= 3072,			// гКгСлМ╪с╨цся
-	CM_REPLAY_ADD_FRIEND				= 3073,			// ╢П╦╢гКгС╨цся
-	CM_DELETE_FRIEND					= 3074,			// и╬ЁЩ╨цся
-	CM_SIFT_FRIEND						= 3075,			// и╦я║╨цся
-	CM_FIND_PLAYER						= 3076,			// ╡Иур╨цся
-	CM_GET_PLAYER_INFO					= 3077,			// ╩Ях║мФ╪рпео╒
+	// О©╫О©╫О©╫о╣мЁ
+	//CM_QUERY_TEAMS_AROUND				= 3058,			// О©╫О©╫я╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_CREATE_TEAM						= 3059,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_INVITE_INTO_TEAM					= 3060,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SET_TEAM_LEADER					= 3061,			// О©╫сЁО©╫в╙О©╫О©╫
+	CM_KICKOUT_TEAM_MEMBER				= 3062,			// О©╫О©╫О©╫О©╫
+	CM_LEAVE_TEAM						= 3063,			// О©╫К©╙О©╫О©╫О©╫О©╫
+	CM_APPLY_INTO_TEAM					= 3064,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_REPLY_TEAM_INVITE				= 3065,			// О©╫ь╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_REPLY_TEAM_APPLY					= 3066,			// О©╫ь╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TEAM_DESTROY_TEAM				= 3067,			// О©╫сЁО©╫О©╫О©╫и╒О©╫О©╫О©╫О©╫
+	//CM_TEAM_SET_AUTO_OPERATE			= 3068,			// О©╫О©╫О©╫д╛О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫
+	CM_FAMILY_AUTO_AGREE				= 3069,			// О©╫О©╫О©╫О©╫О©╫т╤О©╫
+	//О©╫О©╫О©╫О©╫о╣мЁ
+	CM_ASK_FRIEND_LIST					= 3071,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	CM_ASK_ADD_FRIEND					= 3072,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫с╨О©╫О©╫О©╫
+	CM_REPLAY_ADD_FRIEND				= 3073,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_DELETE_FRIEND					= 3074,			// и╬О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_SIFT_FRIEND						= 3075,			// и╦я║О©╫О©╫О©╫О©╫
+	CM_FIND_PLAYER						= 3076,			// О©╫О©╫О©╫р╨О©╫О©╫О©╫
+	CM_GET_PLAYER_INFO					= 3077,			// О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫о╒
 
-	CM_ASK_JUE_WEI_RANK					= 3078,			// гКгС╬Тн╩еепп╟Я
-	CM_ANSWER_QUESTIONS					= 3079,			// ╩ь╢ПнйлБ
+	CM_ASK_JUE_WEI_RANK					= 3078,			// О©╫О©╫О©╫О©╫О©╫н╩О©╫О©╫О©╫п╟О©╫
+	CM_ANSWER_QUESTIONS					= 3079,			// О©╫ь╢О©╫О©╫О©╫О©╫О©╫
 
-	// еепп╟Я
-	CM_ASK_PET_RANK_INFO				= 3080,			// гКгСЁХнОеепп╟Япео╒
-	CM_ASK_PET_RANK_LIST				= 3081,			// гКгСЁХнОеепп╟Яё╗ап╠Мё╘
-	CM_ASK_GAME_RANK					= 3082,			// гКгСсно╥еепп╟Япео╒
-	CM_REQUEST_WORSHIP_INFO				= 3083,			// гКгСЁГ╟щпео╒
-	CM_WORSHIP							= 3084,			// ЁГ╟щ
+	// О©╫О©╫О©╫п╟О©╫
+	CM_ASK_PET_RANK_INFO				= 3080,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
+	CM_ASK_PET_RANK_LIST				= 3081,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫п╠О©╫О©╫О©╫
+	CM_ASK_GAME_RANK					= 3082,			// О©╫О©╫О©╫О©╫О©╫О©╫о╥О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
+	CM_REQUEST_WORSHIP_INFO				= 3083,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_WORSHIP							= 3084,			// О©╫О©╫О©╫
 
-	// вИ╤с╦╠╠╬
-	CM_TEAM_DUNGEON_REQUEST_LIST		= 3090,			// гКгСвИ╤с╦╠╠╬ап╠М
-	CM_TEAM_DUNGEON_LEAVE				= 3091,			// юК©╙вИ╤с╦╠╠╬
-	CM_TEAM_DUNGEON_KICK				= 3092,			// вИ╤с╦╠╠╬лъхк
-	CM_TEAM_DUNGEON_READY				= 3093,			// вИ╤с╦╠╠╬©╙й╪
-	CM_TEAM_DUNGEON_SET_AUTO_START		= 3094,			// иХжцбЗт╠вт╤╞©╙фТ
-	// еюкЧ╦╠╠╬
-	CM_ASK_UP_TOWER_DUNGEON_RANK		= 3100,			// гКгС╦╠╠╬еепп╟Я
-	//╢ПлБ╩Н╤╞
-	CM_ASK_DA_TI_INFO					= 3101,			// гКгС╢ПлБ╩Н╤╞пео╒
+	// О©╫О©╫с╦О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_REQUEST_LIST		= 3090,			// О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫О©╫п╠О©╫
+	CM_TEAM_DUNGEON_LEAVE				= 3091,			// О©╫К©╙О©╫О©╫с╦О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_KICK				= 3092,			// О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_TEAM_DUNGEON_READY				= 3093,			// О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫й╪
+	CM_TEAM_DUNGEON_SET_AUTO_START		= 3094,			// О©╫О©╫О©╫О©╫О©╫О©╫т╠О©╫т╤О©╫О©╫О©╫О©╫О©╫
+	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_ASK_UP_TOWER_DUNGEON_RANK		= 3100,			// О©╫О©╫О©╫С╦╠╠О©╫О©╫О©╫О©╫п╟О©╫
+	//О©╫О©╫О©╫О©╫Н╤╞
+	CM_ASK_DA_TI_INFO					= 3101,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫о╒
 
-	CM_ASK_ONE_TOU_ZI_RECORD			= 3102,			// гКгСр╩лУм╤вйпео╒
-	CM_ASK_ALL_TOU_ZI_RECORD			= 3103,			// гКгСкЫспм╤вйпео╒
+	CM_ASK_ONE_TOU_ZI_RECORD			= 3102,			// О©╫О©╫О©╫О©╫р╩О©╫О©╫м╤О©╫О©╫О©╫О©╫о╒
+	CM_ASK_ALL_TOU_ZI_RECORD			= 3103,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╤О©╫О©╫О©╫О©╫о╒
 
-	// едбТ
-	CM_AUCTION_SELL						= 3110,			// ио╪э
-	CM_AUCTION_BUY						= 3111,			// ╧╨бР
-	CM_AUCTION_CANCEL					= 3112,			// об╪э
-	CM_AUCTION_REQUEST_ITEM_LIST		= 3113,			// гКгСедбТпео╒
-	CM_AUCTION_REQUEST_SELF_ITEMS		= 3114,			// гКгСвт╪╨╣дедбТап╠М
-	CM_AUCTION_REQUEST_RECORD			= 3115,			// гКгС╫╩рв╪гб╪
+	// О©╫О©╫О©╫О©╫
+	CM_AUCTION_SELL						= 3110,			// О©╫о╪О©╫
+	CM_AUCTION_BUY						= 3111,			// О©╫О©╫О©╫О©╫
+	CM_AUCTION_CANCEL					= 3112,			// О©╫б╪О©╫
+	CM_AUCTION_REQUEST_ITEM_LIST		= 3113,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	CM_AUCTION_REQUEST_SELF_ITEMS		= 3114,			// О©╫О©╫О©╫О©╫О©╫т╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	CM_AUCTION_REQUEST_RECORD			= 3115,			// О©╫О©╫О©╫О©╫О©╫в╪О©╫б╪
 
-	// цШхклц
-	CM_HALL_OF_FAME_RANK				= 3120,			// гКгСцШхклцеепп╟Я
-	CM_FAMILY_OPEN_TOTOM				= 3121,			// ╪╓╩Н╟Оеим╪лз
-	CM_HALL_OF_FAME_GET_REWARD			= 3122,			// гКгСцШхклц╫╠юЬ
+	// О©╫О©╫О©╫О©╫О©╫О©╫
+	CM_HALL_OF_FAME_RANK				= 3120,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	CM_FAMILY_OPEN_TOTOM				= 3121,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╪О©╫О©╫
+	CM_HALL_OF_FAME_GET_REWARD			= 3122,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ц╫О©╫О©╫О©╫
 
 	CM_SOCIAL_MAX,
-	//иГ╩А╫АйЬ 
+	//О©╫О©╫О©╫О©╫О©╫О©╫ 
 
 	CM_KINGDOM_MIN						= 4000,
 	
@@ -773,7 +773,7 @@ enum MSG_CM_CODE
 /*
 *SM_GAME_MIN						= 10000,
 *SM_GM_MIN							= 19000,
-*SM_PHP_MIN							= 19500,	║╓
+*SM_PHP_MIN							= 19500,	О©╫О©╫
 */
 enum MSG_SM_CODE
 {
@@ -799,21 +799,21 @@ enum MSG_SM_CODE
 	SM_NPC_INTO_MAP				= 10019,
 	SM_PET_INTO_MAP				= 10020,
 	SM_LACKEY_INTO_MAP			= 10022,
-	// ╥офЗр╩лУ
+	// О©╫О©╫О©╫О©╫р╩О©╫О©╫
 	SM_TRAILER_INTO_MAP			= 10023,
 	SM_DUNGEON_EVENT			= 10024,
 	SM_DUNGEON_MOVIE			= 10025,
-	SM_STACKS_ADD_INTO_MAP		= 10026,		// лМ╪с╣ьм╪еЖв╡
-	SM_STACKS_REMOVE_FROM_MAP	= 10027,		// рфЁЩ╣ьм╪еЖв╡
-	SM_FAMILY_ACTIVITY_NAME		= 10028,		// ╥офЗ
-	SM_FAMILY_ACTIVITY_FAIL		= 10029,		// ╥офЗ
-	SM_FAMILY_POT_ACTIVITY_END	= 10030,		// ╥офЗ
-	SM_FAMILY_POST_INFO			= 10031,		// ╥офЗ
-	SM_FAMILY_POST_UPDATE_PLANT	= 10032,		// ╥офЗ
-	SM_FAMILY_CHR_POST_INFO		= 10033,		// ╥офЗ
+	SM_STACKS_ADD_INTO_MAP		= 10026,		// О©╫О©╫О©╫с╣О©╫м╪О©╫О©╫в╡
+	SM_STACKS_REMOVE_FROM_MAP	= 10027,		// О©╫фЁО©╫О©╫О©╫м╪О©╫О©╫в╡
+	SM_FAMILY_ACTIVITY_NAME		= 10028,		// О©╫О©╫О©╫О©╫
+	SM_FAMILY_ACTIVITY_FAIL		= 10029,		// О©╫О©╫О©╫О©╫
+	SM_FAMILY_POT_ACTIVITY_END	= 10030,		// О©╫О©╫О©╫О©╫
+	SM_FAMILY_POST_INFO			= 10031,		// О©╫О©╫О©╫О©╫
+	SM_FAMILY_POST_UPDATE_PLANT	= 10032,		// О©╫О©╫О©╫О©╫
+	SM_FAMILY_CHR_POST_INFO		= 10033,		// О©╫О©╫О©╫О©╫
 	SM_MONSTER_PLAYER_DAMAGE_INFO	= 10034,
 	SM_WORLD_BOSS_ACTIVITY_RESULT	= 10035,
-	SM_FINISH_DUNGEON			= 10036,		// ╦╠╠╬╫АкЦ╫ГцФ
+	SM_FINISH_DUNGEON			= 10036,		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	SM_DUNGEON_RESULT			= 10037,
 	SM_SKILL_CHANT				= 10038,
 	SM_SKILL_ACTION				= 10039,
@@ -831,27 +831,27 @@ enum MSG_SM_CODE
 	SM_ADD_PLANT				= 10051,
 	SM_REMOVE_PLANT				= 10052,
 	SM_END_GATHER				= 10053,
-	SM_END_SIT					= 10054,		// ╥офЗ
+	SM_END_SIT					= 10054,		// О©╫О©╫О©╫О©╫
 
-	// вИ╤собппп╜рИ
-	SM_TEAMS_AROUND				= 10055,		// об╥╒╦╫╫Э╤снИ
-	SM_TEAM_MEMBERS				= 10056,		// об╥╒╤снИпео╒
-	SM_TEAM_MEMBER_BASIC_DATA	= 10057,		// ╦ЭпбмФ╪рпео╒╣╫╤снИ
-	SM_TEAM_INVITE				= 10058,		// в╙╥╒яШгКпео╒
-	SM_TEAM_APPLY				= 10059,		// в╙╥╒иЙгКпео╒
-	SM_TEAM_LEAVED				= 10060,		// мФ╪рюК©╙╤снИ
+	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╜О©╫О©╫
+	SM_TEAMS_AROUND				= 10055,		// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_TEAM_MEMBERS				= 10056,		// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_TEAM_MEMBER_BASIC_DATA	= 10057,		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_TEAM_INVITE				= 10058,		// в╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_TEAM_APPLY				= 10059,		// в╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_TEAM_LEAVED				= 10060,		// О©╫О©╫О©╫О©╫К©╙О©╫О©╫О©╫О©╫
 
 	SM_EQUIP_INFO				= 10061,
-	SM_EQUIP_ENHANCE_TIME		= 10062,		// ╥офЗ
-	SM_EQUIP_DISMANTLE_RESULT	= 10063,		// ╥офЗ
-	SM_EQUIP_MAGIC_SMITH		= 10064,		// ╥офЗ
-	SM_ITEM_INFO				= 10065,		// ╥офЗ
-	SM_NEW_ITEM					= 10066,		// ╥офЗ
+	SM_EQUIP_ENHANCE_TIME		= 10062,		// О©╫О©╫О©╫О©╫
+	SM_EQUIP_DISMANTLE_RESULT	= 10063,		// О©╫О©╫О©╫О©╫
+	SM_EQUIP_MAGIC_SMITH		= 10064,		// О©╫О©╫О©╫О©╫
+	SM_ITEM_INFO				= 10065,		// О©╫О©╫О©╫О©╫
+	SM_NEW_ITEM					= 10066,		// О©╫О©╫О©╫О©╫
 	SM_ITEM_EFFECT				= 10067,
 	SM_STORE_INFO				= 10068,
 	SM_CHR_INFO					= 10069,
 	SM_CHR_INFO_TYPE			= 10070,
-	SM_CHR_KINGDOM_INFO			= 10071,		// ╥офЗ
+	SM_CHR_KINGDOM_INFO			= 10071,		// О©╫О©╫О©╫О©╫
 	SM_VIEW_STAR_FINISHED		= 10072,
 	SM_BAG_ITEMS				= 10073,
 	SM_BAG_ITEMS_CHANGE			= 10074,
@@ -860,18 +860,18 @@ enum MSG_SM_CODE
 	SM_JUNGONG_CHANGE			= 10077,
 	SM_WUHUEN_CHANGE			= 10078,
 	SM_JIANGCING_CHANGE			= 10079,
-	SM_ZHIYUANQIANXIAN_WUZI_CHANGE	= 10080,		// ╥офЗ
+	SM_ZHIYUANQIANXIAN_WUZI_CHANGE	= 10080,		// О©╫О©╫О©╫О©╫
 	SM_KINGDOM_CONTRIBUTE_CHANGE	= 10081,
 	SM_MONEY_CHANGE					= 10082,
 	SM_GAIN_INFO					= 10083,
-	SM_REWARD_INFO					= 10084,		// ╥офЗ
+	SM_REWARD_INFO					= 10084,		// О©╫О©╫О©╫О©╫
 	SM_EXPIRE_INFO					= 10085,
 	SM_BUY_ITEM_INFO				= 10086,
 	SM_SELL_ITEM_INFO				= 10087,
 	SM_CONSUME_ITEM_INFO			= 10088,
-	SM_ZHENFA_LIST					= 10089,		// ╥офЗ
+	SM_ZHENFA_LIST					= 10089,		// О©╫О©╫О©╫О©╫
 	SM_SKILL_LIST					= 10090,
-	SM_STRATEGICS_LIST				= 10091,		// ╥офЗ
+	SM_STRATEGICS_LIST				= 10091,		// О©╫О©╫О©╫О©╫
 	SM_NEW_SKILL					= 10092,
 	SM_REFUGEE_KILL_MONSTER			= 10093,
 	SM_TASK_LIST					= 10094,
@@ -893,14 +893,14 @@ enum MSG_SM_CODE
 	SM_DAILY_ITEM_INFO				= 10110,
 	SM_DAILY_ITEM_CHANGE			= 10111,
 	SM_DAILY_MARK_CHANGE			= 10112,
-	SM_SHIZHUANG_FORM_INFO			= 10113,		// ╥офЗ
-	SM_ENTRUST_GROUP_REWARD			= 10114,		// ╥офЗ
+	SM_SHIZHUANG_FORM_INFO			= 10113,		// О©╫О©╫О©╫О©╫
+	SM_ENTRUST_GROUP_REWARD			= 10114,		// О©╫О©╫О©╫О©╫
 	SM_CHARGE_REWARD_INFO			= 10115,
 	SM_DAILY_REWARD					= 10116,
 	SM_ACTVIVTY_JIFEN				= 10117,
 	SM_ACTIVITY_SOUTHINVADE			= 10118,
 	SM_ACTIVITY_KILLERIST_BOARDCAST	= 10119,
-	SM_ACTVIVTY_DATA				= 10120,		// ╥офЗ
+	SM_ACTVIVTY_DATA				= 10120,		// О©╫О©╫О©╫О©╫
 	SM_ACTVITY_PLANTS				= 10121,
 	SM_ACTVIVTY_KING_MSG			= 10122,
 	SM_SECOND_DAY_LOGIN				= 10123,
@@ -924,11 +924,11 @@ enum MSG_SM_CODE
 	SM_VICE_GENERAL_LIST			= 10140,
 	SM_NEW_VICE_GENERAL				= 10141,
 	SM_VICE_GENERAL_NEW_LEVEL		= 10142,
-	SM_LACKEY_INFO					= 10143,		// ╥офЗ
-	SM_LACKEY_ADD_MPHP				= 10144,		// ╥офЗ
+	SM_LACKEY_INFO					= 10143,		// О©╫О©╫О©╫О©╫
+	SM_LACKEY_ADD_MPHP				= 10144,		// О©╫О©╫О©╫О©╫
 	SM_MOUNT_LIST					= 10145,
 	SM_FLY_COUNT					= 10146,
-	SM_PILL_LIST					= 10147,		//╥офЗ
+	SM_PILL_LIST					= 10147,		//О©╫О©╫О©╫О©╫
 	SM_ACTION_LIST					= 10148,
 	SM_AUTO_FIGHT					= 10149,
 	SM_SYSTEM_SETTING				= 10150,
@@ -936,7 +936,7 @@ enum MSG_SM_CODE
 	SM_GAME_SHOP_LIMIT				= 10152,
 	SM_GAME_MYSTERIOUS_SHOP			= 10153,
 	SM_UPDATE_MYSTERIOUS_SHOP		= 10154, 
-	SM_ONLINE_REWARD_STATE			= 10155,		//╥╒кмтзоъй╠╪Дпео╒
+	SM_ONLINE_REWARD_STATE			= 10155,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╠О©╫О©╫О©╫О©╫о╒
 	SM_LAN_AND_VAL_GIFT_INFO		= 10156,
 	SM_CHR_RECORD					= 10157,
 	SM_ANNOUCEMENT					= 10158,
@@ -945,18 +945,18 @@ enum MSG_SM_CODE
 
 	SM_MONSTER_BROADCAST			= 10161,
 	SM_GM_ANNOUNCEMENT				= 10162,
-	SM_GAMBLE_BORADCAST				= 10163,		// ╥офЗ
+	SM_GAMBLE_BORADCAST				= 10163,		// О©╫О©╫О©╫О©╫
 
-	SM_TEAM_DUNGEON_BORADCAST		= 10164,		// ╥офЗ
-	SM_TEAM_DUNGEON_INFO			= 10165,		// ╥офЗ
-	SM_INVITE_TEAM_DUNGEON			= 10166,		// ╥офЗ
+	SM_TEAM_DUNGEON_BORADCAST		= 10164,		// О©╫О©╫О©╫О©╫
+	SM_TEAM_DUNGEON_INFO			= 10165,		// О©╫О©╫О©╫О©╫
+	SM_INVITE_TEAM_DUNGEON			= 10166,		// О©╫О©╫О©╫О©╫
 
-	SM_ACTIVITY_PKSORCE				= 10167,		//pk╠ххЭ╨С╣дйДс╝
-	SM_ACTIVITY_MATCH_DATA			= 10168,		//╠хнДйЩ╬щ╦Эпб
+	SM_ACTIVITY_PKSORCE				= 10167,		//pkО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫с╝
+	SM_ACTIVITY_MATCH_DATA			= 10168,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫щ╦О©╫О©╫О©╫
 	SM_ACTIVITY_MSG					= 10169,
-	SM_ACTIVITY_RESLUT				= 10170,		//╥╒км╠ххЭ╫А╧Ш
+	SM_ACTIVITY_RESLUT				= 10170,		//О©╫О©╫О©╫м╠О©╫О©╫О©╫О©╫О©╫О©╫
 	SM_ACTIVITY_QUIZ				= 10171,
-	SM_ACTIVITY_STARTFRONT			= 10172,		//╩Н╤╞©╙й╪г╟
+	SM_ACTIVITY_STARTFRONT			= 10172,		//О©╫Н╤╞О©╫О©╫й╪г╟
 	SM_ACTIVITY_STATE				= 10173,
 	SM_ACTIVITY_MAP_STATE			= 10174,
 	SM_ACTIVITY_EVENT				= 10175,
@@ -975,50 +975,50 @@ enum MSG_SM_CODE
 	SM_HAVE_NO_READ_MAIL			= 10188,
 	SM_FRIEND_INFO					= 10189,
 	SM_RELATION_MESSAGE				= 10190,
-	SM_FAMILY_LIST					= 10191,				// об╥╒╟Оеиап╠М
-	SM_FAMILY_NOTICE				= 10192,				// об╥╒╟Оеи╧╚╦Ф
-	SM_FAMILY_INFO					= 10193,				// об╥╒╟Оеипео╒
-	SM_FAMILY_MEMBER_INFO			= 10194,				// об╥╒╟ОеиЁит╠пео╒
-	SM_FAMILY_TOTOM_INFO			= 10195,				// об╥╒м╪лзпео╒
-	SM_FAMILY_APPLIERS				= 10196,				// об╥╒╟ОеииЙгКпео╒
-	SM_FAMILY_PETS					= 10197,				// об╥╒╟Оеи╣г╪гЁХнО
-	SM_FAMILY_EVENT					= 10198,				// об╥╒╟Оеим╗ж╙
-	SM_FAMILY_PLAYER_PETS			= 10199,				// об╥╒втиМ╣г╪г╩цйч
-	SM_FAMILY_APPLY_RESULT			= 10200,				// об╥╒иЙгК╫А╧Ш
-	SM_FAMILY_LOGS					= 10201,				// об╥╒╟Оеихуж╬
-	SM_FAMILY_JOINED				= 10202,				// Ёи╧╕╪схК╬Эме
-	SM_FAMILY_TASK_COUNT			= 10203,				// об╥╒╟ОеихннЯйЩа©
+	SM_FAMILY_LIST					= 10191,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	SM_FAMILY_NOTICE				= 10192,				// О©╫б╥О©╫О©╫О©╫О©╫и╧О©╫О©╫О©╫
+	SM_FAMILY_INFO					= 10193,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_FAMILY_MEMBER_INFO			= 10194,				// О©╫б╥О©╫О©╫О©╫О©╫иЁО©╫т╠О©╫О©╫о╒
+	SM_FAMILY_TOTOM_INFO			= 10195,				// О©╫б╥О©╫м╪О©╫О©╫О©╫О©╫о╒
+	SM_FAMILY_APPLIERS				= 10196,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_FAMILY_PETS					= 10197,				// О©╫б╥О©╫О©╫О©╫О©╫и╣г╪гЁО©╫О©╫О©╫
+	SM_FAMILY_EVENT					= 10198,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫м╗ж╙
+	SM_FAMILY_PLAYER_PETS			= 10199,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫г╪г╩О©╫О©╫О©╫
+	SM_FAMILY_APPLY_RESULT			= 10200,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_FAMILY_LOGS					= 10201,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╬
+	SM_FAMILY_JOINED				= 10202,				// О©╫и╧О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_FAMILY_TASK_COUNT			= 10203,				// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	SM_REAL_TIME_RANK_RESULT		= 10204,
 	SM_REAL_TIME_RANK_TIME			= 10205,
-	SM_TITLE_POSITION				= 10206,				// ╥офЗ
+	SM_TITLE_POSITION				= 10206,				// О©╫О©╫О©╫О©╫
 	SM_FAMILY_WAR_EVENT				= 10207,
-	SM_FAMILY_WAR_WINNER			= 10208,				// ╥офЗ
-	SM_PEOPLEBOOK_TAOYUAN			= 10209,				// ╥офЗ
-	SM_PEOPLEBOOK_YANWUCHANG		= 10210,				// ╥офЗ
-	SM_PEOPLEBOOK_FENGYINBANG		= 10211,				// ╥офЗ
-	SM_GLEBEBOOK_SHENLONGDING		= 10212,				// ╥офЗ
-	SM_GLEBEBOOK_SHEJITU			= 10213,				// ╥офЗ
-	SM_GLEBEBOOK_LINGTAIFUDI		= 10214,				// ╥офЗ
-	SM_SKYBOOK_KUNLUNJING			= 10215,				// ╥офЗ
-	SM_SKYBOOK_JIUTIANTA			= 10216,				// ╥офЗ
-	SM_SKYBOOK_FUMO					= 10217,				// ╥офЗ
-	SM_SKYBOOK_DENGTIANTI			= 10218,				// ╥офЗ
+	SM_FAMILY_WAR_WINNER			= 10208,				// О©╫О©╫О©╫О©╫
+	SM_PEOPLEBOOK_TAOYUAN			= 10209,				// О©╫О©╫О©╫О©╫
+	SM_PEOPLEBOOK_YANWUCHANG		= 10210,				// О©╫О©╫О©╫О©╫
+	SM_PEOPLEBOOK_FENGYINBANG		= 10211,				// О©╫О©╫О©╫О©╫
+	SM_GLEBEBOOK_SHENLONGDING		= 10212,				// О©╫О©╫О©╫О©╫
+	SM_GLEBEBOOK_SHEJITU			= 10213,				// О©╫О©╫О©╫О©╫
+	SM_GLEBEBOOK_LINGTAIFUDI		= 10214,				// О©╫О©╫О©╫О©╫
+	SM_SKYBOOK_KUNLUNJING			= 10215,				// О©╫О©╫О©╫О©╫
+	SM_SKYBOOK_JIUTIANTA			= 10216,				// О©╫О©╫О©╫О©╫
+	SM_SKYBOOK_FUMO					= 10217,				// О©╫О©╫О©╫О©╫
+	SM_SKYBOOK_DENGTIANTI			= 10218,				// О©╫О©╫О©╫О©╫
 	SM_BANQUET_TOAST				= 10219,
 	SM_PVP_INFO						= 10220,
 	SM_DAILY_PK_INFO				= 10221,
 	SM_ENEMY_INFO					= 10222,
 	SM_ENEMY_INFO_SINGLE			= 10223,
 	SM_TRYOUT_VIP_INFO				= 10224,
-	SM_KILLER_RANK_INFO				= 10225,				// ╥офЗ
+	SM_KILLER_RANK_INFO				= 10225,				// О©╫О©╫О©╫О©╫
 	SM_KILLER_RANK_SELF				= 10226,
 	SM_EVERY_DAY_GET_GOLD			= 10227,
 	SM_LEVEL_GIFT					= 10228,
 	SM_LEVEL_GOLD					= 10229,
 	SM_GAMBLE_SINGLE_INFO			= 10230,
 	SM_PUBLIC_CHAT					= 10231,
-	SM_GAMBLE_DEPOT					= 10232,				//о║йю╠╕╦СуД╠╕╡ж©Б
-	SM_SIGN_INFO					= 10233,				//╥╒кмг╘╣╫пео╒
-	SM_JUANXIANWUZI_INFO			= 10234,				// ╥офЗ
+	SM_GAMBLE_DEPOT					= 10232,				//о║О©╫О©╫О©╫О©╫О©╫О©╫О©╫Д╠╕О©╫ж©О©╫
+	SM_SIGN_INFO					= 10233,				//О©╫О©╫О©╫О©╫г╘О©╫О©╫О©╫О©╫о╒
+	SM_JUANXIANWUZI_INFO			= 10234,				// О©╫О©╫О©╫О©╫
 	SM_SEVEN_LOGIN					= 10235,
 
 	SM_NEW_SERVER_ACTIVITY_INFO		= 10236,
@@ -1034,254 +1034,256 @@ enum MSG_SM_CODE
 	SM_MOUNT_UPGRADE_BROADCAST			= 10245,
 	SM_VICEGENERAL_GENGU_BROADCAST		= 10246,
 	SM_VICEGENERAL_WUYI_BROADCAST		= 10247,
-	SM_OPEN_LEVEL_BROADCAST				= 10248,				// ╥офЗ
-	SM_CHANGE_JOB_BROADCAST				= 10249,				// ╥офЗ
-	SM_LACKEY_UPGRADE_BROADCAST			= 10250,				// ╥офЗ
-	SM_ITEM_COMBINE_BROADCAST			= 10251,				// ╥офЗ
-	SM_SUBMIT_GOLD_EQUIP_BROADCAST		= 10252,				// ╥офЗ
-	SM_READ_BROADCAST					= 10253,				// ╥офЗ
+	SM_OPEN_LEVEL_BROADCAST				= 10248,				// О©╫О©╫О©╫О©╫
+	SM_CHANGE_JOB_BROADCAST				= 10249,				// О©╫О©╫О©╫О©╫
+	SM_LACKEY_UPGRADE_BROADCAST			= 10250,				// О©╫О©╫О©╫О©╫
+	SM_ITEM_COMBINE_BROADCAST			= 10251,				// О©╫О©╫О©╫О©╫
+	SM_SUBMIT_GOLD_EQUIP_BROADCAST		= 10252,				// О©╫О©╫О©╫О©╫
+	SM_READ_BROADCAST					= 10253,				// О©╫О©╫О©╫О©╫
 	SM_VIP_BROADCAST					= 10254,
 	SM_RECHARGE_REWARD_BROADCAST		= 10255,
 	SM_GET_DIAMOND_RING					= 10256,
 
-	SM_CHANGE_POSITION					= 10257,				// ╥офЗ
+	SM_CHANGE_POSITION					= 10257,				// О©╫О©╫О©╫О©╫
 
 	SM_KINGDOM_MIN						= 10258,
 	SM_KINGDOM_POSTION					= 10259,
 	SM_KINGDOM_FENG						= 10260,
-	SM_KINGDOM_CREAT					= 10261,			//╢╢╫╗╧З╪р
-	SM_KINGDOM_GUANJUE					= 10262,			//╧ы╬Т╪э╧╧
-	SM_KINGDOM_TWEAL_CONFIG				= 10263,			//╫╠юЬ╪сЁиеДжцпео╒
+	SM_KINGDOM_CREAT					= 10261,			//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_KINGDOM_GUANJUE					= 10262,			//О©╫ы╬О©╫О©╫э╧О©╫
+	SM_KINGDOM_TWEAL_CONFIG				= 10263,			//О©╫О©╫О©╫О©╫О©╫сЁО©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 	SM_KINGDOM_TOP						= 10264,			//
 	SM_KINGDOM_MAX						= 10265,
 
 	SM_BANQUET_INFO						= 10266,
-	SM_GAMBLE							= 10267,				// ╥офЗ
+	SM_GAMBLE							= 10267,				// О©╫О©╫О©╫О©╫
 	SM_QUERY_PLAYER_INFO				= 10268,
 	SM_QUERY_ACTIVITY_INFO				= 10269,
-	SM_EXACTIVITY_INFO					= 10270,				//╥офЗ
-	SM_EXACTIVITY_CFG					= 10271,				//╥офЗ
+	SM_EXACTIVITY_INFO					= 10270,				//О©╫О©╫О©╫О©╫
+	SM_EXACTIVITY_CFG					= 10271,				//О©╫О©╫О©╫О©╫
 
 	SM_CHARGE_SUCCESS					= 10272,
 	SM_FLY_ICON_INT						= 10273,
 
 	SM_YELLOW_STONE						= 10274,
-	SM_PREVENT_WALLOW					= 10275,				//╥юЁацт
-	SM_SKYBOOK_ADVANCEDTRIALSQUERY		= 10276,				// ╥офЗ//╫Ь╫вйта╤ЁУй╪╩╞
-	SM_ADVANCEDTRIALS_RAIDS_INFO		= 10277,				// ╥офЗ//╫Ь╫вйта╤и╗╣╢пео╒
-	SM_ADVANCEDTRIALS_BOSS_RESULT		= 10278,				// ╥офЗ//╫Ь╫вйта╤BOSS╧ж╣Т м╗ж╙
-	SM_MYSTERIOUS_SHOP_QUERY			= 10279,				//иЯцьил╣ЙЁУй╪╩╞
+	SM_PREVENT_WALLOW					= 10275,				//О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SKYBOOK_ADVANCEDTRIALSQUERY		= 10276,				// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫
+	SM_ADVANCEDTRIALS_RAIDS_INFO		= 10277,				// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫и╗О©╫О©╫О©╫О©╫о╒
+	SM_ADVANCEDTRIALS_BOSS_RESULT		= 10278,				// О©╫О©╫О©╫О©╫//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫BOSSО©╫ж╣О©╫ м╗ж╙
+	SM_MYSTERIOUS_SHOP_QUERY			= 10279,				//О©╫О©╫О©╫О©╫О©╫л╣О©╫О©╫й╪О©╫О©╫
 	
-	SM_VICE_GENERAL_TIME_QUERY			= 10280,				//нД╫╚упд╪й╠╪Дпео╒
-	SM_VICE_GENERAL_RECRUIT				= 10281,				//упд╪╣днД╫╚
-	SM_VICE_GENERAL_SHOW				= 10282,				//т╓ююнД╫╚
-	SM_VICE_GENERAL_WORLD_BROADCAST		= 10283,				//йю╫Г╧Ц╡╔╩Я╣цнД╫╚
+	SM_VICE_GENERAL_TIME_QUERY			= 10280,				//О©╫Д╫╚О©╫О©╫д╪й╠О©╫О©╫О©╫О©╫о╒
+	SM_VICE_GENERAL_RECRUIT				= 10281,				//О©╫О©╫д╪О©╫О©╫О©╫Д╫╚
+	SM_VICE_GENERAL_SHOW				= 10282,				//т╓О©╫О©╫О©╫Д╫╚
+	SM_VICE_GENERAL_WORLD_BROADCAST		= 10283,				//О©╫О©╫О©╫О©╫Ц╡╔О©╫О©╫О©╫О©╫Д╫╚
 
-	SM_ACTIVITY_STARTFIVEFRONT			= 10299,				//лАг╟5╥жжслАпя
+	SM_ACTIVITY_STARTFIVEFRONT			= 10299,				//О©╫О©╫г╟5О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	SM_HIGH_TAOYUAN_ERROR				= 10300,				// ╥офЗ//╦ъ╪╤упомй╖╟э
-	SM_THREE_SHOP						= 10301,				// ╥офЗ//3лЛилЁг╧╨бРпео╒
+	SM_HIGH_TAOYUAN_ERROR				= 10300,				// О©╫О©╫О©╫О©╫//О©╫ъ╪О©╫О©╫О©╫О©╫О©╫й╖О©╫О©╫
+	SM_THREE_SHOP						= 10301,				// О©╫О©╫О©╫О©╫//3О©╫О©╫О©╫лЁг╧О©╫О©╫О©╫О©╫О©╫о╒
 
 
 
 	/*
 	* SM_ZK	11400~11699
 	*/
-	SM_NOTIFY_MOUNT_INFO				= 11407,		//м╗ж╙вЬфОпео╒
-	SM_NOTIFY_MOUNT_TRAIN_RESULT		= 11408,		//м╗ж╙вЬфОеЮяЬ╫А╧Ш
-	SM_NOTIFY_MOUNT_SKILL_INFO			= 11409,		//м╗ж╙вЬфО╪╪дэпео╒
+	SM_NOTIFY_MOUNT_INFO				= 11407,		//м╗ж╙О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_MOUNT_TRAIN_RESULT		= 11408,		//м╗ж╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_NOTIFY_MOUNT_SKILL_INFO			= 11409,		//м╗ж╙О©╫О©╫О©╫О╪╪О©╫О©╫О©╫О©╫о╒
 
-	SM_NOTIFY_TI_SHI_INFO				= 11415,		//лАй╬пео╒
-	SM_NOTIFY_MOUNT_UPDATE				= 11416,		//вЬфОиЩ╫в╧╚╦Ф
+	SM_NOTIFY_TI_SHI_INFO				= 11415,		//О©╫О©╫й╬О©╫О©╫о╒
+	SM_NOTIFY_MOUNT_UPDATE				= 11416,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫в╧О©╫О©╫О©╫
 
-	SM_NOTIFY_KILL_MONSTER_COUNT		= 11417,		//об╥╒и╠╧жмЁ╪фпео╒
-	SM_NOTIFY_KILL_MONSTER_CHANGE		= 11418,		//об╥╒и╠╧жйЩ╠Д╩╞пео╒
+	SM_NOTIFY_KILL_MONSTER_COUNT		= 11417,		//О©╫б╥О©╫и╠О©╫О©╫мЁО©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_KILL_MONSTER_CHANGE		= 11418,		//О©╫б╥О©╫и╠О©╫О©╫О©╫О©╫О©╫Д╩╞О©╫О©╫о╒
 
-	SM_NOTIFY_DEPOT_CURRENCY_INFO		= 11419,		//об╥╒╡ж©Б╩У╠рпео╒
-	SM_NOTIFY_DEPOT_INFO				= 11420,		//об╥╒╡ж©Бпео╒
-	SM_NOTIFY_DEPOT_ITEM				= 11421,		//об╥╒╡ж©БнОф╥
-	//╨цсяо╣мЁ
-	SM_SEND_FRIEND_LIST					= 11422,		//об╥╒╨цсяап╠М
-	SM_SEND_SIFT_FRIEND					= 11423,		//об╥╒и╦я║╨цся
-	SM_SEND_FRIEND_REQUEST				= 11424,		//об╥╒╨цсягКгС
-	SM_SEND_FRIEND_REWARD				= 11425,		//об╥╒╨цся╫╠юЬ
+	SM_NOTIFY_DEPOT_CURRENCY_INFO		= 11419,		//О©╫б╥О©╫О©╫ж©О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_DEPOT_INFO				= 11420,		//О©╫б╥О©╫О©╫ж©О©╫О©╫О©╫о╒
+	SM_NOTIFY_DEPOT_ITEM				= 11421,		//О©╫б╥О©╫О©╫ж©О©╫О©╫О©╫ф╥
+	//О©╫О©╫О©╫О©╫о╣мЁ
+	SM_SEND_FRIEND_LIST					= 11422,		//О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫п╠О©╫
+	SM_SEND_SIFT_FRIEND					= 11423,		//О©╫б╥О©╫и╦я║О©╫О©╫О©╫О©╫
+	SM_SEND_FRIEND_REQUEST				= 11424,		//О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_FRIEND_REWARD				= 11425,		//О©╫б╥О©╫О©╫О©╫О©╫я╫О©╫О©╫О©╫
 	
-	SM_NOTIFY_EQUIP_UP_STAR				= 11426,		//в╟╠╦г©╩╞╧╚╦Ф
-	//╫╩рв
-	SM_SEND_ASK_TRADE					= 11427,		//╥╒км╫╩рвгКгС
-	SM_TRADE_ITEM_CHANGE				= 11428,		//об╥╒╫╩рвю╦нОф╥╠Д╩╞
-	SM_TARGET_TRADE_ITEM_CHANGE			= 11429,		//м╗ж╙╤т╥╫╫╩рвю╦нОф╥╠Д╩╞
-	SM_TRADE_MONEY_CHANGE				= 11430,		//об╥╒╫╩рвю╦╫Пг╝╠Д╩╞
-	SM_TARGET_MONEY_CHANGE				= 11431,		//м╗ж╙╤т╥╫╫╩рвю╦╫Пг╝╠Д╩╞
-	SM_SEND_TRADE_SUCCEED				= 11432,		//м╗ж╙╫╩рвЁи╧╕
-	SM_SEND_OPERATE_TO_TARGET			= 11433,		//╟я╡ывВм╗ж╙╤т╥╫
+	SM_NOTIFY_EQUIP_UP_STAR				= 11426,		//в╟О©╫О©╫г©О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫
+	SM_SEND_ASK_TRADE					= 11427,		//О©╫О©╫О©╫м╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_TRADE_ITEM_CHANGE				= 11428,		//О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥О©╫Д╩╞
+	SM_TARGET_TRADE_ITEM_CHANGE			= 11429,		//м╗ж╙О©╫т╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥О©╫Д╩╞
+	SM_TRADE_MONEY_CHANGE				= 11430,		//О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫г╝О©╫Д╩╞
+	SM_TARGET_MONEY_CHANGE				= 11431,		//м╗ж╙О©╫т╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫г╝О©╫Д╩╞
+	SM_SEND_TRADE_SUCCEED				= 11432,		//м╗ж╙О©╫О©╫О©╫вЁи╧О©╫
+	SM_SEND_OPERATE_TO_TARGET			= 11433,		//О©╫я╡О©╫О©╫О©╫м╗ж╙О©╫т╥О©╫
 
-	//в╟╠╦йЙ╩ь
-	SM_SEND_RANSOM_INFO					= 11434,		//╥╒кмв╟╠╦йЙ╩ьпео╒
-	SM_SEND_SPOILS_INFO					= 11435,		//╥╒кму╫юШф╥пео╒
-	//сй╪Ч					
-	SM_SEND_MAIL_LIST					= 11436,		//╥╒кмсй╪Чап╠М
-	SM_SEND_MAIL_CONTENT				= 11437,		//╥╒кмсй╪Чдзхщ
-	SM_SEND_NEW_MAIL					= 11438,		//╥╒кмпбсй╪Ч
-	//илЁг
-	SM_SEND_ITEM_LIMIT_COUNT			= 11439,		//╥╒кмилЁгочжф╦ЖйЩ
-	//╥╗╠╕
-	SM_SEND_FA_BAO_INFO					= 11440,		//╥╒км╥╗╠╕пео╒
-	SM_SEND_FA_BAO_GONG_GAO				= 11441,		//╥╗╠╕╧╚╦Ф
-	//╥╒кмbossпео╒
-	SM_SEND_BOSS_INFO					= 11442,		//╥╒кмboosпео╒
-	SM_SEND_BOSS_GONG_GAO				= 11443,		//BOSSкюмЖ╦╢╩Н╧╚╦Ф
-	//╥╒кму╫╤╥а╕пео╒
-	SM_SEND_BATTLE_INFO					= 11444,		//╥╒кму╫╤╥пео╒
-	//╬Тн╩
-	SM_SEND_JUE_WEI_DONATE_MONEY		= 11445,		//╥╒км╬Тн╩╬Хов╣дм╜г╝
-	SM_SEND_JUE_WEI_RANK				= 11446,		//╥╒км╬Тн╩╦Жхкеепп
-	SM_SEND_JUE_TOTAL_RANK				= 11447,		//╥╒км╬Тн╩вэеепп╟Я
-	SM_SEND_JUE_WEI_GONG_GAO			= 11448,		//╧╚╦Ф
+	//в╟О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_RANSOM_INFO					= 11434,		//О©╫О©╫О©╫О©╫в╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_SPOILS_INFO					= 11435,		//О©╫О©╫О©╫О©╫у╫О©╫О©╫ф╥О©╫О©╫о╒
+	//О©╫й╪О©╫					
+	SM_SEND_MAIL_LIST					= 11436,		//О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫п╠О©╫
+	SM_SEND_MAIL_CONTENT				= 11437,		//О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_NEW_MAIL					= 11438,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╪О©╫
+	//О©╫лЁО©╫
+	SM_SEND_ITEM_LIMIT_COUNT			= 11439,		//О©╫О©╫О©╫О©╫О©╫лЁО©╫О©╫О©╫О©╫ф╦О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫
+	SM_SEND_FA_BAO_INFO					= 11440,		//О©╫О©╫О©╫м╥О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_FA_BAO_GONG_GAO				= 11441,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//О©╫О©╫О©╫О©╫bossО©╫О©╫о╒
+	SM_SEND_BOSS_INFO					= 11442,		//О©╫О©╫О©╫О©╫boosО©╫О©╫о╒
+	SM_SEND_BOSS_GONG_GAO				= 11443,		//BOSSО©╫О©╫О©╫О©╫О©╫О©╫О©╫Н╧╚О©╫О©╫
+	//О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_BATTLE_INFO					= 11444,		//О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫н╩
+	SM_SEND_JUE_WEI_DONATE_MONEY		= 11445,		//О©╫О©╫О©╫м╬О©╫н╩О©╫О©╫О©╫в╣О©╫м╜г╝
+	SM_SEND_JUE_WEI_RANK				= 11446,		//О©╫О©╫О©╫м╬О©╫н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_JUE_TOTAL_RANK				= 11447,		//О©╫О©╫О©╫м╬О©╫н╩О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	SM_SEND_JUE_WEI_GONG_GAO			= 11448,		//О©╫О©╫О©╫О©╫
+	SM_FAMILY_WAR_ICON			= 0x2CD6,
 
-	//╢ПлБ╩Н╤╞
-	SM_SEND_DA_TI_READY_START			= 11450,		//в╪╠╦©╙й╪
-	SM_SEND_DA_TI_RANK					= 11451,		//╥╒кмеепп╟Я
-	SM_SEND_QUESTIONS_TO_CLIENT			= 11452,		//╥╒кмнйлБ╦Ь©м╩╖╤к
-	SM_SEND_CHAR_DA_TI_INFO				= 11453,		//╥╒км╦Жхкпео╒
-	SM_SEND_DA_TI_HUO_DONG_ID			= 11454,		//╥╒км╢ПлБ╩Н╤╞id
+	//О©╫О©╫О©╫О©╫Н╤╞
+	SM_SEND_DA_TI_READY_START			= 11450,		//в╪О©╫О©╫О©╫О©╫й╪
+	SM_SEND_DA_TI_RANK					= 11451,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	SM_SEND_QUESTIONS_TO_CLIENT			= 11452,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╩О©╫О©╫О©╫
+	SM_SEND_CHAR_DA_TI_INFO				= 11453,		//О©╫О©╫О©╫м╦О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_DA_TI_HUO_DONG_ID			= 11454,		//О©╫О©╫О©╫м╢О©╫О©╫О©╫Н╤╞id
 
-	//еюкЧ╦╠╠╬
-	SM_SEND_ZSZZ_DUNGEON_RANK			= 11456,		//╥╒кмжНиЯж╝у╫╦╠╠╬пео╒
-	SM_ZSZZ_DUNGEON_GONG_GAO			= 11457,		//м╗╧ь╧╚╦Ф
-	//м╗ж╙╩Н╤╞м╪╠Й
-	SM_SEND_ALL_ICON					= 11458,		//╣гб╫об╥╒кЫсп╩Н╤╞м╪╠Й
-	SM_SEND_ONE_ICON					= 11459,		//об╥╒╣╔╦Ж╩Н╤╞м╪╠Й
-	//ЁИ╫╠о╣мЁ
-	SM_SEND_CHOU_JIANG_RECORD			= 11465,		//╥╒км╦ЖхкЁИ╫╠╪гб╪
-	SM_SEND_ADD_CHOU_JIANG_RECORD		= 11466,		//тЖ╪ср╩лУ╦ЖхкЁИ╫╠╪гб╪
-	SM_SEND_GLOBAL_CHOU_JIANG_RECORD	= 11467,		//╥╒кмх╚╥ЧЁИ╫╠╪гб╪
-	SM_SEND_ADD_GLOBAL_CHOU_JIANG_RECORD= 11468,		//тЖ╪ср╩лУх╚╥ЧЁИ╫╠╪гб╪
-	SM_SEND_SCORE_SHOP_LIMIT_INFO		= 11469,		//илЁгочжфпео╒
-	SM_SEND_ALL_CHOU_JIANG_ITEM			= 11470,		//╥╒кмЁИ╫╠╠Ё╟Эпео╒
-	SM_SEND_CHOU_JIANG_ITEM_CHANGE		= 11471,		//╥╒кмЁИ╫╠╠Ё╟ЭнОф╥╦д╠Д
-	SM_SEND_CHOU_JIANG_GONG_GAO			= 11472,		//╥╒кмЁИ╫╠╧╚╦Ф
-	SM_SEND_GET_ITEM					= 11473,		//ЁИ╫╠ЁИ╣╫╣днОф╥
-	//фМ╦ёо╣мЁ
-	SM_SEND_QI_FU_INFO					= 11475,		//╥╒кмфМ╦ёпео╒
-	SM_SEND_QI_FU_SUCCESS				= 11476,		//╥╒кмфМ╦ёЁи╧╕
-	//лАй╬пео╒
-	SM_GM_BROADCAST						= 11477,		// GM╨Сл╗╥╒км╧╚╦Ф
-	SM_SEND_NOTICE_PARAM				= 11478,		//╥╒кмлАй╬пео╒╡нйЩ
-	//╢Сн╦мУ
-	SM_SEND_DWW_INFO					= 11479,		//╥╒км╢Сн╦мУпео╒
-	//╩Н╤╞╢СлЭйЩ╬щ
-	SM_SEND_HD_DA_TING_INFO				= 11480,		//╥╒км╩Н╤╞╢СлЭйЩ╬щ
+	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_ZSZZ_DUNGEON_RANK			= 11456,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╝у╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_ZSZZ_DUNGEON_GONG_GAO			= 11457,		//м╗О©╫ь╧О©╫О©╫О©╫
+	//м╗ж╙О©╫Н╤╞м╪О©╫О©╫
+	SM_SEND_ALL_ICON					= 11458,		//О©╫О©╫б╫О©╫б╥О©╫О©╫О©╫О©╫п╩Н╤╞м╪О©╫О©╫
+	SM_SEND_ONE_ICON					= 11459,		//О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫Н╤╞м╪О©╫О©╫
+	//О©╫И╫╠о╣мЁ
+	SM_SEND_CHOU_JIANG_RECORD			= 11465,		//О©╫О©╫О©╫м╦О©╫О©╫кЁИ╫╠О©╫О©╫б╪
+	SM_SEND_ADD_CHOU_JIANG_RECORD		= 11466,		//О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫кЁИ╫╠О©╫О©╫б╪
+	SM_SEND_GLOBAL_CHOU_JIANG_RECORD	= 11467,		//О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫И╫╠О©╫О©╫б╪
+	SM_SEND_ADD_GLOBAL_CHOU_JIANG_RECORD= 11468,		//О©╫О©╫О©╫О©╫р╩О©╫О©╫х╚О©╫О©╫О©╫И╫╠О©╫О©╫б╪
+	SM_SEND_SCORE_SHOP_LIMIT_INFO		= 11469,		//О©╫лЁО©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_ALL_CHOU_JIANG_ITEM			= 11470,		//О©╫О©╫О©╫мЁИ╫╠О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_CHOU_JIANG_ITEM_CHANGE		= 11471,		//О©╫О©╫О©╫мЁИ╫╠О©╫О©╫О©╫О©╫О©╫О©╫ф╥О©╫д╠О©╫
+	SM_SEND_CHOU_JIANG_GONG_GAO			= 11472,		//О©╫О©╫О©╫мЁИ╫╠О©╫О©╫О©╫О©╫
+	SM_SEND_GET_ITEM					= 11473,		//О©╫И╫╠О©╫И╣╫О©╫О©╫О©╫О©╫ф╥
+	//О©╫О©╫О©╫О©╫о╣мЁ
+	SM_SEND_QI_FU_INFO					= 11475,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_QI_FU_SUCCESS				= 11476,		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫и╧О©╫
+	//О©╫О©╫й╬О©╫О©╫о╒
+	SM_GM_BROADCAST						= 11477,		// GMО©╫О©╫л╗О©╫О©╫О©╫м╧О©╫О©╫О©╫
+	SM_SEND_NOTICE_PARAM				= 11478,		//О©╫О©╫О©╫О©╫О©╫О©╫й╬О©╫О©╫о╒О©╫О©╫О©╫О©╫
+	//О©╫О©╫н╦О©╫О©╫
+	SM_SEND_DWW_INFO					= 11479,		//О©╫О©╫О©╫м╢О©╫н╦О©╫О©╫О©╫О©╫о╒
+	//О©╫Н╤╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_HD_DA_TING_INFO				= 11480,		//О©╫О©╫О©╫м╩Н╤╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	//VIP
-	SM_SEND_VIP_INFO					= 11481,		//╥╒кмvipпео╒
-	// bossж╝╪Д
-	SM_SEND_BOSS_HOME_INFO				= 11485,		//╥╒кмbossж╝╪рпео╒
-	SM_SEND_BOSS_CHANGE					= 11486,		//bossпео╒╦д╠Д
-	// ╡и╪╞
-	SM_PLANT_GAIN_ITEM					= 11489,		//╥╒км╡и╪╞╩Ях║нОф╥
-	//вйт╢ур╩ь
-	SM_SEND_SEARCH_BACK_INFO			= 11490,		//╥╒кмвйт╢ур╩ьпео╒
-	//╬╜яИгР
-	SM_SEND_EXP_BALL_INFO				= 11491,		//╥╒км╬╜яИгРпео╒
-	//ткс╙╩Н╤╞
-	SM_SEND_SHOU_CHONG_INFO				= 11492,		//╥╒кмйвЁЕпео╒
-	SM_SEND_NEW_SERVER_FAVORABLE		= 11493,		//╥╒кмпб╥Чль╩щпео╒
-	SM_SEND_EVERYDAY_CHONG_ZHI			= 11494,		//╥╒кмц©хуЁДж╣пео╒
-	SM_SEND_TOTAL_CHONG_ZHI				= 11495,		//юш╪фЁДж╣пео╒
+	SM_SEND_VIP_INFO					= 11481,		//О©╫О©╫О©╫О©╫vipО©╫О©╫о╒
+	// bossж╝О©╫О©╫
+	SM_SEND_BOSS_HOME_INFO				= 11485,		//О©╫О©╫О©╫О©╫bossж╝О©╫О©╫О©╫О©╫о╒
+	SM_SEND_BOSS_CHANGE					= 11486,		//bossО©╫О©╫о╒О©╫д╠О©╫
+	// О©╫и╪О©╫
+	SM_PLANT_GAIN_ITEM					= 11489,		//О©╫О©╫О©╫м╡и╪О©╫О©╫О©╫х║О©╫О©╫ф╥
+	//О©╫О©╫т╢О©╫р╩О©╫
+	SM_SEND_SEARCH_BACK_INFO			= 11490,		//О©╫О©╫О©╫О©╫О©╫О©╫т╢О©╫р╩О©╫О©╫О©╫о╒
+	//О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_EXP_BALL_INFO				= 11491,		//О©╫О©╫О©╫м╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫с╙О©╫Н╤╞
+	SM_SEND_SHOU_CHONG_INFO				= 11492,		//О©╫О©╫О©╫О©╫О©╫вЁО©╫О©╫О©╫о╒
+	SM_SEND_NEW_SERVER_FAVORABLE		= 11493,		//О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫ь╩О©╫О©╫О©╫о╒
+	SM_SEND_EVERYDAY_CHONG_ZHI			= 11494,		//О©╫О©╫О©╫О©╫ц©О©╫уЁО©╫ж╣О©╫О©╫о╒
+	SM_SEND_TOTAL_CHONG_ZHI				= 11495,		//О©╫ш╪фЁО©╫ж╣О©╫О©╫о╒
 
-	//м╤вй
-	SM_SEND_TOU_ZI_INFO					= 11496,		//╥╒кмм╤вйпео╒
-	SM_SEND_GET_RESULT					= 11497,		//аЛх║Ёи╧╕
-	SM_SEND_TOU_ZI_RECORD				= 11498,		//╥╒кмм╤вй╪гб╪
-	// ©╙╥Ч╩Н╤╞
-	SM_SEND_KAI_FU_HUO_DONG_INFO		= 11500,		//╥╒км©╙╥Ч╩Н╤╞пео╒
-	SM_SEND_KAI_FU_HUO_DONG_STATE		= 11501,		//╥╒км╩Н╤╞в╢л╛
-	// ╩Нт╬╤х
-	SM_SEND_HUO_YUE_DU_INFO				= 11502,		//╥╒км╩Нт╬╤хпео╒
-	//╧ын╩
-	SM_SEND_GUAN_WEI_INFO				= 11504,		//╥╒км╧ын╩пео╒
-	SM_SEND_QI_SHI_INFO					= 11505,		//╥╒кмфОй©пео╒
-	//Ёи╬м
-	SM_SEND_ACHIEVEMENT_INFO			= 11510,		//╥╒кмЁи╬мо╣мЁпео╒
-	//╥╒км©╧у╫й╓юШ╩Н╤╞╫╠юЬ
-	SM_SEND_WAR_VICTORY_INFO			= 11515,		//╥╒км©╧у╫й╓юШ╩Н╤╞пео╒
+	//м╤О©╫О©╫
+	SM_SEND_TOU_ZI_INFO					= 11496,		//О©╫О©╫О©╫О©╫м╤О©╫О©╫О©╫О©╫о╒
+	SM_SEND_GET_RESULT					= 11497,		//О©╫О©╫х║О©╫и╧О©╫
+	SM_SEND_TOU_ZI_RECORD				= 11498,		//О©╫О©╫О©╫О©╫м╤О©╫й╪О©╫б╪
+	// О©╫О©╫О©╫О©╫О©╫Н╤╞
+	SM_SEND_KAI_FU_HUO_DONG_INFO		= 11500,		//О©╫О©╫О©╫м©О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫о╒
+	SM_SEND_KAI_FU_HUO_DONG_STATE		= 11501,		//О©╫О©╫О©╫м╩Н╤╞в╢л╛
+	// О©╫О©╫т╬О©╫О©╫
+	SM_SEND_HUO_YUE_DU_INFO				= 11502,		//О©╫О©╫О©╫м╩О©╫т╬О©╫О©╫О©╫О©╫о╒
+	//О©╫О©╫н╩
+	SM_SEND_GUAN_WEI_INFO				= 11504,		//О©╫О©╫О©╫м╧О©╫н╩О©╫О©╫о╒
+	SM_SEND_QI_SHI_INFO					= 11505,		//О©╫О©╫О©╫О©╫О©╫О©╫й©О©╫О©╫о╒
+	SM_SEND_TITLE_INFO			= 11506,
+	//О©╫и╬О©╫
+	SM_SEND_ACHIEVEMENT_INFO			= 11510,		//О©╫О©╫О©╫мЁи╬О©╫о╣мЁО©╫О©╫о╒
+	//О©╫О©╫О©╫м©О©╫у╫й╓О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫О©╫
+	SM_SEND_WAR_VICTORY_INFO			= 11515,		//О©╫О©╫О©╫м©О©╫у╫й╓О©╫О©╫О©╫Н╤╞О©╫О©╫о╒
 	/*
 	* SM_WMF	11700~11899
 	*/
 
-	SM_UPDATE_FIGHT_STATE				= 11700,	// ╦Эпбу╫╤╥в╢л╛
+	SM_UPDATE_FIGHT_STATE				= 11700,	// О©╫О©╫О©╫О©╫у╫О©╫О©╫в╢л╛
 
-	//╠Ё╟Э
-	SM_SEND_BAG_DIRTY					= 11703,	// об╥╒╠Ё╟ЭтЮйЩ╬щ
-	SM_SEND_BAG_INFO					= 11704,	// об╥╒╠Ё╟ЭйЩ╬щ
-	SM_SEND_BAG_SELL_ITEMS				= 11705,	// об╥╒╩ь╧╨пео╒
-	SM_SEND_CHAR_SHOP_LINIT				= 11706,	// ╦Жхкил╣Йоч╧╨пео╒
+	//О©╫О©╫О©╫О©╫
+	SM_SEND_BAG_DIRTY					= 11703,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_BAG_INFO					= 11704,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_SEND_BAG_SELL_ITEMS				= 11705,	// О©╫б╥О©╫О©╫ь╧О©╫О©╫О©╫о╒
+	SM_SEND_CHAR_SHOP_LINIT				= 11706,	// О©╫О©╫О©╫О©╫О©╫л╣О©╫О©╫ч╧О©╫О©╫О©╫о╒
 
-	// в╟╠╦ю╦
-	SM_SEND_EQUIP_INFO					= 11710,	// ╥╒кмв╟╠╦пео╒
-	SM_SEND_GEM_INFO					= 11711,	// ╥╒км╠╕й╞оБг╤пео╒
-	SM_SEND_OPEN_GEM_HOLE				= 11712,	// ╥╒км╠╕й╞©╙©впео╒
-	// ╩У╠р
-	SM_SEND_CURRENCY_INFO				= 11720,	// ╥╒км╩У╠рпео╒
+	// в╟О©╫О©╫О©╫О©╫
+	SM_SEND_EQUIP_INFO					= 11710,	// О©╫О©╫О©╫О©╫в╟О©╫О©╫О©╫О©╫о╒
+	SM_SEND_GEM_INFO					= 11711,	// О©╫О©╫О©╫м╠О©╫й╞О©╫О©╫г╤О©╫О©╫о╒
+	SM_SEND_OPEN_GEM_HOLE				= 11712,	// О©╫О©╫О©╫м╠О©╫й╞О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	// О©╫О©╫О©╫О©╫
+	SM_SEND_CURRENCY_INFO				= 11720,	// О©╫О©╫О©╫м╩О©╫О©╫О©╫О©╫О©╫о╒
 
-	// ╩цйч
-	SM_SEND_PET_INFO					= 11730,	// ╥╒км╩цйчпео╒
-	SM_SEND_PET_EGG_INFO				= 11731,	// ╥╒кмЁХнО╣╟пео╒
-	SM_SEND_PET_LIST					= 11732,	// ╥╒кммФ╪р╩цйчап╠М
-	SM_SEND_PET_LEARN_NEW_SKILL			= 11733,	// ╥╒км╩цйчя╖о╟╣╫пб╪╪дэ
-	SM_PET_BROADCASE					= 11734,	// ╩цйч╧╚╦Ф
-	SM_SEND_PET_STATUS					= 11735,	// ╩цйчв╢л╛╦Эпб╟Эё╗гЬсР╥╒кмё╘
+	// О©╫О©╫О©╫О©╫
+	SM_SEND_PET_INFO					= 11730,	// О©╫О©╫О©╫м╩О©╫О©╫О©╫О©╫О©╫о╒
+	SM_SEND_PET_EGG_INFO				= 11731,	// О©╫О©╫О©╫мЁО©╫О©╫О╣╟О©╫О©╫о╒
+	SM_SEND_PET_LIST					= 11732,	// О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫п╠О©╫
+	SM_SEND_PET_LEARN_NEW_SKILL			= 11733,	// О©╫О©╫О©╫м╩О©╫О©╫О©╫я╖о╟О©╫О©╫О©╫б╪О©╫О©╫О©╫
+	SM_PET_BROADCASE					= 11734,	// О©╫О©╫О©╫ч╧О©╫О©╫О©╫
+	SM_SEND_PET_STATUS					= 11735,	// О©╫О©╫О©╫О©╫в╢л╛О©╫О©╫О©╫б╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫мёО©╫
 
-	// XP╪╪дэ
-	SM_XP_INFO							= 11740,	// XPпео╒
-	SM_SEND_XP_EXP_BOARD				= 11741,	// вИ╤сXP╫АкЦцФ╟Е
+	// XPО©╫О©╫О©╫О©╫
+	SM_XP_INFO							= 11740,	// XPО©╫О©╫о╒
+	SM_SEND_XP_EXP_BOARD				= 11741,	// О©╫О©╫О©╫XPО©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	// ЁХнОеепп╟Я
-	SM_PET_RANK_INFO					= 11750,	// ЁХнОеепп╟Япео╒
-	SM_PET_RANK_LIST					= 11751,	// ЁХнОеепп╟Я
-	SM_PET_SET_FIGHT					= 11752,	// ЁХнОЁЖу╫фад╩дзльп╖
+	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	SM_PET_RANK_INFO					= 11750,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
+	SM_PET_RANK_LIST					= 11751,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	SM_PET_SET_FIGHT					= 11752,	// О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫д╩О©╫О©╫О©╫О©╫п╖
 
-	// ╦╠╠╬
-	SM_DUNGEON_INFO_BOARD				= 11760,	// об╥╒╦╠╠╬пео╒цФ╟Е
+	// О©╫О©╫О©╫О©╫
+	SM_DUNGEON_INFO_BOARD				= 11760,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫
 
-	// вИ╤с╦╠╠╬
-	SM_TEAM_DUNGEON_SEND_LIST			= 11770,	// об╥╒вИ╤с╦╠╠╬ап╠М
-	SM_TEAM_DUNGEON_MEMBER_INFO			= 11771,	// об╥╒вИ╤с╦╠╠╬Ёит╠пео╒
-	SM_TEAM_DUNGEON_MEMBER_LEAVE		= 11772,	// об╥╒мФ╪рюК©╙вИ╤с╦╠╠╬пео╒
-	SM_TEAM_DUNGEON_START				= 11773,	// об╥╒вИ╤с╦╠╠╬©╙фТё╗╣╧╪фй╠©╙й╪ё╘
-	SM_TEAM_DUNGEON_DAMAGE_LIST			= 11774,	// об╥╒вИ╤с╦╠╠╬ик╨╕мЁ╪ф
+	// О©╫О©╫с╦О©╫О©╫О©╫
+	SM_TEAM_DUNGEON_SEND_LIST			= 11770,	// О©╫б╥О©╫О©╫О©╫с╦О©╫О©╫О©╫О©╫п╠О©╫
+	SM_TEAM_DUNGEON_MEMBER_INFO			= 11771,	// О©╫б╥О©╫О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫т╠О©╫О©╫о╒
+	SM_TEAM_DUNGEON_MEMBER_LEAVE		= 11772,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫К©╙О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫о╒
+	SM_TEAM_DUNGEON_START				= 11773,	// О©╫б╥О©╫О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╠О©╫О©╫й╪О©╫О©╫
+	SM_TEAM_DUNGEON_DAMAGE_LIST			= 11774,	// О©╫б╥О©╫О©╫О©╫с╦О©╫О©╫О©╫О©╫к╨О©╫мЁО©╫О©╫
 
-	// аИйч
-	SM_INSIDE_PET_SEND_BASE_INFO		= 11780,	// об╥╒аИйчпео╒
-	SM_INSIDE_PET_SEND_BASE_ILLUSION	= 11781,	// об╥╒аИйчЁУаИпео╒
+	// О©╫О©╫О©╫О©╫
+	SM_INSIDE_PET_SEND_BASE_INFO		= 11780,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_INSIDE_PET_SEND_BASE_ILLUSION	= 11781,	// О©╫б╥О©╫О©╫О©╫О©╫чЁО©╫О©╫О©╫О©╫О©╫о╒
 
-	// сно╥еепп╟Я
-	SM_GAME_RANK_DATA					= 11790,	// об╥╒сно╥еепп╟Я
-	SM_SELF_WORSHIP_INFO				= 11791,	// об╥╒мФ╪рвтиМЁГ╟щпео╒
-	SM_NOTIFY_WORSHIP_INFO				= 11792,	// об╥╒мФ╪рЁГ╟щпео╒
+	// О©╫О©╫о╥О©╫О©╫О©╫п╟О©╫
+	SM_GAME_RANK_DATA					= 11790,	// О©╫б╥О©╫О©╫О©╫о╥О©╫О©╫О©╫п╟О©╫
+	SM_SELF_WORSHIP_INFO				= 11791,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_WORSHIP_INFO				= 11792,	// О©╫б╥О©╫О©╫О©╫рЁО©╫О©╫О©╫О©╫о╒
 
-	// едбТ
-	SM_AUCTION_ITEM_LIST				= 11800,	// об╥╒едбТйЩ╬щ
-	SM_AUCTION_SELF_ITEMS				= 11801,	// об╥╒втиМйЩ╬щ
-	SM_AUCTION_RECORD					= 11802,	// об╥╒╫╩рв╪гб╪
-	SM_AUCTION_SELL_ITEM				= 11803,	// об╥╒ио╪эЁи╧╕пео╒
+	// О©╫О©╫О©╫О©╫
+	SM_AUCTION_ITEM_LIST				= 11800,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_AUCTION_SELF_ITEMS				= 11801,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_AUCTION_RECORD					= 11802,	// О©╫б╥О©╫О©╫О©╫О©╫в╪О©╫б╪
+	SM_AUCTION_SELL_ITEM				= 11803,	// О©╫б╥О©╫О©╫о╪эЁи╧О©╫О©╫О©╫о╒
 
-	// ╩Н╤╞
-	SM_NOTIFY_ACTIVITY_INFO				= 11810,	// об╥╒╩Н╤╞пео╒
-	SM_NOTIFY_ACTIVITY_FAMILY_SCORE		= 11811,	// об╥╒╩Н╤╞цФ╟Е
-	SM_NOTIFY_ACTIVITY_PLAYER_SCORE		= 11812,	// об╥╒╩Н╤╞цФ╟Е
-	SM_NOTIFY_FAMILY_WAR_PILLAR_INFP	= 11813,	// об╥╒у╫иЯж╝жЫпео╒
-	SM_NOTIFY_ACTIVITY_SCORE			= 11814,	// об╥╒╩Н╤╞цФ╟Епео╒
-	SM_NOTIFY_ACTIVITY_RESULT			= 11815,	// об╥╒╩Н╤╞╫А╧Ш
-	SM_NOTIFY_ACTIVITY_TERRITORY_INFO	= 11816,	// об╥╒аЛ╣ьу╫пео╒
-	SM_NOTIFY_FAMILY_WAR_WIN_FAMILY		= 11817,	// ╬Эмеу╫й╓юШ╬Эме
-	// ╩Йа╕
-	SM_SOUL_INFO						= 11900,	// об╥╒╩Йа╕пео╒
+	// О©╫Н╤╞
+	SM_NOTIFY_ACTIVITY_INFO				= 11810,	// О©╫б╥О©╫О©╫Н╤╞О©╫О©╫о╒
+	SM_NOTIFY_ACTIVITY_FAMILY_SCORE		= 11811,	// О©╫б╥О©╫О©╫Н╤╞О©╫О©╫О©╫
+	SM_NOTIFY_ACTIVITY_PLAYER_SCORE		= 11812,	// О©╫б╥О©╫О©╫Н╤╞О©╫О©╫О©╫
+	SM_NOTIFY_FAMILY_WAR_PILLAR_INFP	= 11813,	// О©╫б╥О©╫у╫О©╫О©╫ж╝О©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_ACTIVITY_SCORE			= 11814,	// О©╫б╥О©╫О©╫Н╤╞О©╫О©╫О©╫О©╫О©╫о╒
+	SM_NOTIFY_ACTIVITY_RESULT			= 11815,	// О©╫б╥О©╫О©╫Н╤╞О©╫О©╫О©╫
+	SM_NOTIFY_ACTIVITY_TERRITORY_INFO	= 11816,	// О©╫б╥О©╫О©╫О©╫О©╫у╫О©╫О©╫о╒
+	SM_NOTIFY_FAMILY_WAR_WIN_FAMILY		= 11817,	// О©╫О©╫О©╫О©╫у╫й╓О©╫О©╫О©╫О©╫О©╫О©╫
+	// О©╫О©╫О©╫О©╫
+	SM_SOUL_INFO						= 11900,	// О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 
-	// цШхклц
-	SM_HALL_OF_FAME_INFO				= 11910,	// цШхклц╫ГцФпео╒
-	SM_HALL_OF_FAME_BATTLE				= 11911,	// цШхклцу╫╤╥╫А╧Ш
-	SM_HALL_OF_FAME_RANK_INFO			= 11912,	// цШхклцеепп╟Я
+	// О©╫О©╫О©╫О©╫О©╫О©╫
+	SM_HALL_OF_FAME_INFO				= 11910,	// О©╫О©╫О©╫О©╫О©╫ц╫О©╫О©╫О©╫О©╫О©╫о╒
+	SM_HALL_OF_FAME_BATTLE				= 11911,	// О©╫О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫
+	SM_HALL_OF_FAME_RANK_INFO			= 11912,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
 
 	/*
 	* SM_WXJ	11900~11999
@@ -1323,35 +1325,35 @@ enum MSG_IM_CODE
 	IM_GAME_GATE_KICK_USER,
 //================================================================
 	IM_SOCIAL_GLOBAL_MIN,
-	IM_SOCIAL_ADD_PLAYER_INFO,		//╥офЗ
+	IM_SOCIAL_ADD_PLAYER_INFO,		//О©╫О©╫О©╫О©╫
 	IM_SOCIAL_UPDATE_PLAYER_INFO,
 	IM_SOCIAL_ADD_PLAYER,
 	IM_SOCIAL_REMOVE_PLAYER,
-	IM_SOCIAL_REMOVE_FAMILY_APPLIER,		// ╥офЗ
-	IM_SOCIAL_DELETE_CHARACTER,				// ╥офЗ
+	IM_SOCIAL_REMOVE_FAMILY_APPLIER,		// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_DELETE_CHARACTER,				// О©╫О©╫О©╫О©╫
 	IM_SOCIAL_NEW_MINUTE_COME,
 	IM_SOCIAL_SEND_MAIL,
 	IM_SOCIAL_FAMILY_WAR,
 	IM_SOCIAL_ACTIVITY_CLEAR,
-	IM_SOCIAL_ADD_KILLER,					// ╥офЗ
-	IM_SOCIAL_UPDATE_GAMBLE,				// ╥офЗ
-	IM_SOCIAL_FAMILY_ACTIVITY_PLAYER,		// ╥офЗ
-	IM_SOCIAL_WORLD_BOSS_ACTIVITY_RESULT,	// ╥офЗ
-	IM_SOCIAL_REAL_TIME_RANK_RESET,			// ╥офЗ
+	IM_SOCIAL_ADD_KILLER,					// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_UPDATE_GAMBLE,				// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_FAMILY_ACTIVITY_PLAYER,		// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_WORLD_BOSS_ACTIVITY_RESULT,	// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_REAL_TIME_RANK_RESET,			// О©╫О©╫О©╫О©╫
 
-	IM_SOCIAL_UPDATE_PET_DATA,		// ╦ЭпбЁХнОеепп╟Япео╒
-	IM_SOCIAL_DELETE_PET_DATA,		// ╦ЭпбЁХнОеепп╟Япео╒
+	IM_SOCIAL_UPDATE_PET_DATA,		// О©╫О©╫О©╫бЁО©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
+	IM_SOCIAL_DELETE_PET_DATA,		// О©╫О©╫О©╫бЁО©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
 
-	IM_SOCIAL_REQUEST_PET_RANK_DATA,	// сно╥╥ЧгКгСЁХнОеепп╟Япео╒
+	IM_SOCIAL_REQUEST_PET_RANK_DATA,	// О©╫О©╫о╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╒
 
-	IM_SOCIAL_DA_TI_START_READY,		// в╪╠╦©╙й╪╢ПлБ
-	IM_SOCIAL_DA_TI_START,				// ╢ПлБ╩Н╤╞©╙й╪
-	IM_SOCIAL_DA_TI_END,				// ╢ПлБ╩Н╤╞╫АйЬ
-	IM_SOCIAL_QUESTIONS,				// ╥╒кмлБд©пео╒
-	IM_SOCIAL_RAND_ANSWER,				// кФ╩З╢П╟╦
-	IM_SOCIAL_UPDATE_ZSZZ,				// ╦ЭпбжНиЯж╝у╫╦╠╠╬пео╒
-	IM_SOCIAL_SYN_SERVER_DAY,			// ©╙╥Ч╣з╪╦лЛ
-	IM_SOCIAL_REQUEST_FAMILY_INFO,		// гКгСр╩об╬Эмепео╒
+	IM_SOCIAL_DA_TI_START_READY,		// в╪О©╫О©╫О©╫О©╫й╪О©╫О©╫О©╫О©╫
+	IM_SOCIAL_DA_TI_START,				// О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫й╪
+	IM_SOCIAL_DA_TI_END,				// О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫О©╫
+	IM_SOCIAL_QUESTIONS,				// О©╫О©╫О©╫О©╫О©╫О©╫д©О©╫О©╫о╒
+	IM_SOCIAL_RAND_ANSWER,				// О©╫О©╫О©╫О©╫О©╫
+	IM_SOCIAL_UPDATE_ZSZZ,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╝у╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	IM_SOCIAL_SYN_SERVER_DAY,			// О©╫О©╫О©╫О©╫О©╫з╪О©╫О©╫О©╫
+	IM_SOCIAL_REQUEST_FAMILY_INFO,		// О©╫О©╫О©╫О©╫р╩О©╫б╬О©╫О©╫О©╫О©╫О©╫о╒
 	IM_SOCIAL_GLOBAL_MAX,
 
 //===================================================
@@ -1363,75 +1365,75 @@ enum MSG_IM_CODE
 	IM_SOCIAL_GAME_GET_MAIL_POST,
 	IM_SOCIAL_GAME_USE_EXCHANGE_CODE,
 	//IM_SOCIAL_GAME_CHANGE_FAMILY_NAME,
-	IM_SOCIAL_GAME_GOTO_ENEMY,							// ╥офЗ
+	IM_SOCIAL_GAME_GOTO_ENEMY,							// О©╫О©╫О©╫О©╫
 	//IM_SOCIAL_GAME_LEADER_DOWN,
 	//IM_SOCIAL_GAME_UPDATE_LEADER_CID,
 	//IM_SOCIAL_GAME_UPDATE_FAMILY_CONTRIBUTE,
 
-	// ╟Оеи
-	IM_SOCIAL_GAME_CREATE_FAMILY,						// ╢╢╫╗╟Оеи
-	IM_SOCIAL_GAME_UPDATE_FAMILY,						// ╦ЭпбмФ╪р╟Оеипео╒
-	IM_SOCIAL_GAME_NEED_UPDATE_FAMILY,					// ╟Оеипео╒╦Эпб
+	// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_CREATE_FAMILY,						// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_UPDATE_FAMILY,						// О©╫О©╫О©╫О©╫О©╫О©╫р╟О©╫О©╫О©╫О©╫О©╫о╒
+	IM_SOCIAL_GAME_NEED_UPDATE_FAMILY,					// О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫
 
-	// вИ╤с
+	// О©╫О©╫О©╫
 	IM_SOCIAL_GAME_UPDATE_TEAM_INFO,
 
-	// ЁГ╟щ
-	IM_SOCIAL_GAME_WORSHIP,								// ЁГ╟щ
+	// О©╫О©╫О©╫
+	IM_SOCIAL_GAME_WORSHIP,								// О©╫О©╫О©╫
 
 	// XP
-	IM_SOCIAL_GAME_UPDATE_XP,							// м╛╡╫XPпео╒
-	IM_SOCIAL_GAME_ADD_XP,								// вИ╤сXP╬╜яИ╫АкЦпео╒
+	IM_SOCIAL_GAME_UPDATE_XP,							// м╛О©╫О©╫XPО©╫О©╫о╒
+	IM_SOCIAL_GAME_ADD_XP,								// О©╫О©╫О©╫XPО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 
-	// вИ╤с╦╠╠╬
-	IM_SOCIAL_GAME_TEAM_DUNGEON_START,					// вИ╤с╦╠╠╬©╙й╪
-	IM_SOCIAL_GAME_TEAM_DUNGEON_UPDATE_INFO,			// вИ╤с╦╠╠╬пео╒╦Эпб
+	// О©╫О©╫с╦О©╫О©╫О©╫
+	IM_SOCIAL_GAME_TEAM_DUNGEON_START,					// О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫й╪
+	IM_SOCIAL_GAME_TEAM_DUNGEON_UPDATE_INFO,			// О©╫О©╫с╦О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫
 
-	// едбТ
-	IM_SOCIAL_GAME_AUCTION_SELL,						// нОф╥ио╪э
-	IM_SOCIAL_GAME_AUCTION_BUY,							// ╧╨бРнОф╥
-	IM_SOCIAL_GAME_ADD_CURRENCY,						// лМ╪с╩У╠р
+	// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_AUCTION_SELL,						// О©╫О©╫ф╥О©╫о╪О©╫
+	IM_SOCIAL_GAME_AUCTION_BUY,							// О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	IM_SOCIAL_GAME_ADD_CURRENCY,						// О©╫О©╫О©╫с╩О©╫О©╫О©╫
 
-	// ╩Н╤╞
-	IM_SOCIAL_GAME_FAMILYWAR_PILLAR_ADD_MONEY,			// у╫иЯж╝жЫв╒хК╬Эмевй╫П
+	// О©╫Н╤╞
+	IM_SOCIAL_GAME_FAMILYWAR_PILLAR_ADD_MONEY,			// у╫О©╫О©╫ж╝О©╫О©╫в╒О©╫О©╫О©╫О©╫О©╫О©╫й╫О©╫
 
-	// цШхклц
-	IM_SOCIAL_GAME_HALL_OF_FAME_FIGHT_RESULT,			// цШхклцлТу╫╫А╧Ш
-	IM_SOCIAL_GAME_HALL_OF_FAME_GET_REWARD,				// цШхклцаЛх║╫╠юЬ
-	IM_SOCIAL_GAME_HALL_OF_FAME_RANK_REWARD_INFO,		// цШхклцеепп╟Я╫╠юЬпео╒
+	// О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_HALL_OF_FAME_FIGHT_RESULT,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_HALL_OF_FAME_GET_REWARD,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_HALL_OF_FAME_RANK_REWARD_INFO,		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫О©╫О©╫о╒
 
-	// ╨цся
-	IM_SOCIAL_GAME_UPDATE_FRIEND_LEVEL_UP,				//╨цсяиЩ╪╤
-	IM_SOCIAL_GAME_SEND_JUE_WEI_RANK,					//╥╒км╬Тн╩еепп╟Я
-	IM_SOCIAL_GAME_ALREADY,								//╢ПлБ╪гб╪
-	IM_SOCIAL_GAME_ADD_FRIEND,							//Ёи╬мюО╣дмЁ╪ф
-	//ЁИ╫╠
-	IM_SOCIAL_GAME_ASK_CHOU_JIANG,						//гКгСЁИ╫╠
-	// ╧╨бРх╚╥ЧочжфнОф╥
-	IM_SOCIAL_GAME_BUY_LIMIT_ITEM,						// ╧╨бРх╚╥ЧочжфнОф╥			
+	// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_UPDATE_FRIEND_LEVEL_UP,				//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_SEND_JUE_WEI_RANK,					//О©╫О©╫О©╫м╬О©╫н╩О©╫О©╫О©╫п╟О©╫
+	IM_SOCIAL_GAME_ALREADY,								//О©╫О©╫О©╫О©╫О©╫б╪
+	IM_SOCIAL_GAME_ADD_FRIEND,							//О©╫и╬О©╫О©╫О©╫О©╫мЁО©╫О©╫
+	//О©╫И╫╠
+	IM_SOCIAL_GAME_ASK_CHOU_JIANG,						//О©╫О©╫О©╫О©╫И╫╠
+	// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	IM_SOCIAL_GAME_BUY_LIMIT_ITEM,						// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥			
 	IM_SOCIAL_GAME_MAX,
 //=======================================================
 	IM_SOCIAL_SPECIFIC_GAME_MIN,
-	IM_SOCIAL_GAME_ADD_APPLIER,							// ╥офЗ
-	IM_SOCIAL_GAME_REAL_TIME_RANK_BASE,					// ╥офЗ
+	IM_SOCIAL_GAME_ADD_APPLIER,							// О©╫О©╫О©╫О©╫
+	IM_SOCIAL_GAME_REAL_TIME_RANK_BASE,					// О©╫О©╫О©╫О©╫
 	IM_SOCIAL_SPECIFIC_GAME_MAX,
 
 	IM_SOCIAL_ALL_GAME_MIN,
-	IM_SOCIAL_ALL_GAME_UPDATE_PET_RANK,					// ╦ЭпбЁХнОеепп╟Я
-	IM_SOCIAL_ALL_GAME_UPDATE_FAMILY,					// ╦Эпб╟Оеипео╒
-	IM_SOCIAL_ALL_GAME_CHANGE_OWNER,					// ЁХнО║╒в╟╠╦╠Д╦ЭкЫспуъ
-	IM_SOCIAL_ALL_GAME_KAI_FU_HUO_DAO_RANK,				// м╛╡╫©╙╥Ч╩Н╤╞еепп╟Я
+	IM_SOCIAL_ALL_GAME_UPDATE_PET_RANK,					// О©╫О©╫О©╫бЁО©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	IM_SOCIAL_ALL_GAME_UPDATE_FAMILY,					// О©╫О©╫О©╫б╟О©╫О©╫О©╫О©╫О©╫о╒
+	IM_SOCIAL_ALL_GAME_CHANGE_OWNER,					// О©╫О©╫О©╫О║╒в╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_SOCIAL_ALL_GAME_KAI_FU_HUO_DAO_RANK,				// м╛О©╫О©╫О©╫О©╫О©╫О©╫О©╫Н╤╞О©╫О©╫О©╫п╟О©╫
 	IM_SOCIAL_ALL_GAME_MAX,
 
 	IM_SOCIAL_SINGLE_GAME_MIN,
-	IM_SOCIAL_SINGLE_GAME_INIT_PET_RANK,				// ЁУй╪╩╞ЁХнОеепп╟Я
-	IM_SOCIAL_SINGLE_GAME_TEAM_DUNGEON_CREATE,			// ╢╢╫╗вИ╤с╦╠╠╬
-	IM_SOCIAL_SINGLE_GAME_DA_TI_RANK,					// ╥╒км╢ПлБеепп╟Я╣╫сно╥╥Ч
-	IM_SOCIAL_SINGLE_GAME_SEND_SYSTEM_MAIL,				// ╥╒кмо╣мЁсй╪Ч
-	IM_SOCIAL_SINGLE_GAME_SEND_SYSTEM_MAIL2,			// ╥╒кмо╣мЁсй╪Ч
+	IM_SOCIAL_SINGLE_GAME_INIT_PET_RANK,				// О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫
+	IM_SOCIAL_SINGLE_GAME_TEAM_DUNGEON_CREATE,			// О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	IM_SOCIAL_SINGLE_GAME_DA_TI_RANK,					// О©╫О©╫О©╫м╢О©╫О©╫О©╫О©╫О©╫О©╫п╟О©╫О©╫О©╫о╥О©╫О©╫
+	IM_SOCIAL_SINGLE_GAME_SEND_SYSTEM_MAIL,				// О©╫О©╫О©╫О©╫о╣мЁО©╫й╪О©╫
+	IM_SOCIAL_SINGLE_GAME_SEND_SYSTEM_MAIL2,			// О©╫О©╫О©╫О©╫о╣мЁО©╫й╪О©╫
 	IM_SOCIAL_SINGLE_GAME_MAX,
 
-	//иГ╩Адз╡©
+	//О©╫О©╫О©╫О©╫з╡О©╫
 	IM_GAME_SOCIAL_MIN,
 	IM_GAME_SOCIAL_CREATE_FAMILY,
 	IM_GAME_SOCIAL_SEND_MAIL,
@@ -1444,55 +1446,55 @@ enum MSG_IM_CODE
 	IM_GAME_SOCIAL_BREAK_FAMILY,
 	IM_GAME_SOCIAL_UPDATE_ZHENLONGZHIQI,
 
-	IM_GAME_SOCIAL_ADD_FAMILY_CONTRIBUTE,		// ╬Эме╬Хов
-	IM_GAME_SOCIAL_UPDATE_PET_CONTRIBUTE,		// м╛╡╫мФ╪р╬Эме╧╠ов╤х
-	IM_GAME_SOCIAL_FAMILY_REGIST_PET,			// ╬Эме╩цйч╣г╪г
-	IM_GAME_SOCIAL_FAMILY_UNREGIST_PET,			// ╬Эме╩цйчх║оШ╣г╪г
-	IM_GAME_SOCIAL_FAMILY_TASK_COUTN,			// тЖ╪с╬ЭмехннЯмЙЁи╢нйЩ
-	IM_GAME_SOCIAL_FAMILY_ADD_CONTRIBUTION,		// тЖ╪с╬Эме╧╠ов
-	IM_GAME_SOCIAL_SET_TEAM_AUTO_OPERATE,		// вИ╤сд╛хоиХжц
-	IM_GAME_SOCIAL_LEAVE_TEAM,					// г©жфюК©╙╤снИ
+	IM_GAME_SOCIAL_ADD_FAMILY_CONTRIBUTE,		// О©╫О©╫О©╫е╬О©╫О©╫О©╫
+	IM_GAME_SOCIAL_UPDATE_PET_CONTRIBUTE,		// м╛О©╫О©╫О©╫О©╫р╬О©╫О©╫е╧О©╫О©╫в╤О©╫
+	IM_GAME_SOCIAL_FAMILY_REGIST_PET,			// О©╫О©╫О©╫е╩О©╫О©╫ч╣г╪О©╫
+	IM_GAME_SOCIAL_FAMILY_UNREGIST_PET,			// О©╫О©╫О©╫е╩О©╫О©╫О©╫х║О©╫О©╫О©╫г╪О©╫
+	IM_GAME_SOCIAL_FAMILY_TASK_COUTN,			// О©╫О©╫О©╫с╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫и╢О©╫О©╫О©╫
+	IM_GAME_SOCIAL_FAMILY_ADD_CONTRIBUTION,		// О©╫О©╫О©╫с╬О©╫О©╫е╧О©╫О©╫О©╫
+	IM_GAME_SOCIAL_SET_TEAM_AUTO_OPERATE,		// О©╫О©╫О©╫д╛О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_LEAVE_TEAM,					// г©О©╫О©╫О©╫К©╙О©╫О©╫О©╫О©╫
 
-	IM_GAME_SOCIAL_WORSHIP,						// лМ╪сЁГ╟щ╪гб╪
-	IM_GAME_SOCIAL_AUCTION_SELL,				// едбТппйшбТ
-	IM_GAME_SOCIAL_AUCTION_BUY,					// едбТпп╧╨бР
-	IM_GAME_SOCIAL_STALL,						// ╟зл╞
+	IM_GAME_SOCIAL_WORSHIP,						// О©╫О©╫О©╫сЁО©╫щ╪О©╫б╪
+	IM_GAME_SOCIAL_AUCTION_SELL,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_AUCTION_BUY,					// О©╫О©╫О©╫О©╫О©╫п╧О©╫О©╫О©╫
+	IM_GAME_SOCIAL_STALL,						// О©╫О©╫л╞
 
-	IM_GAME_SOCIAL_ADD_XP,						// XPж╣тЖ╪с
-	IM_GAME_SOCIAL_START_XP,					// ©╙й╪XP╪╪дэ
-	IM_GAME_SOCIAL_END_XP,						// ╫АйЬXP╪╪дэ
-	IM_GAME_SOCIAL_BREAK_XP,					// лЬ╧ЩXP╪╪дэ
-	IM_GAME_SOCIAL_RESET_XP,					// кюмЖжьжцxp
+	IM_GAME_SOCIAL_ADD_XP,						// XPж╣О©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_START_XP,					// О©╫О©╫й╪XPО©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_END_XP,						// О©╫О©╫О©╫О©╫XPО©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_BREAK_XP,					// О©╫О©╫О©╫О©╫XPО©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_RESET_XP,					// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫xp
 
-	IM_GAME_SOCIAL_TEAM_DUNGEON_CREATE,			// ╢╢╫╗вИ╤с╦╠╠╬
-	IM_GAME_SOCIAL_TEAM_DUNGEON_JOIN,			// ╪схКвИ╤с╦╠╠╬
-	IM_GAME_SOCIAL_TEAM_DUNGEON_START,			// ©╙фТвИ╤с╦╠╠╬
-	IM_GAME_SOCIAL_TEAM_DUNGEON_LEAVE,			// юК©╙вИ╤с╦╠╠╬
+	IM_GAME_SOCIAL_TEAM_DUNGEON_CREATE,			// О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	IM_GAME_SOCIAL_TEAM_DUNGEON_JOIN,			// О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	IM_GAME_SOCIAL_TEAM_DUNGEON_START,			// О©╫О©╫О©╫О©╫О©╫О©╫с╦О©╫О©╫О©╫
+	IM_GAME_SOCIAL_TEAM_DUNGEON_LEAVE,			// О©╫К©╙О©╫О©╫с╦О©╫О©╫О©╫
 
-	IM_GAME_SOCIAL_NOTIFY_FAMILYWAR_INFO,		// об╥╒╬Эмеу╫пео╒
-	IM_GAME_SOCIAL_FAMILYWAR_ADD_PILLAR_MONEY,	// у╫иЯж╝жЫв╒хКвй╫П
+	IM_GAME_SOCIAL_NOTIFY_FAMILYWAR_INFO,		// О©╫б╥О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫о╒
+	IM_GAME_SOCIAL_FAMILYWAR_ADD_PILLAR_MONEY,	// у╫О©╫О©╫ж╝О©╫О©╫в╒О©╫О©╫О©╫й╫О©╫
 
-	IM_GAME_SOCIAL_HALL_OF_FAME_FIGHT,			// цШхклцлТу╫
-	IM_GAME_SOCIAL_HALL_OF_FAME_REQUEST_INFO,	// цШхклцгКгС╫ГцФпео╒
-	IM_GAME_SOCIAL_HALL_OF_FAME_REWARD_RESULT,	// цШхклцаЛх║╫╠юЬ╥╣╩ь
+	IM_GAME_SOCIAL_HALL_OF_FAME_FIGHT,			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫у╫
+	IM_GAME_SOCIAL_HALL_OF_FAME_REQUEST_INFO,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	IM_GAME_SOCIAL_HALL_OF_FAME_REWARD_RESULT,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	IM_GAME_SOCIAL_ADD_ENEMY,					// ╠╩и╠лМ╪сЁПхк
-	IM_GAME_SOCIAL_JUE_WEI_DONATE_MONEY,		// м╛╡╫╬Тн╩╬Хов
-	IM_GAME_SOCIAL_ASK_JUE_WEI_RANK,			// гКгС╬Тн╩еепп╟Я
-	IM_GAME_SOCIAL_ASK_LIMIT_SHOP_INFO,			// гКгСх╚╥ЧочжфнОф╥пео╒
-	IM_GAME_SOCIAL_BUY_LIMIT_SHOP_ITEM,			// ╧╨бРх╚╥ЧочжфнОф╥
-	IM_GAME_SOCIAL_BUY_LIMIT_SHOP_SUCCEED,		// ╧╨бРх╚╥ЧочжфнОф╥Ёи╧╕
-	IM_GAME_SOCIAL_ADD_CHOU_JIANG_RECORD,		// тЖ╪сх╚╥ЧЁИ╫╠╪гб╪
-	IM_GAME_SOCIAL_CLEAN_GLOBAL_POINT,			// гЕЁЩЁИ╫╠х╚╥Чпрткж╣
-	IM_GAME_SOCIAL_CHECK_GLOBAL_POINT,			// ╪Л╡Бх╚╥Чпрткж╣
-	IM_GAME_SOCIAL_ASK_CHOU_JIANG_RECORD,		// гКгС╥╒кмЁИ╫╠╪гб╪╦Ь©м╩╖╤к
-	IM_GAME_SOCIAL_ADD_TOU_ZI_RECORD,			// тЖ╪см╤вй╪гб╪
+	IM_GAME_SOCIAL_ADD_ENEMY,					// О©╫О©╫и╠О©╫О©╫О©╫сЁО©╫О©╫О©╫
+	IM_GAME_SOCIAL_JUE_WEI_DONATE_MONEY,		// м╛О©╫О©╫О©╫О©╫н╩О©╫О©╫О©╫О©╫
+	IM_GAME_SOCIAL_ASK_JUE_WEI_RANK,			// О©╫О©╫О©╫О©╫О©╫н╩О©╫О©╫О©╫п╟О©╫
+	IM_GAME_SOCIAL_ASK_LIMIT_SHOP_INFO,			// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥О©╫О©╫о╒
+	IM_GAME_SOCIAL_BUY_LIMIT_SHOP_ITEM,			// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	IM_GAME_SOCIAL_BUY_LIMIT_SHOP_SUCCEED,		// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥О©╫и╧О©╫
+	IM_GAME_SOCIAL_ADD_CHOU_JIANG_RECORD,		// О©╫О©╫О©╫О©╫х╚О©╫О©╫О©╫И╫╠О©╫О©╫б╪
+	IM_GAME_SOCIAL_CLEAN_GLOBAL_POINT,			// О©╫О©╫О©╫О©╫И╫╠х╚О©╫О©╫О©╫О©╫О©╫О©╫ж╣
+	IM_GAME_SOCIAL_CHECK_GLOBAL_POINT,			// О©╫О©╫О©╫х╚О©╫О©╫О©╫О©╫О©╫О©╫ж╣
+	IM_GAME_SOCIAL_ASK_CHOU_JIANG_RECORD,		// О©╫О©╫О©╫О©╫О©╫мЁИ╫╠О©╫О©╫б╪О©╫О©╫О©╫м╩О©╫О©╫О©╫
+	IM_GAME_SOCIAL_ADD_TOU_ZI_RECORD,			// О©╫О©╫О©╫О©╫м╤О©╫й╪О©╫б╪
 
 	IM_GAME_SOCIAL_QUERY_PLAYER_INFO,
 	IM_GAME_SOCIAL_UPDATE_ACTIVITY_STATE,
-	IM_GAME_SYN_DAY_SWITCH,			//м╛╡╫©ГлЛ
+	IM_GAME_SYN_DAY_SWITCH,			//м╛О©╫О©╫О©╫О©╫О©╫О©╫
 	IM_GAME_SOCIAL_MAX,
-	//иГ╩А╫АйЬ
+	//О©╫О©╫О©╫О©╫О©╫О©╫
 	
 
 	IM_DB_GAME_SERVICE_CONNECT,
@@ -1505,9 +1507,9 @@ enum MSG_IM_CODE
 	IM_DB_UPDATE_EQUIP,
 	IM_DB_DELETE_EQUIP,
 	IM_DB_EQUIP_UPDATED,
-	IM_DB_UPDATE_FAMILY_WAR,		// ╥офЗ
-	IM_DB_FAMILY_WAR_UPDATED,		// ╥офЗ
-	IM_DB_INSERT_LACKEY,			// ╥офЗ
+	IM_DB_UPDATE_FAMILY_WAR,		// О©╫О©╫О©╫О©╫
+	IM_DB_FAMILY_WAR_UPDATED,		// О©╫О©╫О©╫О©╫
+	IM_DB_INSERT_LACKEY,			// О©╫О©╫О©╫О©╫
 	IM_DB_INSERT_ITEM,
 	IM_DB_UPDATE_ITEM,
 	IM_DB_DELETE_ITEM,
@@ -1543,8 +1545,8 @@ enum MSG_IM_CODE
 	IM_DB_LOG_TASK_SUBMIT,
 	IM_DB_LOG_EQUIP_ENHANCE,
 	IM_DB_LOG_ITEM_COMBINE,
-	IM_DB_LOG_EQUIP_SMITHING,// ╨оЁив╟╠╦.╠╕й╞
-	IM_DB_LOG_EQUIP_MAGIC_SMITH,//╢РтЛв╟╠╦
+	IM_DB_LOG_EQUIP_SMITHING,// О©╫оЁО©╫в╟О©╫О©╫.О©╫О©╫й╞
+	IM_DB_LOG_EQUIP_MAGIC_SMITH,//О©╫О©╫О©╫О©╫в╟О©╫О©╫
 	IM_DB_LOG_EQUIP_DISMANTLE,
 	IM_DB_LOG_IN_DUNGEON,
 	IM_DB_LOG_OUT_DUNGEON,
@@ -1553,28 +1555,30 @@ enum MSG_IM_CODE
 	IM_DB_LOG_OUT_FAMILY,
 	IM_DB_LOG_ACHIEVEMENT,
 	IM_DB_LOG_PK,
-	IM_DB_LOG_ACTIVITY_DATA,			// ╩Н╤╞хуж╬
+	IM_DB_LOG_ACTIVITY_DATA,			// О©╫Н╤╞О©╫О©╫ж╬
 	IM_DB_LOG_ITEM_CHANGE,
-	IM_DB_LOG_KILL_BOSS,				// BOSS╩Ви╠хуж╬
-	IM_DB_LOG_DAILY_GIFT,				// ц©хуюЯ╟ЭаЛх║хуж╬
-	IM_GATE_QQ_TO_PLAYER,				// ╢сQQф╫л╗╢╚╧Щю╢╣д╢╚╣╫playerжп
-	IM_DB_INSERT_MEMYELLOWSTONE,		// ╪гб╪╩фвЙаЛх║╪гб╪
-	IM_DB_LOG_VICEGENERAL_CHANGE,		// ╦╠╫╚упд╪╫Б╧мlog
-	IM_DB_LOG_CURRENCY,					// ╩У╠рхуж╬
-	IM_DB_ADD_RANSOM_INFO,				// тЖ╪сйЙ╩ьнОф╥
-	IM_DB_DLE_RANSOM_INFO,				// и╬ЁЩйЙ╩ьнОф╥
-	IM_DB_UPDATE_RANSOM,				// ╦ЭпбйЙ╩ьпео╒
-	IM_DB_SEND_MAIL_TO_DB,				// ╥╒кмсй╪Ч╣╫dbserver
-	IM_DB_UPDATE_NEW_MAIL,				// ╦Эпбпбсй╪Ч╣╫gameserver
+	IM_DB_LOG_KILL_BOSS,				// BOSSО©╫О©╫и╠О©╫О©╫ж╬
+	IM_DB_LOG_DAILY_GIFT,				// ц©О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫ж╬
+	IM_GATE_QQ_TO_PLAYER,				// О©╫О©╫QQф╫л╗О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢О©╫О©╫О©╫playerО©╫О©╫
+	IM_DB_INSERT_MEMYELLOWSTONE,		// О©╫О©╫б╪О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫б╪
+	IM_DB_LOG_VICEGENERAL_CHANGE,		// О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫log
+	IM_DB_LOG_CURRENCY,					// О©╫О©╫О©╫О©╫О©╫О©╫ж╬
+	IM_DB_ADD_RANSOM_INFO,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	IM_DB_DLE_RANSOM_INFO,				// и╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫ф╥
+	IM_DB_UPDATE_RANSOM,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
+	IM_DB_SEND_MAIL_TO_DB,				// О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫О©╫dbserver
+	IM_DB_UPDATE_NEW_MAIL,				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫О©╫gameserver
 	IM_DB_NEW_MINUTE,
-	IM_DB_SAVE_FAMILY_WAR_RESULT,		// ╢Ф╢╒╬Эмеу╫╫А╧Ш
-	IM_DB_UPDATE_FAMILY_WAR_RESULT,		// ╦Эпб╬Эмеу╫╫А╧Ш╣╫╦ВлУоъб╥
-	IM_DB_SAVE_TERRITORY_WAR_RESULT,	// ╢Ф╢╒аЛ╣ьу╫╫А╧Ш
-	IM_DB_UPDATE_TERRITORY_WAR_RESULT,	// ╦ЭпбаЛ╣ьу╫╫А╧Ш╣╫╦ВлУоъб╥
-	IM_DB_UPDATE_LOGIN_TIME,			// ╦Эпб╠Й╪г╫ЬхКй╠╪Д			
-	IM_DB_UPDATE_GM_BROADCAST,			// ╦Эпб╧╚╦Ф		
-	IM_DB_UPDATE_GM_BAN_CHAT,			// ╦Эпб╫Шят	
-	IM_DB_UPDATE_GM_SEAL,				// ╦Эпб╥Б╨е
+	IM_DB_SAVE_FAMILY_WAR_RESULT,		// О©╫Ф╢╒О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫
+	IM_DB_UPDATE_FAMILY_WAR_RESULT,		// О©╫О©╫О©╫б╬О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥
+	IM_DB_SAVE_CITY_WAR_RESULT,			// Е╜≤Е┌╗Е÷▌Ф┬≤Г╩⌠Ф·°
+	IM_DB_UPDATE_CITY_WAR_RESULT,		// Ф⌡╢Ф√╟Е÷▌Ф┬≤Г╩⌠Ф·°О╪┬Ф²╔Х┤╙DBЕ⌡·Х╟┐О╪┴
+	IM_DB_SAVE_TERRITORY_WAR_RESULT,	// О©╫Ф╢╒О©╫О©╫О©╫у╫О©╫О©╫О©╫
+	IM_DB_UPDATE_TERRITORY_WAR_RESULT,	// О©╫О©╫О©╫О©╫О©╫О©╫О©╫у╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥
+	IM_DB_UPDATE_LOGIN_TIME,			// О©╫О©╫О©╫б╠О©╫г╫О©╫О©╫О©╫й╠О©╫О©╫			
+	IM_DB_UPDATE_GM_BROADCAST,			// О©╫О©╫О©╫б╧О©╫О©╫О©╫		
+	IM_DB_UPDATE_GM_BAN_CHAT,			// О©╫О©╫О©╫б╫О©╫О©╫О©╫	
+	IM_DB_UPDATE_GM_SEAL,				// О©╫О©╫О©╫б╥О©╫О©╫
 
 	IM_PHP_MIN = 25000,
 	IM_DB_USER_PAY = 25001,

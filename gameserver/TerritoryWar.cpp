@@ -3,10 +3,11 @@
 #include "GameService.h"
 #include "DBService.h"
 #include "Timer.h"
+#include "DayTime.h"
 #include "ActivityMap.h"
 #include "ActivityManager.h"
 
-#define MAX_REVIVE_TIMES	3		// ¸´»î´ÎÊý
+#define MAX_REVIVE_TIMES	3		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 using namespace Answer;
 
@@ -130,7 +131,7 @@ void CTerritoryWar::reset()
 
 bool CTerritoryWar::checkData()
 {
-	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚÈýÌì¿ªÆô
+	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿ªï¿½ï¿½
 	if ( startDays == 1 )
 	{
 		return true;
@@ -147,7 +148,7 @@ bool CTerritoryWar::checkData()
 
 bool CTerritoryWar::checkWeek()
 {
-	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚÈýÌì¿ªÆô
+	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿ªï¿½ï¿½
 	if ( startDays == 1 )
 	{
 		return true;
@@ -175,13 +176,13 @@ void CTerritoryWar::addPlayer( Player* player )
 		return;
 	}
 
-	// ÉèÖÃPKÄ£Ê½
+	// ï¿½ï¿½ï¿½ï¿½PKÄ£Ê½
 	player->setPkMode( PK_MODE_PEACE, false );
 
-	// ÖØÖÃ¸´»î´ÎÊý
+	// ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	player->GetOperateLimit().Reset( PR_TERRITORY_WAR_REVIVE_TIMES );
 
-	// Àë¿ª¶ÓÎé
+	// ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½
 	player->GetCharTeam().LeaveTeam();
 }
 
@@ -207,8 +208,8 @@ void CTerritoryWar::SendPlayerActivityInfo( Player* player )
 	int32_t memberCount = m_players.size();
 
 	packet->writeInt32( m_cfgActivity.id );
-	packet->writeInt32( memberCount );					// ²ÎÓëÈËÊý
-	packet->writeInt32( getActivityTime() );			// Ê±¼ä
+	packet->writeInt32( memberCount );					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	packet->writeInt32( getActivityTime() );			// Ê±ï¿½ï¿½
 	packet->setSize( packet->getWOffset() );
 
 	GAME_SERVICE.sendPacketTo( player->getGateIndex(), packet );
@@ -287,7 +288,7 @@ int32_t CTerritoryWar::getLeftReviveTimes( Player* player )
 
 void CTerritoryWar::win( TeamMemberList& winners )
 {
-	// ½áÊø
+	// ï¿½ï¿½ï¿½ï¿½
 	m_winners = winners;
 	broadcastWin();
 
@@ -471,7 +472,7 @@ int32_t	CTerritoryWar::getNextStartTime()
 	}
 
 	int32_t days = -1;
-	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚÈýÌì¿ªÆô
+	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿ªï¿½ï¿½
 	if ( checkData() && checkWeek() )
 	{
 		if( nowMinute < startMinute )
@@ -738,7 +739,7 @@ void CTerritoryWar::broadcastWin()
 
 bool CTerritoryWar::isDoubleReward() const
 {
-	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚ¶þÌìË«±¶½±Àø
+	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	return startDays <= 1;
 }
 

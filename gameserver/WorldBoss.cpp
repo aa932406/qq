@@ -3,6 +3,9 @@
 #include "MapManager.h"
 #include "Monster.h"
 #include "ActivityManager.h"
+#include "Timer.h"
+#include "DayTime.h"
+#include "DBService.h"
 using namespace Answer;
 
 
@@ -206,7 +209,7 @@ void CWorldBoss::PacketBossHomeInfo( Answer::NetPacket *packet, int32_t MapId )
 	packet->setWOffset( NewOffset );
 }
 
-void CWorldBoss::UpdateBossInfo( int32_t BossId, int32_t DieTime, CharId_t KillerId, std::string KillerName , int32_t ReviveTime)  //dieTime = 0 ±íÊ¾¸´»î
+void CWorldBoss::UpdateBossInfo( int32_t BossId, int32_t DieTime, CharId_t KillerId, std::string KillerName , int32_t ReviveTime)  //dieTime = 0 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 {
 	BoosMap::iterator it = m_BossMap.find( BossId );
 	if ( it != m_BossMap.end() )
@@ -278,14 +281,14 @@ void CWorldBoss::GongGao( int32_t DieTime, int32_t Mid, int32_t BossId, std::str
 	}
 	if ( DieTime > 0 )		
 	{
-		packet->writeInt8( 0 );		//0 ±íÊ¾ËÀÍö
+		packet->writeInt8( 0 );		//0 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 		packet->writeInt32( Mid );
 		packet->writeUTF8( KillerName );
 		packet->writeInt64( KillerId );
 	}
 	else	
 	{
-		packet->writeInt8( 1 );		//1 ±íÊ¾¸´»î
+		packet->writeInt8( 1 );		//1 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 		packet->writeInt32( Mid );
 		packet->writeInt32( BossId );
 		packet->writeInt32( MapId );

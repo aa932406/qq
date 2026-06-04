@@ -6,13 +6,14 @@
 #include "GameService.h"
 #include "Timer.h"
 #include "DaTiHD.h"
+#include "SkillBuff.h"
 #include "MapManager.h"
 #include <algorithm>
 
 using namespace Answer;
 
 CActivity::CActivity( const CfgActivity& cfgActivity )
-:m_cfgActivity( cfgActivity ), m_nState( AS_NOT_START ), m_nBraodcastActivityScoreSign( 0 ), m_nBroadcastActivityScoreTick( 0 ), m_nKickTime( 0 )
+:m_cfgActivity( cfgActivity ), m_nState( AS_NOT_START ), m_nBraodcastActivityScoreSign( 0 ), m_nBroadcastActivityScoreTick( 0 ), m_nKickTime( 0 ), m_nStartTime( 0 ), m_nLastReviveCheckTick( 0 )
 {
 }
 
@@ -21,9 +22,14 @@ CActivity::~CActivity()
 
 }
 
-//»î¶¯³õÊ¼»¯Êý¾Ý
+//ï¿½î¶¯ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CActivity::Init()
 {
+	if ( m_cfgActivity.typeId <= 0 )
+	{
+		return;
+	}
+
 	Int32Vector::const_iterator iter = m_cfgActivity.maps.begin();
 	Int32Vector::const_iterator eiter = m_cfgActivity.maps.end();
 	for ( ; iter != eiter; ++iter )
@@ -58,6 +64,15 @@ void CActivity::OnUpdate( CActivityMap* pMap )
 		BroadcastActivityScore( pMap );
 	}
 
+	// v3: call virtual map update hook
+	UpdateMap( pMap );
+
+	// v3: check revive if enabled
+	if ( ShouldCheckRevive() )
+	{
+		checkRevive( pMap );
+	}
+
 	if ( m_nKickTime > 0 )
 	{
 		if ( pMap->getNow() >= m_nKickTime )
@@ -76,7 +91,8 @@ void CActivity::OnUpdate( CActivityMap* pMap )
 
 			if ( m_players.empty() )
 			{
-				reset();
+				m_nKickTime = 0;
+				onTimeEnd();
 			}
 		}
 	}
@@ -85,6 +101,8 @@ void CActivity::OnUpdate( CActivityMap* pMap )
 void CActivity::reset()
 {
 	m_nKickTime						= 0;
+	m_nStartTime					= 0;
+	m_nLastReviveCheckTick			= 0;
 	m_nBraodcastActivityScoreSign	= 0;
 	m_nBroadcastActivityScoreTick	= 0;
 	m_players.clear();
@@ -92,7 +110,20 @@ void CActivity::reset()
 
 void CActivity::SendPlayerActivityInfo( Player* player )
 {
+	if ( NULL == player )
+	{
+		return;
+	}
 
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, 0x2E22 );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( m_cfgActivity.id );
+	packet->writeInt32( getNextStartTime() );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.sendPacketTo( player->getGateIndex(), packet );
 }
 
 
@@ -103,22 +134,42 @@ void CActivity::SendPlayerActivityState( Player* player )
 
 void CActivity::SendPlayerActivityScore( Player* player, int32_t nLeftTime )
 {
+	if ( NULL == player )
+	{
+		return;
+	}
 
+	// v3: use packetActivityScoreForPlayer to get a packet for this player
+	NetPacket* packet = packetActivityScoreForPlayer( player->getGateIndex() );
+	if ( NULL != packet )
+	{
+		packet->writeInt32( nLeftTime );
+		packet->setSize( packet->getWOffset() );
+		GAME_SERVICE.sendPacketTo( player->getGateIndex(), packet );
+	}
 }
 
 void CActivity::BroadcastActivityState()
 {
+	int8_t nIconState = m_nState;
+	// v3: if time-out and not family-war, mask as not-started
+	if ( nIconState == AS_TIME_OUT && GetType() != ATI_FAMILY_WAR )
+	{
+		nIconState = AS_NOT_START;
+	}
+
 	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ONE_ICON );
 	if (NULL == packet)
 	{
 		return;
 	}
 	packet->writeInt32( m_cfgActivity.iconid );
-	packet->writeInt8(  m_nState );
+	packet->writeInt8(  nIconState );
 	packet->writeInt32( getLeftTime() );
 	packet->writeInt8( 0 );
 	packet->writeInt32( 0 );
-	if ( m_nState == AS_RUNNING )
+	// v3: use nIconState == AS_RUNNING instead of m_nState
+	if ( nIconState == AS_RUNNING )
 	{
 		packet->writeInt8( 1 );
 	}
@@ -142,12 +193,14 @@ void CActivity::BroadcastActivityScore( CActivityMap* pMap )
 		return;
 	}
 
+	// v3: check if we need to broadcast score
 	if ( !needBroadcastActivityScore() )
 	{
 		return;
 	}
 
-	NetPacket* packet = packetActivityScore();
+	// v3: get score packet
+	NetPacket* packet = packetActivityScoreForPlayer( 0 );
 	if ( NULL == packet )
 	{
 		return;
@@ -163,20 +216,30 @@ bool CActivity::OnSitRevive( Player* player )
 
 void CActivity::GetIconState( IconStateList& iconList )
 {
-	if ( m_nState == AS_TIME_OUT && GetType() != ATI_FAMILY_WAR )
+	int8_t nIconState = m_nState;
+
+	// v3: special handling for typeId 22
+	if ( nIconState == 0 && GetType() == 22 )
+	{
+		nIconState = 4;
+	}
+
+	// v3: hide time-out icons (except family war)
+	if ( nIconState == AS_TIME_OUT && GetType() != ATI_FAMILY_WAR )
 	{
 		return;
 	}
 	
 	ShowIcon icon = {};
 	icon.nId		= m_cfgActivity.iconid;
-	icon.nState		= m_nState;
+	icon.nState		= nIconState;
 	icon.nLeftTime	= getLeftTime();
-	if ( AS_RUNNING == m_nState )
+	if ( nIconState == AS_RUNNING )
 	{
 		icon.Effects = 1;
 	}
-	if ( m_nState == AS_TIME_OUT && GetType() == ATI_FAMILY_WAR )
+	// v3: family war time-out shows as not-started
+	if ( nIconState == AS_TIME_OUT && GetType() == ATI_FAMILY_WAR )
 	{
 		icon.nState = AS_NOT_START;
 	}
@@ -185,27 +248,87 @@ void CActivity::GetIconState( IconStateList& iconList )
 
 void CActivity::CheckActivity()
 {
-	if ( !checkData() )		// ÈÕÆÚ
+	ACTIVITY_STATE oldState = m_nState;
+
+	// v3: use virtual eligibility/active checks
+	if ( !isEligible() || !isActive() )
 	{
 		m_nState = AS_TIME_OUT;
 		return;
 	}
-	else if ( m_nState == AS_TIME_OUT)
+	else if ( m_nState == AS_TIME_OUT )
 	{
 		m_nState = AS_NOT_START;
 	}
 
-	if ( !checkWeek() )
+	bool bRightLine = checkLine();
+
+	// v3: cross-activity guard - skip state checks if wrong line
+	if ( !bRightLine && isCrossActivity() )
 	{
-		m_nState = AS_NOT_START;
 		return;
 	}
 
-	bool bRightLine			= checkLine();
-	ACTIVITY_STATE nState	= checkTime();
+	const tm& localnow = TIMER.GetLocalNow();
+	ACTIVITY_STATE nState = checkTime();
+
 	switch ( nState )
 	{
-	case AS_NOT_START:
+	case AS_READY:
+		{
+			if ( m_nState == AS_END || m_nState == AS_NOT_START )
+			{
+				m_nState = AS_READY;
+				if ( bRightLine )
+				{
+					onReady();
+				}
+			}
+		}
+		break;
+
+	case AS_RUNNING:
+		{
+			if ( m_nState == AS_READY || m_nState == AS_NOT_START )
+			{
+				if ( bRightLine )
+				{
+					LOG_DEBUG( "CActivity::CheckActivity ActId=%d to AS_RUNNING", GetId() );
+					onBeforeRun();
+					startActivity();
+					BroadcastActivityState();
+					broadcastStart();
+				}
+				else if ( GetType() == 19 && getActivityTime() > 599 )
+				{
+					// v3: special case for type 19 - force end if running too long
+					LOG_DEBUG( "CActivity::CheckActivity ActId=%d Type=19 force AS_END", GetId() );
+					m_nState = AS_END;
+					onSave();
+					return;
+				}
+				m_nState = AS_RUNNING;
+			}
+		}
+		break;
+
+	case AS_END:
+		{
+			if ( m_nState == AS_RUNNING )
+			{
+				if ( bRightLine )
+				{
+					LOG_DEBUG( "CActivity::CheckActivity ActId=%d AS_RUNNING to AS_END", GetId() );
+					onBeforeStop();
+					stopActivity();
+					onTimeEnd();
+				}
+			}
+			m_nState = AS_END;
+		}
+		break;
+
+	default: // AS_NOT_START (0)
 		{
 			if ( m_nState == AS_END )
 			{
@@ -215,6 +338,8 @@ void CActivity::CheckActivity()
 			{
 				if ( bRightLine )
 				{
+					LOG_DEBUG( "CActivity::CheckActivity ActId=%d AS_RUNNING to AS_NOT_START", GetId() );
+					onBeforeStop();
 					stopActivity();
 					onTimeEnd();
 				}
@@ -222,55 +347,27 @@ void CActivity::CheckActivity()
 			}
 		}
 		break;
-	case AS_END:
+	}
+
+	// v3: on state change, save and broadcast for cross-activity
+	if ( m_nState != oldState )
+	{
+		onSave();
+		if ( bRightLine )
 		{
-			if ( m_nState == AS_RUNNING )
+			sendSocialUpdateActivityState( m_nState );
+			if ( isCrossActivity() )
 			{
-				if ( bRightLine )
-				{
-					stopActivity();
-					onTimeEnd();
-				}
-				m_nState = AS_END;
-			}
-			m_nState = AS_END;
-		}
-		break;
-	case AS_READY:
-		{
-			if ( m_nState == AS_END || m_nState == AS_NOT_START )
-			{
-				m_nState = AS_READY;
-				if ( bRightLine )
-				{
-					BroadcastActivityState();
-					broadcastReady();
-				}
+				broadcastActivityState();
 			}
 		}
-		break;
-	case AS_RUNNING:
-		{
-			if ( m_nState == AS_READY || m_nState == AS_NOT_START )
-			{
-				if ( bRightLine )
-				{
-					startActivity();
-					BroadcastActivityState();
-					broadcastStart();
-				}
-				m_nState = AS_RUNNING;
-			}
-		}
-		break;
-	default:
-		return;
 	}
 }
 
 void CActivity::startActivity()
 {
 	reset();
+	m_nStartTime = TIMER.GetNow();
 	m_nState = AS_RUNNING;
 	for ( ActivityMapList::iterator iter = m_activityMaps.begin(); iter != m_activityMaps.end(); ++iter )
 	{
@@ -335,7 +432,7 @@ int32_t	CActivity::getNextStartTime()
 	}
 
 	int32_t days = -1;
-	int32_t startDays = TIMER.GetDaysFromStart();	// ¿ª·þ¡¢ºÏ·þºóµÚÈýÌì¿ªÆô
+	int32_t startDays = TIMER.GetDaysFromStart();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿ªï¿½ï¿½
 	if ( checkData() && checkWeek() )
 	{
 		if( nowMinute < startMinute )
@@ -605,7 +702,7 @@ ACTIVITY_STATE CActivity::checkTime()
 	int32_t nowMinute	= localnow.tm_hour * 60 + localnow.tm_min;
 	int32_t startMinute = m_cfgActivity.start_hour[0];
 	int32_t endMinute	= startMinute + m_cfgActivity.duration;
-	int32_t readyMinute	= startMinute-5;							//¿ªÊ¼Ç°5·ÖÖÓ ÏµÍ³ÌáÊ¾
+	int32_t readyMinute	= startMinute-5;							//ï¿½ï¿½Ê¼Ç°5ï¿½ï¿½ï¿½ï¿½ ÏµÍ³ï¿½ï¿½Ê¾
 	for ( uint32_t i = 0; i < m_cfgActivity.start_hour.size(); ++i )
 	{
 		if ( nowMinute < readyMinute )
@@ -616,7 +713,7 @@ ACTIVITY_STATE CActivity::checkTime()
 		{
 			return AS_READY;
 		}
-		else if ( nowMinute < endMinute ) //¿ªÊ¼»î¶¯
+		else if ( nowMinute < endMinute ) //ï¿½ï¿½Ê¼ï¿½î¶¯
 		{
 			return AS_RUNNING;
 		}
@@ -688,4 +785,199 @@ void CActivity::setNeedBroadcastActivityScore()
 void CActivity::NotifyActivityInfo( Player* player )
 {
 
+}
+
+// new v2 functions
+
+bool CActivity::IsRightTime()
+{
+	// v3: matches pseudocode - get local time and compare with checkTime
+	const tm& localnow = TIMER.GetLocalNow();
+	ACTIVITY_STATE nState = checkTime();
+	return nState == AS_RUNNING;
+}
+
+void CActivity::checkRevive( CActivityMap* pMap )
+{
+	if ( NULL == pMap )
+	{
+		return;
+	}
+
+	int64_t curTick = pMap->getTick();
+	if ( curTick - m_nLastReviveCheckTick <= 499 )
+	{
+		return;
+	}
+
+	m_nLastReviveCheckTick = curTick;
+
+	PlayerList tList = m_players;
+	for ( PlayerList::iterator iter = tList.begin(); iter != tList.end(); ++iter )
+	{
+		Player* player = *iter;
+		if ( player != NULL && player->IsDead() )
+		{
+			int64_t dieDuration = curTick - player->GetDieTick();
+			if ( dieDuration >= GetRevive( player ) )
+			{
+				player->FillHP();
+				player->moveToReviveRegion( true );
+			}
+		}
+	}
+}
+
+bool CActivity::OnChangeMap( Player* player, CActivityMap* pMap, int32_t nX, int32_t nY, int32_t Param )
+{
+	if ( NULL == player || NULL == pMap )
+	{
+		return false;
+	}
+
+	if ( !pMap->isWalkablePosition( nX, nY ) )
+	{
+		return false;
+	}
+
+	bool bFind = false;
+	for ( ActivityMapList::iterator iter = m_activityMaps.begin(); iter != m_activityMaps.end(); ++iter )
+	{
+		CActivityMap* tp = *iter;
+		if ( tp != NULL && tp == pMap )
+		{
+			bFind = true;
+			break;
+		}
+	}
+
+	if ( bFind )
+	{
+		return player->switchMap( pMap, nX, nY, 1 ) == 0;
+	}
+	return false;
+}
+
+void CActivity::addActivityBuff( Unit* pUnit, int32_t nBuffId, bool bClear )
+{
+	if ( NULL == pUnit )
+	{
+		return;
+	}
+
+	CfgBuff* cfgBuff = CFG_DATA.getBuff( nBuffId );
+	if ( NULL == cfgBuff )
+	{
+		return;
+	}
+
+	SkillBuff* buff = new SkillBuff( *pUnit, *cfgBuff );
+	if ( buff != NULL )
+	{
+		buff->init( nBuffId, 1, pUnit->getHandle(), pUnit->getHandle() );
+		pUnit->addBuff( buff );
+	}
+}
+
+void CActivity::sendSocialUpdateActivityState( int8_t nState )
+{
+	if ( GAME_SERVICE.getLine() != 1 )
+	{
+		return;
+	}
+
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ONE_ICON );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( m_cfgActivity.iconid );
+	packet->writeInt8( nState );
+	packet->writeInt32( getLeftTime() );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.worldBroadcast( packet );
+}
+
+void CActivity::removeActivityMonster( int32_t monsterId )
+{
+	// TODO: The original pseudocode called Map::delMonster(pMap, monsterId) to remove
+	// monsters by ID from activity maps. This API doesn't exist in the current codebase.
+	// Need to add a method on CActivityMap or Map to remove monsters by config ID.
+}
+
+void CActivity::adjustMonsterAttr( CfgMonster* cfgMonster, int32_t nLevel, bool bAutoLow )
+{
+	if ( NULL == cfgMonster )
+	{
+		return;
+	}
+	cfgMonster->level = nLevel;
+}
+
+// v3 virtual hook implementations
+
+bool CActivity::isEligible()
+{
+	return checkData();
+}
+
+bool CActivity::isActive()
+{
+	return checkData() && checkWeek();
+}
+
+bool CActivity::isCrossActivity()
+{
+	return false;
+}
+
+void CActivity::onSave()
+{
+}
+
+void CActivity::onReady()
+{
+	BroadcastActivityState();
+	broadcastReady();
+}
+
+void CActivity::onBeforeRun()
+{
+}
+
+void CActivity::onBeforeStop()
+{
+}
+
+void CActivity::UpdateMap( CActivityMap* pMap )
+{
+}
+
+bool CActivity::ShouldCheckRevive()
+{
+	return true;
+}
+
+int32_t CActivity::GetNextStartTime()
+{
+	return getNextStartTime();
+}
+
+void CActivity::broadcastActivityState()
+{
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_ONE_ICON );
+	if (NULL == packet)
+	{
+		return;
+	}
+	packet->writeInt32( m_cfgActivity.iconid );
+	packet->writeInt8( m_nState );
+	packet->writeInt32( getLeftTime() );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.worldBroadcast( packet );
+}
+
+Answer::NetPacket* CActivity::packetActivityScoreForPlayer( int32_t nConnId )
+{
+	return packetActivityScore();
 }

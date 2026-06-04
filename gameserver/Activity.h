@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
-// »î¶¯Ö÷½á¹¹
-// UpdateÓÉTimerÏß³ÌÇý¶¯£¬²»ÄÜÖ±½Óµ÷ÓÃµØÍ¼Êý¾Ý
-// Éæ¼°Ìí¼ÓÉ¾³ý²Ù×÷ÐèÒªÓÉµØÍ¼Çý¶¯
+// ï¿½î¶¯ï¿½ï¿½ï¿½á¹¹
+// Updateï¿½ï¿½Timerï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Óµï¿½ï¿½Ãµï¿½Í¼ï¿½ï¿½ï¿½ï¿½
+// ï¿½æ¼°ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Éµï¿½Í¼ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////////
 
 #ifndef __TPOC_ACTIVITY_H__
@@ -13,6 +13,7 @@
 
 class MonsterActivity;
 class CActivityMap;
+class Unit;
 class CActivity
 {
 friend class CActivityMap;
@@ -32,7 +33,7 @@ public:
 	bool	IsRuning() const;
 	void	GetIconState( IconStateList& iconList );
 
-	virtual void	CheckActivity();	// ¼àÊÓ¿ªÆô»î¶¯
+	virtual void	CheckActivity();
 	virtual void	SendPlayerActivityInfo( Player* player );
 	virtual void	SendPlayerActivityState( Player* player );
 	virtual void	SendPlayerActivityScore( Player* player, int32_t nLeftTime );
@@ -49,6 +50,29 @@ public:
 	virtual Position	GetRandBornPos( Player* player );
 	virtual int32_t	HaveRewardCount( Player* Player );
 	virtual void	NotifyActivityInfo( Player* player );
+
+	// v2: new virtual functions (add at end to preserve vtable layout)
+	virtual bool	IsRightTime();
+	virtual void	checkRevive( CActivityMap* pMap );
+
+	// v3 virtual hooks (from pseudocode)
+	virtual bool		isEligible();
+	virtual bool		isActive();
+	virtual bool		isCrossActivity();
+	virtual void		onSave();
+	virtual void		onReady();
+	virtual void		onBeforeRun();
+	virtual void		onBeforeStop();
+	virtual void		UpdateMap( CActivityMap* pMap );
+	virtual bool		ShouldCheckRevive();
+	virtual int32_t		GetNextStartTime();
+	virtual void		broadcastActivityState();
+	virtual Answer::NetPacket* packetActivityScoreForPlayer( int32_t nConnId );
+
+	// new v2 non-virtual public
+	bool		OnChangeMap( Player* player, CActivityMap* pMap, int32_t nX, int32_t nY, int32_t Param );
+	void		addActivityBuff( Unit* pUnit, int32_t nBuffId, bool bClear );
+	void		sendSocialUpdateActivityState( int8_t nState );
 
 protected:
 	virtual void	reset();
@@ -84,11 +108,15 @@ protected:
 	Position	getBornRandPos( int32_t nMapId, const Int32Vector& regions );
 	void		delayKickAll( int32_t nTime );
 
+	// new v2 non-virtual protected
+	void		removeActivityMonster( int32_t monsterId );
+	void		adjustMonsterAttr( CfgMonster* cfgMonster, int32_t nLevel, bool bAutoLow );
+
 protected:
-	virtual void	startActivity();	// ¿ªÊ¼»î¶¯
-	virtual void	stopActivity();		// ½áÊø»î¶¯
-	int32_t	getLeftTime();		// »ñµÃÊ£ÓàÊ±¼ä 
-	int32_t	getActivityTime();	// ³ÖÐøÊ±¼ä
+	virtual void	startActivity();	// ï¿½ï¿½Ê¼ï¿½î¶¯
+	virtual void	stopActivity();		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	int32_t	getLeftTime();		// ï¿½ï¿½ï¿½Ê£ï¿½ï¿½Ê±ï¿½ï¿½ 
+	int32_t	getActivityTime();	// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
 	bool	needBroadcastActivityScore() const;
 	void	setNeedBroadcastActivityScore();
@@ -99,6 +127,8 @@ protected:
 	ActivityMapList		m_activityMaps;
 	PlayerList			m_players;
 	int32_t				m_nKickTime;
+	int32_t				m_nStartTime;
+	int64_t				m_nLastReviveCheckTick;
 
 	int32_t				m_nBraodcastActivityScoreSign;
 	int64_t				m_nBroadcastActivityScoreTick;

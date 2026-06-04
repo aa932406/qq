@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////
-// »î¶¯¹ÜÀíÆ÷
+// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////////
 
 #ifndef __TPOC_ACTIVITY_MANAGER_H__
@@ -10,24 +10,24 @@
 
 enum ActivityId
 {
-	JUN_TUAN_ZHAN_ID		= 1,		//¾üÍÅÕ½
-	FEI_TIAN_SHENG_JV_ID    = 2,		//·ÉÌìÉñ¾Ô
-	JUN_TUAN_ZHI_GUANG_ID	= 3,		//¾üÍÅÖ®¹â
-	JUN_TUAN_ZHI_GUANG_ID2  = 4,		//¾üÍÅÖ®¹â2
-	MO_LING_RU_QING_ID		= 5,		//Ä§ÁéÈëÇÖ
-	MO_LING_RU_QING_ID2		= 6,		//Ä§ÁéÈëÇÖ2
-	DA_TI_HUONG_DONG_ID		= 7,		//´ðÌâ»î¶¯
-	DA_TI_HUONG_DONG_ID2	= 8,		//´ðÌâ»î¶¯2
-	TIAN_JIANG_BAO_XIANG	= 9,		//Ìì½µ±¦Ïä
-	CTERRITORYWAR_1			= 11,		//ÁìµØÕ½
-	CTERRITORYWAR_2			= 12,		//ÁìµØÕ½
-	CTERRITORYWAR_3			= 13,		//ÁìµØÕ½
-	CTERRITORYWAR_4			= 14,		//ÁìµØÕ½
-	CTERRITORYWAR_5			= 15,		//ÁìµØÕ½
-	SQIDER_QUEEN_ID_1		= 16,		//Ö©ÖëÅ®Íõ1
-	SQIDER_QUEEN_ID_2		= 17,		//Ö©ÖëÅ®Íõ2
-	SQIDER_QUEEN_ID_3		= 18,		//Ö©ÖëÅ®Íõ3
-	SQIDER_QUEEN_ID_4		= 19,		//Ö©ÖëÅ®Íõ4
+	JUN_TUAN_ZHAN_ID		= 1,		//ï¿½ï¿½ï¿½ï¿½Õ½
+	FEI_TIAN_SHENG_JV_ID    = 2,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	JUN_TUAN_ZHI_GUANG_ID	= 3,		//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+	JUN_TUAN_ZHI_GUANG_ID2  = 4,		//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½2
+	MO_LING_RU_QING_ID		= 5,		//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MO_LING_RU_QING_ID2		= 6,		//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
+	DA_TI_HUONG_DONG_ID		= 7,		//ï¿½ï¿½ï¿½ï¿½î¶¯
+	DA_TI_HUONG_DONG_ID2	= 8,		//ï¿½ï¿½ï¿½ï¿½î¶¯2
+	TIAN_JIANG_BAO_XIANG	= 9,		//ï¿½ì½µï¿½ï¿½ï¿½ï¿½
+	CTERRITORYWAR_1			= 11,		//ï¿½ï¿½ï¿½Õ½
+	CTERRITORYWAR_2			= 12,		//ï¿½ï¿½ï¿½Õ½
+	CTERRITORYWAR_3			= 13,		//ï¿½ï¿½ï¿½Õ½
+	CTERRITORYWAR_4			= 14,		//ï¿½ï¿½ï¿½Õ½
+	CTERRITORYWAR_5			= 15,		//ï¿½ï¿½ï¿½Õ½
+	SQIDER_QUEEN_ID_1		= 16,		//Ö©ï¿½ï¿½Å®ï¿½ï¿½1
+	SQIDER_QUEEN_ID_2		= 17,		//Ö©ï¿½ï¿½Å®ï¿½ï¿½2
+	SQIDER_QUEEN_ID_3		= 18,		//Ö©ï¿½ï¿½Å®ï¿½ï¿½3
+	SQIDER_QUEEN_ID_4		= 19,		//Ö©ï¿½ï¿½Å®ï¿½ï¿½4
 };
 
 class CActivityManager
@@ -45,8 +45,16 @@ public:
 	int32_t	GiveDailyReward( Player* player, int32_t nId );
 	int32_t	HaveRewardCount( Player* Player, int32_t nId );
 	void    NotifyActivityInfo( Player* player );
+
+	// new v2 functions
+	void	SendActivityRankInfo( Player* player, int32_t nId );
+	void	UpdateActivityState( Player* player, int32_t nId, int8_t nState );
+	int32_t	AddTianJiangBaoXiangCount();
+
 public:
-	bool		IsActivityRunning(int32_t id);										
+	bool		IsActivityRunning(int32_t id);
+	bool		IsActivityRunningByType( int32_t nType );
+	int32_t		GetCurActivityId( int32_t nType );
 	void		AppendActivityState(Answer::NetPacket *packet);
 	CActivity*	GetActivity( int32_t id );
 
@@ -56,11 +64,19 @@ public:
 	std::string GetFamilyWarWinnerName();
 	void		OnFamilyWarResult( int32_t nActId, FamilyId_t nFamilyId, int16_t nWinTimes , string FamilyName, string LeadyerName );
 	void		OnTerritoryWarResult( int32_t nActId, std::string winners );
+	void		OnCityWarResult( int32_t nActId, int32_t nIndex, FamilyId_t nFamilyId, int32_t nWinTime,
+		CharId_t nLeader, CharId_t nFirst, CharId_t nSecond, CharId_t nThird,
+		const std::string& strFirstFamily, const std::string& strSecondFamily, const std::string& strThirdFamily );
 	void		GetActicityIconState( IconStateList& iconList );
 	void		OnTerritoryWarInfo( Player* player );
 	int8_t		GetTerritoryWarState();
 
 	void		StopSqiderQueen();
+
+	// City war winner management
+	void		SetCityWarWinner(FamilyId_t nFamilyId);
+	FamilyId_t	GetCityWarWinner();
+
 private:
 	Answer::Mutex	m_mutex;
 
@@ -69,6 +85,9 @@ private:
 
 	FamilyId_t		m_nFamilyWarWinner;
 	int32_t			m_nFamilyWarWinTimes;
+
+	// new v2
+	std::map<int32_t, FamilyId_t>	m_mWinFamily;		// city war winners by connid
 };
 #define ACTIVITY_MANAGER Answer::Singleton<CActivityManager>::instance()
 

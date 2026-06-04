@@ -1,7 +1,7 @@
 #pragma once
 //////////////////////////////////////////////////////////////////////////
 //author:zxj			modify Time: 2012 -7-7
-//description:ÓÎÏ·Ïß³Ì´¦ÀíÖÐÐÄ
+//description:ï¿½ï¿½Ï·ï¿½ß³Ì´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////////
 #include <list>
 #include <vector>
@@ -46,7 +46,7 @@ public:
 
 	void AddPlayer(Player *player);
 	void removePlayer(Player *player);
-	Player* getPlayer( CharId_t cid, int32_t nRunnerId, bool bCheck = true );	// Ö»ÓÐÍ¬Ò»Ïß³ÌÄÜÖ±½ÓÈ¡ÓÃ£¬²»Í¬Ïß³ÌÐèÍ¶µÝÏûÏ¢ bCheck ÊÇ·ñ½øÐÐÍ¬Ïß¼ì²â
+	Player* getPlayer( CharId_t cid, int32_t nRunnerId, bool bCheck = true );	// Ö»ï¿½ï¿½Í¬Ò»ï¿½ß³ï¿½ï¿½ï¿½Ö±ï¿½ï¿½È¡ï¿½Ã£ï¿½ï¿½ï¿½Í¬ï¿½ß³ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½Ï¢ bCheck ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ß¼ï¿½ï¿½
 
 	void addPet( CObjPet *pPet );
 	void removePet( CObjPet *pPet );
@@ -74,6 +74,11 @@ public:
 	void requestFamilyInfo();
 	void KickUser( CharId_t cid );
 
+	// City war functions
+	void broadFamilyWarIcon();
+	void UpdateCityWarTitle(FamilyId_t OldFamilyId, FamilyId_t NewFamilyId);
+	void UpdateCityActState(FamilyId_t FamilyId, int8_t ActState);
+
 private:
 	void onAddUser(Answer::NetPacket *inPacket);
 	void onRemoveUser(Answer::NetPacket *inPacket);
@@ -83,7 +88,7 @@ private:
 	void onSocialNetpacket(Answer::NetPacket *inPacket);
 	void onEnterGame(int16_t cgindex, Answer::NetPacket *inPacket);
 	void onEnterGameRobot(int16_t cgindex, Answer::NetPacket *inPacket);
-	void onGameNetpacket(int16_t cgindex, Answer::NetPacket *inPacket); //´æ·ÅÀ´×Ôsocial ºÍ flash ClientµÄÊý¾Ý°ü
+	void onGameNetpacket(int16_t cgindex, Answer::NetPacket *inPacket); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½social ï¿½ï¿½ flash Clientï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
 
 	void sendSocialAddPlayer(Player *player);
 	void sendSocialRemovePlayer(Player *player);

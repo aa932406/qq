@@ -43,6 +43,7 @@ void DBService::onNetPacket(Answer::NetPacket *inPacket)
 	case IM_DB_UPDATE_NEW_MAIL:				OnUpdateMailInfo( inPacket ); break;
 	case IM_DB_UPDATE_FAMILY_WAR_RESULT:	onUpdateFamilyWarResult( inPacket ); break;
 	case IM_DB_UPDATE_TERRITORY_WAR_RESULT:	onUpdateTerritoryWarResult( inPacket ); break;
+	case IM_DB_UPDATE_CITY_WAR_RESULT:		onUpdateCityWarResult( inPacket ); break;
 	case IM_DB_UPDATE_GM_BROADCAST:			onUpdateGMBroadcast( inPacket ); break;
 	case IM_DB_UPDATE_GM_BAN_CHAT:			onUpdateGMBanChat( inPacket ); break;
 	case IM_DB_UPDATE_GM_SEAL:				onUpdateGMSeal( inPacket ); break;
@@ -1078,7 +1079,7 @@ void DBService::OnDleRansom( EquipId_t EquipId )
 	sendPacket(packet);
 }
 
-//·¢ËÍ¸ødbServer´æ´¢ÓÊ¼þ
+//ï¿½ï¿½ï¿½Í¸ï¿½dbServerï¿½æ´¢ï¿½Ê¼ï¿½
 void DBService::OnSendMail( MailInfo& Mail, std::string Param )
 {
 	NetPacket *packet = popNetpacket();
@@ -1304,6 +1305,54 @@ void DBService::onUpdateTerritoryWarResult( Answer::NetPacket* inPacket )
 	ACTIVITY_MANAGER.OnTerritoryWarResult( nActId, winners );
 }
 
+void DBService::SaveCityWarResult( int32_t nActId, int32_t nIndex, FamilyId_t nFamilyId, int32_t nWinTime,
+	CharId_t nLeader, CharId_t nFirst, CharId_t nSecond, CharId_t nThird,
+	const std::string& strFirstFamily, const std::string& strSecondFamily, const std::string& strThirdFamily )
+{
+	NetPacket *packet = popNetpacket();
+	if (NULL == packet)
+	{
+		return;
+	}
+
+	packet->writeInt32( nActId );
+	packet->writeInt32( nIndex );
+	packet->writeInt64( nFamilyId );
+	packet->writeInt32( nWinTime );
+	packet->writeInt64( nLeader );
+	packet->writeInt64( nFirst );
+	packet->writeInt64( nSecond );
+	packet->writeInt64( nThird );
+	packet->writeUTF8( strFirstFamily );
+	packet->writeUTF8( strSecondFamily );
+	packet->writeUTF8( strThirdFamily );
+	packet->setType( PACK_PROC );
+	packet->setProc( IM_DB_SAVE_CITY_WAR_RESULT );
+	packet->setSize( packet->getWOffset() );
+	sendPacket(packet);
+}
+
+void DBService::onUpdateCityWarResult( Answer::NetPacket* inPacket )
+{
+	if ( NULL == inPacket )
+	{
+		return;
+	}
+	int32_t		nActId		= inPacket->readInt32();
+	int32_t		nIndex		= inPacket->readInt32();
+	FamilyId_t	nFamilyId	= inPacket->readInt64();
+	int32_t		nWinTime	= inPacket->readInt32();
+	CharId_t	nLeader		= inPacket->readInt64();
+	CharId_t	nFirst		= inPacket->readInt64();
+	CharId_t	nSecond		= inPacket->readInt64();
+	CharId_t	nThird		= inPacket->readInt64();
+	std::string strFirstFamily	= inPacket->readUTF8(true);
+	std::string strSecondFamily	= inPacket->readUTF8(true);
+	std::string strThirdFamily	= inPacket->readUTF8(true);
+
+	ACTIVITY_MANAGER.OnCityWarResult( nActId, nIndex, nFamilyId, nWinTime, nLeader, nFirst, nSecond, nThird,
+		strFirstFamily, strSecondFamily, strThirdFamily );
+}
 
 void DBService::onUpdateGMBroadcast( Answer::NetPacket *inPacket )
 {

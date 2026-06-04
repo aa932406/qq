@@ -4390,6 +4390,89 @@ public:
 	AchievementMap	m_AchievementMap;
 };
 //========================================================================================================================================
+//========================================================================================================================================
+class MemChrTitleData : public IDataStruct
+{
+public:
+	MemChrTitleData(){ CleanUp(); }
+	virtual ~MemChrTitleData(){}
+
+	void CleanUp()
+	{
+		m_vTitles.clear();
+	}
+
+public:
+	virtual void SaveToSqlString( SqlStringList& sqls, char (&szSQL)[MAX_SQL_LENGTH], CharId_t nCid = 0 )
+	{
+		bzero( szSQL, sizeof( szSQL ) );
+		snprintf( szSQL, sizeof( szSQL ) - 1, "DELETE FROM `mem_chr_title` WHERE `cid`=%lld", nCid );
+		sqls.push_back( szSQL );
+
+		int32_t vtSize = m_vTitles.size();
+		for ( int32_t i = 0; i < vtSize; ++i )
+		{
+			bzero( szSQL, sizeof( szSQL ) );
+			snprintf( szSQL, sizeof( szSQL ) - 1,
+				"INSERT INTO `mem_chr_title` (`cid`, `type`, `value`, `expire_time`) VALUES (%lld, %d, %d, %d)",
+				nCid,
+				m_vTitles[i].nType,
+				m_vTitles[i].nValue,
+				m_vTitles[i].nExpireTime );
+			sqls.push_back( szSQL );
+		}
+	}
+
+	virtual bool LoadFromDB( Answer::MySqlDBGuard& db, char (&szSQL)[MAX_SQL_LENGTH], int32_t nUid, int32_t nSid, CharId_t nCid = 0 )
+	{
+		bzero( szSQL, sizeof( szSQL ) );
+		snprintf( szSQL, sizeof( szSQL ) - 1, "SELECT * FROM `mem_chr_title` WHERE `cid`=%lld", nCid );
+		Answer::MySqlQuery result = db.query( szSQL );
+		m_vTitles.clear();
+		m_vTitles.reserve( result.getRowCount() );
+		while ( !result.eof() )
+		{
+			MemChrTitle title = {};
+			title.nType		= result.getIntValue("type");
+			title.nValue		= result.getIntValue("value");
+			title.nExpireTime	= result.getIntValue("expire_time");
+			m_vTitles.push_back( title );
+			result.nextRow();
+		}
+		return true;
+	}
+
+	virtual void PackageData( Answer::NetPacket* packet )
+	{
+		int32_t vtSize = m_vTitles.size();
+		packet->writeInt32( vtSize );
+		for ( int32_t i = 0; i < vtSize; ++i )
+		{
+			packet->writeInt32( m_vTitles[i].nType );
+			packet->writeInt32( m_vTitles[i].nValue );
+			packet->writeInt32( m_vTitles[i].nExpireTime );
+		}
+	}
+
+	virtual void UnPackageData( Answer::NetPacket* inPacket, CharId_t nCid = 0 )
+	{
+		int32_t vtSize = inPacket->readInt32();
+		m_vTitles.clear();
+		m_vTitles.reserve( vtSize );
+		for ( int32_t i = 0; i < vtSize; ++i )
+		{
+			MemChrTitle title = {};
+			title.nType		= inPacket->readInt32();
+			title.nValue		= inPacket->readInt32();
+			title.nExpireTime	= inPacket->readInt32();
+			m_vTitles.push_back( title );
+		}
+	}
+
+public:
+	struct MemChrTitle { int32_t nType; int32_t nValue; int32_t nExpireTime; };
+	std::vector<MemChrTitle>	m_vTitles;
+};
 class PlayerDBData : public IDataStruct
 {
 public:
@@ -4441,6 +4524,7 @@ public:
 		m_TouZiData.CleanUp();
 		m_HuoYueDuData.CleanUp();
 		m_AchievementData.CleanUp();
+		m_TitleData.CleanUp();
 	}
 
 public:
@@ -4483,6 +4567,7 @@ public:
 		m_TouZiData.SaveToSqlString(sqls,szSQL,nCid );
 		m_HuoYueDuData.SaveToSqlString(sqls,szSQL,nCid);
 		m_AchievementData.SaveToSqlString( sqls, szSQL, nCid );
+		m_TitleData.SaveToSqlString( sqls, szSQL, nCid );
 	}
 
 	virtual bool LoadFromDB( Answer::MySqlDBGuard& db, char (&szSQL)[MAX_SQL_LENGTH], int32_t nUid, int32_t nSid, CharId_t nCid = 0 )
@@ -4539,6 +4624,7 @@ public:
 		m_TouZiData.LoadFromDB(db,szSQL,nUid,nSid,nCid);
 		m_HuoYueDuData.LoadFromDB(db,szSQL,nUid,nSid,nCid);
 		m_AchievementData.LoadFromDB( db, szSQL, nUid, nSid, nCid );
+		m_TitleData.LoadFromDB( db, szSQL, nUid, nSid, nCid );
 		return true;
 	}
 
@@ -4589,6 +4675,7 @@ public:
 		m_TouZiData.PackageData( packet );
 		m_HuoYueDuData.PackageData(packet);
 		m_AchievementData.PackageData(packet);
+		m_TitleData.PackageData( packet );
 	}
 
 	virtual void UnPackageData( Answer::NetPacket* inPacket, CharId_t nCid = 0 )
@@ -4640,6 +4727,7 @@ public:
 		m_TouZiData.UnPackageData( inPacket, nCid );
 		m_HuoYueDuData.UnPackageData(inPacket,nCid );
 		m_AchievementData.UnPackageData(inPacket,nCid);
+		m_TitleData.UnPackageData(inPacket, nCid);
 	}
 
 	void LoadUseSpecialInfo( Answer::MySqlDBGuard& db, char (&szSQL)[MAX_SQL_LENGTH], int32_t nUid, int32_t nSid, CharId_t nCid = 0 )
@@ -4721,6 +4809,7 @@ public:
 	TouZiData					m_TouZiData;
 	CHuoYueDuData				m_HuoYueDuData;
 	AchievementData				m_AchievementData;
+	MemChrTitleData				m_TitleData;
 };
 
 struct PlayerDBSql 

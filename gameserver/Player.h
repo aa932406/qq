@@ -20,6 +20,7 @@
 #include "CharPet.h"
 #include "CharSkill.h"
 #include "CharFamily.h"
+#include "CharTitle.h"
 #include "CharTeamDungeon.h"
 #include "CharInsidePet.h"
 #include "CharWorship.h"
@@ -95,7 +96,7 @@ public:
 	virtual int32_t getDeadTime() const;
 	virtual void postDamage(int32_t damge, UnitHandle launcher);
 	virtual bool isFriendSide(Unit *pUnit);
-	virtual bool checkSkillTarget(CfgSkill *pCfg, Unit *pUnit);			// ¼ì²â¼¼ÄÜÊÇ·ñ¿ÉÒÔ¶ÔÄ¿±êÊ©·Å
+	virtual bool checkSkillTarget(CfgSkill *pCfg, Unit *pUnit);			// ï¿½ï¿½â¼¼ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ô¶ï¿½Ä¿ï¿½ï¿½Ê©ï¿½ï¿½
 	virtual Position getCurrentTile();
 	virtual int32_t	GetCalLevel() const;
 
@@ -117,11 +118,11 @@ public:
 	//void updateFamilyID(int32_t familyID);
 	int32_t switchMap(Map *pMap, int32_t x, int32_t y, bool isFly);
 	void moveToReviveRegion(bool bInAct);
-	int32_t getActivityBirthRegion(Int32Vector* pRegsions) const;//È¡µÃ¹ú¼ÒµÄ³öÉúµã
+	int32_t getActivityBirthRegion(Int32Vector* pRegsions) const;//È¡ï¿½Ã¹ï¿½ï¿½ÒµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½
 	int32_t leaveDungeon();
 	bool isInRectangle(Position x,Position y) const;
-	//bool inMatch() const;//ÔÚ±ÈÎäÖÐ
-	bool isLeader() const; //ÊÇ·ñÊÇ°ïÖ÷
+	//bool inMatch() const;//ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½
+	bool isLeader() const; //ï¿½Ç·ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 	int32_t getLeaderCid() const;
 	int32_t leaveActivity();
 	CharId_t getCid() const;
@@ -141,7 +142,7 @@ public:
 	Answer::NetPacket *getOtherQueryInfo();
 
 	void delExp( int64_t nValue );
-	void addExp(int64_t addon , bool Iswallow = true ); //Iswallow ÊÇ·ñÊÜ·À³ÁÃÔÏµÍ³Ó°Ïì 
+	void addExp(int64_t addon , bool Iswallow = true ); //Iswallow ï¿½Ç·ï¿½ï¿½Ü·ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³Ó°ï¿½ï¿½ 
 	int64_t GetLevelExp();
 	int64_t GetLevelMaxExp();
 
@@ -166,7 +167,7 @@ public:
 	int32_t getWeaponId();
 
 	double benefitRatio();
-	BenefitType benefitType();//ÊÕÒæÀàÐÍ¡£Ëðº¦¡£Æ£ÀÍµÈ
+	BenefitType benefitType();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½ï¿½ðº¦¡ï¿½Æ£ï¿½Íµï¿½
 
 	int32_t GetFreeSlotCount();
 	MemChrBag getBagSlotData( int32_t slot );
@@ -184,7 +185,7 @@ public:
 	//void  updateTotalFightPower();
 	//void  setChangeFlag(int32_t flag);
 	//void  setFamilyPosition(int32_t value);
-	//void  addJungong(int32_t addon,int32_t reason, BenefitType bnfType);//ÔÄÀú
+	//void  addJungong(int32_t addon,int32_t reason, BenefitType bnfType);//ï¿½ï¿½ï¿½ï¿½
 	//void  addWuhuen(int32_t addon,int32_t reason, BenefitType bnfType);//xinfa
 	//void  addJiangxing(int32_t addon,int32_t reason, BenefitType bnfType);//wuyi
 	//void  addKingdomContribute(int32_t addon);
@@ -221,6 +222,14 @@ public:
 	void refeshKillerRecord();
 	void sendActivityGain(int32_t activityId, int32_t exp, int32_t money, int32_t isEnd);
 
+	// City war / family war functions
+	void SendFamilyWarIcon();
+	void SetActState(int8_t ActState);
+	int8_t GetActState() const;
+
+private:
+	int8_t m_actState;
+
 	void setSyncStatusFlag();
 	void setSyncToTeamFlag();
 	//void sendActivityData(int8_t kingdom,int32_t acitd,int8_t ntype,int32_t values ,int32_t id,const char* fmName);
@@ -252,8 +261,8 @@ public:
 
 	void onActAddHL();
 
-	int32_t verifyBagInfo( const Int32Vector& vSlot,int32_t nItemId,int32_t nCount);//ºËÊµ°üÐÅÏ¢
-	int32_t queryAutoBuyBagInfo( const Int32Vector& vSlot,int32_t nItemId,int32_t& count,int32_t nShopId);//×Ô¶¯¹ºÂòºËÊµ°üÐÅÏ¢
+	int32_t verifyBagInfo( const Int32Vector& vSlot,int32_t nItemId,int32_t nCount);//ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ï¢
+	int32_t queryAutoBuyBagInfo( const Int32Vector& vSlot,int32_t nItemId,int32_t& count,int32_t nShopId);//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ï¢
 	bool queryBagInfo( Answer::NetPacket* inPacket, Int32Vector& vSlot );
 
 	int32_t verifyBagInfoForGroup(Answer::NetPacket *inPacket,MemChrBagVector &slotDataVector,int32_t item_type,int32_t count);
@@ -285,8 +294,8 @@ public:
 	int32_t getMemYellowStone(CharId_t cid,int32_t id);
 	int32_t getYellowGrowId();
 
-	void onDamageEvent(UnitHandle target, int32_t attackValue);									// ÉËº¦ÏûÏ¢
-	void onDamagedEvent(UnitHandle launcher, int32_t attackValue);								// ÉËº¦ÏûÏ¢
+	void onDamageEvent(UnitHandle target, int32_t attackValue);									// ï¿½Ëºï¿½ï¿½ï¿½Ï¢
+	void onDamagedEvent(UnitHandle launcher, int32_t attackValue);								// ï¿½Ëºï¿½ï¿½ï¿½Ï¢
 
 	bool	IsDead() const;
 	int64_t	GetDieTick() const;
@@ -430,7 +439,7 @@ private:
 	void removeSkill(int32_t skillid);
 
 	int32_t upgradeSkill( int32_t skillid, int32_t BagSlot );
-	void doSkillCost(CfgSkill *pCfgSkill, MemChrSkillVector::iterator &itSkill);				// ¼¼ÄÜÏûºÄ
+	void doSkillCost(CfgSkill *pCfgSkill, MemChrSkillVector::iterator &itSkill);				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void doSkillLevel(int32_t sid, int32_t slevel, UnitHandle target);
 	//bool isEnterDungeon(int32_t id ,int8_t ntype);
 	bool isInWorldBossActivity();
@@ -476,7 +485,7 @@ private:
 	int64_t m_lastExpPoolTick;
 	int64_t m_lastMagicWeaponBuffTick;
 
-	PlayerPosition m_ActFrontPosition; //½øÈë»î¶¯Ç°µÄÎ»ÖÃ
+	PlayerPosition m_ActFrontPosition; //ï¿½ï¿½ï¿½ï¿½î¶¯Ç°ï¿½ï¿½Î»ï¿½ï¿½
 	PlayerPosition m_oldPosition;
 
 	int32_t m_eventHP;
@@ -486,8 +495,8 @@ private:
 	bool m_needSyncToTeam;
 	int32_t m_saveDataTimeCount;
 	int32_t m_levelStartTime;
-	int32_t m_todayGoldCharge;//½ñÈÕ³äÖµÔª±¦
-	int32_t m_firstFiveDayGoldCharge;//¿ª·þ10Ìì³äÖµÔª±¦
+	int32_t m_todayGoldCharge;//ï¿½ï¿½ï¿½Õ³ï¿½ÖµÔªï¿½ï¿½
+	int32_t m_firstFiveDayGoldCharge;//ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ÖµÔªï¿½ï¿½
 
 	std::string m_openId;
 	std::string m_openKey;
@@ -501,7 +510,7 @@ private:
 
 
 
-// À©Õ¹ÏµÍ³
+// ï¿½ï¿½Õ¹ÏµÍ³
 public:
 	void			SaveDBData( PlayerDBData& dbData );
 	void			InitExtSystems();
@@ -511,7 +520,7 @@ private:
 
 /*
 * EXT_SYS_WMF
-* ÍôÃô·æµÄÐÂÏµÍ³¼ÓÔÚÕâÖ®ºó
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
 */
 	friend class CExtOperateLimit;
 public:				CExtOperateLimit&		GetOperateLimit() { return m_extOperateLimit; }
@@ -565,6 +574,10 @@ private:			CExtChrTaskCycle		m_extTaskCycle;
 public:				CExtCharFamily&			GetCharFamily() { return m_extCharFamily; }
 private:			CExtCharFamily			m_extCharFamily;
 
+	friend class CExtCharTitle;
+public:				CExtCharTitle&			GetCharTitle() { return m_extCharTitle; }
+private:			CExtCharTitle			m_extCharTitle;
+
 	friend class CExtCharTeamDungeon;
 public:				CExtCharTeamDungeon&	GetCharTeamDungeon() { return m_extCharTeamDungeon; }
 private:			CExtCharTeamDungeon		m_extCharTeamDungeon;
@@ -594,7 +607,7 @@ private:			CExtCharHallOfFame		m_extCharHallOfFame;
 
 /*
 * EXT_SYS_ZK
-* Öì¿ªµÄÐÂÏµÍ³¼ÓÔÚÕâÖ®ºó
+* ï¿½ì¿ªï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
 */
 
 public: 
@@ -717,7 +730,7 @@ private:
 	int32_t			OnKaiFuHuoDongOperator( Answer::NetPacket *inPacket );
 
 
-	EntityId_t m_plantId;				//ÕýÔÚ²É¼¯µÄ²É¼¯Îï
+	EntityId_t m_plantId;				//ï¿½ï¿½ï¿½Ú²É¼ï¿½ï¿½Ä²É¼ï¿½ï¿½ï¿½
 	int64_t	   m_startGatherTick;	
 public:
 	int32_t				GetStartProtect();
@@ -725,15 +738,15 @@ public:
 	void				onDropItem( Player *pKiller, int32_t Mid = 0 );
 	void				SendBossHomeInfo( int32_t MapId );
 private:
-//¸´»î±£»¤
+//ï¿½ï¿½ï¿½î±£ï¿½ï¿½
 	void				SetStartProtect( int32_t ProtectTime );
-	int32_t				m_StartProtect;								//¿ªÊ¼±£»¤µÄÊ±¼ä
-	int32_t				GetProtectTime();							//»ñÈ¡±£»¤Ê±¼ä
+	int32_t				m_StartProtect;								//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t				GetProtectTime();							//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	void				DieResetXp();
 	void				SendHDIcon();
-	int32_t				OnRandPos( int32_t BagSlot );				//Ê¹ÓÃËæ»ú¾íÖá
-	int32_t				OnBackCity( int32_t BagSlot );				//Ê¹ÓÃ»Ø³Ç¾í
-	void				PayedDispose( int32_t AddGold );			//³äÖµÒÔºóµÄ´¦Àí
+	int32_t				OnRandPos( int32_t BagSlot );				//Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t				OnBackCity( int32_t BagSlot );				//Ê¹ï¿½Ã»Ø³Ç¾ï¿½
+	void				PayedDispose( int32_t AddGold );			//ï¿½ï¿½Öµï¿½Ôºï¿½Ä´ï¿½ï¿½ï¿½
 
 	int32_t				OnEnterBossHome( Answer::NetPacket *inPacket );
 	int32_t				OnLevelBossHome( Answer::NetPacket *inPacket );
@@ -759,7 +772,7 @@ public:
 	int32_t				GetExpRate();
 private:
 	int32_t				m_ExpRate;
-	//ÌåÁ¦Öµ»Ø¸´
+	//ï¿½ï¿½ï¿½ï¿½Öµï¿½Ø¸ï¿½
 public:
 	void				SetPPTick( int64_t CurTick );
 private:

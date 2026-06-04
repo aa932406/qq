@@ -1,5 +1,5 @@
-#ifndef __TPOC_HORSE_RACING_H__
-#define __TPOC_HORSE_RACING_H__
+#ifndef __HORSE_RACING_H__
+#define __HORSE_RACING_H__
 
 #include "stdafx.h"
 #include "Activity.h"
@@ -12,44 +12,40 @@ struct PlayerRank
 };
 typedef std::list<PlayerRank> PlayerRankList;
 
-class CHorseRacing
-	: public CActivity
+class CHorseRacing : public CActivity
 {
 public:
-	CHorseRacing( const CfgActivity& cfgActivity );
+	CHorseRacing(const CfgActivity& cfgActivity);
 	virtual ~CHorseRacing();
 
 public:
-	virtual void	SendPlayerActivityInfo( Player* player );
-	virtual void	SendPlayerActivityScore( Player* player, int32_t nLeftTime );
-	virtual bool	CanUseXP() const;
-	virtual bool	CanUsePet( MapId_t mid ) const;
-	virtual void	OnUpdate( CActivityMap* pMap );
+	virtual void OnUpdate(CActivityMap* pMap);
+	virtual bool CanUsePet(MapId_t mid) const;
+	virtual int32_t canEnter(Player* player, CActivityMap* pTargetMap) const;
+	virtual void onTimeEnd();
+	virtual Answer::NetPacket* packetActivityScore(int8_t connid = 0);
+	virtual void broadcastReady();
+	virtual void broadcastStart();
 
 protected:
-	virtual void	reset();
-	virtual void	sendActivityResult( Player* player );
-	virtual void	onTimeEnd();
-	virtual void	broadcastReady();
-	virtual void	broadcastStart();
-	virtual	void	removePlayer( Player* player, bool islogout );
-	virtual void	addPlayer( Player* player );
-	virtual int32_t	canEnter( Player* player, CActivityMap* pTargetMap ) const;
-
-	virtual Answer::NetPacket*	packetActivityScore();
+	virtual void reset();
+	virtual void onMonsterDie(MonsterActivity* pMonster, Player* pKiller);
+	virtual void addPlayer(Player* player);
+	virtual void removePlayer(Player* player, bool islogout);
 
 private:
-	void	win( Player* Player );
-	void	broadcastWin( Player* player );
-	void	addReward( Player* player );
-	bool	bArrived( CharId_t cid ) const;
+	void win(Player* player);
+	void addReward(Player* player);
+	void broadcastWin(Player* player);
+	void sendActivityResult(Player* player);
+	bool bArrived(CharId_t cid) const;
 
 private:
-	int32_t			m_nIndex;			// Ãû´Î
-	PlayerRankList	m_rankList;			// Ê¤ÀûÁĞ±í
-	PlayerList		m_racing;			// ²ÎÈüÑ¡ÊÖ
-	PlayerList		m_winner;			// Ê¤ÀûÑ¡ÊÖ
+	int32_t			m_nIndex;			// æ’ååºå·
+	PlayerRankList	m_rankList;			// èƒœè€…åˆ—è¡¨
+	PlayerList		m_racing;			// å‚èµ›é€‰æ‰‹
+	PlayerList		m_winner;			// æœ¬è½®èƒœè€…
+	int8_t			m_BossDie;			// Bossæ˜¯å¦è¢«å‡»æ€
 };
 
-
-#endif	//__TPOC_HORSE_RACING_H__
+#endif // __HORSE_RACING_H__

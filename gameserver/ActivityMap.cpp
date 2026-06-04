@@ -30,7 +30,7 @@ void CActivityMap::init( const CfgMap &cfgmap )
 void CActivityMap::clear()
 {
 	IMapEvent::clear();
-	//m_pActivity = NULL;	// ÑÓÊ±ÌßÈË
+	//m_pActivity = NULL;	// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 	m_nStartTick = 0;
 	if ( !m_actMonsters.empty() )
 	{
@@ -78,7 +78,7 @@ bool CActivityMap::IsActivityMap() const
 	{
 		if ( NULL == m_pActivity )
 		{
-			return false;	// »î¶¯Î´¿ªÊ¼
+			return false;	// ï¿½î¶¯Î´ï¿½ï¿½Ê¼
 		}
 	}
 	return true;
@@ -156,7 +156,12 @@ int32_t CActivityMap::getReive( Player* player )
 {
 	if ( m_pActivity != NULL )
 	{
-		return m_pActivity->GetRevive( player );
+		// new v2: skip activity revive for type 2 and 14
+		int16_t nType = m_pActivity->GetType();
+		if ( nType != 2 && nType != 14 )
+		{
+			return m_pActivity->GetRevive( player );
+		}
 	}
 
 	return Map::getReive( player );
@@ -164,11 +169,15 @@ int32_t CActivityMap::getReive( Player* player )
 
 void CActivityMap::removePlayer( Player *player, bool islogout )
 {
-	Map::removePlayer( player, islogout );
+	// new v2: call activity removePlayer BEFORE Map::removePlayer
 	if ( m_pActivity != NULL )
 	{
 		m_pActivity->removePlayer( player, islogout );
 	}
+	Map::removePlayer( player, islogout );
+
+	// new v2: clean up battle tracking
+	m_CidBattle.erase( player->getCid() );
 }
 
 void CActivityMap::addPlayer( Player *player, int32_t x, int32_t y )
@@ -178,6 +187,9 @@ void CActivityMap::addPlayer( Player *player, int32_t x, int32_t y )
 	{
 		m_pActivity->addPlayer( player );
 	}
+
+	// new v2: track player battle power
+	m_CidBattle[player->getCid()] = player->getBattle();
 }
 
 bool CActivityMap::OnSitRevive( Player* player )
@@ -223,12 +235,81 @@ void CActivityMap::onActivityStop( CActivity* pActivity )
 	clear();
 }
 
+// new v2 functions
+
+bool CActivityMap::CanSitRevive()
+{
+	if ( m_pActivity != NULL )
+	{
+		return m_pActivity->IsRuning();
+	}
+	return Map::canRevive();
+}
+
+bool CActivityMap::SpecialSitRevive()
+{
+	// TODO: Original pseudocode delegated to CActivity vtable function (offset 58).
+	// Need to implement proper logic when the corresponding CActivity function exists.
+	return false;
+}
+
+int32_t CActivityMap::GetTop10Battle()
+{
+	std::vector<int32_t> battleVt;
+	for ( std::map<int64_t, int32_t>::iterator iter = m_CidBattle.begin(); iter != m_CidBattle.end(); ++iter )
+	{
+		battleVt.push_back( iter->second );
+	}
+
+	std::sort( battleVt.begin(), battleVt.end() );
+
+	int32_t count = 0;
+	int32_t sum = 0;
+	for ( std::vector<int32_t>::reverse_iterator it = battleVt.rbegin(); it != battleVt.rend() && count < 10; ++it )
+	{
+		sum += *it;
+		++count;
+	}
+
+	return ( count > 0 ) ? ( sum / count ) : 0;
+}
+
+int32_t CActivityMap::HaveAliveMonster()
+{
+	int32_t nCount = 0;
+	for ( ActivityMonsterList::iterator iter = m_actMonsters.begin(); iter != m_actMonsters.end(); ++iter )
+	{
+		MonsterActivity* pMonster = *iter;
+		if ( pMonster != NULL && pMonster->isAlive() )
+		{
+			++nCount;
+		}
+	}
+	return nCount;
+}
+
+int32_t CActivityMap::HaveAlivePet()
+{
+	// Note: Original pseudocode was truncated. Checking alive pets in the map.
+	int32_t nCount = 0;
+	PlayerList tList = m_players;
+	for ( PlayerList::iterator iter = tList.begin(); iter != tList.end(); ++iter )
+	{
+		Player* pPlayer = *iter;
+		if ( pPlayer != NULL )
+		{
+			nCount += pPlayer->GetCharPet().GetAliveFightPetCount();
+		}
+	}
+	return nCount;
+}
+
 void CActivityMap::onPlayerDie(Player *pDier)
 {
 
 }
 
-// É±ÈËÕß
+// É±ï¿½ï¿½ï¿½ï¿½
 void CActivityMap::onPlayerKilled( Player* pDier, Player *pKiller )
 {
 	if ( NULL == m_pActivity || !m_pActivity->IsRuning() )
@@ -239,7 +320,7 @@ void CActivityMap::onPlayerKilled( Player* pDier, Player *pKiller )
 	m_pActivity->onPlayerKilled( pDier, pKiller );
 }
 
-//¹ÖÎïËÀÍö
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CActivityMap::onMonsterDie( MonsterActivity *monster )
 {
 	if ( NULL == m_pActivity || NULL == monster || !m_pActivity->IsRuning() )
@@ -290,7 +371,7 @@ void CActivityMap::onMonsterHPEvent( MonsterActivity *monster, int32_t id )
 	}
 }
 
-//¹ÖÎï±»ÈËÉ±
+//ï¿½ï¿½ï¿½ï±»ï¿½ï¿½É±
 void CActivityMap::onMonsterDie(Monster *monster, Player *player)
 {
 	Map::onMonsterDie(monster, player);
@@ -388,7 +469,7 @@ void CActivityMap::checkEvent( CfgMapEvent &mapEvent )
 
 	switch ( mapEvent.trigger_type )
 	{
-	case AETT_TIME_LINE: //Ê±¼äµ½´ï
+	case AETT_TIME_LINE: //Ê±ï¿½äµ½ï¿½ï¿½
 		{
 			if ( !mapEvent.trigger_param.empty() && getTick() - m_nStartTick >= mapEvent.trigger_param[0]*1000 )
 			{
@@ -767,7 +848,7 @@ bool CActivityMap::flashMonster( MonsterWait& waitAddMonster, int64_t curTick )
 
 	if ( waitAddMonster.times >= pCfgActivityMonster->times )
 	{
-		return false;	// Ë¢Íê´ÓÁÐ±íÖÐÉ¾³ý
+		return false;	// Ë¢ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 	}
 	return true;
 }

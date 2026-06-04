@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "PDUDefine.h"
 #include "ActivityManager.h"
 #include "DBService.h"
 //#include "ActPKMap.h"
@@ -857,6 +858,7 @@ void Player::reset()
 	m_needSyncToTeam = false;
 
 	m_StartProtect  = 0;
+m_actState = 0;
 	m_nDieTick = 0;
 	m_ExpRate  = 0;	
 	m_InBossHomeTime	= 0;
@@ -8195,7 +8197,9 @@ void Player::InitExtSystems()
 	m_ExtSysMgr.Register( &m_KillMonsterTongJi );
 
 	m_PlayerDepot.Init( this );
+	m_extCharTitle.Init( this );
 	m_ExtSysMgr.Register( &m_PlayerDepot );
+	m_ExtSysMgr.Register( &m_extCharTitle );
 
 	m_PlayerTrade.Init( this );
 	m_ExtSysMgr.Register( &m_PlayerTrade );
@@ -8257,4 +8261,33 @@ void Player::InitExtSystems()
 	* EXT_INIT_WXJ
 	* 王鑫剑的新系统注册加在这之后
 	*/
+}
+
+// City war functions
+void Player::SendFamilyWarIcon()
+{
+	// TODO: Send family war icon packet to this player
+	// This should notify the client about city war / family war state
+	Answer::NetPacket* packet = GAME_SERVICE.popNetpacket(Answer::PACK_DISPATCH, SM_FAMILY_WAR_ICON);
+	if (NULL != packet)
+	{
+		packet->writeInt32(300); // action: family war icon
+		packet->setSize(packet->getWOffset());
+		GAME_SERVICE.sendPacketTo(m_cgindex, packet);
+	}
+}
+
+void Player::SetActState(int8_t ActState)
+{
+	// TODO: Set player activity state for city war
+	// This tracks which families are participating in city war
+	// For now, update the player's PK mode or activity flag
+	// TODO: Store activity state for city war (would notify client)
+	m_actState = ActState;
+	LOG_INFO("Player::SetActState: cid=%lld familyId=%lld state=%d", getCid(), getFamilyId(), ActState);
+}
+
+int8_t Player::GetActState() const
+{
+	return m_actState;
 }

@@ -49,7 +49,7 @@ void GameService::onNetPacket(Answer::NetPacket *inPacket)
 	{
 		if (proc > IM_SOCIAL_GAME_MIN && proc < IM_SOCIAL_GAME_MAX)
 		{
-			//Ìí¼Ó×Ô¶¯´¦ÀíÊÂÇé//ÄÚ²¿
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½//ï¿½Ú²ï¿½
 			onSocialNetpacket(inPacket);
 		}
 // 		else if (proc == CM_GATE_PHP_PROP)
@@ -87,7 +87,7 @@ void GameService::onNetPacket(Answer::NetPacket *inPacket)
 			{
 			case CM_ENTER_GAME: onEnterGame(cgindex, inPacket); break;
 			case CM_ENTER_GAME_ROBOT: onEnterGameRobot(cgindex, inPacket); break;
-			//¸øÍê¼ÒÌí¼Ó´¦Àí //flex¿Í»§¶Ë¹ýÀ´µÄÊý¾Ý
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ //flexï¿½Í»ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			default: onGameNetpacket(cgindex, inPacket); break;
 			}
 		}
@@ -95,29 +95,29 @@ void GameService::onNetPacket(Answer::NetPacket *inPacket)
 
 	inPacket->destroy();
 }
-//¼ÓÔØµØÍ¼ÉÏµÄÊý¾Ý ¶ÁÈ¡Ë«·½µÄÃû³Æ ÉèÖÃÏßÂ·
+//ï¿½ï¿½ï¿½Øµï¿½Í¼ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¡Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·
 void GameService::startGame(int32_t line)
 {
 	m_line = line;
-	//Ìí¼ÓÍê¼ÒÏìÓ¦·½·¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
 	Player::initNetPacketHandlers();
 
-	// µØÍ¼³õÊ¼»¯
+	// ï¿½ï¿½Í¼ï¿½ï¿½Ê¼ï¿½ï¿½
 	MAP_MANAGER.Init();
 
-	// ³õÊ¼»¯µØÍ¼¿éÐÅÏ¢
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ï¢
 	TILE_MANAGER.Init();
 
-	// Æô¶¯µØÍ¼Ïß³Ì
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ß³ï¿½
 	MAP_MANAGER.StartAll();
 
-	// ³õÊ¼»¯»î¶¯
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½î¶¯
 	ACTIVITY_MANAGER.Init();
 
-	// ³õÊ¼»¯GMºóÌ¨
+	// ï¿½ï¿½Ê¼ï¿½ï¿½GMï¿½ï¿½Ì¨
 	GM_BACKSTAGE.Init();
 
-	// ÇëÇó³èÎïÅÅÐÐ°ñÐÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½Ï¢
 	requestPetRankInfo();
 	SendServerDiffToGlobal();
 	requestFamilyInfo();
@@ -126,7 +126,7 @@ void GameService::startGame(int32_t line)
 
 void GameService::stopGame()
 {
-	// Í£Ö¹µØÍ¼Ïß³Ì
+	// Í£Ö¹ï¿½ï¿½Í¼ï¿½ß³ï¿½
 	MAP_MANAGER.StopAll();
 
 	saveAllPlayerToDB();
@@ -140,7 +140,7 @@ void GameService::onNewMinuteCome(int32_t minute)
 {
 	if (m_line == GAME_SERVICE_LINE_SOCIAL)
 	{
-		DB_SERVICE.onNewMinuteCome();		//¸üÐÂµ½DBServer
+		DB_SERVICE.onNewMinuteCome();		//ï¿½ï¿½ï¿½Âµï¿½DBServer
 
 		NetPacket *packet = popNetpacket(PACK_PROC, IM_SOCIAL_NEW_MINUTE_COME);
 		if (NULL == packet)
@@ -167,7 +167,7 @@ void GameService::onNewMinuteCome(int32_t minute)
 
 void GameService::onPlayerLoaded( PlayerDBData& dbData, bool isRobot )
 {
-	// ´ËÊ±½ÇÉ«»¹Î´Ìí¼Ó½øµØÍ¼ÖÐ£¬»¹ÔÚÍøÂçÏß³Ì´¦Àí,²»ÐèÒª½øÐÐÏßÂ·¼ì²â
+	// ï¿½ï¿½Ê±ï¿½ï¿½É«ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½Í¼ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì´ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
 	Player *player = getPlayer( dbData.chr.data.cid, 0, false );
 	if (player != NULL)
 	{
@@ -193,7 +193,7 @@ void GameService::onPlayerLoaded( PlayerDBData& dbData, bool isRobot )
 		pMap = MAP_MANAGER.GetMap( dbData.chr.data.mapid );
 		if (pMap == NULL)
 		{
-			// µØÍ¼ÐÞÕý
+			// ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
 			//LOG_INFO("GameService::onPlayerLoaded player cid=%d can't find map with kingdom = %d, mapid = %d, change kingdom\n", dbData.chr.data.cid, dbData.chr.data.in_kingdom, dbData.chr.data.mapid);
 
 			//CfgMap *pCfgMap = CFG_DATA.getMap(dbData.chr.data.mapid);
@@ -1153,7 +1153,7 @@ void GameService::onUserPayed(int32_t uid, int32_t sid)
 // 	GAME_SERVICE.worldBroadcast(packet);
 // }
 
-// ¹ã²¥ËùÓÐÍæ¼ÒµÄ»î¶¯Êý¾Ý
+// ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÄ»î¶¯ï¿½ï¿½ï¿½ï¿½
 // void GameService::broadcastActivityState()
 // {
 // 	NetPacket *packet = GAME_SERVICE.popNetpacket(PACK_DISPATCH, SM_ACTIVITY_STATE);
@@ -1339,7 +1339,7 @@ void GameService::onEnterGameRobot(int16_t cgindex, Answer::NetPacket *inPacket)
 		}
 	}
 }
-//¸øÍê¼ÒÌí¼Ó¶¯×÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
 void GameService::onGameNetpacket(int16_t cgindex, Answer::NetPacket *inPacket)
 {
 	if (NULL == inPacket)
@@ -1502,7 +1502,7 @@ void GameService::onSocialCreateTeamDungeon( Answer::NetPacket* inPacket )
 			memberList.push_back( memberId );
 		}
 	}
-	// Íæ¼ÒµÄ½øÈëÔÚ¸±±¾ÖÐ×ö
+	// ï¿½ï¿½ÒµÄ½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	pDungeon->InitTeamMember( memberList );
 	pDungeon->start();
 	MAP_MANAGER.PostMsg( pDungeon->GetRunnerId(), GMC_ADD_DUNGEON, pDungeon );
@@ -1613,7 +1613,7 @@ void GameService::TeamDungeonEnterDungeon( Dungeon* pDungeon, const CharIdList& 
 					pMap->removePlayer( pPlayer, false);
 				}
 
-				GAME_SERVICE.replySuccess( pPlayer->getGateIndex(), CM_ENTER_DUNGEON, pDungeon->getDungeonId() );	// ÐèÒªÔçÓÚ¸±±¾ÐÅÏ¢ÏÂ·¢¸ø¿Í»§¶Ë
+				GAME_SERVICE.replySuccess( pPlayer->getGateIndex(), CM_ENTER_DUNGEON, pDungeon->getDungeonId() );	// ï¿½ï¿½Òªï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Â·ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
 				pDungeon->addPlayer( pPlayer, pDungeon->GetCfgDungeon().x, pDungeon->GetCfgDungeon().y );
 			}
 		}
@@ -1750,4 +1750,53 @@ void GameService::KickUser( CharId_t cid )
 	packet->writeInt32( player->getSid() );
 	packet->setSize( packet->getWOffset() );
 	sendPacket( packet );
+}
+
+// City war / cross-server functions
+void GameService::broadFamilyWarIcon()
+{
+	Answer::MutexGuard lock(m_playerLock);
+	for (CharIdPlayerMap::iterator it = m_players.begin(); it != m_players.end(); ++it)
+	{
+		Player* player = it->second;
+		if (NULL != player)
+		{
+			player->SendFamilyWarIcon();
+		}
+	}
+}
+
+void GameService::UpdateCityWarTitle(FamilyId_t OldFamilyId, FamilyId_t NewFamilyId)
+{
+	Answer::MutexGuard lock(m_playerLock);
+	for (CharIdPlayerMap::iterator it = m_players.begin(); it != m_players.end(); ++it)
+	{
+		Player* player = it->second;
+		if (NULL == player)
+		{
+			continue;
+		}
+		if (player->getFamilyId() == OldFamilyId)
+		{
+			player->GetCharTitle().RemoveTitle(1, 0);
+		}
+		if (player->getFamilyId() == NewFamilyId)
+		{
+			int32_t position = player->getFamilyPosition();
+			player->GetCharTitle().CheckAddTitle(1, position);
+		}
+	}
+}
+
+void GameService::UpdateCityActState(FamilyId_t FamilyId, int8_t ActState)
+{
+	Answer::MutexGuard lock(m_playerLock);
+	for (CharIdPlayerMap::iterator it = m_players.begin(); it != m_players.end(); ++it)
+	{
+		Player* player = it->second;
+		if (NULL != player && player->getFamilyId() == FamilyId)
+		{
+			player->SetActState(ActState);
+		}
+	}
 }

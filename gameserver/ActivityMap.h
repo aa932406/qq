@@ -5,9 +5,10 @@
 #include "Player.h"
 #include "PlantActivity.h"
 #include "MapEvent.h"
+#include <map>
 //////////////////////////////////////////////////////////////////////////
 //author:zxj			modify Time:2012-7-7
-//description:»î¶¯µØÍ¼
+//description:ï¿½î¶¯ï¿½ï¿½Í¼
 //////////////////////////////////////////////////////////////////////////
 
 class CActivity;
@@ -43,6 +44,10 @@ public:
 	virtual bool	CanUseXP() const;
 	virtual bool	CanUsePet() const;
 
+	// new v2 functions (add at end to preserve vtable layout)
+	virtual bool	CanSitRevive();
+	virtual bool	SpecialSitRevive();
+
 public:
 	void		onActivityStart( CActivity* pActivity );
 	void		onActivityStop( CActivity* pActivity );
@@ -53,8 +58,13 @@ public:
 	void		onMonsterArriveRoadEnd( MonsterActivity *monster );
 	void		onMonsterDamaged( MonsterActivity* pMonster, int32_t nDamage, const UnitHandle& launcher );
 	Position	GetBornPos( Player* player );
-	CActivity*	GetActivity();						// µ±Ç°»î¶¯
+	CActivity*	GetActivity();						// ï¿½ï¿½Ç°ï¿½î¶¯
 	virtual void AddActivityNpc( string& Effect );
+
+	// new v2 non-virtual public
+	int32_t		GetTop10Battle();
+	int32_t		HaveAliveMonster();
+	int32_t		HaveAlivePet();
 protected:
 	virtual void checkEvents();
 	virtual void checkEvent( CfgMapEvent &mapEvent );
@@ -69,12 +79,15 @@ private:
 	void	addMonsterHPEventInfo( MonsterActivity* pMonster );
 
 private:
-	CActivity*			m_pActivity;						// µ±Ç°»î¶¯
-	int64_t				m_nStartTick;						// ¿ªÊ¼Ê±¼ä
+	CActivity*			m_pActivity;						// ï¿½ï¿½Ç°ï¿½î¶¯
+	int64_t				m_nStartTick;						// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 
-	Int32MonsterWaveMap m_monsterWave;						// ¹ÖÎï²¨´Î
-	MonsterWaitList		m_waitMonster;						// µÈ´ýË¢ÐÂµÄ¹ÖÎï
+	Int32MonsterWaveMap m_monsterWave;						// ï¿½ï¿½ï¿½ï²¨ï¿½ï¿½
+	MonsterWaitList		m_waitMonster;						// ï¿½È´ï¿½Ë¢ï¿½ÂµÄ¹ï¿½ï¿½ï¿½
 
-	ActivityMonsterList	m_actMonsters;						// »î¶¯¹ÖÎï
-	ActivityPlantList	m_actPlants;						// »î¶¯²É¼¯Îï
+	ActivityMonsterList	m_actMonsters;						// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	ActivityPlantList	m_actPlants;						// ï¿½î¶¯ï¿½É¼ï¿½ï¿½ï¿½
+
+	// new v2
+	std::map<int64_t, int32_t>	m_CidBattle;			// ï¿½ï¿½ï¿½çŽ©ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½Ó³
 };

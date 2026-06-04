@@ -6,52 +6,52 @@
 #include "EquipManager.h"
 #include "VipGuaJi.h"
 using namespace Answer;
-const int32_t	GET_DWW_REWARD_TIMES = 2;						//Ã¿Ìì¿ÉÒÔÁìÈ¡´óÎ¸Íõ½±Àø2´Î
-const int32_t   HOUR_HAVE_SECONDS	 = 60 * 60;					//Ò»Ð¡Ê±µÄÃëÊý
-const int32_t	DAY_HAVE_SECONDS	 = 24 *HOUR_HAVE_SECONDS;	//Ò»ÌìµÄÃëÊý
-const float		SEARCH_BACK_RATE	 = 0.7f;					//½ð±ÒÕÒ»Ø±ÈÀý
+const int32_t	GET_DWW_REWARD_TIMES = 2;						//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½
+const int32_t   HOUR_HAVE_SECONDS	 = 60 * 60;					//Ò»Ð¡Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const int32_t	DAY_HAVE_SECONDS	 = 24 *HOUR_HAVE_SECONDS;	//Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const float		SEARCH_BACK_RATE	 = 0.7f;					//ï¿½ï¿½ï¿½ï¿½Ò»Ø±ï¿½ï¿½ï¿½
 enum HuoDongDaTingType
 {
-	JING_CAI_HD			= 1,	//¾«²Ê»î¶¯
-	DAILY_DUNGEON		= 2,	//ÈÕ³£¸±±¾
-	DAILY_TASK			= 3,	//ÈÕ³£ÈÎÎñ
+	JING_CAI_HD			= 1,	//ï¿½ï¿½ï¿½Ê»î¶¯
+	DAILY_DUNGEON		= 2,	//ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½
+	DAILY_TASK			= 3,	//ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum JingCaiHDType
 {
-	DA_TI_HUO_DONG		= 1,	//´ðÌâ»î¶¯
-	OPEN_BAO_XIANG		= 2,	//¿ª±¦Ïä£¨Ìì½µ±¦Ïä£©
-	MO_LING_RU_QIN		= 3,	//Ä§ÁéÈëÇÖ
-	JUN_TUAN_ZHI_GUANG	= 4,	//¾üÍÅÖ®¹â
-	FEI_TIAN_SHENG_JV	= 5,	//·ÉÌìÉñ¾Ô
-	DA_TI_HUO_DONG2		= 6,	//´ðÌâ»î¶¯2
-	JUN_TUAN_ZHI_GUANG2	= 7,	//¾üÍÅÖ®¹â2
-	MO_LING_RU_QIN2		= 8,	//Ä§ÁéÈëÇÖ
-	JUN_TUAN_WAR		= 9,	//¾üÍÅÕ½
-	SAFETY_GUA_JI		= 10,	//°²È«¹Ò»ú
-	SQIDERQUEEN_1		= 11,	//Ö©ÖëÅ®Íõ1
-	SQIDERQUEEN_2		= 12,	//Ö©ÖëÅ®Íõ2
-	SQIDERQUEEN_3		= 13,	//Ö©ÖëÅ®Íõ3
-	SQIDERQUEEN_4		= 14,	//Ö©ÖëÅ®Íõ4
-	JCHD_TERRIORY_WAR	= 15,	// ÁìµØÕ½
+	DA_TI_HUO_DONG		= 1,	//ï¿½ï¿½ï¿½ï¿½î¶¯
+	OPEN_BAO_XIANG		= 2,	//ï¿½ï¿½ï¿½ï¿½ï¿½ä£¨ï¿½ì½µï¿½ï¿½ï¿½ä£©
+	MO_LING_RU_QIN		= 3,	//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	JUN_TUAN_ZHI_GUANG	= 4,	//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+	FEI_TIAN_SHENG_JV	= 5,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DA_TI_HUO_DONG2		= 6,	//ï¿½ï¿½ï¿½ï¿½î¶¯2
+	JUN_TUAN_ZHI_GUANG2	= 7,	//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½2
+	MO_LING_RU_QIN2		= 8,	//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	JUN_TUAN_WAR		= 9,	//ï¿½ï¿½ï¿½ï¿½Õ½
+	SAFETY_GUA_JI		= 10,	//ï¿½ï¿½È«ï¿½Ò»ï¿½
+	SQIDERQUEEN_1		= 11,	//Ö©ï¿½ï¿½Å®ï¿½ï¿½1
+	SQIDERQUEEN_2		= 12,	//Ö©ï¿½ï¿½Å®ï¿½ï¿½2
+	SQIDERQUEEN_3		= 13,	//Ö©ï¿½ï¿½Å®ï¿½ï¿½3
+	SQIDERQUEEN_4		= 14,	//Ö©ï¿½ï¿½Å®ï¿½ï¿½4
+	JCHD_TERRIORY_WAR	= 15,	// ï¿½ï¿½ï¿½Õ½
 
 	JING_CAI_HD_COUNT,
 };
 
 enum DailyTaskType
 {
-	DTT_CYCLE_TASK		= 1,	//Ñ­»·ÈÎÎñ
-	DA_WEI_WANG			= 2,	//´óÎ¸Íõ
-	FTT_FAMILY_TASK		= 3,	//¾üÍÅÈÎÎñ
+	DTT_CYCLE_TASK		= 1,	//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DA_WEI_WANG			= 2,	//ï¿½ï¿½Î¸ï¿½ï¿½
+	FTT_FAMILY_TASK		= 3,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	DDT_COUNT,
 };
 
 enum JingCaiHDState
 {
-	STATE_CLOSED			= 1,	//Î´¿ªÊ¼
-	STATE_CAN_CONDUCT		= 2,	//Á¢¼´Ç°Íù
-	STATE_END				= 3,	//ÒÑ½áÊø
-	STATE_FINISH			= 4,	//ÒÑÍê³É
+	STATE_CLOSED			= 1,	//Î´ï¿½ï¿½Ê¼
+	STATE_CAN_CONDUCT		= 2,	//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
+	STATE_END				= 3,	//ï¿½Ñ½ï¿½ï¿½ï¿½
+	STATE_FINISH			= 4,	//ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 DailyActivity::DailyActivity()
@@ -316,7 +316,7 @@ int32_t	DailyActivity::onGetSignReward( Answer::NetPacket *inPacket )
 			return ERR_SYETEM_ERR;
 		}
 	}
-	//·¢½±Àø
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	MemChrBagVector items = CFG_DATA.GetSignReward(count);
 	if ( items.empty() )
 	{
@@ -392,7 +392,7 @@ int32_t	DailyActivity::OnGetWeekOnLineReward( Answer::NetPacket *inPacket )
 		return ERR_SYETEM_ERR;
 	}
 	int32_t Week  = GetNewSeverWeek();
-	if ( Week  <= 1 ) //µÚÒ»ÖÜ¿Ï¶¨Ã»ÓÐ
+	if ( Week  <= 1 ) //ï¿½ï¿½Ò»ï¿½Ü¿Ï¶ï¿½Ã»ï¿½ï¿½
 	{
 		return ERR_SYETEM_ERR;
 	}
@@ -931,7 +931,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( Type );
 		packet->writeInt32( JING_CAI_HD_COUNT - 1 );
 
-		//´ðÌâ
+		//ï¿½ï¿½ï¿½ï¿½
 		int8_t	State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(DA_TI_HUONG_DONG_ID) != NULL )
 		{
@@ -948,7 +948,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( DA_TI_HUO_DONG );
 		packet->writeInt8( State );
 
-		//¿ª±¦Ïä
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(TIAN_JIANG_BAO_XIANG) != NULL )
 		{
@@ -965,7 +965,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( OPEN_BAO_XIANG );
 		packet->writeInt8( State );
 
-		//Ä§ÁéÈëÇÖ
+		//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(MO_LING_RU_QING_ID) != NULL )
 		{
@@ -982,7 +982,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( MO_LING_RU_QIN );
 		packet->writeInt8( State );
 
-		//¾üÍÅÖ®¹â
+		//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(JUN_TUAN_ZHI_GUANG_ID) != NULL )
 		{
@@ -999,7 +999,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( JUN_TUAN_ZHI_GUANG );
 		packet->writeInt8( State );
 
-		//·ÉÌìÉñ¾Ô
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(FEI_TIAN_SHENG_JV_ID) != NULL )
 		{
@@ -1016,7 +1016,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( FEI_TIAN_SHENG_JV );
 		packet->writeInt8( State );
 
-		//´ðÌâ»î¶¯2
+		//ï¿½ï¿½ï¿½ï¿½î¶¯2
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(DA_TI_HUONG_DONG_ID2) != NULL )
 		{
@@ -1033,7 +1033,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( DA_TI_HUO_DONG2 );
 		packet->writeInt8( State );
 		
-		//¾üÍÅÖ®¹â2
+		//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½2
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(JUN_TUAN_ZHI_GUANG_ID2) != NULL )
 		{
@@ -1050,7 +1050,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( JUN_TUAN_ZHI_GUANG2 );
 		packet->writeInt8( State );
 
-		//Ä§ÁéÈëÇÖ2
+		//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(MO_LING_RU_QING_ID2) != NULL )
 		{									
@@ -1067,7 +1067,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( MO_LING_RU_QIN2 );
 		packet->writeInt8( State );
 
-		//¾üÍÅÕ½
+		//ï¿½ï¿½ï¿½ï¿½Õ½
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(JUN_TUAN_ZHAN_ID) != NULL )
 		{
@@ -1084,7 +1084,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( JUN_TUAN_WAR );
 		packet->writeInt8( State );
 
-		//vip¹Ò»ú
+		//vipï¿½Ò»ï¿½
 		State = VIP_GUA_JI_SINGLETON.GetState();
 		if ( State == AS_NOT_START )
 		{
@@ -1093,7 +1093,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( SAFETY_GUA_JI );
 		packet->writeInt8( State );
 
-		//Ö©ÖëÅ®Íõ1
+		//Ö©ï¿½ï¿½Å®ï¿½ï¿½1
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(SQIDER_QUEEN_ID_1) != NULL )
 		{
@@ -1110,7 +1110,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( SQIDERQUEEN_1 );
 		packet->writeInt8( State );
 
-		//Ö©ÖëÅ®Íõ2
+		//Ö©ï¿½ï¿½Å®ï¿½ï¿½2
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(SQIDER_QUEEN_ID_2) != NULL )
 		{
@@ -1127,7 +1127,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( SQIDERQUEEN_2 );
 		packet->writeInt8( State );
 
-		//Ö©ÖëÅ®Íõ3
+		//Ö©ï¿½ï¿½Å®ï¿½ï¿½3
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(SQIDER_QUEEN_ID_3) != NULL )
 		{
@@ -1144,7 +1144,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( SQIDERQUEEN_3 );
 		packet->writeInt8( State );
 
-		//Ö©ÖëÅ®Íõ4
+		//Ö©ï¿½ï¿½Å®ï¿½ï¿½4
 		State = 1;
 		if (ACTIVITY_MANAGER.GetActivity(SQIDER_QUEEN_ID_4) != NULL )
 		{
@@ -1161,7 +1161,7 @@ void DailyActivity::SendHuoDaoDaTingData( int8_t Type )
 		packet->writeInt8( SQIDERQUEEN_4 );
 		packet->writeInt8( State );
 
-		// ÁìµØÕ½
+		// ï¿½ï¿½ï¿½Õ½
 		State = ACTIVITY_MANAGER.GetTerritoryWarState();
 		if ( State ==  AS_NOT_START )
 		{
@@ -1428,7 +1428,7 @@ bool DailyActivity::HaveOnLineReward()
 bool DailyActivity::HaveWeekReward()
 {
 	int32_t Week  = GetNewSeverWeek();
-	if ( Week  <= 1) //µÚÒ»ÖÜ¿Ï¶¨Ã»ÓÐ
+	if ( Week  <= 1) //ï¿½ï¿½Ò»ï¿½Ü¿Ï¶ï¿½Ã»ï¿½ï¿½
 	{
 		return false;
 	}
@@ -1698,7 +1698,7 @@ int32_t DailyActivity::OnGetSearchBackReward( Answer::NetPacket *inPacket )
 	}
 	CfgZiYuanZhaoHui* pCfg = CFG_DATA.GetZiYuanZhaoHui( Index );
 	float SearchBackRate = 1.0f;
-	if ( GetType == 1 )					//Í­Ç®ÕÒ»Ø
+	if ( GetType == 1 )					//Í­Ç®ï¿½Ò»ï¿½
 	{
 		if ( pCfg->NeedMoney <= 0 )
 		{
@@ -1710,7 +1710,7 @@ int32_t DailyActivity::OnGetSearchBackReward( Answer::NetPacket *inPacket )
 		}
 		SearchBackRate = SEARCH_BACK_RATE;
 	}
-	else if( GetType == 2 )				//Ôª±¦ÕÒ»Ø
+	else if( GetType == 2 )				//Ôªï¿½ï¿½ï¿½Ò»ï¿½
 	{
 		if ( pCfg->NeedGold <= 0 )
 		{
@@ -1740,12 +1740,12 @@ int32_t DailyActivity::OnGetSearchBackReward( Answer::NetPacket *inPacket )
 	{
 		m_pPlayer->updateRecord( PR_SEARCH_BACK_REWARD_INFO, NewRecord );
 	}
-	//Ôö¼Ó¾­Ñé
+	//ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½
 	if ( pCfg->GetExpValues > 0 )
 	{
 		m_pPlayer->addExp( static_cast<int32_t>(pCfg->GetExpValues * SearchBackRate ) );
 	}
-	//Ôö¼Ó×ÊÔ´
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 	CurrencyList::iterator it = pCfg->GetCurrencyList.begin();
 	for ( ; it != pCfg->GetCurrencyList.end(); ++it )
 	{
