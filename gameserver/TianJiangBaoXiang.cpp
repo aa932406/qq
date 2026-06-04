@@ -7,13 +7,13 @@
 
 enum GRADE_BAO_XIANG_STATE
 {
-	NOT_FLUSH			= 0,		//Ã»ÓÐË¢ÐÂ
-	ALREADY_FLUSH		= 1,		//ÒÑË¢ÐÂ
-	ALREADY_GATHER		= 2,		//ÒÑ±»²É¼¯
+	NOT_FLUSH			= 0,		//Ã»ï¿½ï¿½Ë¢ï¿½ï¿½
+	ALREADY_FLUSH		= 1,		//ï¿½ï¿½Ë¢ï¿½ï¿½
+	ALREADY_GATHER		= 2,		//ï¿½Ñ±ï¿½ï¿½É¼ï¿½
 };
 
-#define MAX_CAN_GATHER	  10		//×î´ó²É¼¯Êý
-#define SUB_MOMEY	      1000000   //½øÈëÐèÒªµÄÍ­Ç®
+#define MAX_CAN_GATHER	  10		//ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½
+#define SUB_MOMEY	      1000000   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Í­Ç®
 CTianJiangBaoXiang::CTianJiangBaoXiang( const CfgActivity& cfgActivity )
 :CActivity( cfgActivity )
 {
@@ -23,9 +23,7 @@ CTianJiangBaoXiang::CTianJiangBaoXiang( const CfgActivity& cfgActivity )
 CTianJiangBaoXiang::~CTianJiangBaoXiang()
 {
 
-}
-
-void CTianJiangBaoXiang:: addPlayer( Player *player )
+}void CTianJiangBaoXiang::addPlayer( Player *player )
 {
 	CActivity::addPlayer( player );
 	if ( NULL == player )
@@ -33,32 +31,18 @@ void CTianJiangBaoXiang:: addPlayer( Player *player )
 		return;
 	}
 	player->SetPkProtectTime( 0 );
-}
 
-int32_t	CTianJiangBaoXiang::canEnter( Player* player, CActivityMap* pTargetMap ) const
+	ActivityRewardRecord RewardRecord = {};
+	PlayerMap::iterator ItRecord = m_PlayerSoreMap.find( player->getCid() );
+	if ( ItRecord == m_PlayerSoreMap.end() )
+	{
+		m_PlayerSoreMap[player->getCid()] = RewardRecord;
+	}
+}int32_t CTianJiangBaoXiang::canEnter( Player* player, CActivityMap* pTargetMap ) const
 {
 	if ( NULL == player || NULL == pTargetMap )
 	{
 		return ERR_SYETEM_ERR;
-	}
-	FamilyId_t FamilyId = ACTIVITY_MANAGER.GetFamilyWarWinner();
-	if ( FamilyId == 0 )
-	{
-		if ( !player->GetCurrency().DecMoneyAndNoBind( SUB_MOMEY,MCR_ENTER_ACTIVITY ) )
-		{
-			return ERR_SYETEM_ERR;
-		}
-	}
-	else if ( player->getFamilyId() ==  FamilyId )
-	{
-		return ERR_OK;
-	}
-	else
-	{
-		if ( !player->GetCurrency().DecMoneyAndNoBind( SUB_MOMEY, MCR_ENTER_ACTIVITY ) )
-		{
-			return ERR_SYETEM_ERR;
-		}
 	}
 	return ERR_OK;
 }
@@ -97,11 +81,13 @@ void CTianJiangBaoXiang::SendPlayerActivityScore( Player* player, int32_t nLeftT
 	}
 	int32_t AlreadGrageCount = 0;
 	int8_t  IsGetSpecial	 = 0;
+	int32_t BuyCount		 = 0;
 	PlayerMap::iterator it = m_PlayerSoreMap.find( player->getCid());
 	if ( it != m_PlayerSoreMap.end() )
 	{
 		AlreadGrageCount	= it->second.OpenBaoXiangCount;
 		IsGetSpecial		= it->second.IsGetSpecial;
+		BuyCount			= it->second.BuyCount;
 	}
 	Answer::NetPacket* packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_NOTIFY_ACTIVITY_SCORE );
 	if ( NULL == packet )
@@ -111,9 +97,10 @@ void CTianJiangBaoXiang::SendPlayerActivityScore( Player* player, int32_t nLeftT
 
 	packet->writeInt32( m_cfgActivity.id );
 	packet->writeInt8( GradeBaoXiangState );
-	packet->writeInt32( MAX_CAN_GATHER - AlreadGrageCount );
+	packet->writeInt32( BuyCount + 10 - AlreadGrageCount );
 	packet->writeInt8( IsGetSpecial );
 	packet->writeInt32( nLeftTime );
+	packet->writeInt32( BuyCount );
 	packet->setSize( packet->getWOffset() );
 	GAME_SERVICE.sendPacketTo( player->getGateIndex(), packet );
 }
@@ -138,7 +125,7 @@ void CTianJiangBaoXiang::AddPlant( Plant* plant )
 	PlayerList::iterator it = m_players.begin();
 	for ( ; it != m_players.end(); ++it )
 	{
-		SendPlayerActivityScore( *it,getLeftTime() );
+		SendPlayerActivityScore( *it, getLeftTime() );
 	}
 }
 
@@ -159,7 +146,7 @@ int32_t	CTianJiangBaoXiang::GiveDailyReward( Player* player )
 		return ERR_SYETEM_ERR;
 	}
 	MemChrBagVector addItem;
-	Int32Vector::const_iterator it =m_cfgActivity.gift_id.begin();
+	Int32Vector::const_iterator it = m_cfgActivity.gift_id.begin();
 	for ( ; it != m_cfgActivity.gift_id.end(); ++it )
 	{
 		MemChrBag stu = {};
@@ -169,7 +156,7 @@ int32_t	CTianJiangBaoXiang::GiveDailyReward( Player* player )
 		stu.bind		= IBS_BIND;
 		addItem.push_back(stu);
 	}
-	if ( !player->GetBag().AddItem( addItem, IACR_ACTIVITY ) )
+	if ( !player->GetBag().AddItem( addItem, IACR_TIAN_JIANG_BAO_XIANG_DAILY_REWARD ) )
 	{
 		return ERR_INVALID_DATA;
 	}
@@ -216,16 +203,65 @@ int32_t CTianJiangBaoXiang::onBeginGather(  Plant* plant, Player *player )
 	{
 		return ERR_SYETEM_ERR;
 	}
-	if ( plant->GetPlantType() != PT_GRADE_BAO_XIANG )
+	if ( plant->GetPlantType() == PT_GRADE_BAO_XIANG )
 	{
-		PlayerMap::iterator it = m_PlayerSoreMap.find( player->getCid());
-		if ( it != m_PlayerSoreMap.end() )
-		{
-			if ( it->second.OpenBaoXiangCount >= MAX_CAN_GATHER )
-			{
-				return ERR_SYETEM_ERR;
-			}
-		}
+		return ERR_OK;
+	}
+	PlayerMap::iterator it = m_PlayerSoreMap.find( player->getCid());
+	if ( it == m_PlayerSoreMap.end() )
+	{
+		return ERR_OK;
+	}
+	if ( it->second.OpenBaoXiangCount >= it->second.BuyCount + 10 )
+	{
+		return ERR_SYETEM_ERR;
 	}
 	return ERR_OK;
+}
+
+bool CTianJiangBaoXiang::AddOpenCount( Player* player, int32_t AddCount )
+{
+	if ( NULL == player )
+	{
+		return false;
+	}
+	if ( getState() != AS_RUNNING )
+	{
+		return false;
+	}
+	PlayerMap::iterator it = m_PlayerSoreMap.find( player->getCid() );
+	if ( it == m_PlayerSoreMap.end() )
+	{
+		return false;
+	}
+	if ( it->second.BuyCount + AddCount > 5 )
+	{
+		return false;
+	}
+	it->second.BuyCount += AddCount;
+	return true;
+}
+
+void CTianJiangBaoXiang::broadcastReady()
+{
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_NOTICE_PARAM );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( 142 );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.worldBroadcast( packet );
+}
+
+void CTianJiangBaoXiang::broadcastStart()
+{
+	Answer::NetPacket *packet = GAME_SERVICE.popNetpacket( Answer::PACK_DISPATCH, SM_SEND_NOTICE_PARAM );
+	if ( NULL == packet )
+	{
+		return;
+	}
+	packet->writeInt32( 143 );
+	packet->setSize( packet->getWOffset() );
+	GAME_SERVICE.worldBroadcast( packet );
 }

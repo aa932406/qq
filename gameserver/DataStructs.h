@@ -21,8 +21,8 @@
 //	SRT_DEF_REDUCE_SELF = 20,
 //	SRT_HP_REDUCE_SELF = 21,
 //	SRT_ATTACK_ADD = 22,
-//	SRT_DP_ADD = 23,//Ôö¼ÓÉÁ±Ü£»
-//	SRT_VP_ADD = 24,//Ôö¼Ó±©»÷£»
+//	SRT_DP_ADD = 23,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½
+//	SRT_VP_ADD = 24,//ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½
 //	SRT_WUDI = 25,
 //	SRT_PDEF_ADD = 26,
 //	SRT_MAXHP_INCREASE = 27,
@@ -31,7 +31,7 @@
 //	SRT_MDEF_ADD = 30,
 //	SRT_SP_REDUCE_SELF = 31,
 //	SRT_COLLIDE = 32,
-//	SRT_REBOUND = 33,//·´µ¯£»
+//	SRT_REBOUND = 33,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 //	SRT_ATTCK = 50,
 //	SRT_PDEF_REDUCE = 51,
@@ -44,13 +44,13 @@
 //	SRT_HP_REDUCE_DURABLE = 58,
 //	SRT_IGNORE_DEF = 59,
 //	SRT_MDEF_REDUCE = 60,
-//	SRT_DIZZY_TARGET = 61,//Ñ£ÔÎ£»
-//	SRT_FORCE_ATTACK_SELF = 62,//Ç¿ÖÆ¹¥»÷£»
-//	SRT_BINGDONG_TARGET = 63,//±ù¶³;
-//	SRT_IMBIBE_HP = 64,//ÎüÈ¡Ä¿±êÉúÃüÖµ;
-//	SRT_BURN_TARGET = 65,//×ÆÉËÄ¿±ê;
-//	SRT_BURN_ADDON = 66,//×ÆÉËÄ¿±êÉËº¦Ôö¼Ó
-//	SRT_CONFUSION_TARGET = 67,//Ê¹Ä¿±ê½øÈë»ìÂÒ×´Ì¬
+//	SRT_DIZZY_TARGET = 61,//Ñ£ï¿½Î£ï¿½
+//	SRT_FORCE_ATTACK_SELF = 62,//Ç¿ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½
+//	SRT_BINGDONG_TARGET = 63,//ï¿½ï¿½ï¿½ï¿½;
+//	SRT_IMBIBE_HP = 64,//ï¿½ï¿½È¡Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ;
+//	SRT_BURN_TARGET = 65,//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½;
+//	SRT_BURN_ADDON = 66,//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½
+//	SRT_CONFUSION_TARGET = 67,//Ê¹Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 //	SRT_VP_REDUCE_TARGET = 68,
 //
 //	SRT_VICEGENERAL_PDEF_ADD = 90,
@@ -72,8 +72,8 @@
 //	SRM_DEF_REDUCE_SELF = 120,
 //	SRM_HP_REDUCE_SELF = 121,
 //	SRM_ATTACK_ADD = 122,
-//	SRM_DP_ADD = 123,//Ôö¼ÓÉÁ±Ü£»
-//	SRM_VP_ADD = 124,//Ôö¼Ó±©»÷£»
+//	SRM_DP_ADD = 123,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½
+//	SRM_VP_ADD = 124,//ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½
 //	SRM_WUDI = 125,
 //	SRM_PDEF_ADD = 126,
 //	SRM_MAXHP_INCREASE = 127,
@@ -82,7 +82,7 @@
 //	SRM_MDEF_ADD = 130,
 //	SRM_SP_REDUCE_SELF = 131,
 //	SRM_COLLIDE = 132,
-//	SRM_REBOUND = 133,//·´µ¯£»
+//	SRM_REBOUND = 133,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 //	SRM_ATTCK = 150,
 //	SRM_PDEF_REDUCE = 151,
@@ -95,13 +95,13 @@
 //	SRM_HP_REDUCE_DURABLE = 158,
 //	SRM_IGNORE_DEF = 159,
 //	SRM_MDEF_REDUCE = 160,
-//	SRM_DIZZY_TARGET = 161,//Ñ£ÔÎ£»
-//	SRM_FORCE_ATTACK_SELF = 162,//Ç¿ÖÆ¹¥»÷£»
-//	SRM_BINGDONG_TARGET = 163,//±ù¶³;
-//	SRM_IMBIBE_HP = 164,//ÎüÈ¡Ä¿±êÉúÃüÖµ;
-//	SRM_BURN_TARGET = 165,//×ÆÉËÄ¿±ê;
-//	SRM_BURN_ADDON = 166,//×ÆÉËÄ¿±êÉËº¦Ôö¼Ó
-//	SRM_CONFUSION_TARGET = 167,//Ê¹Ä¿±ê½øÈë»ìÂÒ×´Ì¬
+//	SRM_DIZZY_TARGET = 161,//Ñ£ï¿½Î£ï¿½
+//	SRM_FORCE_ATTACK_SELF = 162,//Ç¿ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½
+//	SRM_BINGDONG_TARGET = 163,//ï¿½ï¿½ï¿½ï¿½;
+//	SRM_IMBIBE_HP = 164,//ï¿½ï¿½È¡Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ;
+//	SRM_BURN_TARGET = 165,//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½;
+//	SRM_BURN_ADDON = 166,//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½
+//	SRM_CONFUSION_TARGET = 167,//Ê¹Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 //	SRM_VP_REDUCE_TARGET = 168,
 //
 //	SRM_VICEGENERAL_PDEF_ADD = 190,
@@ -113,10 +113,10 @@
 //enum FormationEffect
 //{
 //	FE_NONE                       =0,
-//	FE_PDEF_ADD               = 1, //Ìá¸ßÎïÀí·ÀÓùÁ¦
-//	FE_MDEF_ADD              =2,//Ìá¸ß·¨Êõ·ÀÓùÁ¦
-//	FE_ATTACK_ADD           =3,//Ìá¸ß¹¥»÷Á¦
-//	FE_SKILL_EFFECT_ADD  =4,//Ìá¸ß¼¼ÄÜÐ§¹û
+//	FE_PDEF_ADD               = 1, //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	FE_MDEF_ADD              =2,//ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	FE_ATTACK_ADD           =3,//ï¿½ï¿½ß¹ï¿½ï¿½ï¿½ï¿½ï¿½
+//	FE_SKILL_EFFECT_ADD  =4,//ï¿½ï¿½ß¼ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 //
 //};
 //enum EquipElement
@@ -156,290 +156,291 @@ enum CurrencyChangeReason
 	GM_NONE								= 0,
 	GM_DEBUG_CMD						= 1,
 
-// Í­Ç®Ê¹ÓÃ
- 	MCR_CHR_SHOP_COST					= 2,		//¸öÈËÉÌµê
+// Í­Ç®Ê¹ï¿½ï¿½
+ 	MCR_CHR_SHOP_COST					= 2,		//ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
  	MCR_MONEY_GAIN_ITEM					= 3,
- 	MCR_TASK							= 4,		//Ö÷ÏßÈÎÎñ
- 	MCR_BUY_BACK_ITEM					= 5,		//¹º»Ø
- 	MCR_DUNGEON_REWARD					= 6,		//¸±±¾ ½±Àø
- 	MCR_SUPER_EXCHANGE					= 7,		//³¬¼¶¶Ò»» 
- 	MCR_ACHIEVEMENT_EXCHANGE			= 8,		//³É¾Í¶Ò»»
- 	MCR_PK_DROP							= 9,		//PKÊ±±¬³öµÄÇ®±Ò
- 	MCR_GET_DROP_ITEM					= 10,		//µôÂäÊ°È¡
+ 	MCR_TASK							= 4,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	MCR_BUY_BACK_ITEM					= 5,		//ï¿½ï¿½ï¿½ï¿½
+ 	MCR_DUNGEON_REWARD					= 6,		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	MCR_SUPER_EXCHANGE					= 7,		//ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ 
+ 	MCR_ACHIEVEMENT_EXCHANGE			= 8,		//ï¿½É¾Í¶Ò»ï¿½
+ 	MCR_PK_DROP							= 9,		//PKÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç®ï¿½ï¿½
+ 	MCR_GET_DROP_ITEM					= 10,		//ï¿½ï¿½ï¿½ï¿½Ê°È¡
 	MCR_NPC_SELL						= 11,
-	MCR_COMBI_ITEM						= 12,		// ÎïÆ·ºÏ³É
+	MCR_COMBI_ITEM						= 12,		// ï¿½ï¿½Æ·ï¿½Ï³ï¿½
 
-	MCR_EQUIP_EXCHANGE_STAR				= 37,		// ×°±¸Ç¿»¯×ªÒÆ
-	MCR_PLAYER_ZHUAN_SHENG_COST_MONEY	= 38,		// Ö÷½Ç×ªÉúÏûºÄÍ­Ç®
-	MCR_TRADE_GET_MONEY					= 39,		// ½»Ò×»ñµÃ
-	MCR_TRADE_CONST_MONEY				= 40,		// ½»Ò×Ê§È¥
-	MCR_PICK_CURRENCY_ITEM				= 41,		// Ê°È¡×ÊÔ´µÀ¾ß»ñÈ¡
-	MCR_MAIL_CURRENCY_ITEM				= 42,		// ÓÊ¼þ×ÊÔ´µÀ¾ß»ñÈ¡
-	MCR_DONATION_JUE_WEI				= 43,		// ¾ôÎ»¾è¿î
-	MCR_CYCLY_TASK_GET					= 44,		// Ñ­»·ÈÎÎñ»ñµÃ
-	MCR_AUCTION_SELL					= 45,		// ÅÄÂô½ð±Ò
-	MCR_PET_TO_BAG						= 46,		// ´ò°ü»ÃÊÞ
-	MCR_QI_FU							= 47,		// Æí¸£
-	MCR_ENTER_DUNGEON					= 48,		// ½øÈë¸±±¾
-	MCR_ATTACK_FAMIWAR_PILLAR			= 49,		// ¾üÍÅÕ½¹¥»÷Õ½ÉñÖ®Öù
-	MCR_AUCTION_BUY						= 50,		// ÅÄÂôÐÐ¹ºÂòÔª±¦
-	MCR_HORSE_RACING_REWARD				= 51,		// ÈüÂí½±Àø
-	MCR_ENTER_ACTIVITY					= 52,		// ½øÈë¿ª±¦Ïä±¦Ïä»î¶¯
-	MCR_SEARCH_BACK						= 53,		// ×ÊÔ´ÕÒ»Ø
-	MCR_GUAN_WEI_GET					= 54,		// ¹ÙÎ»»ñµÃ
-	MCR_ACHIEVEMENT_FINISHED			= 55,		// Íê³É³É¾Í
+	MCR_EQUIP_EXCHANGE_STAR				= 37,		// ×°ï¿½ï¿½Ç¿ï¿½ï¿½×ªï¿½ï¿½
+	MCR_PLAYER_ZHUAN_SHENG_COST_MONEY	= 38,		// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í­Ç®
+	MCR_TRADE_GET_MONEY					= 39,		// ï¿½ï¿½ï¿½×»ï¿½ï¿½
+	MCR_TRADE_CONST_MONEY				= 40,		// ï¿½ï¿½ï¿½ï¿½Ê§È¥
+	MCR_PICK_CURRENCY_ITEM				= 41,		// Ê°È¡ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ß»ï¿½È¡
+	MCR_MAIL_CURRENCY_ITEM				= 42,		// ï¿½Ê¼ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ß»ï¿½È¡
+	MCR_DONATION_JUE_WEI				= 43,		// ï¿½ï¿½Î»ï¿½ï¿½ï¿½
+	MCR_CYCLY_TASK_GET					= 44,		// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MCR_AUCTION_SELL					= 45,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MCR_PET_TO_BAG						= 46,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MCR_QI_FU							= 47,		// ï¿½ï¿½ï¿½ï¿½
+	MCR_ENTER_DUNGEON					= 48,		// ï¿½ï¿½ï¿½ë¸±ï¿½ï¿½
+	MCR_ATTACK_FAMIWAR_PILLAR			= 49,		// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ö®ï¿½ï¿½
+	MCR_AUCTION_BUY						= 50,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+	MCR_HORSE_RACING_REWARD				= 51,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MCR_ENTER_ACTIVITY					= 52,		// ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ä±¦ï¿½ï¿½î¶¯
+	MCR_SEARCH_BACK						= 53,		// ï¿½ï¿½Ô´ï¿½Ò»ï¿½
+	MCR_GUAN_WEI_GET					= 54,		// ï¿½ï¿½Î»ï¿½ï¿½ï¿½
+	MCR_ACHIEVEMENT_FINISHED			= 55,		// ï¿½ï¿½É³É¾ï¿½
 //=======================================================================================
-//°ó¶¨Ä§Ê¯¿ªÊ¼	
+//ï¿½ï¿½Ä§Ê¯ï¿½ï¿½Ê¼	
  	GCC_PICK_CURRENCY_ITEM				= 1000,
  	GCC_MAIL_CURRENCY_ITEM				= 1001,
  	GCC_BUY_SHANG_CHENG_ITEM			= 1002,
-	GCC_WEEK_ONLINE_REWARD				= 1003,		//ÖÜÔÚÏß½±Àø
-	GCC_ENTER_BOSS_HOME					= 1004,		//½øÈëbossÖ®¼ä
-	GCC_EQUIP_EXCHANGE_STAR				= 1005,		//Ä§»¯×ªÒÆ
+	GCC_WEEK_ONLINE_REWARD				= 1003,		//ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½
+	GCC_ENTER_BOSS_HOME					= 1004,		//ï¿½ï¿½ï¿½ï¿½bossÖ®ï¿½ï¿½
+	GCC_EQUIP_EXCHANGE_STAR				= 1005,		//Ä§ï¿½ï¿½×ªï¿½ï¿½
 
 //=========================================================================================
 //Ä§Ê¯
 	GCR_START							= 2000,
-	GCR_QUICK_TASK						= 2001,		//¿ìËÙÈÎÎñ
-	GCR_ACHIEVEMENT_EXCHANGE			= 2002,		//³É¾Í¶Ò»»
-	GCR_QUICK_ACHIEVEMENT				= 2003,		//¿ìËÙ³É¾Í
-	GCR_DUNGEON_REWARD					= 2004,		//¸±±¾½±Àø
-	GCR_BUY_CYCLE_TASK_COUNT			= 2005,		//¹ºÂòÑ­»·ÈÎÎñ
-	GCR_RECHARGE						= 2006,		//³äÖµ
+	GCR_QUICK_TASK						= 2001,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_ACHIEVEMENT_EXCHANGE			= 2002,		//ï¿½É¾Í¶Ò»ï¿½
+	GCR_QUICK_ACHIEVEMENT				= 2003,		//ï¿½ï¿½ï¿½Ù³É¾ï¿½
+	GCR_DUNGEON_REWARD					= 2004,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_BUY_CYCLE_TASK_COUNT			= 2005,		//ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_RECHARGE						= 2006,		//ï¿½ï¿½Öµ
 	GCR_CREATE_FAMILY					= 2007,
-	GCR_USE_LIQUAN						= 2008,		//Ê¹ÓÃÀñÈ¯
-	GCR_SUPER_EXCHANGE					= 2009,		//³¬¼¶¶Ò»»
-	GCR_GET_DROP_ITEM					= 2010,		//µôÂäÊ°È¡
-	GCR_AUTOBUYBAG						= 2011,		//×Ô¶¯¹ºÂòÎïÆ·
-	GCR_MOUNT_QUALITY_UP				= 2012,		// Éý¼¶×øÆï
-	GCR_EQUIP_UPGRADE_AUTOBUY			= 2013,		// ×°±¸Éý½××Ô¶¯¹ºÂò
-	GCR_EQUIP_UPQUALITY_AUTOBUY			= 2014,		// ×°±¸ÉýÆ·×Ô¶¯¹ºÂò
-	GCR_EQUIP_UPSTAR_AUTOBUY			= 2015,		// ×°±¸ÉýÐÇ×Ô¶¯¹ºÂò
-	GCR_BAG_SLOT_OPEN					= 2016,		// ¿ªÆô±³°ü
-	GCR_DEPOT_GET						= 2017,		// ´Ó²Ö¿âÀïÈ¡µÃ
-	GCR_DEPOT_SLOT_OPEN					= 2018,		// ¿ªÆð²Ö¿â¸ñ×Ó
-	GCR_TRADE_GET_GOLD					= 2019,		// ½»Ò×»ñµÃ
-	GCR_TRADE_CONST_GOLD				= 2020,		// ½»Ò×Ê§È¥
-	GCR_RANSOM_ITEM						= 2021,		// Êê»Ø
-	GCR_PICK_CURRENCY_ITEM				= 2022,		// Ê°È¡×ÊÔ´µÀ¾ß
-	GCR_MAIL_CURRENCY_ITEM				= 2023,		// ÓÊ¼þ×ÊÔ´µÀ¾ß
-	GCR_PET_EGG_REHATCH					= 2024,		// ³èÎïÖØÐÂ·õ»¯
-	GCR_PET_EGG_QUICK_HATCH				= 2025,		// ³èÎï¿ìËÙ·õ»¯
-	GCR_REVIVE							= 2026,		// Ô­µØ¸´»î
-	GCR_TASK_CYCLE_REFRESH_STAR			= 2027,		// ÈÕ³£ÈÎÎñË¢ÐÂÐÇ¼¶
-	GCR_TASK_CYCLE_GET_REWARD			= 2028,		// ÈÕ³£ÈÎÎñ¶à±¶ÁìÈ¡½±Àø
-	GCR_DONATION_JUE_WEI				= 2029,		// ¾ôÎ»¾èÏ×
-	GCR_FAMILY_CONTRIBUTE				= 2030,		// °ïÅÉ¾èÏ×
-	GCR_BUY_FA_BAO_RES					= 2031,		// ¹ºÂò·¨±¦×ÊÔ´
-	GCR_BUY_SHANG_CHENG_ITEM			= 2032,		// ¹ºÂòÉÌ³ÇÎïÆ·
-	GCR_DUNGEON_DOUBLE_REWARD			= 2033,		// ¸±±¾Ë«±¶ÁìÈ¡
-	GCR_DUNGEON_BUILD_TOWER				= 2034,		// ¸±±¾ÔìËþ
-	GCR_INSIDE_PET_EXP_ILLUSION_DOUBLE	= 2035,		// Ë«±¶ÐÞÁ¶
-	GCR_INSIDE_PET_EXP_ILLUSION_GOLD	= 2036,		// Ä§Ê¯ÐÞÁ¶
-	GCR_AUCTION_BUY						= 2037,		// ÅÄÂôÐÐ¹ºÂòµÀ¾ß
-	GCR_AUCTION_SELL					= 2038,		// ÅÄÂôÐÐ³öÊÛÄ§Ê¯
-	GCR_CHOU_JIANG						= 2039,		// ³é½±
-	GCR_PET_TO_BAG						= 2040,		// ³èÎï´ò°üµ½±³°üÀ¸
-	GCR_QI_FU							= 2041,		// Æí¸£
-	GCR_ENTER_DUNGEON					= 2042,		// ½øÈë¸±±¾
-	GCR_GET_OFFLINE_EXP					= 2043,		// »ñÈ¡ÀëÏß¶à±¶
-	GCR_BUY_VIP_CARD					= 2044,		// ¹ºÂòvip¿¨
-	GCR_ENTER_BOSS_HOME					= 2045,		// ½øÈëbossÖ®¼Ò
-	GCR_EQUIP_EXCHANGE_STAR				= 2046,		// Ä§»¯×ªÒÆ
-	GCR_BUY_TE_HUI_LI_BAO				= 2047,		// ¹ºÂòÐÂ·þÌØ»ÝÀñ°ü
-	GCR_TOU_ZHI_HUO_DE					= 2048,		// Í¶×Ê»ñµÃ
-	GCR_TOU_ZHI_SHI_QU					= 2049,		// Í¶×ÊÊ§È¥
-	GCR_HUO_YUE_DU						= 2050,		// »îÔ¾¶È
-	GCR_HALL_OF_FAME_BUY_TIMES			= 2051,		// ÃûÈËÌÃ¹ºÂò´ÎÊý
-	GCR_HALL_OF_FAME_CLEAR_CD			= 2052,		// ÃûÈËÌÃÇåCD
-	GCR_ITEM_COMBI_AUTO_BUY				= 2053,		// ÎïÆ·ºÏ³É×Ô¶¯¹ºÂò
-	GCR_BUY_THREE_PET_LI_BAO			= 2054,		// ¹ºÂòÈý³èÀñ°ü
-	GCR_BUY_AC_SOCRE					= 2055,		// ¹ºÂòÑ«ÕÂ»ý·Ö
-	GCR_BUY_WAR_VICTORY_GIFT			= 2056,		// ¹ºÂò¿¹Õ½Ê¤ÀûÀñ°ü
-	GCT_WAR_VICTORY_FAN_LI				= 2057,		// Õ½Ê¤Àû³äÖµ·µÀû
+	GCR_USE_LIQUAN						= 2008,		//Ê¹ï¿½ï¿½ï¿½ï¿½È¯
+	GCR_SUPER_EXCHANGE					= 2009,		//ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½
+	GCR_GET_DROP_ITEM					= 2010,		//ï¿½ï¿½ï¿½ï¿½Ê°È¡
+	GCR_AUTOBUYBAG						= 2011,		//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	GCR_MOUNT_QUALITY_UP				= 2012,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_EQUIP_UPGRADE_AUTOBUY			= 2013,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_EQUIP_UPQUALITY_AUTOBUY			= 2014,		// ×°ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_EQUIP_UPSTAR_AUTOBUY			= 2015,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_BAG_SLOT_OPEN					= 2016,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_DEPOT_GET						= 2017,		// ï¿½Ó²Ö¿ï¿½ï¿½ï¿½È¡ï¿½ï¿½
+	GCR_DEPOT_SLOT_OPEN					= 2018,		// ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½
+	GCR_TRADE_GET_GOLD					= 2019,		// ï¿½ï¿½ï¿½×»ï¿½ï¿½
+	GCR_TRADE_CONST_GOLD				= 2020,		// ï¿½ï¿½ï¿½ï¿½Ê§È¥
+	GCR_RANSOM_ITEM						= 2021,		// ï¿½ï¿½ï¿½
+	GCR_PICK_CURRENCY_ITEM				= 2022,		// Ê°È¡ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
+	GCR_MAIL_CURRENCY_ITEM				= 2023,		// ï¿½Ê¼ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
+	GCR_PET_EGG_REHATCH					= 2024,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
+	GCR_PET_EGG_QUICK_HATCH				= 2025,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù·ï¿½ï¿½ï¿½
+	GCR_REVIVE							= 2026,		// Ô­ï¿½Ø¸ï¿½ï¿½ï¿½
+	GCR_TASK_CYCLE_REFRESH_STAR			= 2027,		// ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½ï¿½Ç¼ï¿½
+	GCR_TASK_CYCLE_GET_REWARD			= 2028,		// ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½à±¶ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	GCR_DONATION_JUE_WEI				= 2029,		// ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	GCR_FAMILY_CONTRIBUTE				= 2030,		// ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½
+	GCR_BUY_FA_BAO_RES					= 2031,		// ï¿½ï¿½ï¿½ò·¨±ï¿½ï¿½ï¿½Ô´
+	GCR_BUY_SHANG_CHENG_ITEM			= 2032,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½Æ·
+	GCR_DUNGEON_DOUBLE_REWARD			= 2033,		// ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½È¡
+	GCR_DUNGEON_BUILD_TOWER				= 2034,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_INSIDE_PET_EXP_ILLUSION_DOUBLE	= 2035,		// Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_INSIDE_PET_EXP_ILLUSION_GOLD	= 2036,		// Ä§Ê¯ï¿½ï¿½ï¿½ï¿½
+	GCR_AUCTION_BUY						= 2037,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_AUCTION_SELL					= 2038,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½Ä§Ê¯
+	GCR_CHOU_JIANG						= 2039,		// ï¿½é½±
+	GCR_PET_TO_BAG						= 2040,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_QI_FU							= 2041,		// ï¿½ï¿½ï¿½ï¿½
+	GCR_ENTER_DUNGEON					= 2042,		// ï¿½ï¿½ï¿½ë¸±ï¿½ï¿½
+	GCR_GET_OFFLINE_EXP					= 2043,		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ß¶à±¶
+	GCR_BUY_VIP_CARD					= 2044,		// ï¿½ï¿½ï¿½ï¿½vipï¿½ï¿½
+	GCR_ENTER_BOSS_HOME					= 2045,		// ï¿½ï¿½ï¿½ï¿½bossÖ®ï¿½ï¿½
+	GCR_EQUIP_EXCHANGE_STAR				= 2046,		// Ä§ï¿½ï¿½×ªï¿½ï¿½
+	GCR_BUY_TE_HUI_LI_BAO				= 2047,		// ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½Ø»ï¿½ï¿½ï¿½ï¿½
+	GCR_TOU_ZHI_HUO_DE					= 2048,		// Í¶ï¿½Ê»ï¿½ï¿½
+	GCR_TOU_ZHI_SHI_QU					= 2049,		// Í¶ï¿½ï¿½Ê§È¥
+	GCR_HUO_YUE_DU						= 2050,		// ï¿½ï¿½Ô¾ï¿½ï¿½
+	GCR_HALL_OF_FAME_BUY_TIMES			= 2051,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_HALL_OF_FAME_CLEAR_CD			= 2052,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CD
+	GCR_ITEM_COMBI_AUTO_BUY				= 2053,		// ï¿½ï¿½Æ·ï¿½Ï³ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_BUY_THREE_PET_LI_BAO			= 2054,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCR_BUY_AC_SOCRE					= 2055,		// ï¿½ï¿½ï¿½ï¿½Ñ«ï¿½Â»ï¿½ï¿½ï¿½
+	GCR_BUY_WAR_VICTORY_GIFT			= 2056,		// ï¿½ï¿½ï¿½ï¿½Õ½Ê¤ï¿½ï¿½ï¿½ï¿½ï¿½
+	GCT_WAR_VICTORY_FAN_LI				= 2057,		// Õ½Ê¤ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
 
 //==================================================================================
-//ÔªÆø
+//Ôªï¿½ï¿½
 	VCR_STRART							= 3000,
-	VCR_KILL_MONSTER					= 3001,		// ´ò¹ÖÔö¼Ó
-	VCR_BASE_ILLUSION					= 3002,		// ÄÚÖÃ³è³õÁé
-	VCR_GROW_ILLUSION					= 3003,		// ÄÚÖÃ³è»ÃÁé
-	VCR_LUCKY_ILLUSION					= 3004,		// ÄÚÖÃ³èÐÒÔË
-	VCR_EXP_ILLUSION					= 3005,		// ÄÚÖÃ³èÎäÁé
+	VCR_KILL_MONSTER					= 3001,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	VCR_BASE_ILLUSION					= 3002,		// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½
+	VCR_GROW_ILLUSION					= 3003,		// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½
+	VCR_LUCKY_ILLUSION					= 3004,		// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½
+	VCR_EXP_ILLUSION					= 3005,		// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 //=======================================================================================
-//boss»ý·ÖºÍ³é½±»ý·Ö
-	SCR_ON_CHOU_JIANG					= 4000,		//³é½±
-	SCR_KILL_BOSS						= 4001,		//É±¹Ö
-	SCR_BUY_ITEM						= 4002,		//¹ºÂòÎïÆ·
+//bossï¿½ï¿½ï¿½ÖºÍ³é½±ï¿½ï¿½ï¿½ï¿½
+	SCR_ON_CHOU_JIANG					= 4000,		//ï¿½é½±
+	SCR_KILL_BOSS						= 4001,		//É±ï¿½ï¿½
+	SCR_BUY_ITEM						= 4002,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 
 //=======================================================================================
-// ÈÙÓþ
-	HCR_HALL_OF_FAME_FIGHT				= 5000,		// ÌôÕ½
-	HCR_BUY_GUAN_WEI					= 5001,		// ¹ºÂò¹ÙÎ»
-	HCR_HALL_OF_FAME_RANK_REWARD		= 5002,		// ÅÅÃû½±Àø
+// ï¿½ï¿½ï¿½ï¿½
+	HCR_HALL_OF_FAME_FIGHT				= 5000,		// ï¿½ï¿½Õ½
+	HCR_BUY_GUAN_WEI					= 5001,		// ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+	HCR_HALL_OF_FAME_RANK_REWARD		= 5002,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-//³É¾Í»ý·Ö
-	ACHIEVEMNET_SOCRE_GET				= 6001,		// ³É¾Í	
-	ACHIEVEMNET_UP_XUN_ZHANG			= 6002,		// Éý¼¶Ñ«ÕÂ
-	ACHIEVEMENT_BUY_SOCRE				= 6003,		// ¹ºÂò»ý·Ö
+//ï¿½É¾Í»ï¿½ï¿½ï¿½
+	ACHIEVEMNET_SOCRE_GET				= 6001,		// ï¿½É¾ï¿½	
+	ACHIEVEMNET_UP_XUN_ZHANG			= 6002,		// ï¿½ï¿½ï¿½ï¿½Ñ«ï¿½ï¿½
+	ACHIEVEMENT_BUY_SOCRE				= 6003,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum ITEM_ADD_REASON
 {
  	IACR_NONE					= 0,
- 	IACR_DUNGEON_REWARD			= 1,	//¸±±¾ ½±Àø
- 	IACR_MAIL					= 2,	//ÓÊ¼þ»ñÈ¡
- 	IACR_EXCHANGE_CODE			= 3,	//½»»» Âë
- 	IACR_ACHIEVEMENT_EXCHANGE	= 3,	//³É¾Í ¶Ò»»
- 	IACR_ACTIVITY				= 4,	//»î¶¯ ½±Àø
+ 	IACR_DUNGEON_REWARD			= 1,	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	IACR_MAIL					= 2,	//ï¿½Ê¼ï¿½ï¿½ï¿½È¡
+ 	IACR_EXCHANGE_CODE			= 3,	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+ 	IACR_ACHIEVEMENT_EXCHANGE	= 3,	//ï¿½É¾ï¿½ ï¿½Ò»ï¿½
+ 	IACR_ACTIVITY				= 4,	//ï¿½î¶¯ ï¿½ï¿½ï¿½ï¿½
  	IACR_PICK					= 5,	//Ê°È¡
- 	IACR_LIBAO					= 6,	//Àñ°ü
- 	IACR_TASK					= 7,	//Ö÷Ïß ÈÎÎñ
- 	IACR_ONLINE_REWAR			= 8,	//ÔÚ Ïß ½±Àø
- 	IACR_COMBINE				= 9,	//ºÏ²¢
- 	IACR_CHR_SHOP				= 10,	//¸öÈË ÉÌµê ¹ºÂò
- 	IACR_SIGN					= 11,	//Ç©µ½½±Àø
- 	IACR_SEVEN_LOGIN			= 12,	//ÆßÌìµÇÂ½
- 	IACR_REMOVE_GEM				= 13,	//³·³ý±¦Ê¯
- 	IACR_SUIJILIBAO				= 14,	//Ëæ»úÀñ°ü
- 	IACR_YELLOW_STONE_REWARD	= 15,	//»Æ×êÃ¿ÈÕÀñ°ü
- 	IACR_YEAR_YELLOW_STONE_REWARD	= 16,	//Äê·Ñ»Æ×ê¶îÍâÃ¿ÈÕÀñ°ü
- 	IACR_YELLOW_STONE_GROW_UP		= 17,	//»Æ×ê³É³¤Àñ°ü
-	IACR_DEPOT_GET				= 18,	//²Ö¿â»ñÈ¡
-	IACR_DEPOT_SAVE				= 19,	//´æÈë²Ö¿â
-	IACR_GEM_TO_BAG				= 20,	//ÕªÈ¡±¦Ê¯
-	IACR_RANSOM_ITEM			= 21,	//Êê»Ø
-	IACR_TRADE					= 22,	//½»Ò×
-	IACR_BUY_SHANG_CHENG_ITEM	= 23,	//ÉÌ³Ç¹ºÂò
-	IACR_CHOU_JIANG				= 24,	//³é½±
-	IACR_BUY_CHOU_JIANG_SHOP	= 25,	//³é½±ÉÌµê¹ºÂò
-	IACR_FROM_PET				= 26,	//´Ó»ÃÊÞÀ¸À´
-	IACR_DWW_HD					= 27,	//´óÎ¸Íõ»î¶¯
-	IACR_GET_VIP_GIFT			= 28,	//ÁìÈ¡vipÀñ°ü
-	IACR_PALNT_GET				= 29,   //²É¼¯ÎïÀï»ñµÃ
-	IACR_EXP_BALL				= 30,	//¾­ÑéÇò»ñµÃ
-	IACR_SHOU_CHONG				= 31,	//Ê×³å
-	IACR_NEW_SERVER_TE_HUI		= 32,	//ÐÂ·þÌØ»Ý
-	IACR_EVERYDAY_CHONG_ZHI		= 33,	//Ã¿ÈÕ³äÖµ
-	IACR_KAI_FU_HUO_DONG		= 34,	//¿ª·þ»î¶¯
-	IACR_HUO_YUE_DU				= 35,	//»îÔ¾¶È
-	IACR_HALL_OF_FAME_REWARD	= 36,	//ÃûÈËÌÃ½±Àø
-	IACR_VIP_CARD_GIFT			= 37,	//VIP¿¨Àñ°ü
-	IACR_FAMILY_TASK_REWARD		= 38,	//¾üÍÅÈÎÎñ
-	IACR_TOTAL_CHONG_ZHI		= 39,	//¿ª·þÀÛ¼Æ³äÖµ
-	IACR_VAR_VICTORY			= 40,	//¿¹Õ½70ÖÜÄê
+	IACR_TIAN_JIANG_BAO_XIANG_DAILY_REWARD	= 9,	// ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IACR_LIBAO					= 6,	//ï¿½ï¿½ï¿½
+ 	IACR_TASK					= 7,	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	IACR_ONLINE_REWAR			= 8,	//ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	IACR_COMBINE				= 9,	//ï¿½Ï²ï¿½
+ 	IACR_CHR_SHOP				= 10,	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	IACR_SIGN					= 11,	//Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IACR_SEVEN_LOGIN			= 12,	//ï¿½ï¿½ï¿½ï¿½ï¿½Â½
+ 	IACR_REMOVE_GEM				= 13,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¯
+ 	IACR_SUIJILIBAO				= 14,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IACR_YELLOW_STONE_REWARD	= 15,	//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IACR_YEAR_YELLOW_STONE_REWARD	= 16,	//ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IACR_YELLOW_STONE_GROW_UP		= 17,	//ï¿½ï¿½ï¿½ï¿½É³ï¿½ï¿½ï¿½ï¿½
+	IACR_DEPOT_GET				= 18,	//ï¿½Ö¿ï¿½ï¿½È¡
+	IACR_DEPOT_SAVE				= 19,	//ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½
+	IACR_GEM_TO_BAG				= 20,	//ÕªÈ¡ï¿½ï¿½Ê¯
+	IACR_RANSOM_ITEM			= 21,	//ï¿½ï¿½ï¿½
+	IACR_TRADE					= 22,	//ï¿½ï¿½ï¿½ï¿½
+	IACR_BUY_SHANG_CHENG_ITEM	= 23,	//ï¿½Ì³Ç¹ï¿½ï¿½ï¿½
+	IACR_CHOU_JIANG				= 24,	//ï¿½é½±
+	IACR_BUY_CHOU_JIANG_SHOP	= 25,	//ï¿½é½±ï¿½Ìµê¹ºï¿½ï¿½
+	IACR_FROM_PET				= 26,	//ï¿½Ó»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IACR_DWW_HD					= 27,	//ï¿½ï¿½Î¸ï¿½ï¿½ï¿½î¶¯
+	IACR_GET_VIP_GIFT			= 28,	//ï¿½ï¿½È¡vipï¿½ï¿½ï¿½
+	IACR_PALNT_GET				= 29,   //ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IACR_EXP_BALL				= 30,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IACR_SHOU_CHONG				= 31,	//ï¿½×³ï¿½
+	IACR_NEW_SERVER_TE_HUI		= 32,	//ï¿½Â·ï¿½ï¿½Ø»ï¿½
+	IACR_EVERYDAY_CHONG_ZHI		= 33,	//Ã¿ï¿½Õ³ï¿½Öµ
+	IACR_KAI_FU_HUO_DONG		= 34,	//ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	IACR_HUO_YUE_DU				= 35,	//ï¿½ï¿½Ô¾ï¿½ï¿½
+	IACR_HALL_OF_FAME_REWARD	= 36,	//ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½
+	IACR_VIP_CARD_GIFT			= 37,	//VIPï¿½ï¿½ï¿½ï¿½ï¿½
+	IACR_FAMILY_TASK_REWARD		= 38,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IACR_TOTAL_CHONG_ZHI		= 39,	//ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµ
+	IACR_VAR_VICTORY			= 40,	//ï¿½ï¿½Õ½70ï¿½ï¿½ï¿½ï¿½
 };
 
 enum ITEM_DEL_REASON
 {
  	IDCR_NONE						= 0,
- 	IDCR_ACHIEVEMENT_QUICK			= 1,	// ³É¾Í ¿ìËÙÍê³É
- 	IDCR_BAG_USE					= 2,	// ±³°ü  Ê¹ÓÃ
- 	IDCR_ADD_GEM					= 3,	// ÏâÇ¶
- 	IDCR_FLY						= 4,	// ´«ËÍ
- 	IDCR_DUNGEON					= 5,	// ¸±±¾  ´ÎÊý
- 	IDCR_COMBINE					= 6,	// ºÏ²¢
-	IDCR_VICEGENERAL_USE_EXP_PILL	= 7,	// Îä½«Ê¹ÓÃ¾­Ñé
-	IDCR_EQUIP_UPSTAR				= 8,	// ×°±¸ÉýÐÇ
-	IDCR_EQUIP_UPGRADE				= 9,	// ×°±¸Éý½×
-	IDCR_EQUIP_UPQUALITY			= 10,	// ×°±¸ÉýÆ·
-	IDCR_MOUNT_HEART				= 11,	// ·þÓÃ×øÆïÖ®ÐÄ
-	IDCR_MOUNT_LEAR_SKILL			= 12,	// Ñ§Ï°×øÆï¼¼ÄÜ
-	IDCR_MOUNT_SKILL_UP				= 13,	// Éý¼¶×øÆï¼¼ÄÜ
-	IDCR_MOUNT_LEVEL_UP				= 14,	// ×øÆïÉý½×
-	IDCR_EQUIP_OPEN_GEM_HOLE		= 15,	// ±¦Ê¯¿ª¿×
-	IDCR_GEM_TO_EQUIP				= 16,	// ±¦Ê¯ÏâÇ¶
-	IDCR_TRADE						= 17,	// ½»Ò× 
-	IDCR_DIE_DROP					= 18,	// ËÀÍöµôÂä
-	IDCR_PET_USE_ITEM				= 19,	// ³èÎïÊ¹ÓÃµÀ¾ß
-	IDCR_SKILL_LEVEL_UP				= 20,	// ¼¼ÄÜÉý¼¶
-	IDCR_BACK_CITY					= 21,	// Ê¹ÓÃ»Ø³Ç¾í
-	IDCR_SUI_JI						= 22,	// Ê¹ÓÃËæ»ú¾í
-	IDCR_INSIDE_PET_EXP_ILLUSION	= 23,	// ÄÚÖÃ³èÎäÁé
-	IDCR_INSIDE_PET_USE_LUCKY_ITEM	= 24,	// ÄÚÖÃ³èÊ¹ÓÃÐÒÔËÖµµÀ¾ß
-	IDCR_INSIDE_PET_CHANGE_PHASE	= 25,	// ÄÚÖÃ³è¸Ä±äÏàÐÔ
-	IDCR_AUCTION_SELL				= 26,	// ÅÄÂô
-	IDCR_CHOU_JIANG					= 27,	// ³é½±
-	IDCR_TO_PET						= 28,	// µ½»ÃÊÞÀ¸
-	IDCR_QI_FU						= 29,	// Æí¸£ÏûºÄ
-	IDCR_FAMILY_WAR_SIT_REVIVE		= 30,	// ¾üÍÅÕ½Ô­µØ¸´»î
-	IDCR_FAMILY_WAR_PET_REVIVE		= 31,	// ¾üÍÅÕ½¸´»î³èÎï
-	IDCR_PUT_IN_EXP_BALL			= 32,	// ×°±¸¾­ÑéÇò
-	IDCR_USE_MULTI_ITEM				= 33,	// Ê¹ÓÃ¶à¸ö
-	IDCR_ENTER_BOSS_HOME			= 34,	// ½øÈëbossÖ®¼Ò
-	IDCR_SITE_REVIVE				= 35,	// ¸´»îµ¤
+ 	IDCR_ACHIEVEMENT_QUICK			= 1,	// ï¿½É¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 	IDCR_BAG_USE					= 2,	// ï¿½ï¿½ï¿½ï¿½  Ê¹ï¿½ï¿½
+ 	IDCR_ADD_GEM					= 3,	// ï¿½ï¿½Ç¶
+ 	IDCR_FLY						= 4,	// ï¿½ï¿½ï¿½ï¿½
+ 	IDCR_DUNGEON					= 5,	// ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½
+ 	IDCR_COMBINE					= 6,	// ï¿½Ï²ï¿½
+	IDCR_VICEGENERAL_USE_EXP_PILL	= 7,	// ï¿½ä½«Ê¹ï¿½Ã¾ï¿½ï¿½ï¿½
+	IDCR_EQUIP_UPSTAR				= 8,	// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_EQUIP_UPGRADE				= 9,	// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_EQUIP_UPQUALITY			= 10,	// ×°ï¿½ï¿½ï¿½ï¿½Æ·
+	IDCR_MOUNT_HEART				= 11,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+	IDCR_MOUNT_LEAR_SKILL			= 12,	// Ñ§Ï°ï¿½ï¿½ï¿½ï¼¼ï¿½ï¿½
+	IDCR_MOUNT_SKILL_UP				= 13,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¼¼ï¿½ï¿½
+	IDCR_MOUNT_LEVEL_UP				= 14,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_EQUIP_OPEN_GEM_HOLE		= 15,	// ï¿½ï¿½Ê¯ï¿½ï¿½ï¿½ï¿½
+	IDCR_GEM_TO_EQUIP				= 16,	// ï¿½ï¿½Ê¯ï¿½ï¿½Ç¶
+	IDCR_TRADE						= 17,	// ï¿½ï¿½ï¿½ï¿½ 
+	IDCR_DIE_DROP					= 18,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_PET_USE_ITEM				= 19,	// ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½
+	IDCR_SKILL_LEVEL_UP				= 20,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_BACK_CITY					= 21,	// Ê¹ï¿½Ã»Ø³Ç¾ï¿½
+	IDCR_SUI_JI						= 22,	// Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_INSIDE_PET_EXP_ILLUSION	= 23,	// ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_INSIDE_PET_USE_LUCKY_ITEM	= 24,	// ï¿½ï¿½ï¿½Ã³ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
+	IDCR_INSIDE_PET_CHANGE_PHASE	= 25,	// ï¿½ï¿½ï¿½Ã³ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_AUCTION_SELL				= 26,	// ï¿½ï¿½ï¿½ï¿½
+	IDCR_CHOU_JIANG					= 27,	// ï¿½é½±
+	IDCR_TO_PET						= 28,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_QI_FU						= 29,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_FAMILY_WAR_SIT_REVIVE		= 30,	// ï¿½ï¿½ï¿½ï¿½Õ½Ô­ï¿½Ø¸ï¿½ï¿½ï¿½
+	IDCR_FAMILY_WAR_PET_REVIVE		= 31,	// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_PUT_IN_EXP_BALL			= 32,	// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IDCR_USE_MULTI_ITEM				= 33,	// Ê¹ï¿½Ã¶ï¿½ï¿½
+	IDCR_ENTER_BOSS_HOME			= 34,	// ï¿½ï¿½ï¿½ï¿½bossÖ®ï¿½ï¿½
+	IDCR_SITE_REVIVE				= 35,	// ï¿½ï¿½ï¿½îµ¤
 };
 
 enum ItemEffectType
 {
 	IET_NONE						= 0,
-	IET_MONEY_GAIN					= 1,	// ½ð±Ò
-	IET_CHIXUHUIXUE					= 2,	// ³ÖÐø»ØÑª
-	IET_SHUNJIANHUIXUE				= 3,	// Ë²¼ä»ØÑª
-	IET_CHONGHUIXUE					= 4,	// ³èÎï»ØÑª
-	IET_CHIXUHUIMO					= 5,	// ³ÖÐø»ØÄ§
-	IET_SHUJIANHUIMO				= 6,	// Ë²¼ä»ØÄ§ -- ·ÏÆú
+	IET_MONEY_GAIN					= 1,	// ï¿½ï¿½ï¿½
+	IET_CHIXUHUIXUE					= 2,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñª
+	IET_SHUNJIANHUIXUE				= 3,	// Ë²ï¿½ï¿½ï¿½Ñª
+	IET_CHONGHUIXUE					= 4,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ñª
+	IET_CHIXUHUIMO					= 5,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä§
+	IET_SHUJIANHUIMO				= 6,	// Ë²ï¿½ï¿½ï¿½Ä§ -- ï¿½ï¿½ï¿½ï¿½
 
-	IET_JINGYANDAN					= 24,	// ¾­Ñéµ¤
+	IET_JINGYANDAN					= 24,	// ï¿½ï¿½ï¿½éµ¤
 
-	IET_GIFT						= 29,	// Àñ°ü
-	IET_AUTO_PET_GIFT				= 30,	// ×Ô¶¯Ê¹ÓÃµÄ³èÎïÀñ°ü
+	IET_GIFT						= 29,	// ï¿½ï¿½ï¿½
+	IET_AUTO_PET_GIFT				= 30,	// ï¿½Ô¶ï¿½Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	IET_EXPERIENCECARD				= 33,	// VIP ÌåÑé¿¨
+	IET_EXPERIENCECARD				= 33,	// VIP ï¿½ï¿½ï¿½é¿¨
 
- 	IET_LIQUAN						= 55,	// ÀñÈ¯
+ 	IET_LIQUAN						= 55,	// ï¿½ï¿½È¯
 
- 	IET_YUANBAO						= 70,	// Ôª±¦
+ 	IET_YUANBAO						= 70,	// Ôªï¿½ï¿½
 
- 	IET_SUIJILIBAO					= 72,	// Ëæ»úÀñ°ü
+ 	IET_SUIJILIBAO					= 72,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
- 	IET_SUPER_EXCHANGE				= 75,	// ³¬¼¶¶Ò»»
- 	IET_MAXHP_DAOJU					= 76,	// ×î´óÑªÁ¿buffµÀ¾ß
- 	IET_ATTACK_DAOJU				= 77,	// ¹¥»÷Á¦buffµÀ¾ß
- 	IET_VP_DAOJU					= 78,	// Ôö¼Ó±©»÷buffµÀ¾ß
- 	IET_MUTI_EXP					= 79,	// ¶à±¶¾­Ñéµ¤
+ 	IET_SUPER_EXCHANGE				= 75,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½
+ 	IET_MAXHP_DAOJU					= 76,	// ï¿½ï¿½ï¿½Ñªï¿½ï¿½buffï¿½ï¿½ï¿½ï¿½
+ 	IET_ATTACK_DAOJU				= 77,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½buffï¿½ï¿½ï¿½ï¿½
+ 	IET_VP_DAOJU					= 78,	// ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½buffï¿½ï¿½ï¿½ï¿½
+ 	IET_MUTI_EXP					= 79,	// ï¿½à±¶ï¿½ï¿½ï¿½éµ¤
 
-	IET_CURRENCY_RES				= 82,	// ×ÊÔ´ÎïÆ·
+	IET_CURRENCY_RES				= 82,	// ï¿½ï¿½Ô´ï¿½ï¿½Æ·
 
-	IET_SHU_GUANG_SUI_PIAN			= 98,	// Êï¹âËéÆ¬
-	IET_DI_LONG_SUI_PIAN			= 99,	// µÛÁúËéÆ¬
-	IET_FU_WEN_SUI_PIAN				= 100,	// ·ûÎÄËéÆ¬
-	IET_PET_ADD_THIRD				= 101,	// ¿ªÈý³è
+	IET_SHU_GUANG_SUI_PIAN			= 98,	// ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	IET_DI_LONG_SUI_PIAN			= 99,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	IET_FU_WEN_SUI_PIAN				= 100,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	IET_PET_ADD_THIRD				= 101,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	IET_ENTER_DUNGEON				= 103,	// ½øÈë¸±±¾µÀ¾ß
-	IET_FAMOLY_WAR_PET_REVIVE		= 104,	// ¾üÍÅÕ½¸´»î³èÎï
-	IET_FAMOLY_LIGHT_WINE			= 105,	// ¾üÍÅÁÒ¾Æ
-	IET_LEVEL_UP					= 106,	// Éý¼¶µ¤
-	IET_JIU_SHU_CARD				= 135,	// ¾ÈÊê¿¨
-	IET_HUN_LI_UP				    = 136,	// »êÁ¦Éý¼¶µ¥
+	IET_ENTER_DUNGEON				= 103,	// ï¿½ï¿½ï¿½ë¸±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IET_FAMOLY_WAR_PET_REVIVE		= 104,	// ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IET_FAMOLY_LIGHT_WINE			= 105,	// ï¿½ï¿½ï¿½ï¿½ï¿½Ò¾ï¿½
+	IET_LEVEL_UP					= 106,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	IET_JIU_SHU_CARD				= 135,	// ï¿½ï¿½ï¿½ê¿¨
+	IET_HUN_LI_UP				    = 136,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 
-// ÌØÊâµÀ¾ß
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 enum ITEM_SPECIAL_ID
 {
-	ISI_OPEN_THIRD_GEM_HOLE			= 7002,		// ×°±¸¿ªµÚÈý¸ö¿×
-	ISI_OPEN_FIRST_GEM_HOLE			= 7003,		// ×°±¸¿ªµÚÒ»¸ö¿×
-	ISI_OPEN_SECOND_GEM_HOLE		= 7004,		// ×°±¸¿ªµÚ¶þ¸ö¿×
-	ISI_RELIVE						= 33,		// ¸´»îµÀ¾ß
-	ISI_TELEPORT					= 34,		// ´«ËÍµÀ¾ß
-	ISI_PET_KIWI_FRUIT				= 7036,		// ÆæÒì¹û
-	ISI_PET_ELECTRIC_POTION			= 7037,		// µç½¬Ò©Ë®
-	ISI_PET_EXP_GRAIN				= 7038,		// Ê¥ÊÞÄ§¾§
-	ISI_EXP_BALL					= 7039,		// ÆÕÍ¨¾­ÑéÇò
-	ISI_SPECIAL_EXP_BALL			= 7040,		// ÌØ¼¶¾­ÑéÇò
-	ISI_PET_LUCKY_GRASS				= 7041,		// ÐÒÔË²Ý
-	ISI_PET_GOD_GRASS				= 7042,		// ÉñÏÉ²Ý
-	ISI_BACK_CITY_JUAN				= 7078,		// »Ø³Ç¾í
-	ISI_SUI_JI_JUAN					= 7079,		// Ëæ»ú¾í
-	ISI_ZHI_ZUN_PI_SA				= 7188,		// ÖÁ×ðÅûÈø
-	ISI_FAMILY_WAR_SIT_REVIVE		= 7227,		// ¾üÍÅÕ½Ô­µØ¸´»î
-	ISI_EMPTY_EXP_BALL				= 7278,		// ¿Õ¾­ÑéÇò
-	ISI_XIAO_JV_HUA					= 7289,		// Ð¡¾Õ»¨
-	ISI_XIAO_LA_BA					= 7290,		// Ð¡À®°È
-	ISI_FU_HUO_DAN					= 7308,		// ¸´»îµ¤
+	ISI_OPEN_THIRD_GEM_HOLE			= 7002,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_OPEN_FIRST_GEM_HOLE			= 7003,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
+	ISI_OPEN_SECOND_GEM_HOLE		= 7004,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_RELIVE						= 33,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_TELEPORT					= 34,		// ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½
+	ISI_PET_KIWI_FRUIT				= 7036,		// ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_PET_ELECTRIC_POTION			= 7037,		// ï¿½ç½¬Ò©Ë®
+	ISI_PET_EXP_GRAIN				= 7038,		// Ê¥ï¿½ï¿½Ä§ï¿½ï¿½
+	ISI_EXP_BALL					= 7039,		// ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_SPECIAL_EXP_BALL			= 7040,		// ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_PET_LUCKY_GRASS				= 7041,		// ï¿½ï¿½ï¿½Ë²ï¿½
+	ISI_PET_GOD_GRASS				= 7042,		// ï¿½ï¿½ï¿½É²ï¿½
+	ISI_BACK_CITY_JUAN				= 7078,		// ï¿½Ø³Ç¾ï¿½
+	ISI_SUI_JI_JUAN					= 7079,		// ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_ZHI_ZUN_PI_SA				= 7188,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_FAMILY_WAR_SIT_REVIVE		= 7227,		// ï¿½ï¿½ï¿½ï¿½Õ½Ô­ï¿½Ø¸ï¿½ï¿½ï¿½
+	ISI_EMPTY_EXP_BALL				= 7278,		// ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½
+	ISI_XIAO_JV_HUA					= 7289,		// Ð¡ï¿½Õ»ï¿½
+	ISI_XIAO_LA_BA					= 7290,		// Ð¡ï¿½ï¿½ï¿½ï¿½
+	ISI_FU_HUO_DAN					= 7308,		// ï¿½ï¿½ï¿½îµ¤
 };
 
 enum  AcDailyType
@@ -491,38 +492,38 @@ enum GainType
 	GT_MONEY		= 2,
 	GT_GOLD			= 3,
 	GT_CASH			= 4,
-	GT_SHU_GUANG	= 5,		// Êï¹âËéÆ¬
-	GT_DI_LONG		= 6,		// µÛÁúËéÆ¬
-	GT_FU_WEN		= 7,		// ·ûÎÄËéÆ¬
-	GT_CHOU_JINAG	= 8,		// ³é½«»ý·Ö
-	GT_BOSS_SCORE	= 9,		// BOSS»ý·Ö
-	GT_BIND_MONEY	= 10,		// °ó¶¨½ð±Ò
-	GT_HONOR		= 11,		// ÍþÍû
-	GT_AC_SOCRE		= 12,		// ³É¾Í»ý·Ö
+	GT_SHU_GUANG	= 5,		// ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	GT_DI_LONG		= 6,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	GT_FU_WEN		= 7,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	GT_CHOU_JINAG	= 8,		// ï¿½é½«ï¿½ï¿½ï¿½ï¿½
+	GT_BOSS_SCORE	= 9,		// BOSSï¿½ï¿½ï¿½ï¿½
+	GT_BIND_MONEY	= 10,		// ï¿½ó¶¨½ï¿½ï¿½
+	GT_HONOR		= 11,		// ï¿½ï¿½ï¿½ï¿½
+	GT_AC_SOCRE		= 12,		// ï¿½É¾Í»ï¿½ï¿½ï¿½
 };
 
 enum NpcFunc
 {
 	NF_NORMAL	= 0,	// NpcFuncExtra
-	NF_TASK		= 1,	// ÈÎÎñ
+	NF_TASK		= 1,	// ï¿½ï¿½ï¿½ï¿½
 };
 
 enum NpcFuncExtra
 {
-	NFE_INTRODUC		= 1034,		// ½éÉÜ
-	NFE_EQUIPSET		= 1036,		// ×°±¸Ç¿»¯
-	NFE_ROLE			= 1037,		// ½ÇÉ«
-	NFE_GEMMY			= 1038,		// ±¦Ê¯ÏâÇ¶
-	NFE_GANGINFO		= 1039,		// °ïÅÉÐÅÏ¢
-	NFE_EQUIPBUILD		= 1040,		// ×°±¸´òÔì
-	NFE_PETWARE			= 1041,		// »ï°é²Ö¿â
-	NFE_SINGLEFUBEN		= 1042,		// µ¥ÈË¸±±¾
-	NFE_VIPFUBEN		= 1043,		// vip¸±±¾
-	NFE_MULTIFUBEN		= 1044,		// ¶àÈË¸±±¾
-	NFE_EXPFUBEN		= 1045,		// ¾­Ñé¸±±¾
-	NFE_ZHUSHEN			= 1046,		// ÖîÉñ¸±±¾
+	NFE_INTRODUC		= 1034,		// ï¿½ï¿½ï¿½ï¿½
+	NFE_EQUIPSET		= 1036,		// ×°ï¿½ï¿½Ç¿ï¿½ï¿½
+	NFE_ROLE			= 1037,		// ï¿½ï¿½É«
+	NFE_GEMMY			= 1038,		// ï¿½ï¿½Ê¯ï¿½ï¿½Ç¶
+	NFE_GANGINFO		= 1039,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	NFE_EQUIPBUILD		= 1040,		// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	NFE_PETWARE			= 1041,		// ï¿½ï¿½ï¿½Ö¿ï¿½
+	NFE_SINGLEFUBEN		= 1042,		// ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½
+	NFE_VIPFUBEN		= 1043,		// vipï¿½ï¿½ï¿½ï¿½
+	NFE_MULTIFUBEN		= 1044,		// ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½
+	NFE_EXPFUBEN		= 1045,		// ï¿½ï¿½ï¿½é¸±ï¿½ï¿½
+	NFE_ZHUSHEN			= 1046,		// ï¿½ï¿½ï¿½ñ¸±±ï¿½
 	NFE_STALL			= 1047,		// Ì¯Î»
-	NPE_MLRQ			= 1048,		// Ä§ÁéÈëÇÖ
+	NPE_MLRQ			= 1048,		// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum ActionType
@@ -542,13 +543,13 @@ enum PlayerTeamStatus
 #define  ONLINE_REWARD_BEGIN_ID  8
 enum PlayerRecord
 {
-	//ÁÙÊ±µÄ¼ÇÂ¼¿ªÊ¼-----
+	//ï¿½ï¿½Ê±ï¿½Ä¼ï¿½Â¼ï¿½ï¿½Ê¼-----
 	PR_MIN_TEMP_VALUE						= 0,	
-	PR_IN_BOSS_HOME							= 1,		//ÔÚbossÖ®¼Ò±ê¼Ç
+	PR_IN_BOSS_HOME							= 1,		//ï¿½ï¿½bossÖ®ï¿½Ò±ï¿½ï¿½
 	PR_MAX_TEMP_VALUE						= 1000,
-	//ÁÙÊ±µÄ¼ÇÂ¼½áÊø-----
+	//ï¿½ï¿½Ê±ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½-----
 
-	PR_DAILY_CHECK_LAST_UPDATE				= 1001,		// ¿çÌìµÄË¢ÐÂÊ±¼ä
+	PR_DAILY_CHECK_LAST_UPDATE				= 1001,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ê±ï¿½ï¿½
 	PR_MINUTE_CHECK_TIME					= 1002,
 	PR_TRAILER_KINGDOM						= 1003,
 	PR_TRAILER_MAPID						= 1004,
@@ -556,93 +557,93 @@ enum PlayerRecord
 	PR_TRAILER_Y							= 1006,
 	PR_TRAILER_HP							= 1007,
 	PR_TRAILER_END_TIME						= 1008,
-	PR_WORLD_CHAT_LAST_TIME					= 1009,		//×îºóÁÄÌìÊ±¼ä
+	PR_WORLD_CHAT_LAST_TIME					= 1009,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	
-	RP_PK_RANK_COUNT						= 1010,		// Ã¿ÈÕ É±ÈË¼ÇÂ¼
-	RP_LOGIN_COUNT							= 1011,		// µÇÂ½´ÎÊý 
-	PR_DEAD_TIME							= 1012,		// ËÀÍö´ÎÊý
-	PR_FLY_ICON_INT							= 1013,		// ÓÃÓÚ±£´æÍ¼±ê·ÉÐÐµÄ±ê¼Ç
-	RP_DAILY_SEVEN_LOGIN_REWARD				= 1014,		// ÆßÌìµÇÂ½½±ÀøÁìÈ¡ÐÅÏ¢
-	RP_LEVEL_GIFT_REWARD					= 1015,		// µÈ¼¶Àñ°üÁìÈ¡Çé¿ö
-	RP_WEEK_ONLINE_TIME						= 1016,		// ÖÜÔÚÏßÊ±¼ä
-	RP_LAST_WEEK_ONLINE_TIME				= 1017,		// ÉÏÖÜÔÚÏßÊ±¼ä
-	PR_WEEK_CHECK_LAST_UPDATE				= 1018,		// ¿çÖÜË¢ÐÂÊ±¼ä
-	PR_ACCUMULATIVE_OFFLINE_TIME			= 1019,		// ÀÛ¼ÆÀëÏßÊ±¼ä
-	PR_VIP_EXP								= 1020,		// vip¾­Ñé
-	PR_VIP_GIFT_RECORD						= 1021,		// vipÀñ°ü¼ÇÂ¼
-	RP_VIP_LAST_ADD_EXP_TIME				= 1022,		// ×îºóÔö¼Óvip¾­ÑéµÄÊ±¼ä
-	PR_MAX_VIP_LEVEL						= 1023,		// ×î´óvipµÈ¼¶
-	RP_IN_BOSS_HOME_ENT_TIME				= 1024,		// ÔÚbossÖ®¼ÒµÄ×îºóÊ±¼ä
-	RP_CYCLE_FLUSH							= 1025,		// Ñ­»·ÈÎÎñË¢ÐÂ×Ü´ÎÊý
-	RP_SHOU_CHONG_LI_BAO					= 1026,		// Ê×³å×´Ì¬
-	RP_BUY_TE_HUI_RECORD					= 1027,		// ¹ºÂò¿ª·þÌØ»Ý¼ÇÂ¼
-	RP_KAI_FU_HUO_DONG_LEVEL				= 1028,		// ¿ª·þ»î¶¯ÆÚ¼ä´ïµ½µÄµÈ¼¶
-	RP_KAI_FU_HUO_DONG_PET_POINT			= 1029,		// ¿ª·þ»î¶¯³èÎï×î´óÐÇ¼¶
-	RP_FIRST_JUN_TUAN_ZHAN_STATE			= 1030,		// µÚÒ»´Î¾üÍÅÕ½Çé¿ö
-	RP_KAI_FU_HUO_DONG_BATTLE				= 1031,		// ¿ª·þ»î¶¯ÆÚ¼ä×î´óÕ½¶·Á¦
-	RP_KAI_FU_HUO_DONG_REWARD				= 1032,		// ¿ª·þ»î¶¯½±ÀøÁìÈ¡Çé¿ö
-	PR_FALL_OF_FAME_CD_TIME					= 1033,		// ÃûÈËÌÃCDÊ±¼ä
-	RP_CUR_GUAN_WEI							= 1034,		// µ±Ç°¹ÙÎ»
-	RP_THREE_PET_GIFT						= 1035,		// Èý³èÀñ°üÊÇ·ñÁìÈ¡
-	RP_TOTAL_CHI_ZHI_VALUES					= 1036,		// ¿ª·þÀÛ¼Æ³äÖµ»î¶¯
-	RP_TOTAL_CHI_ZHI_REWARD					= 1037,		// ¿ª·þÀÛ¼Æ³äÖµÁìÈ¡¼ÇÂ¼
-	RP_WAR_VICTORY_CHONG_ZHI_VALUES			= 1038,		// ¿¹Õ½Ê¤Àû»î¶¯³äÖµ
+	RP_PK_RANK_COUNT						= 1010,		// Ã¿ï¿½ï¿½ É±ï¿½Ë¼ï¿½Â¼
+	RP_LOGIN_COUNT							= 1011,		// ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ 
+	PR_DEAD_TIME							= 1012,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_FLY_ICON_INT							= 1013,		// ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ÐµÄ±ï¿½ï¿½
+	RP_DAILY_SEVEN_LOGIN_REWARD				= 1014,		// ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ï¢
+	RP_LEVEL_GIFT_REWARD					= 1015,		// ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
+	RP_WEEK_ONLINE_TIME						= 1016,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	RP_LAST_WEEK_ONLINE_TIME				= 1017,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	PR_WEEK_CHECK_LAST_UPDATE				= 1018,		// ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ê±ï¿½ï¿½
+	PR_ACCUMULATIVE_OFFLINE_TIME			= 1019,		// ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	PR_VIP_EXP								= 1020,		// vipï¿½ï¿½ï¿½ï¿½
+	PR_VIP_GIFT_RECORD						= 1021,		// vipï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+	RP_VIP_LAST_ADD_EXP_TIME				= 1022,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vipï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	PR_MAX_VIP_LEVEL						= 1023,		// ï¿½ï¿½ï¿½vipï¿½È¼ï¿½
+	RP_IN_BOSS_HOME_ENT_TIME				= 1024,		// ï¿½ï¿½bossÖ®ï¿½Òµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	RP_CYCLE_FLUSH							= 1025,		// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½
+	RP_SHOU_CHONG_LI_BAO					= 1026,		// ï¿½×³ï¿½×´Ì¬
+	RP_BUY_TE_HUI_RECORD					= 1027,		// ï¿½ï¿½ï¿½ò¿ª·ï¿½ï¿½Ø»Ý¼ï¿½Â¼
+	RP_KAI_FU_HUO_DONG_LEVEL				= 1028,		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½Ú¼ï¿½ïµ½ï¿½ÄµÈ¼ï¿½
+	RP_KAI_FU_HUO_DONG_PET_POINT			= 1029,		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½
+	RP_FIRST_JUN_TUAN_ZHAN_STATE			= 1030,		// ï¿½ï¿½Ò»ï¿½Î¾ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½
+	RP_KAI_FU_HUO_DONG_BATTLE				= 1031,		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	RP_KAI_FU_HUO_DONG_REWARD				= 1032,		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
+	PR_FALL_OF_FAME_CD_TIME					= 1033,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CDÊ±ï¿½ï¿½
+	RP_CUR_GUAN_WEI							= 1034,		// ï¿½ï¿½Ç°ï¿½ï¿½Î»
+	RP_THREE_PET_GIFT						= 1035,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È¡
+	RP_TOTAL_CHI_ZHI_VALUES					= 1036,		// ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµï¿½î¶¯
+	RP_TOTAL_CHI_ZHI_REWARD					= 1037,		// ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµï¿½ï¿½È¡ï¿½ï¿½Â¼
+	RP_WAR_VICTORY_CHONG_ZHI_VALUES			= 1038,		// ï¿½ï¿½Õ½Ê¤ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½Öµ
 
-	// Ã¿ÈÕÇåÀíµÄ¼ÇÂ¼¿ªÊ¼----------------------------------
+	// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½Ê¼----------------------------------
 	PR_DAILY_CLEAR_BEGIN					= 2000,
-	RP_DAILY_PK_MARK						= 2001,		// Ã¿ÈÕPK·ÖÊý
-//	RP_EVERY_DAY_GET_GOLD					= 2002,		// ·â²â Ã¿ÈÕÁìÈ¡Ôª±¦
-	RP_DAILY_ONLIN_TIME						= 2003,		// Ã¿ÈÕÔÚÏßÊ±¼ä
-	RP_DAILY_ONLIE_REWARD_INFO				= 2004,		// Ã¿ÈÕÔÚÏßÊ±¼ä½±Àø
-	RP_DAILY_DWW_TIMES						= 2005,		// ´óÎ¸Íõ½±Àø´ÎÊý
-	RP_DAILY_DWW_LAST_TIME					= 2006,		// ½ñÌì²Î¼Ó´óÎ¸Íõ
-	RP_IS_USED_VIP_TI_YAN_CARD				= 2007,		// ÊÇ·ñÕýÔÚÊ¹ÓÃvipÌåÑé¿¨
-	RP_IN_BOSS_HOME_TIME					= 2008,		// ÔÚbossÖ®¼ÒµÄÊ±¼ä
+	RP_DAILY_PK_MARK						= 2001,		// Ã¿ï¿½ï¿½PKï¿½ï¿½ï¿½ï¿½
+//	RP_EVERY_DAY_GET_GOLD					= 2002,		// ï¿½ï¿½ï¿½ Ã¿ï¿½ï¿½ï¿½ï¿½È¡Ôªï¿½ï¿½
+	RP_DAILY_ONLIN_TIME						= 2003,		// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	RP_DAILY_ONLIE_REWARD_INFO				= 2004,		// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä½±ï¿½ï¿½
+	RP_DAILY_DWW_TIMES						= 2005,		// ï¿½ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_DAILY_DWW_LAST_TIME					= 2006,		// ï¿½ï¿½ï¿½ï¿½Î¼Ó´ï¿½Î¸ï¿½ï¿½
+	RP_IS_USED_VIP_TI_YAN_CARD				= 2007,		// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½vipï¿½ï¿½ï¿½é¿¨
+	RP_IN_BOSS_HOME_TIME					= 2008,		// ï¿½ï¿½bossÖ®ï¿½Òµï¿½Ê±ï¿½ï¿½
 	PR_KILL_TRAILER_COUNT					= 2009,
-	PR_SEARCH_BACK_REWARD_INFO				= 2010,		// ×ÊÔ´ÕÒ»Ø¼ÇÂ¼
-	PR_EVERY_DAY_CHONG_ZHI_GIFT_RECORD		= 2011,		// Ã¿ÈÕ³äÖµÀñ°üÁìÈ¡Çé¿ö
-	PR_HUO_YUE_DU_REWARD_INFO				= 2012,		// »îÔ¾¶ÈÁìÈ¡Çé¿ö
-	PR_XIAO_JV_HUA_SHI_YONG					= 2013,		// Ð¡¾Õ»¨Ê¹ÓÃÏÞÖÆ
-	PR_TERRITORY_WAR_REVIVE_TIMES			= 2014,		// ÁìµØÕ½¸´»î¼ÇÂ¼
-	PR_FALL_OF_FAME_FIGHT_TIMES				= 2015,		// ÌôÕ½´ÎÊý
-	PR_FALL_OF_FAME_BUY_TIMES				= 2016,		// ¹ºÂò´ÎÊý
-	RP_CUR_GUAN_WEI_DAILY_REWARD			= 2017,		// ¹ÙÎ»ÈÕ³£½±ÀøÐÅÏ¢
-	RP_GET_VIP_CARD_GIFT					= 2018,		// »ñÈ¡vip¿¨Àñ°ü
-	RP_FAMILY_TASK_COUNT					= 2019,		// ¾üÍÅÈÎÎñ´ÎÊý
-	RP_FAMILY_TASK_REWARD					= 2020,		// ¾üÍÅÈÎÎñ½±Àø
-	RP_VIP_SITEREVIVE_TIMES					= 2021,		// vipÃ¿ÈÕÔ­µØ¸´»î´ÎÊý
-	RP_WAR_VICTORY_LOGIN					= 2022,		// Ã¿ÈÕ¿¹Õ½Ê¤ÀûÃ¿ÈÕµÇÂ½Àñ°üÁìÈ¡Çé¿ö
-	RP_WAR_VICTORY_BUY_GIFT					= 2023,		// ¿¹Õ½Ê¤ÀûÃ¿ÈÕÌØ»Ý¹ºÂòÇé¿ö
+	PR_SEARCH_BACK_REWARD_INFO				= 2010,		// ï¿½ï¿½Ô´ï¿½Ò»Ø¼ï¿½Â¼
+	PR_EVERY_DAY_CHONG_ZHI_GIFT_RECORD		= 2011,		// Ã¿ï¿½Õ³ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
+	PR_HUO_YUE_DU_REWARD_INFO				= 2012,		// ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
+	PR_XIAO_JV_HUA_SHI_YONG					= 2013,		// Ð¡ï¿½Õ»ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_TERRITORY_WAR_REVIVE_TIMES			= 2014,		// ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+	PR_FALL_OF_FAME_FIGHT_TIMES				= 2015,		// ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+	PR_FALL_OF_FAME_BUY_TIMES				= 2016,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_CUR_GUAN_WEI_DAILY_REWARD			= 2017,		// ï¿½ï¿½Î»ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	RP_GET_VIP_CARD_GIFT					= 2018,		// ï¿½ï¿½È¡vipï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_FAMILY_TASK_COUNT					= 2019,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_FAMILY_TASK_REWARD					= 2020,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_VIP_SITEREVIVE_TIMES					= 2021,		// vipÃ¿ï¿½ï¿½Ô­ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	RP_WAR_VICTORY_LOGIN					= 2022,		// Ã¿ï¿½Õ¿ï¿½Õ½Ê¤ï¿½ï¿½Ã¿ï¿½Õµï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
+	RP_WAR_VICTORY_BUY_GIFT					= 2023,		// ï¿½ï¿½Õ½Ê¤ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ø»Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	RP_DUNGEON_DAILY_START					= 3000,		// ¸±±¾Ã¿ÈÕÁì½±¼ÇÂ¼¿ªÊ¼
-	RP_DUNGEON_DAILY_END					= 3999,		// ¸±±¾Ã¿ÈÕÁì½±¼ÇÂ¼½áÊø
-	RP_YESTERDAY_DUNGEON_RECORD_START		= 4000,		// ×òÈÕ¸±±¾´ÎÊý¿ªÊ¼
-	RP_YESTERDAY_DUNGEON_RECORD_END			= 4999,		// ×òÈÕ¸±±¾´ÎÊý½áÊø
+	RP_DUNGEON_DAILY_START					= 3000,		// ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ì½±ï¿½ï¿½Â¼ï¿½ï¿½Ê¼
+	RP_DUNGEON_DAILY_END					= 3999,		// ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ì½±ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	RP_YESTERDAY_DUNGEON_RECORD_START		= 4000,		// ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼
+	RP_YESTERDAY_DUNGEON_RECORD_END			= 4999,		// ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	PR_YEllOW_DAILY							= 7000,		// »Æ×êÃ¿ÈÕÀñ°ü
-	PR_YEAR_YEllOW_DAILY					= 7001,		// Äê·Ñ»Æ×ê¶îÍâÃ¿ÈÕÀñ°ü
+	PR_YEllOW_DAILY							= 7000,		// ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_YEAR_YEllOW_DAILY					= 7001,		// ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	PR_BUY_CYCLE_TIMES						= 8003,		// ¹ºÂòÑ­»·ÈÎÎñ´ÎÊý
-	PR_QI_FU_MONEY							= 8004,		// Æí¸£Í­Ç®
-	PR_QI_FU_EXP							= 8005,		// Æí¸£¾­Ñé
+	PR_BUY_CYCLE_TIMES						= 8003,		// ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_QI_FU_MONEY							= 8004,		// ï¿½ï¿½ï¿½ï¿½Í­Ç®
+	PR_QI_FU_EXP							= 8005,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	PR_ACTIVITY_DAILY_REAWRD_START			= 9000,		// »î¶¯Ã¿ÈÕ½±Àø¿ªÊ¼
-	RP_ACTIVITY_DAILY_REAWRD_END			= 9999,		// »î¶¯Ã¿ÈÕ½±Àø½áÊø
+	PR_ACTIVITY_DAILY_REAWRD_START			= 9000,		// ï¿½î¶¯Ã¿ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼
+	RP_ACTIVITY_DAILY_REAWRD_END			= 9999,		// ï¿½î¶¯Ã¿ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	PR_DAILY_CLEAR_END						= 19999,
-	// Ã¿ÈÕÇåÀíµÄ¼ÇÂ¼½áÊø----------------------------------
+	// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½----------------------------------
 
-	PR_DUNGEON_COMPLETED_BEING				= 20000,	// ¸±±¾Í¨¹Ø¼ÇÂ¼¿ªÊ¼
-	PR_DUNGEON_COMPLETED_END				= 29999,	// ¸±±¾Í¨¹Ø¼ÇÂ¼½áÊø
+	PR_DUNGEON_COMPLETED_BEING				= 20000,	// ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Ø¼ï¿½Â¼ï¿½ï¿½Ê¼
+	PR_DUNGEON_COMPLETED_END				= 29999,	// ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Ø¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 
-	PR_GEM_SLOT_RECORD						= 37200,	// ±¦Ê¯ÏâÇ¶¿×¿ªÆô×´Ì¬
+	PR_GEM_SLOT_RECORD						= 37200,	// ï¿½ï¿½Ê¯ï¿½ï¿½Ç¶ï¿½×¿ï¿½ï¿½ï¿½×´Ì¬
 	PR_TEAM_AUTO_ACCEPT_INVITE				= 37201,
 	PR_TEAM_AUTO_ACCEPT_APPLY				= 37202,
 	PR_FIRST_ENTER_GAME						= 37203,
 	PR_LEARNED_XP_SKILL						= 37204,
-	PR_OPEN_THIRED_FIGHT_PET				= 37205,	// ¿ªÈý³è
-	PR_LAST_FINISH_UP_TOWER_DUNGEON			= 37206,	// ×îºóÍê³ÉµÄÅÀËþ¸±±¾
-	PR_RETROACTIVE_TIMES					= 37207,	// ²¹Ç©´ÎÊý
+	PR_OPEN_THIRED_FIGHT_PET				= 37205,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_LAST_FINISH_UP_TOWER_DUNGEON			= 37206,	// ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	PR_RETROACTIVE_TIMES					= 37207,	// ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½
 };
 
 enum PlayerAction
@@ -656,33 +657,33 @@ enum PlayerAction
 #define  PK_PROTECT_TIME 3600
 enum PkMode
 {
-	PK_MODE_FREE		= 0,	//ÎÞÐ§
-	PK_MODE_PEACE		= 1,	//ºÍÆ½Ä£Ê½
-	PK_MODE_TEAM		= 2,	//×é¶ÓÄ£Ê½
-	PK_MODE_LEGION		= 3,	//¾üÍÅÄ£Ê½
-	PK_MODE_GOOD_EVIL	= 4,	//ÉÆ¶ñÄ£Ê½
-	PK_MODE_SERVER		= 5,	//±¾ÃËÄ£Ê½
-	PK_MODE_ALL			= 6,	//È«ÌåÄ£Ê½	
+	PK_MODE_FREE		= 0,	//ï¿½ï¿½Ð§
+	PK_MODE_PEACE		= 1,	//ï¿½ï¿½Æ½Ä£Ê½
+	PK_MODE_TEAM		= 2,	//ï¿½ï¿½ï¿½Ä£Ê½
+	PK_MODE_LEGION		= 3,	//ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	PK_MODE_GOOD_EVIL	= 4,	//ï¿½Æ¶ï¿½Ä£Ê½
+	PK_MODE_SERVER		= 5,	//ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	PK_MODE_ALL			= 6,	//È«ï¿½ï¿½Ä£Ê½	
 	PK_MODE_COUNT,
 };
 
 enum NameColour
 {
-	NAME_COLOUR_WHITE	= 1,	//°×Ãû
-	NAME_COLOUR_RED		= 2,	//ºìÃû
-	NAME_COLOUR_BLACK	= 3,	//ºÚÃû
+	NAME_COLOUR_WHITE	= 1,	//ï¿½ï¿½ï¿½ï¿½
+	NAME_COLOUR_RED		= 2,	//ï¿½ï¿½ï¿½ï¿½
+	NAME_COLOUR_BLACK	= 3,	//ï¿½ï¿½ï¿½ï¿½
 };
 
 enum PkValue
 {
-	PK_VALUE_WHITE		= 20,	//°×ÃûpkÖµ
-	PK_VALUE_RED		= 100,	//ºìÃûpkÖµ
+	PK_VALUE_WHITE		= 20,	//ï¿½ï¿½ï¿½ï¿½pkÖµ
+	PK_VALUE_RED		= 100,	//ï¿½ï¿½ï¿½ï¿½pkÖµ
 };
 
 enum QiFuType
 {
-	QT_MONEY = 1,			//Æí¸£Í­Ç®
-	QT_EXP	 = 2,			//Æí¸£¾­Ñé
+	QT_MONEY = 1,			//ï¿½ï¿½ï¿½ï¿½Í­Ç®
+	QT_EXP	 = 2,			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum MonsterType
@@ -700,18 +701,18 @@ enum ExchangeGetType
 	EGT_RAND_ITEM = 11,
 };
 
-//µØÍ¼Àà±ð
+//ï¿½ï¿½Í¼ï¿½ï¿½ï¿½
 enum MapType
 {
-	MT_NORMAL		= 1,		// ÆÕÍ¨µØÍ¼
-	MT_DUNGEON		= 2,		// ¸±±¾µØÍ¼
-	MT_ACTIVITY		= 4,		// »î¶¯µØÍ¼
+	MT_NORMAL		= 1,		// ï¿½ï¿½Í¨ï¿½ï¿½Í¼
+	MT_DUNGEON		= 2,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
+	MT_ACTIVITY		= 4,		// ï¿½î¶¯ï¿½ï¿½Í¼
 };
 
 enum PlantType
 {
 	PT_NORMAL			= 0,
-	PT_GRADE_BAO_XIANG	= 1,	//»î¶¯ÖÐµÄ¸ß¼¶±¦Ïä
+	PT_GRADE_BAO_XIANG	= 1,	//ï¿½î¶¯ï¿½ÐµÄ¸ß¼ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum RegionType
@@ -723,14 +724,14 @@ enum RegionType
 
 enum InstanceMoveReason
 {
-	IMR_PULL_BACK	= 1,		// À­»Ø
-	IMR_TRANSFER	= 2,		// ´«ËÍ
-	IMR_SKILL		= 3,		// ¼¼ÄÜ
+	IMR_PULL_BACK	= 1,		// ï¿½ï¿½ï¿½ï¿½
+	IMR_TRANSFER	= 2,		// ï¿½ï¿½ï¿½ï¿½
+	IMR_SKILL		= 3,		// ï¿½ï¿½ï¿½ï¿½
 	IMR_ACTIVITY	= 4,
 	IMR_JUMP		= 5,
 	IMR_SPOUSE_MOVE = 6,
 	IMR_HIT			= 7,
-	IMR_OPEN_STALL	= 8,		// °ÚÌ¯
+	IMR_OPEN_STALL	= 8,		// ï¿½ï¿½Ì¯
 };
 
 enum SuperExchangeType
@@ -834,10 +835,10 @@ struct EquipPatchEnhanceInfo
 
 struct UnitAttr 
 {
-	int32_t hp;			// ÉúÃüÖµ
-	int32_t mp;			// ·¨Á¦Öµ
-	int32_t pp;			// ÌåÁ¦Öµ
-	int32_t xp;			// ±ØÉ±Öµ
+	int32_t hp;			// ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t mp;			// ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t pp;			// ï¿½ï¿½ï¿½ï¿½Öµ
+	int32_t xp;			// ï¿½ï¿½É±Öµ
 };
 
 struct UnitHandle 
@@ -950,8 +951,8 @@ struct TaskRequest
 struct activityRankData
 {
 	int32_t rank;
-	int32_t id;//°ïÅÉID»òÈËÎïID»ò¹ú¼ÒID
-	int32_t count; //±ÈÈü³¡´Î£¨±ÈÎäÊ±ÓÃ£©
+	int32_t id;//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ID
+	int32_t count; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ã£ï¿½
 	int32_t jifen;
 	int32_t aid;
 	int32_t kingDomId;
@@ -1245,12 +1246,12 @@ enum GameMsgCode
 
 	GMC_PLAYER_ENTER_MAP,
 	GMC_PLAYER_LEAVE_MAP,
-	GMC_ADD_DUNGEON,			// ´´½¨¸±±¾
-	GMC_DEL_DUNGEON,			// »ØÊÕ¸±±¾
-	GMC_PLAYER_LOGOUT,			// Íæ¼ÒµÇ³ö
+	GMC_ADD_DUNGEON,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GMC_DEL_DUNGEON,			// ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½ï¿½
+	GMC_PLAYER_LOGOUT,			// ï¿½ï¿½ÒµÇ³ï¿½
 	GMC_ACTIVITY_START,
-	GMC_MO_LING_RU_QIN_START,	// Ä§ÁéÈëÇÖ¿ªÊ¼
-	GMC_KILL_MONST,				// É±ËÀ¹ÖÎï
+	GMC_MO_LING_RU_QIN_START,	// Ä§ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½Ê¼
+	GMC_KILL_MONST,				// É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GMC_ACTIVITY_STOP,
 };
 
@@ -1284,12 +1285,12 @@ public:
 typedef Answer::SafeQueue<GameMsg*> GameMsgQueue;
 
 
-#define EX_ACTIVITY_NUM 3   //²»¼ÆËã³äÖµ»î¶¯
-#define BI_HERO_BUFF 9002//Ó¢ÐÛ¸±±¾Ó¢ÐÛ×´Ì¬
+#define EX_ACTIVITY_NUM 3   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½î¶¯
+#define BI_HERO_BUFF 9002//Ó¢ï¿½Û¸ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½×´Ì¬
 
 enum SpecialBuffId
 {
-	JUN_TUAN_LIE_JIU_BUFFI	= 135,		//¾üÍÅÁÒ¾Æbuffid
+	JUN_TUAN_LIE_JIU_BUFFI	= 135,		//ï¿½ï¿½ï¿½ï¿½ï¿½Ò¾ï¿½buffid
 };
 enum TD_DUNGEON_SKILL_ID
 {
@@ -1311,9 +1312,9 @@ enum AddXiuweiType
 
 #define DAILY_READ_MAX 10
 
-#define PRISON_MAP_ID 70003		// ¼àÓüµØÍ¼id
-#define PRISON_X    50			// ¼àÓü×ø±êx
-#define PRISON_Y	50			// ¼àÓü×ø±êy
+#define PRISON_MAP_ID 70003		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼id
+#define PRISON_X    50			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x
+#define PRISON_Y	50			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½y
 
 #define ADD_PP_VALUES1	5
 #define ADD_PP_VALUES2	10
@@ -1354,42 +1355,42 @@ struct ShowIcon
 };
 typedef std::list<ShowIcon> IconStateList;
 
-#define MAX_FAMILY_TASK_COUNT 10				//¾üÍÅÈÎÎñ×î´ó´ÎÊý
+#define MAX_FAMILY_TASK_COUNT 10				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 enum HD_ID
 {
-	HUODONG_DA_TING	    = 1,		// »î¶¯´óÌü
-	JIANG_LI_DA_TING	= 2,		// ½±Àø´óÌü
-	DA_WEI_WANG_HD_ID	= 6,		// ´óÎ¸Íõ»î¶¯
-	JI_ZHAN_BOSS		= 9,		// ¼¤Õ½boss
-	VIP_GUA_JI			= 14,		// vip¹Ò»ú
-	CHOU_CHONG			= 15,		// Ê×´Î³äÖµ
-	NEW_SERVER_TE_HUI	= 16,		// ÐÂ·þÌØ»Ý
-	EVERYDAY_CHOU_ZHI	= 17,		// Ã¿ÈÕ³äÖµ
-	TOU_ZI				= 18,		// Í¶×Ê
-	KAI_FU_HUO_DONG_ID	= 19,		// ¿ª·þ»î¶¯
-	TERRITORY_WAR_ICON	= 24,		// ÁìµØÕ½
-	HALL_OF_FAME_ICON	= 25,		// ÃûÈËÌÃ
-	SCORE_SHOP			= 26,		// »ý·ÖÉÌ³Ç
-	THREE_PET_ICON		= 27,		// Èý³èÀñ°üÍ¼±ê
-	VIP_CARD_ICON		= 28,		// vip¿ªÀñ°ü
-	CHOU_JIANG_ICON		= 29,		// ³é½±
-	QI_FU_ICON			= 30,		// Æí¸£
-	TOTAL_CHONG_ZHI		= 31,		// ¿ª·þÀÛ¼Æ³äÖµ
-	WAR_VICTORY_ICON	= 32,		// ¿¹Õ½Ê¤ÀûÍ¼±ê
+	HUODONG_DA_TING	    = 1,		// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	JIANG_LI_DA_TING	= 2,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DA_WEI_WANG_HD_ID	= 6,		// ï¿½ï¿½Î¸ï¿½ï¿½ï¿½î¶¯
+	JI_ZHAN_BOSS		= 9,		// ï¿½ï¿½Õ½boss
+	VIP_GUA_JI			= 14,		// vipï¿½Ò»ï¿½
+	CHOU_CHONG			= 15,		// ï¿½×´Î³ï¿½Öµ
+	NEW_SERVER_TE_HUI	= 16,		// ï¿½Â·ï¿½ï¿½Ø»ï¿½
+	EVERYDAY_CHOU_ZHI	= 17,		// Ã¿ï¿½Õ³ï¿½Öµ
+	TOU_ZI				= 18,		// Í¶ï¿½ï¿½
+	KAI_FU_HUO_DONG_ID	= 19,		// ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	TERRITORY_WAR_ICON	= 24,		// ï¿½ï¿½ï¿½Õ½
+	HALL_OF_FAME_ICON	= 25,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	SCORE_SHOP			= 26,		// ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+	THREE_PET_ICON		= 27,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
+	VIP_CARD_ICON		= 28,		// vipï¿½ï¿½ï¿½ï¿½ï¿½
+	CHOU_JIANG_ICON		= 29,		// ï¿½é½±
+	QI_FU_ICON			= 30,		// ï¿½ï¿½ï¿½ï¿½
+	TOTAL_CHONG_ZHI		= 31,		// ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Æ³ï¿½Öµ
+	WAR_VICTORY_ICON	= 32,		// ï¿½ï¿½Õ½Ê¤ï¿½ï¿½Í¼ï¿½ï¿½
 };
 
 enum SysSetting
 {
-	SS_PETEGG			= 1,	//×Ô¶¯·õ»¯»ÃÊÞµ°
-	SS_TEAM				= 2,	//½ûÖ¹ËûÈËÑûÇëÎÒ¼ÓÈë¶ÓÎé
-	SS_FRIEND			= 3,	//½ûÖ¹ËûÈË½«ÎÒ¼ÓÎªºÃÓÑ
-	SS_TRADE			= 4,	//½ûÖ¹ËûÈËÏòÎÒ·¢Æð½»Ò×
+	SS_PETEGG			= 1,	//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þµï¿½
+	SS_TEAM				= 2,	//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	SS_FRIEND			= 3,	//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½Ë½ï¿½ï¿½Ò¼ï¿½Îªï¿½ï¿½ï¿½ï¿½
+	SS_TRADE			= 4,	//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 enum APPEND_ATTR_TYPE
 {
-	FAMILY_WAR_WIN		= 1,	//¾üÍÅÕ½Ê¤Àû¾üÍÅ³¤ÊôÐÔ
+	FAMILY_WAR_WIN		= 1,	//ï¿½ï¿½ï¿½ï¿½Õ½Ê¤ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
-#define WAR_VICTORY_BOSS_ID  477115		//¿¹Õ½Ê¤Àûbossid
+#define WAR_VICTORY_BOSS_ID  477115		//ï¿½ï¿½Õ½Ê¤ï¿½ï¿½bossid
