@@ -112,16 +112,18 @@ int32_t Trap::onUse(Player *player)
 	return ERR_OK;
 }
 
-void Trap::appendInfo(Answer::NetPacket *inPacket)
+bool Trap::appendInfo(Answer::NetPacket *inPacket)
 {
 	if (NULL == inPacket)
 	{
-		return;
+		return false;
 	}
+	inPacket->writeInt8(static_cast<int8_t>(getType()));
 	inPacket->writeInt64(getEntityId());
 	inPacket->writeInt32(m_cfgTrap.id);
 	inPacket->writeInt16(static_cast<int16_t>(m_pos.x));
 	inPacket->writeInt16(static_cast<int16_t>(m_pos.y));
+	return true;
 }
 
 void Trap::leaveMap()

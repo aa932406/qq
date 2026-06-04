@@ -43,7 +43,7 @@ public:
 
 	int32_t onUse(Player *player);
 
-	void appendInfo(Answer::NetPacket *inPacket);
+	bool appendInfo(Answer::NetPacket *inPacket);
 	void leaveMap();
 
 private:
