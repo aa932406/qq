@@ -41,9 +41,10 @@ struct DamageSum
 typedef std::list<DamageSum> DamageSumList;
 
 class MonsterDungeon;
+class NpcDungeon;
 class PlantDungeon;
 /*
-* ¸±±¾µØÍ¼
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 */
 class Dungeon
 	: public Map, public IMapEvent
@@ -82,6 +83,7 @@ public:
 	
 	void onPlayerLeave(Player *player);
 	void onMonsterDie(MonsterDungeon *monster);
+	void onNpcEnd(NpcDungeon *npc, int8_t choice);
 	void onPlayerDie(Player* player);
 	void onPlantGather(PlantDungeon *plant);
 	void onMonsterArriveRoadEnd(MonsterDungeon *monster);
@@ -145,26 +147,26 @@ private:
 	void DungeonGongGao( CharId_t CharId, std::string Name );
 
 private:
-	CfgDungeon			m_cfgDungeon;			// ¸±±¾ÅäÖÃ
-	int32_t				m_nAddonTime;			// ¶îÍâ¸±±¾Ê±¼ä
-	int32_t				m_nId;					// ¸±±¾·ÖÅÉID
-	DungeonState		m_state;				// ¸±±¾×´Ì¬
-	int64_t				m_stateTick;			// ×´Ì¬×ª»»Ê±¼ä
-	int32_t				m_stateParam;			// ×´Ì¬²ÎÊý
-	double				m_dRatio;				// ½±ÀøÏµÊýÄ¬ÈÏ100
+	CfgDungeon			m_cfgDungeon;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int32_t				m_nAddonTime;			// ï¿½ï¿½ï¿½â¸±ï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t				m_nId;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	DungeonState		m_state;				// ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	int64_t				m_stateTick;			// ×´Ì¬×ªï¿½ï¿½Ê±ï¿½ï¿½
+	int32_t				m_stateParam;			// ×´Ì¬ï¿½ï¿½ï¿½ï¿½
+	double				m_dRatio;				// ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½Ä¬ï¿½ï¿½100
 
-    DungeonFinshInfo	m_finshInfo;			// ¸±±¾Íê³ÉÐÅÏ¢
-	Int32MonsterWaveMap m_monsterWave;			// ¹ÖÎï²¨´Î
-	MonsterWaitList		m_waitMonster;			// µÈ´ýË¢ÐÂµÄ¹ÖÎï
-	DungeonTowerList	m_waitTower;			// ´ý½¨ÔìµÄËþ
-	MonsterList			m_buildTower;			// ÒÔ½¨ÔìµÄËþ
-	DungeonRewardList	m_playerReward;			// Íæ¼Ò½±Àø
+    DungeonFinshInfo	m_finshInfo;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	Int32MonsterWaveMap m_monsterWave;			// ï¿½ï¿½ï¿½ï²¨ï¿½ï¿½
+	MonsterWaitList		m_waitMonster;			// ï¿½È´ï¿½Ë¢ï¿½ÂµÄ¹ï¿½ï¿½ï¿½
+	DungeonTowerList	m_waitTower;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MonsterList			m_buildTower;			// ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DungeonRewardList	m_playerReward;			// ï¿½ï¿½Ò½ï¿½ï¿½ï¿½
 
 	CharIdList			m_memberList;
 
-	DamageSumList		m_damages;				// ÉËº¦Í³¼Æ
-	bool				m_needBroadcastDamage;	// ÊÇ·ñÐèÒª¹ã²¥ÉËº¦ÁÐ±í
+	DamageSumList		m_damages;				// ï¿½Ëºï¿½Í³ï¿½ï¿½
+	bool				m_needBroadcastDamage;	// ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ã²¥ï¿½Ëºï¿½ï¿½Ð±ï¿½
 
-	int32_t				m_nStartTime;			// ¿ªÊ¼Ê±¼ä
+	int32_t				m_nStartTime;			// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 };
 

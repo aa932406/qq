@@ -1319,6 +1319,13 @@ void Dungeon::onMonsterDie(MonsterDungeon *monster)
 	broadcastDungeonInfo();
 }
 
+void Dungeon::onNpcEnd(NpcDungeon *npc, int8_t choice)
+{
+	if ( NULL == npc )
+	{
+		return;
+	}
+}
 void Dungeon::onPlantGather(PlantDungeon *plant)
 {
 	if (plant == NULL)
