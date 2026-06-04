@@ -75,16 +75,22 @@ void Npc::init(const CfgNpc &cfgNpc, int32_t EndTime )
 	m_endTime	= EndTime;
 }
 
-void Npc::appendInfo(Answer::NetPacket *packet)
+bool Npc::appendInfo(Answer::NetPacket *packet)
 {
-	packet->writeInt64(getUnitId());
-	packet->writeInt32(m_cfgNpc.id);
-	packet->writeInt32(getCurrentTile().x);
-	packet->writeInt32(getCurrentTile().y);
-	packet->writeInt32(500000);//TODO: use NPC real HP
-	packet->writeInt32(500000);
-	packet->writeInt32(0);
+	if ( NULL == packet )
+	{
+		return false;
+	}
+	packet->writeInt8( getType() );
+	packet->writeInt64( getUnitId() );
+	packet->writeInt32( m_cfgNpc.id );
+	packet->writeInt32( GetPosX() );
+	packet->writeInt32( GetPosY() );
+	packet->writeInt32( 500000 );//TODO: use NPC real HP
+	packet->writeInt32( 500000 );
+	packet->writeInt32( 0 );
 	packet->writeInt64( getOwner() );
+	return true;
 }
 
 void Npc::leaveMap()

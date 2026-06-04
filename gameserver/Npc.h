@@ -26,7 +26,7 @@ public:
 
 public:
 	void init(const CfgNpc &cfgNpc, int32_t EndTime = 0 );
-	void appendInfo(Answer::NetPacket *packet);
+	bool appendInfo(Answer::NetPacket *packet);
 	void leaveMap();
 
 	void SetOwner( CharId_t nOwner );
